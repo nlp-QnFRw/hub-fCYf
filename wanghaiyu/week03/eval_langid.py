@@ -11,8 +11,8 @@ eval_langid.py —— 语种识别模型评测
 
 会打印：accuracy / macro-F1 / 逐类 P-R-F1 / 最常混淆的组合 / 按长度分档的准确率
 
-想看"中英混排这类句子模型认不认得出"，跑隔壁的 demo_mixed_text.py ——
-那里还有一栏"纯规则"的对照，用来说明为什么不能写 if-else 解决。
+说明：本次作业只改 train_langid_cls.py（8 类 → 12 类）与本文件的默认路径，
+课件里的 demo_mixed_text.py / build_langid_dataset.py 没有改动，故未随附。
 """
 
 import os
