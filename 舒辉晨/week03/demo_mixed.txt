@@ -1,0 +1,63 @@
+================================================================================================
+一、手写的混排句子（主体语言 + 混入的英文/其它语言）
+================================================================================================
+句子                                             期望     模型     置信    规则  结果
+我在用 chatgpt 写这份周报，写得有点快                        zh     zh   0.99    zh  模型✓ 规则✓
+这个 bug 我查了一下午还没找到原因                            zh     zh   1.00    zh  模型✓ 规则✓
+今天的 meeting 推迟到下午三点                            zh     zh   0.95    zh  模型✓ 规则✓
+刚 deploy 完，服务已经恢复正常了                           zh     tr   0.49    zh  模型✗ 规则✓
+建议用 pytorch 而不是 tensorflow …                   zh     zh   0.54    en  模型✓ 规则✗
+把 config 里的 learning rate 调…                   zh     zh   0.72    en  模型✓ 规则✗
+这个 pull request 麻烦你明天 revie…                   zh     zh   0.83    en  模型✓ 规则✗
+先 git commit 再 push 上去，别直接改…                   zh     en   0.65    en  模型✗ 规则✗
+Python 的 list 和 tuple 有什么区别                    zh     zh   0.87    en  模型✓ 规则✗
+这家 coffee 店的 wifi 密码是多少                        zh     zh   0.99    en  模型✓ 规则✗
+この bug はまだ直っていないので、もう一度見てくだ…                   ja     ja   1.00    ja  模型✓ 规则✓
+회의는 3 시부터 시작합니다                                ko     ko   1.00    ko  模型✓ 规则✓
+Я скачал новый update вчера…                   ru     ru   0.99    ru  模型✓ 规则✓
+أحتاج إلى download هذا المل…                   ar     ar   0.99    ar  模型✓ 规则✓
+मुझे यह file कल तक चाहिए                       hi     hi   1.00    hi  模型✓ 规则✓
+Mañana tenemos una meeting …                   es     es   0.94    en  模型✓ 规则✗
+Preciso fazer um upgrade no…                   pt     pt   0.98    en  模型✓ 规则✗
+Tôi đang viết code cho dự á…                   vi     vi   0.93    en  模型✓ 规则✗
+Este sistema é muito bom me…                   pt     pt   0.97    en  模型✓ 规则✗
+Bu sistemi çok beğendim                        tr     tr   1.00    en  模型✓ 规则✗
+ระบบนี้ใช้งานง่ายมาก                           th     th   1.00    th  模型✓ 规则✓
+이 시스템은 정말 좋습니다                                 ko     ko   0.99    ko  模型✓ 规则✓
+
+  结果：模型 20/22，纯规则 10/22
+
+  ── 规则判错、模型判对的（规则的死穴）──
+    [zh] 建议用 pytorch 而不是 tensorflow 来跑这个 demo   （拉丁字母比汉字还多）
+    [zh] 把 config 里的 learning rate 调小一点再跑   （技术口语，英文词更多）
+    [zh] 这个 pull request 麻烦你明天 review 一下   （工作场景混排）
+    [zh] Python 的 list 和 tuple 有什么区别   （技术名词多）
+    [zh] 这家 coffee 店的 wifi 密码是多少   （生活场景混排）
+    [es] Mañana tenemos una meeting con el cliente   （西语 + meeting）
+    [pt] Preciso fazer um upgrade no sistema amanhã   （葡语 + upgrade）
+    [vi] Tôi đang viết code cho dự án mới   （越南语 + code）
+    [pt] Este sistema é muito bom mesmo   （纯拉丁字母，规则只能猜英语）
+    [tr] Bu sistemi çok beğendim   （土耳其语，同样只有拉丁字母）
+
+  ── 模型也判错的（诚实展示：模型不是万能的）──
+    [zh] 刚 deploy 完，服务已经恢复正常了   → 模型 tr(0.49) / 规则 zh
+    [zh] 先 git commit 再 push 上去，别直接改 master   → 模型 en(0.65) / 规则 en
+
+================================================================================================
+二、把纯规则直接拿去跑整张 v12 测试集
+================================================================================================
+语种             规则准确率   说明
+ar             1.000   书写系统唯一，规则能认出来
+en             1.000   拉丁字母 → 规则默认就是它
+es             0.000   拉丁字母 → 规则只会判英语，这类直接 0 分
+hi             1.000   书写系统唯一，规则能认出来
+ja             0.927   含大量汉字，规则会把一部分判成中文
+ko             1.000   书写系统唯一，规则能认出来
+pt             0.000   拉丁字母 → 规则只会判英语，这类直接 0 分
+ru             1.000   书写系统唯一，规则能认出来
+th             1.000   书写系统唯一，规则能认出来
+tr             0.000   拉丁字母 → 规则只会判英语，这类直接 0 分
+vi             0.000   拉丁字母 → 规则只会判英语，这类直接 0 分
+zh             0.993   书写系统唯一，规则能认出来
+
+  纯规则在 1800 条测试集上的准确率：0.6600（12 类模型同一份测试集：0.9583）

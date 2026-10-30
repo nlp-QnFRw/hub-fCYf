@@ -1,0 +1,12 @@
+模型：langid_rnn_v12.pt  字符表 3276 个  类别 12 个
+
+=== 难度诊断集 1300 条 ===
+  [short]  600 条  accuracy = 0.852
+      ar:50/50  en:29/50  es:33/50  hi:44/50  ja:42/50  ko:43/50  pt:38/50  ru:50/50  th:50/50  tr:42/50  vi:42/50  zh:48/50
+  [nodeaccent]  600 条  accuracy = 0.745
+      en:110/120  es:77/120  pt:108/120  tr:108/120  vi:44/120
+  [nokana]  100 条  accuracy = 0.260
+      真实 ja → 预测 zh: 60 条
+      真实 ja → 预测 ja: 26 条
+      真实 ja → 预测 ko: 7 条
+      ja:26/100
