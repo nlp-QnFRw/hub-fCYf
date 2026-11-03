@@ -1,0 +1,167 @@
+import os
+
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
+
+import torch
+import torch.nn as nn
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+
+class TorchModel(nn.Module):
+    def __init__(self, input_size):
+        super(TorchModel, self).__init__()
+        self.linear = nn.Linear(input_size, 3)  # 线性层
+        # self.activation = torch.sigmoid  # nn.Sigmoid() sigmoid归一化函数
+        self.loss = nn.functional.cross_entropy  # loss函数采用交叉熵损失
+
+    # 当输入真实标签，返回loss值；无真实标签，返回预测值
+    def forward(self, x, y=None):
+        logits = self.linear(x)
+        if y is not None:
+            return self.loss(logits, y.argmax(dim=1))  # 输入预测值和真实值，输出loss值
+        return logits
+
+
+# 生成一个样本，样本的生成方式，代表我们要学习的规律
+# 随机生成一个5维向量
+def build_sample(input_size):
+    x = np.random.random(input_size)
+
+    # 比较前两个数与后两个数的和，中间预留缓冲区作为第2类。
+    # 0.25左右的阈值可使三个类别的样本比例大致均衡。
+    difference = (x[0] + x[1]) - (x[3] + x[4])
+    if difference > 0.25:
+        return x, [1, 0, 0]
+    elif difference < -0.25:
+        return x, [0, 0, 1]
+    else:
+        return x, [0, 1, 0]
+
+
+# 随机生成一批样本
+def build_dataset(total_sample_num, input_size=5):
+    X = []
+    Y = []
+    for i in range(total_sample_num):
+        x, y = build_sample(input_size)
+        X.append(x)
+        Y.append(y)
+
+    return torch.FloatTensor(X), torch.FloatTensor(Y)
+
+
+# 测试每轮模型的准确率
+def evaluate(model, input_size=5):
+    model.eval()
+    test_sample_num = 100
+    x, y = build_dataset(test_sample_num, input_size)
+    print("本轮预测集中共有%d个1类样本，%d个2类样本，%d个3类样本" % (y[:, 0].sum().item(), y[:, 1].sum().item(),
+                                                                   y[:, 2].sum().item()))
+    with torch.no_grad():
+        logits = model(x)  # 模型预测 model.forward(x) 形状：(样本数, 3)
+        pred_class = logits.argmax(dim=1)
+        true_class = y.argmax(dim=1)
+
+    total = len(y)
+    correct = (pred_class == true_class).sum().item()
+    wrong = total - correct
+    accuracy = correct / total
+
+    print("正确预测个数：%d，错误预测个数：%d，正确率：%f" % (correct, wrong, accuracy))
+    return accuracy
+
+
+def main():
+    # 配置参数
+    epoch_num = 20  # 训练轮数
+    batch_size = 20  # 每次训练样本数
+    train_sample_num = 500  # 每轮训练样本数
+    input_size = 5  # 输入向量维度
+    learning_rate = 0.1  # 学习率
+    # 建立模型
+    model = TorchModel(input_size)
+    # 选择优化器
+    optim = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    log = []
+    # 创建训练集，正常任务是读取训练集
+    train_x, train_y = build_dataset(train_sample_num, input_size)
+    # 开始训练
+    for epoch in range(epoch_num):
+        model.train()  # 切换到训练模式
+        watch_loss = []
+        for batch_index in range(train_sample_num // batch_size):
+            # 取出一组batch数据作为输入 train[0:20] -> train[20:40] -> ... 循环获取数据训练
+            x = train_x[batch_index * batch_size: (batch_index + 1) * batch_size]
+            y = train_y[batch_index * batch_size: (batch_index + 1) * batch_size]
+            loss = model(x, y)  # 计算loss model.foward(x, y)
+            loss.backward()  # 计算梯度
+            optim.step()  # 调用优化器更新权重
+            optim.zero_grad()  # 梯度归零
+            watch_loss.append(loss.item())
+
+        print("=========\n第%d轮平均loss:%f" % (epoch + 1, np.mean(watch_loss)))
+        acc = evaluate(model, input_size)  # 测试本轮模型结果
+        log.append([acc, float(np.mean(watch_loss))])  # 每轮模型测试结果和平均损失值
+
+    print(f"训练结果：{log}")
+    # 训练结束后保存模型
+    torch.save(model.state_dict(), "model.bin")
+    # 画出模型训练曲线
+    plt.plot(range(len(log)), [l[0] for l in log], label="acc")  # 画acc曲线
+    plt.plot(range(len(log)), [l[1] for l in log], label="loss")  # 画loss曲线
+    plt.legend()
+    plt.show()
+    return
+
+
+# 使用训练好的模型做预测
+def predict(model_path, input_vec):
+    input_size = 5
+    model = TorchModel(input_size)  # 初始化一个模型
+    state_dict = torch.load(model_path, map_location="cpu", weights_only=True)
+    model.load_state_dict(state_dict)  # 加载训练好的模型权重
+
+    model.eval()  # 切换到评估模式
+    with torch.no_grad():  # 不计算梯度
+        logits = model(torch.tensor(input_vec, dtype=torch.float32))
+        probabilities = torch.softmax(logits, dim=1)
+        predicted_classes = probabilities.argmax(dim=1)
+
+    for vec, predicted_class, probability in zip(input_vec, predicted_classes, probabilities):
+        class_index = predicted_class.item()
+        confidence = probability[class_index].item()
+        print("输入：%s，预测类别：%d，置信度：%f" % (vec, class_index, confidence))
+
+
+if __name__ == "__main__":
+    main()
+    test_vec = [[0.81889086, 0.15229675, 0.31082123, 0.03504317, 0.88920843],
+                [0.94963533, 0.5524256, 0.95758807, 0.95520434, 0.84890681],
+                [0.90797868, 0.67482528, 0.13625847, 0.34675372, 0.19871392],
+                [0.39349776, 0.59416669, 0.92579291, 0.41567412, 0.8358894]]
+    predict("model.bin", test_vec)
+
+# 测试1：其他参数不变，只调整学习率0.01>0.1，loss曲线下降速度明显增加，并且准确率也明显增加，达到%96+，损失值到0.23
+# 测试2：其他参数不变，轮次增加到200次，loss下降趋势增加，准确率虽然也增加了，但是出现震荡，轮次过多
+# 测试3：其他参数不变，维度增加到10，loss下降趋势增加，准确率也增加了，但是增加到100维，反而准确率下降了
+# 测试4：其他参数不变，调整批次到200，每轮数量5000，准确率增加，有效果，但是不如调整学习率的结果，损失值还在0.5
+
+# 验证1：在测试1的模型上验证结果：
+"""
+输入：[0.81889086, 0.15229675, 0.31082123, 0.03504317, 0.88920843]，预测类别：1，置信度：0.845268
+输入：[0.94963533, 0.5524256, 0.95758807, 0.95520434, 0.84890681]，预测类别：2，置信度：0.544180
+输入：[0.90797868, 0.67482528, 0.13625847, 0.34675372, 0.19871392]，预测类别：0，置信度：0.998299
+输入：[0.39349776, 0.59416669, 0.92579291, 0.41567412, 0.8358894]，预测类别：1，置信度：0.573601
+
+   样本     difference    真实类别    预测类别    结果                                                                                                                                                                              
+  ━━━━━━  ━━━━━━━━━━━━━  ━━━━━━━━━━  ━━━━━━━━━━  ━━━━━━ 
+   1        0.04693601           1           1    正确 
+  ──────  ─────────────  ──────────  ──────────  ────── 
+   2       -0.30205022           2           2    正确 
+  ──────  ─────────────  ──────────  ──────────  ────── 
+   3        1.03733632           0           0    正确 
+  ──────  ─────────────  ──────────  ──────────  ────── 
+   4       -0.26389907           2           1    错误
+"""
