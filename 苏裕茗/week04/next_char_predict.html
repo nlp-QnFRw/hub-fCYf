@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>下一个字预测 · 多模型对比</title>
+<style>
+  :root{
+    --navy:#1E3A5F; --teal:#2E86AB; --dark:#2D2D2D; --gray:#666666;
+    --code-bg:#F5F5F5; --border:#DEDEDE; --lt-teal:#EBF4FA;
+    --red:#C0392B; --green:#217B45; --orange:#D4720A; --purple:#6C4FA1;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:#F0F2F5; color:var(--dark); margin:0;
+    font-family:"Microsoft YaHei","PingFang SC","Hiragino Sans GB",-apple-system,sans-serif;
+    font-size:14px; line-height:1.5; padding:14px 18px 34px;
+  }
+  .wrap{max-width:1180px;margin:0 auto;}
+
+  .head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px;}
+  .head h1{font-size:22px;color:var(--navy);margin:0;font-weight:700;letter-spacing:.5px;}
+  .head .sub{font-size:12.5px;color:var(--gray);}
+  .badge{
+    margin-left:auto;font-size:11.5px;color:var(--navy);background:var(--lt-teal);
+    border:1px solid #CFE3EF;border-radius:20px;padding:3px 12px;white-space:nowrap;
+  }
+
+  .bar{
+    background:#fff;border:1px solid var(--border);border-left:4px solid var(--teal);
+    border-radius:8px;padding:10px 14px;display:flex;flex-wrap:wrap;align-items:center;
+    gap:10px 18px;margin-bottom:12px;
+  }
+  .field{display:flex;align-items:center;gap:7px;}
+  .field>label{font-size:12.5px;color:var(--gray);white-space:nowrap;}
+  select{
+    font-family:inherit;font-size:13px;font-weight:600;color:var(--navy);
+    border:1px solid var(--border);border-radius:6px;padding:6px 9px;background:var(--code-bg);
+    min-width:230px;cursor:pointer;
+  }
+  select:focus{outline:2px solid var(--teal);outline-offset:-1px;}
+  textarea.ctxbox{
+    font-family:"Microsoft YaHei",sans-serif;font-size:19px;color:var(--navy);font-weight:600;
+    border:1px solid var(--border);border-radius:6px;padding:6px 11px;width:230px;background:var(--code-bg);
+    line-height:1.4;resize:vertical;
+  }
+  textarea.ctxbox:focus{outline:2px solid var(--teal);outline-offset:-1px;background:#fff;}
+  input[type=range]{width:84px;accent-color:var(--teal);vertical-align:middle;}
+  .val{font-family:Consolas,monospace;font-size:13px;font-weight:700;color:var(--teal);min-width:30px;text-align:right;display:inline-block;}
+  button{
+    font-family:inherit;font-size:12.5px;padding:5px 13px;border-radius:5px;border:1px solid var(--border);
+    background:#fff;color:var(--dark);cursor:pointer;transition:.12s;white-space:nowrap;
+  }
+  button:hover{background:var(--lt-teal);border-color:var(--teal);}
+  button.primary{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:600;}
+  button.primary:hover{background:#162C49;}
+  button.mini{font-size:12px;padding:2px 9px;font-family:Consolas,monospace;}
+
+  .card{background:#fff;border:1px solid var(--border);border-radius:8px;}
+  .card-h{
+    padding:8px 13px;border-bottom:1px solid var(--border);
+    font-size:13.5px;font-weight:700;color:var(--navy);
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+  }
+  .card-h .hint{font-size:11.5px;color:var(--gray);font-weight:400;}
+  .card-b{padding:11px 13px;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:900px){.grid{grid-template-columns:1fr;}}
+
+  .row{display:flex;align-items:center;gap:9px;margin-bottom:6px;}
+  .ch{
+    width:30px;height:30px;flex:none;display:flex;align-items:center;justify-content:center;
+    font-size:19px;font-weight:700;color:var(--navy);background:var(--lt-teal);
+    border:1px solid #CFE3EF;border-radius:6px;font-family:"Microsoft YaHei",sans-serif;
+  }
+  .ch.ws{color:var(--gray);font-size:15px;background:var(--code-bg);border-color:var(--border);}
+  .track{flex:1;height:18px;background:var(--code-bg);border-radius:4px;overflow:hidden;border:1px solid var(--border);}
+  .fill{height:100%;background:linear-gradient(90deg,var(--teal),#4FA8CC);border-radius:3px;transition:width .15s;}
+  .fill.top{background:linear-gradient(90deg,var(--navy),var(--teal));}
+  .num{font-family:Consolas,monospace;font-size:12px;color:var(--gray);width:88px;text-align:right;flex:none;}
+  .num b{color:var(--navy);font-size:13px;}
+
+  .presets{display:flex;gap:5px;flex-wrap:wrap;}
+
+  .genbox{font-size:16px;line-height:1.9;word-break:break-all;min-height:52px;}
+  .genbox .orig{color:var(--gray);}
+  .genbox .new{color:var(--teal);font-weight:700;background:#EAF6FB;border-radius:3px;padding:0 1px;}
+
+  table.cmp{width:100%;border-collapse:collapse;font-size:13px;}
+  table.cmp th{
+    text-align:left;font-size:11.5px;color:var(--gray);font-weight:600;
+    border-bottom:1px solid var(--border);padding:5px 8px;white-space:nowrap;
+  }
+  table.cmp td{border-bottom:1px solid #F0F0F0;padding:7px 8px;vertical-align:middle;}
+  table.cmp tr:last-child td{border-bottom:none;}
+  table.cmp tr.sel td{background:#F7FBFD;}
+  .mname{font-weight:700;color:var(--navy);white-space:nowrap;}
+  .mname .tag{
+    font-weight:400;font-size:10.5px;color:var(--teal);background:var(--lt-teal);
+    border:1px solid #CFE3EF;border-radius:9px;padding:0 6px;margin-left:6px;
+  }
+  .mono{font-family:Consolas,monospace;font-size:12px;color:var(--gray);white-space:nowrap;}
+  .cands{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .cand{
+    display:inline-flex;align-items:baseline;gap:4px;background:var(--code-bg);
+    border:1px solid var(--border);border-radius:5px;padding:1px 6px;white-space:nowrap;
+  }
+  .cand .c{font-size:15px;font-weight:700;color:var(--navy);}
+  .cand .p{font-family:Consolas,monospace;font-size:10.5px;color:var(--gray);}
+  .cand.win{border-color:var(--teal);background:#EAF6FB;}
+  .cand.win .c{color:var(--teal);}
+
+  .empty{color:#AAA;font-size:12.5px;padding:6px 0;}
+  .warn{margin-top:8px;font-size:12px;color:var(--orange);}
+  .explain{font-size:12.5px;color:var(--gray);line-height:1.75;}
+  .explain b{color:var(--navy);}
+  .explain code{background:var(--code-bg);border:1px solid var(--border);border-radius:3px;padding:0 4px;font-family:Consolas,monospace;font-size:11.5px;}
+  .ok{color:var(--green);font-weight:700;}
+  .bad{color:var(--red);font-weight:700;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <h1>下一个字预测 · 多模型对比</h1>
+    <div class="sub">选一个模型看它的 P(下一个字 | 上文)，③ 区同时列出三个模型的差异</div>
+    <div class="badge" id="badge">模型加载中…</div>
+  </div>
+
+  <div class="bar">
+    <div class="field">
+      <label>模型</label>
+      <select id="model">
+        <option value="transformer">Transformer（默认）</option>
+        <option value="transformer_finance">Transformer·金融</option>
+        <option value="lstm">LSTM</option>
+        <option value="rnn">RNN</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>上下文</label>
+      <textarea class="ctxbox" id="ctx" rows="1" maxlength="40" spellcheck="false"
+                autocomplete="off">今</textarea>
+    </div>
+    <div class="field">
+      <label>温度</label>
+      <input type="range" id="temp" min="0.3" max="2" step="0.1" value="1">
+      <span class="val" id="tempv">1.0</span>
+    </div>
+    <div class="field">
+      <label>候选数</label>
+      <input type="range" id="topk" min="3" max="20" step="1" value="10">
+      <span class="val" id="topkv">10</span>
+    </div>
+    <div class="field">
+      <label>续写</label>
+      <input type="range" id="steps" min="1" max="30" step="1" value="10">
+      <span class="val" id="stepsv">10</span>字
+    </div>
+    <button class="primary" id="go">续写</button>
+    <button id="clear">清空</button>
+  </div>
+
+  <div class="bar" style="border-left-color:var(--purple);padding:7px 14px">
+    <label style="font-size:12.5px;color:var(--gray)">试试：</label>
+    <div class="presets" id="presets"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-h">
+        <span>① 下一个字的候选</span>
+        <span class="hint" id="ctxinfo"></span>
+      </div>
+      <div class="card-b" id="dist"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h">
+        <span>② 贪心续写</span>
+        <span class="hint">每步取概率最高的字，接在上文后面继续</span>
+      </div>
+      <div class="card-b"><div class="genbox" id="gen"></div></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-h">
+      <span>③ 三模型对比：同一个上下文，各自预测的下一个字</span>
+      <span class="hint" id="cmpinfo"></span>
+    </div>
+    <div class="card-b">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th>模型</th><th>参数量</th><th>验证 PPL</th><th>下一个字 top-5（概率）</th>
+          </tr>
+        </thead>
+        <tbody id="cmpbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-h">
+      <span>④ 自检：浏览器 JS 前向 &#8801; 训练时的 PyTorch 结果</span>
+      <span class="hint" id="checkinfo"></span>
+    </div>
+    <div class="card-b explain" id="check"></div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-h"><span>三个模型的差别</span></div>
+    <div class="card-b explain">
+      <b>同一个任务、同一个字表</b>（4000 字表，字符级，seq_len 64、stride 64），只有网络结构或语料不同，所以 PPL 和预测结果都能直接对比。<br>
+      <b>RNN</b>：<code>h_t = tanh(W_x·x_t + W_h·h_{t-1})</code>，没有门控，长距离信息容易被冲掉。<br>
+      <b>LSTM</b>：加了输入门/遗忘门/输出门和 cell state，能选择性记住远处信息，2 层 × 256 维。<br>
+      <b>Transformer</b>：2 层 × 8 头自注意力（d_model 128、FFN 256、Pre-LN），用上三角 mask 保证只看左边；
+      任意距离一步可达，但在这个规模下参数量只有 LSTM 的 58%。<br>
+      <b>Transformer·金融</b>：与 Transformer 结构完全相同，但在 <code>corpus_general.txt</code> + <code>corpus_finance.txt</code>
+      （约 640 万字）混合语料上重新训练，因此金融术语、专业表达的预测会更准确。<br>
+      <b>怎么读 PPL：</b>PPL = e^(每字平均交叉熵)，约等于「模型每个字平均在多少个等可能候选里挑」。
+      随机猜 4001 字 = 4001，只看字频 = 543.5，二元文法 = 88.7，然后才是这三个神经网络模型。<br>
+      <b>但 PPL 低不等于打字体验好</b>：输入法只看正确字有没有排进前几名，所以③里可以直接比同一上下文下的候选差异。<br>
+      <b>纯前端：</b>没有后端。权重由 <code>tools/export_lm_model.py</code> 导出成 <code>lm_model_*.js</code>（fp16 + base64），
+      前向由 <code>lm_engine.js</code> 手写复现（rnn / lstm / transformer 三条分支）。
+    </div>
+  </div>
+
+</div>
+
+<script src="lm_engine.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var MODELS = [
+    { key: "transformer", file: "lm_model_transformer.js", name: "Transformer" },
+    { key: "transformer_finance", file: "lm_model_transformer_finance.js", name: "Transformer·金融" },
+    { key: "lstm", file: "lm_model_lstm.js", name: "LSTM" },
+    { key: "rnn", file: "lm_model_rnn.js", name: "RNN" }
+  ];
+
+  var $ = function (id) { return document.getElementById(id); };
+  var el = {
+    model: $("model"), ctx: $("ctx"), temp: $("temp"), tempv: $("tempv"),
+    topk: $("topk"), topkv: $("topkv"), steps: $("steps"), stepsv: $("stepsv"),
+    go: $("go"), clear: $("clear"), dist: $("dist"), gen: $("gen"),
+    cmpbody: $("cmpbody"), cmpinfo: $("cmpinfo"), check: $("check"),
+    checkinfo: $("checkinfo"), ctxinfo: $("ctxinfo"), badge: $("badge"), presets: $("presets")
+  };
+
+  var engines = {};      // key -> CharLM
+  var pending = {};      // key -> Promise
+  var failed = {};       // key -> 错误信息
+  var current = null;    // 当前选中的 key
+
+  if (!window.LM_ENGINE) {
+    document.body.insertAdjacentHTML("afterbegin",
+      '<div style="background:#FDEDEC;border:1px solid #C0392B;color:#C0392B;padding:10px 14px;' +
+      'border-radius:6px;margin-bottom:10px">找不到 lm_engine.js —— 请确认它和本页面在同一个文件夹里。</div>');
+    return;
+  }
+
+  // ─────────────────────── 模型按需加载 ───────────────────────
+
+  function specOf(key) {
+    return MODELS.filter(function (m) { return m.key === key; })[0];
+  }
+
+  function loadModel(key) {
+    if (engines[key]) return Promise.resolve(engines[key]);
+    if (failed[key]) return Promise.reject(new Error(failed[key]));
+    if (pending[key]) return pending[key];
+
+    pending[key] = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = specOf(key).file;
+      s.onload = function () {
+        var data = window.LM_MODELS && window.LM_MODELS[key];
+        if (!data) {
+          failed[key] = "已加载 " + specOf(key).file + " 但没有注册 window.LM_MODELS." + key;
+          reject(new Error(failed[key]));
+          return;
+        }
+        try {
+          engines[key] = new window.LM_ENGINE.CharLM(data);
+          markLoaded(key);
+          resolve(engines[key]);
+        } catch (e) { reject(e); }
+      };
+      s.onerror = function () {
+        failed[key] = "找不到 " + specOf(key).file + "（先运行 tools/export_lm_model.py 生成）";
+        reject(new Error(failed[key]));
+      };
+      document.head.appendChild(s);
+    });
+    return pending[key];
+  }
+
+  // 模型加载完后把参数量/PPL 写进下拉框选项，方便选之前就知道哪个更强
+  function markLoaded(key) {
+    var opt = el.model.querySelector('option[value="' + key + '"]');
+    if (!opt) return;
+    var m = engines[key].meta;
+    opt.textContent = specOf(key).name + " · " + fmtParams(m.params) + " · PPL " + m.val_ppl;
+  }
+
+  function fmtParams(n) { return (n / 1e6).toFixed(2) + "M"; }
+
+  // ─────────────────────── 显示工具 ───────────────────────
+
+  var WS = { "\n": "\u21b5", " ": "\u2423", "\t": "\u21e5", "\r": "\u21b5" };
+  function showChar(c) { return WS[c] || c; }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (m) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[m];
+    });
+  }
+  function pct(p) {
+    if (p >= 0.1) return (p * 100).toFixed(1) + "%";
+    if (p >= 0.01) return (p * 100).toFixed(2) + "%";
+    return (p * 100).toFixed(3) + "%";
+  }
+  function temp() { return Number(el.temp.value); }
+  function loadingText(key) {
+    if (!key) return "未选择模型";
+    if (failed[key]) return failed[key];
+    return specOf(key).name + " 加载中…";
+  }
+
+  // ─────────────────────── ① 候选分布 ───────────────────────
+
+  function renderDist() {
+    var eng = engines[current];
+    if (!eng) {
+      el.dist.innerHTML = '<div class="empty">' + esc(loadingText(current)) + "</div>";
+      el.ctxinfo.textContent = "";
+      return;
+    }
+    var text = el.ctx.value;
+    var ids = eng.ids(text);
+    var dropped = Array.from(text).length - ids.length;
+    if (!ids.length) {
+      el.dist.innerHTML = '<div class="empty">输入至少一个该模型认识的字（字表 ' +
+        eng.meta.vocab_size + " 个）</div>";
+      el.ctxinfo.textContent = "";
+      return;
+    }
+
+    var t0 = performance.now();
+    var out = eng.nextDist(ids, Number(el.topk.value), temp());
+    var ms = performance.now() - t0;
+
+    el.ctxinfo.textContent = eng.arch.toUpperCase() + " · " + ids.length + " 字 · 前向 " +
+      ms.toFixed(1) + " ms" + (dropped ? " · 忽略 " + dropped + " 个表外字" : "");
+
+    var max = out.entries[0].p || 1;
+    el.dist.innerHTML = out.entries.map(function (e, i) {
+      var w = Math.max(1.2, (e.p / max) * 100);
+      var cls = WS[e.char] ? "ch ws" : "ch";
+      return '<div class="row">' +
+        '<div class="' + cls + '">' + esc(showChar(e.char)) + "</div>" +
+        '<div class="track"><div class="fill' + (i === 0 ? " top" : "") +
+        '" style="width:' + w.toFixed(1) + '%"></div></div>' +
+        '<div class="num"><b>' + pct(e.p) + "</b><br>log " + e.logp.toFixed(2) + "</div>" +
+        "</div>";
+    }).join("") +
+      (dropped ? '<div class="warn">上下文里有 ' + dropped + " 个字不在字表内，已忽略</div>" : "");
+  }
+
+  // ─────────────────────── ② 贪心续写 ───────────────────────
+
+  function renderGen() {
+    var eng = engines[current];
+    if (!eng) {
+      el.gen.innerHTML = '<div class="empty">' + esc(loadingText(current)) + "</div>";
+      return;
+    }
+    var text = el.ctx.value;
+    if (!eng.ids(text).length) {
+      el.gen.innerHTML = '<div class="empty">没有可用上下文</div>';
+      return;
+    }
+    var t0 = performance.now();
+    var out = eng.generate(text, Number(el.steps.value), temp());
+    var ms = performance.now() - t0;
+
+    el.gen.innerHTML = '<span class="orig">' + esc(text) + "</span>" +
+      '<span class="new">' + esc(out.text) + "</span>" +
+      '<div class="warn" style="color:var(--gray)">' + out.added.length + " 字 / " +
+      ms.toFixed(1) + " ms（每字一次完整前向）</div>";
+  }
+
+  // ─────────────────────── ③ 三模型对比 ───────────────────────
+
+  function renderCompare() {
+    var text = el.ctx.value;
+    var t = temp();
+    el.cmpbody.innerHTML = MODELS.map(function (m) {
+      var eng = engines[m.key];
+      var nameCell = '<td class="mname">' + m.name +
+        (m.key === current ? '<span class="tag">当前</span>' : "") + "</td>";
+      var rowClass = m.key === current ? "sel" : "";
+
+      if (!eng) {
+        var status = failed[m.key] ? '<span class="bad">' + esc(failed[m.key]) + "</span>"
+                                   : esc(loadingText(m.key));
+        return '<tr class="' + rowClass + '">' + nameCell +
+          '<td class="mono">—</td><td class="mono">—</td>' +
+          '<td class="empty">' + status + "</td></tr>";
+      }
+
+      var ids = eng.ids(text);
+      var cands;
+      if (!ids.length) {
+        cands = '<span class="empty">没有可用上下文</span>';
+      } else {
+        var d = eng.nextDist(ids, 5, t);
+        cands = '<div class="cands">' + d.entries.map(function (e, i) {
+          return '<span class="cand' + (i === 0 ? " win" : "") + '">' +
+            '<span class="c">' + esc(showChar(e.char)) + "</span>" +
+            '<span class="p">' + pct(e.p) + "</span></span>";
+        }).join("") + "</div>";
+      }
+
+      return '<tr class="' + rowClass + '">' + nameCell +
+        '<td class="mono">' + fmtParams(eng.meta.params) + "</td>" +
+        '<td class="mono">' + eng.meta.val_ppl + "</td>" +
+        "<td>" + cands + "</td></tr>";
+    }).join("");
+
+    var loaded = MODELS.filter(function (m) { return engines[m.key]; }).length;
+    el.cmpinfo.textContent = loaded + " / " + MODELS.length + " 个模型已加载" +
+      (loaded < MODELS.length ? "（后台加载中…）" : "");
+  }
+
+  // ─────────────────────── ④ 自检 ───────────────────────
+
+  function renderCheck() {
+    var eng = engines[current];
+    if (!eng) {
+      el.check.textContent = "等待模型加载…";
+      el.checkinfo.textContent = "";
+      return;
+    }
+    var checks = (window.LM_MODELS[current] || {}).checks || [];
+    var okAll = true;
+    el.check.innerHTML = checks.map(function (c) {
+      var lp = window.LM_ENGINE.logSoftmaxArr(eng.logits(eng.ids(c.context)), 1);
+      var idx = [];
+      for (var i = 0; i < lp.length; i++) idx.push(i);
+      idx.sort(function (a, b) { return lp[b] - lp[a]; });
+      var top = idx.slice(0, c.top.length);
+      var maxDiff = 0, mismatch = false;
+      for (var k = 0; k < c.top.length; k++) {
+        if (eng.vocab[top[k]] !== c.top[k][0]) mismatch = true;
+        maxDiff = Math.max(maxDiff, Math.abs(lp[top[k]] - c.top[k][1]));
+      }
+      var bad = mismatch || maxDiff > 0.01;
+      if (bad) okAll = false;
+      return "「" + esc(c.context) + "」 " +
+        top.slice(0, 4).map(function (i) { return esc(showChar(eng.vocab[i])); }).join(" ") +
+        ' &nbsp;<span class="' + (bad ? "bad" : "ok") + '">' +
+        (mismatch ? "\u2717 候选不一致" : (bad ? "\u2717 " : "\u2713 ") + maxDiff.toExponential(1)) +
+        "</span>";
+    }).join(" &nbsp;|&nbsp; ");
+    el.checkinfo.innerHTML = okAll
+      ? '<span class="ok">\u2713 全部一致</span>（偏差只来自权重 fp16 量化）'
+      : '<span class="bad">\u2717 存在不一致</span>';
+  }
+
+  // ─────────────────────── 状态 ───────────────────────
+
+  function updateBadge() {
+    var eng = engines[current];
+    if (!eng) {
+      el.badge.textContent = "模型加载中…";
+      return;
+    }
+    var m = eng.meta;
+    var archInfo = eng.arch === "transformer"
+      ? m.num_layers + " 层 × " + m.nhead + " 头 · d_model " + m.embed_dim
+      : m.num_layers + " 层 × " + m.hidden_dim + " 维";
+    el.badge.textContent = m.arch.toUpperCase() + " · " + archInfo +
+      " · " + fmtParams(m.params) + " 参数 · 字表 " + m.vocab_size +
+      " · PPL " + m.val_ppl + " · 纯前端推理";
+  }
+
+  function renderAll() {
+    updateBadge();
+    renderDist();
+    renderGen();
+    renderCompare();
+    renderCheck();
+  }
+
+  function selectModel(key) {
+    current = key;
+    renderAll();                       // 立刻切到「加载中」状态
+    loadModel(key).then(renderAll).catch(function () { renderAll(); });
+  }
+
+  // ─────────────────────── 事件 ───────────────────────
+
+  el.model.addEventListener("change", function () { selectModel(el.model.value); });
+  el.ctx.addEventListener("input", renderAll);
+  el.temp.addEventListener("input", function () {
+    el.tempv.textContent = temp().toFixed(1);
+    renderAll();
+  });
+  el.topk.addEventListener("input", function () {
+    el.topkv.textContent = el.topk.value;
+    renderDist();
+  });
+  el.steps.addEventListener("input", function () {
+    el.stepsv.textContent = el.steps.value;
+    renderGen();
+  });
+  el.go.addEventListener("click", function () {
+    var eng = engines[current];
+    if (!eng) return;
+    el.ctx.value = el.ctx.value + eng.generate(el.ctx.value, Number(el.steps.value), temp()).text;
+    renderAll();
+  });
+  el.clear.addEventListener("click", function () {
+    el.ctx.value = "";
+    el.ctx.focus();
+    renderAll();
+  });
+
+  var PRESETS = ["今", "我", "中", "天", "人", "学", "这", "北京", "人工智能",
+                 "深度学习", "今天天气", "我们"];
+  el.presets.innerHTML = PRESETS.map(function (p) {
+    return '<button class="mini" data-p="' + esc(p) + '">' + esc(p) + "</button>";
+  }).join("");
+  el.presets.addEventListener("click", function (ev) {
+    if (ev.target.tagName !== "BUTTON") return;
+    el.ctx.value = ev.target.getAttribute("data-p");
+    renderAll();
+  });
+
+  // 启动：先加载默认模型并渲染，再后台顺序加载其余模型供③对比
+  current = el.model.value;
+  renderAll();
+  loadModel(current).then(function () {
+    renderAll();
+    return MODELS.reduce(function (chain, m) {
+      return chain.then(function () {
+        return loadModel(m.key).then(renderCompare).catch(function () { renderCompare(); });
+      });
+    }, Promise.resolve());
+  }).then(renderAll);
+})();
+</script>
+</body>
+</html>
