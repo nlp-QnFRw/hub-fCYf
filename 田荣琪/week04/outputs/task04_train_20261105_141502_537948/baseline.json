@@ -1,0 +1,8 @@
+{
+  "loss": 1.271170362750128,
+  "accuracy": 0.7284454955923457,
+  "correct": 3388,
+  "prediction_positions": 4651,
+  "samples": 2000,
+  "seconds": 24.57922369998414
+}

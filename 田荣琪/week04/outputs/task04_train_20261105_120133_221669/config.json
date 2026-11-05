@@ -1,0 +1,32 @@
+{
+  "train_candidate_cap": 20000,
+  "validation_candidate_cap": 2000,
+  "epochs": 1,
+  "batch_size": 1,
+  "gradient_accumulation": 8,
+  "optimizer_updates_cap": 2500,
+  "learning_rate": 2e-05,
+  "weight_decay": 0.01,
+  "max_grad_norm": 1.0,
+  "precision_policy": "bfloat16_if_supported_else_float32",
+  "gradient_checkpointing": true,
+  "console_log_every": 50,
+  "phase": "task04_train",
+  "python": "D:\\Anaconda3\\envs\\py312\\python.exe",
+  "mixed_precision": "bfloat16",
+  "gradient_scaling": false,
+  "seed": 42,
+  "validation_mask_seed": 43,
+  "max_length": 64,
+  "mask_probability": 0.15,
+  "validation_ratio": 0.05,
+  "train_candidates": 20000,
+  "validation_candidates": 2000,
+  "source_model": "D:\\Project\\Lesson\\week04\\bert-base-chinese",
+  "corpus_path": "D:\\Project\\Lesson\\week04\\week4-语言模型\\循环神经网络语言模型\\corpus_general.txt",
+  "script_sha256": "7a2d171bad97a46d296d3a4e9cbf8909054ed678d9d08b626e847bed14b2ff24",
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "transformers": "5.17.0"
+  }
+}

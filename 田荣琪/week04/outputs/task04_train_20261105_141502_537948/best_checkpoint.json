@@ -1,0 +1,14 @@
+{
+  "update": 2500,
+  "metrics": {
+    "loss": 1.2123725581346292,
+    "accuracy": 0.7417759621586756,
+    "correct": 3450,
+    "prediction_positions": 4651,
+    "samples": 2000,
+    "seconds": 59.8306560999481
+  },
+  "candidate_kind": "trained_checkpoint",
+  "snapshot_directory": "D:\\Project\\Lesson\\week04\\outputs\\task04_train_20261105_141502_537948\\best_checkpoints\\update_002500",
+  "directory": "D:\\Project\\Lesson\\week04\\outputs\\task04_train_20261105_141502_537948\\best_checkpoints\\update_002500\\model"
+}

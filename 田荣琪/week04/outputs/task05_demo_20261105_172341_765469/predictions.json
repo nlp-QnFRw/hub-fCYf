@@ -1,0 +1,837 @@
+{
+  "created_utc": "2026-11-05T09:23:52.704389+00:00",
+  "python": "D:\\Anaconda3\\envs\\py312\\python.exe",
+  "device": "cuda",
+  "precision": "float32",
+  "script_sha256": "cdfdde3d8546602ebe964f513859c3f9075bc7cfee65a804fa53fb5c36f373d1",
+  "training_executed": false,
+  "top_k": 5,
+  "max_length": 64,
+  "demo": true,
+  "models": [
+    {
+      "kind": "pretrained",
+      "directory": "D:\\Project\\Lesson\\week04\\bert-base-chinese",
+      "loading": {
+        "missing_keys": [],
+        "unexpected_keys": [
+          "bert.pooler.dense.bias",
+          "bert.pooler.dense.weight",
+          "cls.seq_relationship.bias",
+          "cls.seq_relationship.weight"
+        ]
+      },
+      "state_sha256": "097dfd7b8e5edbf9231e5b241c003ef67dcb6ddbb36709f753b4d17514ae17f2",
+      "parameters_unchanged": true,
+      "no_parameter_gradients": true,
+      "results": [
+        {
+          "input": "中国的首都是北[MASK]。",
+          "input_ids": [
+            101,
+            704,
+            1744,
+            4638,
+            7674,
+            6963,
+            3221,
+            1266,
+            103,
+            511,
+            102
+          ],
+          "tokens": [
+            "[CLS]",
+            "中",
+            "国",
+            "的",
+            "首",
+            "都",
+            "是",
+            "北",
+            "[MASK]",
+            "。",
+            "[SEP]"
+          ],
+          "mask_position": 8,
+          "input_shape": [
+            1,
+            11
+          ],
+          "logits_shape": [
+            1,
+            11,
+            21128
+          ],
+          "candidates": [
+            {
+              "rank": 1,
+              "token_id": 776,
+              "token": "京",
+              "probability": 0.9890751242637634,
+              "filled_text": "中国的首都是北京。"
+            },
+            {
+              "rank": 2,
+              "token_id": 2398,
+              "token": "平",
+              "probability": 0.008361086249351501,
+              "filled_text": "中国的首都是北平。"
+            },
+            {
+              "rank": 3,
+              "token_id": 2129,
+              "token": "宋",
+              "probability": 0.0006975593278184533,
+              "filled_text": "中国的首都是北宋。"
+            },
+            {
+              "rank": 4,
+              "token_id": 3175,
+              "token": "方",
+              "probability": 0.0006349684554152191,
+              "filled_text": "中国的首都是北方。"
+            },
+            {
+              "rank": 5,
+              "token_id": 3862,
+              "token": "海",
+              "probability": 0.0003233675961382687,
+              "filled_text": "中国的首都是北海。"
+            }
+          ]
+        },
+        {
+          "input": "我喜欢吃[MASK]果。",
+          "input_ids": [
+            101,
+            2769,
+            1599,
+            3614,
+            1391,
+            103,
+            3362,
+            511,
+            102
+          ],
+          "tokens": [
+            "[CLS]",
+            "我",
+            "喜",
+            "欢",
+            "吃",
+            "[MASK]",
+            "果",
+            "。",
+            "[SEP]"
+          ],
+          "mask_position": 5,
+          "input_shape": [
+            1,
+            9
+          ],
+          "logits_shape": [
+            1,
+            9,
+            21128
+          ],
+          "candidates": [
+            {
+              "rank": 1,
+              "token_id": 3717,
+              "token": "水",
+              "probability": 0.4673525393009186,
+              "filled_text": "我喜欢吃水果。"
+            },
+            {
+              "rank": 2,
+              "token_id": 5741,
+              "token": "苹",
+              "probability": 0.2612692415714264,
+              "filled_text": "我喜欢吃苹果。"
+            },
+            {
+              "rank": 3,
+              "token_id": 5131,
+              "token": "糖",
+              "probability": 0.06137508898973465,
+              "filled_text": "我喜欢吃糖果。"
+            },
+            {
+              "rank": 4,
+              "token_id": 5695,
+              "token": "芒",
+              "probability": 0.061367012560367584,
+              "filled_text": "我喜欢吃芒果。"
+            },
+            {
+              "rank": 5,
+              "token_id": 1780,
+              "token": "坚",
+              "probability": 0.05003616586327553,
+              "filled_text": "我喜欢吃坚果。"
+            }
+          ]
+        },
+        {
+          "input": "他把书放在桌子[MASK]，然后就离开了。",
+          "input_ids": [
+            101,
+            800,
+            2828,
+            741,
+            3123,
+            1762,
+            3430,
+            2094,
+            103,
+            8024,
+            4197,
+            1400,
+            2218,
+            4895,
+            2458,
+            749,
+            511,
+            102
+          ],
+          "tokens": [
+            "[CLS]",
+            "他",
+            "把",
+            "书",
+            "放",
+            "在",
+            "桌",
+            "子",
+            "[MASK]",
+            "，",
+            "然",
+            "后",
+            "就",
+            "离",
+            "开",
+            "了",
+            "。",
+            "[SEP]"
+          ],
+          "mask_position": 8,
+          "input_shape": [
+            1,
+            18
+          ],
+          "logits_shape": [
+            1,
+            18,
+            21128
+          ],
+          "candidates": [
+            {
+              "rank": 1,
+              "token_id": 677,
+              "token": "上",
+              "probability": 0.9803729057312012,
+              "filled_text": "他把书放在桌子上，然后就离开了。"
+            },
+            {
+              "rank": 2,
+              "token_id": 6804,
+              "token": "边",
+              "probability": 0.005399936810135841,
+              "filled_text": "他把书放在桌子边，然后就离开了。"
+            },
+            {
+              "rank": 3,
+              "token_id": 7027,
+              "token": "里",
+              "probability": 0.004810311831533909,
+              "filled_text": "他把书放在桌子里，然后就离开了。"
+            },
+            {
+              "rank": 4,
+              "token_id": 678,
+              "token": "下",
+              "probability": 0.0030981916934251785,
+              "filled_text": "他把书放在桌子下，然后就离开了。"
+            },
+            {
+              "rank": 5,
+              "token_id": 3178,
+              "token": "旁",
+              "probability": 0.0027128492947667837,
+              "filled_text": "他把书放在桌子旁，然后就离开了。"
+            }
+          ]
+        },
+        {
+          "input": "看我的新书包好[MASK]吗。",
+          "input_ids": [
+            101,
+            4692,
+            2769,
+            4638,
+            3173,
+            741,
+            1259,
+            1962,
+            103,
+            1408,
+            511,
+            102
+          ],
+          "tokens": [
+            "[CLS]",
+            "看",
+            "我",
+            "的",
+            "新",
+            "书",
+            "包",
+            "好",
+            "[MASK]",
+            "吗",
+            "。",
+            "[SEP]"
+          ],
+          "mask_position": 8,
+          "input_shape": [
+            1,
+            12
+          ],
+          "logits_shape": [
+            1,
+            12,
+            21128
+          ],
+          "candidates": [
+            {
+              "rank": 1,
+              "token_id": 4692,
+              "token": "看",
+              "probability": 0.6026454567909241,
+              "filled_text": "看我的新书包好看吗。"
+            },
+            {
+              "rank": 2,
+              "token_id": 4500,
+              "token": "用",
+              "probability": 0.2611148953437805,
+              "filled_text": "看我的新书包好用吗。"
+            },
+            {
+              "rank": 3,
+              "token_id": 749,
+              "token": "了",
+              "probability": 0.05099095404148102,
+              "filled_text": "看我的新书包好了吗。"
+            },
+            {
+              "rank": 4,
+              "token_id": 4381,
+              "token": "玩",
+              "probability": 0.010764616541564465,
+              "filled_text": "看我的新书包好玩吗。"
+            },
+            {
+              "rank": 5,
+              "token_id": 4157,
+              "token": "点",
+              "probability": 0.007017561234533787,
+              "filled_text": "看我的新书包好点吗。"
+            }
+          ]
+        },
+        {
+          "input": "如何打开屏蔽的集成显[MASK]",
+          "input_ids": [
+            101,
+            1963,
+            862,
+            2802,
+            2458,
+            2242,
+            5929,
+            4638,
+            7415,
+            2768,
+            3227,
+            103,
+            102
+          ],
+          "tokens": [
+            "[CLS]",
+            "如",
+            "何",
+            "打",
+            "开",
+            "屏",
+            "蔽",
+            "的",
+            "集",
+            "成",
+            "显",
+            "[MASK]",
+            "[SEP]"
+          ],
+          "mask_position": 11,
+          "input_shape": [
+            1,
+            13
+          ],
+          "logits_shape": [
+            1,
+            13,
+            21128
+          ],
+          "candidates": [
+            {
+              "rank": 1,
+              "token_id": 8043,
+              "token": "？",
+              "probability": 0.9823662638664246,
+              "filled_text": "如何打开屏蔽的集成显？"
+            },
+            {
+              "rank": 2,
+              "token_id": 511,
+              "token": "。",
+              "probability": 0.01155830267816782,
+              "filled_text": "如何打开屏蔽的集成显。"
+            },
+            {
+              "rank": 3,
+              "token_id": 8013,
+              "token": "！",
+              "probability": 0.002962210215628147,
+              "filled_text": "如何打开屏蔽的集成显！"
+            },
+            {
+              "rank": 4,
+              "token_id": 4850,
+              "token": "示",
+              "probability": 0.0005015950300730765,
+              "filled_text": "如何打开屏蔽的集成显示"
+            },
+            {
+              "rank": 5,
+              "token_id": 1305,
+              "token": "卡",
+              "probability": 0.0003109719546046108,
+              "filled_text": "如何打开屏蔽的集成显卡"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "selected",
+      "directory": "D:\\Project\\Lesson\\week04\\outputs\\task04_train_20261105_141502_537948\\best_checkpoints\\update_002500\\model",
+      "loading": {
+        "missing_keys": [],
+        "unexpected_keys": []
+      },
+      "state_sha256": "652890fbb75d6ec4c494dfbfe051d66ce2272a194510587fa2021b6f8190f2b0",
+      "parameters_unchanged": true,
+      "no_parameter_gradients": true,
+      "results": [
+        {
+          "input": "中国的首都是北[MASK]。",
+          "input_ids": [
+            101,
+            704,
+            1744,
+            4638,
+            7674,
+            6963,
+            3221,
+            1266,
+            103,
+            511,
+            102
+          ],
+          "tokens": [
+            "[CLS]",
+            "中",
+            "国",
+            "的",
+            "首",
+            "都",
+            "是",
+            "北",
+            "[MASK]",
+            "。",
+            "[SEP]"
+          ],
+          "mask_position": 8,
+          "input_shape": [
+            1,
+            11
+          ],
+          "logits_shape": [
+            1,
+            11,
+            21128
+          ],
+          "candidates": [
+            {
+              "rank": 1,
+              "token_id": 776,
+              "token": "京",
+              "probability": 0.9985254406929016,
+              "filled_text": "中国的首都是北京。"
+            },
+            {
+              "rank": 2,
+              "token_id": 2398,
+              "token": "平",
+              "probability": 0.0009561725310049951,
+              "filled_text": "中国的首都是北平。"
+            },
+            {
+              "rank": 3,
+              "token_id": 2129,
+              "token": "宋",
+              "probability": 0.0001425474911229685,
+              "filled_text": "中国的首都是北宋。"
+            },
+            {
+              "rank": 4,
+              "token_id": 3862,
+              "token": "海",
+              "probability": 0.00012093408440705389,
+              "filled_text": "中国的首都是北海。"
+            },
+            {
+              "rank": 5,
+              "token_id": 3175,
+              "token": "方",
+              "probability": 0.00010982511594193056,
+              "filled_text": "中国的首都是北方。"
+            }
+          ]
+        },
+        {
+          "input": "我喜欢吃[MASK]果。",
+          "input_ids": [
+            101,
+            2769,
+            1599,
+            3614,
+            1391,
+            103,
+            3362,
+            511,
+            102
+          ],
+          "tokens": [
+            "[CLS]",
+            "我",
+            "喜",
+            "欢",
+            "吃",
+            "[MASK]",
+            "果",
+            "。",
+            "[SEP]"
+          ],
+          "mask_position": 5,
+          "input_shape": [
+            1,
+            9
+          ],
+          "logits_shape": [
+            1,
+            9,
+            21128
+          ],
+          "candidates": [
+            {
+              "rank": 1,
+              "token_id": 3717,
+              "token": "水",
+              "probability": 0.866564154624939,
+              "filled_text": "我喜欢吃水果。"
+            },
+            {
+              "rank": 2,
+              "token_id": 5741,
+              "token": "苹",
+              "probability": 0.0806024819612503,
+              "filled_text": "我喜欢吃苹果。"
+            },
+            {
+              "rank": 3,
+              "token_id": 5695,
+              "token": "芒",
+              "probability": 0.015099719166755676,
+              "filled_text": "我喜欢吃芒果。"
+            },
+            {
+              "rank": 4,
+              "token_id": 5131,
+              "token": "糖",
+              "probability": 0.006876150146126747,
+              "filled_text": "我喜欢吃糖果。"
+            },
+            {
+              "rank": 5,
+              "token_id": 1780,
+              "token": "坚",
+              "probability": 0.006485383491963148,
+              "filled_text": "我喜欢吃坚果。"
+            }
+          ]
+        },
+        {
+          "input": "他把书放在桌子[MASK]，然后就离开了。",
+          "input_ids": [
+            101,
+            800,
+            2828,
+            741,
+            3123,
+            1762,
+            3430,
+            2094,
+            103,
+            8024,
+            4197,
+            1400,
+            2218,
+            4895,
+            2458,
+            749,
+            511,
+            102
+          ],
+          "tokens": [
+            "[CLS]",
+            "他",
+            "把",
+            "书",
+            "放",
+            "在",
+            "桌",
+            "子",
+            "[MASK]",
+            "，",
+            "然",
+            "后",
+            "就",
+            "离",
+            "开",
+            "了",
+            "。",
+            "[SEP]"
+          ],
+          "mask_position": 8,
+          "input_shape": [
+            1,
+            18
+          ],
+          "logits_shape": [
+            1,
+            18,
+            21128
+          ],
+          "candidates": [
+            {
+              "rank": 1,
+              "token_id": 677,
+              "token": "上",
+              "probability": 0.9796937108039856,
+              "filled_text": "他把书放在桌子上，然后就离开了。"
+            },
+            {
+              "rank": 2,
+              "token_id": 6804,
+              "token": "边",
+              "probability": 0.005876130424439907,
+              "filled_text": "他把书放在桌子边，然后就离开了。"
+            },
+            {
+              "rank": 3,
+              "token_id": 678,
+              "token": "下",
+              "probability": 0.00503644160926342,
+              "filled_text": "他把书放在桌子下，然后就离开了。"
+            },
+            {
+              "rank": 4,
+              "token_id": 3178,
+              "token": "旁",
+              "probability": 0.002474215580150485,
+              "filled_text": "他把书放在桌子旁，然后就离开了。"
+            },
+            {
+              "rank": 5,
+              "token_id": 1184,
+              "token": "前",
+              "probability": 0.0021139064338058233,
+              "filled_text": "他把书放在桌子前，然后就离开了。"
+            }
+          ]
+        },
+        {
+          "input": "看我的新书包好[MASK]吗。",
+          "input_ids": [
+            101,
+            4692,
+            2769,
+            4638,
+            3173,
+            741,
+            1259,
+            1962,
+            103,
+            1408,
+            511,
+            102
+          ],
+          "tokens": [
+            "[CLS]",
+            "看",
+            "我",
+            "的",
+            "新",
+            "书",
+            "包",
+            "好",
+            "[MASK]",
+            "吗",
+            "。",
+            "[SEP]"
+          ],
+          "mask_position": 8,
+          "input_shape": [
+            1,
+            12
+          ],
+          "logits_shape": [
+            1,
+            12,
+            21128
+          ],
+          "candidates": [
+            {
+              "rank": 1,
+              "token_id": 4692,
+              "token": "看",
+              "probability": 0.988537073135376,
+              "filled_text": "看我的新书包好看吗。"
+            },
+            {
+              "rank": 2,
+              "token_id": 4381,
+              "token": "玩",
+              "probability": 0.005936210509389639,
+              "filled_text": "看我的新书包好玩吗。"
+            },
+            {
+              "rank": 3,
+              "token_id": 4500,
+              "token": "用",
+              "probability": 0.001579494564794004,
+              "filled_text": "看我的新书包好用吗。"
+            },
+            {
+              "rank": 4,
+              "token_id": 5010,
+              "token": "笑",
+              "probability": 0.0008438017684966326,
+              "filled_text": "看我的新书包好笑吗。"
+            },
+            {
+              "rank": 5,
+              "token_id": 1420,
+              "token": "听",
+              "probability": 0.0006593530997633934,
+              "filled_text": "看我的新书包好听吗。"
+            }
+          ]
+        },
+        {
+          "input": "如何打开屏蔽的集成显[MASK]",
+          "input_ids": [
+            101,
+            1963,
+            862,
+            2802,
+            2458,
+            2242,
+            5929,
+            4638,
+            7415,
+            2768,
+            3227,
+            103,
+            102
+          ],
+          "tokens": [
+            "[CLS]",
+            "如",
+            "何",
+            "打",
+            "开",
+            "屏",
+            "蔽",
+            "的",
+            "集",
+            "成",
+            "显",
+            "[MASK]",
+            "[SEP]"
+          ],
+          "mask_position": 11,
+          "input_shape": [
+            1,
+            13
+          ],
+          "logits_shape": [
+            1,
+            13,
+            21128
+          ],
+          "candidates": [
+            {
+              "rank": 1,
+              "token_id": 4850,
+              "token": "示",
+              "probability": 0.9932684302330017,
+              "filled_text": "如何打开屏蔽的集成显示"
+            },
+            {
+              "rank": 2,
+              "token_id": 1305,
+              "token": "卡",
+              "probability": 0.005856797564774752,
+              "filled_text": "如何打开屏蔽的集成显卡"
+            },
+            {
+              "rank": 3,
+              "token_id": 2100,
+              "token": "存",
+              "probability": 0.0003181824868079275,
+              "filled_text": "如何打开屏蔽的集成显存"
+            },
+            {
+              "rank": 4,
+              "token_id": 2391,
+              "token": "幕",
+              "probability": 9.81103876256384e-05,
+              "filled_text": "如何打开屏蔽的集成显幕"
+            },
+            {
+              "rank": 5,
+              "token_id": 2242,
+              "token": "屏",
+              "probability": 9.621836215956137e-05,
+              "filled_text": "如何打开屏蔽的集成显屏"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "note": "单遮盖教学演示，不是验证集或独立测试集评分；概率不代表事实正确性。候选按完整词表排名，未过滤特殊词元。"
+}
