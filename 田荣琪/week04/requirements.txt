@@ -1,0 +1,8 @@
+# 实际运行环境的直接依赖版本；本次整理未执行安装。
+# 深度学习框架使用与本机一致的显卡构建，其他包仍从默认包索引解析。
+--extra-index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0+cu124
+transformers==5.17.0
+tqdm==4.70.0
+safetensors==0.8.0
+numpy==2.3.1
