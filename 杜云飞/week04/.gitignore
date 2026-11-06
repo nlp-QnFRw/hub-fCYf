@@ -1,0 +1,7 @@
+# 训练语料体积过大（约 248MB），超出 GitHub 单文件 100MB 限制，未纳入版本管理
+# 可用 prepare_novel.py 重新生成
+data/
+
+# Python 缓存
+__pycache__/
+*.pyc
