@@ -1,0 +1,1454 @@
+下面按实际代码的执行顺序解释。核心目标是：保持原来的 RNN/LSTM 可用，同时增加一个只允许查看历史字符的 Transformer 语言模型。
+
+## 一、为什么不能直接写 `self.rnn = nn.Transformer(...)`
+
+你原来的调用方式是：
+
+```python
+out, _ = self.rnn(e)
+```
+
+这符合 RNN/LSTM 的接口：
+
+```text
+输入：(B, T, embed_dim)
+输出：out, hidden_state
+```
+
+但完整的 `nn.Transformer` 是编码器—解码器结构，通常需要两个输入：
+
+```python
+out = transformer(src, tgt)
+```
+
+当前任务是根据前面的字符预测下一个字符，不需要额外的编码器输入，因此我使用：
+
+```python
+nn.TransformerEncoder
+```
+
+虽然名字叫 Encoder，但加上因果掩码以后，它的行为就是 GPT 类“只能看左边”的自回归模型：
+
+```text
+字符0只能看字符0
+字符1可以看字符0～1
+字符2可以看字符0～2
+……
+```
+
+---
+
+## 二、`LM` 构造参数分别是什么
+
+模型定义位于 [language_model.py](<D:\xxl\study\workspace\test\week04\循环神经网络语言模型\language_model.py:70>)：
+
+```python
+def __init__(
+    self,
+    vocab_size,
+    embed_dim,
+    hidden_dim,
+    num_layers,
+    model_type,
+    dropout,
+    nhead=8,
+    max_seq_len=1024,
+):
+```
+
+每个参数的作用如下。
+
+| 参数 | RNN/LSTM 中的作用 | Transformer 中的作用 |
+|---|---|---|
+| `vocab_size` | 字表大小 | 字表大小 |
+| `embed_dim` | 每个字符的词向量维度，也是 RNN 输入维度 | `d_model`，Transformer 主维度 |
+| `hidden_dim` | RNN/LSTM 隐藏状态维度 | 前馈网络中间层维度 |
+| `num_layers` | 堆叠几层 RNN/LSTM | 堆叠几层 Transformer Encoder |
+| `model_type` | 选择 `rnn` 或 `lstm` | 值为 `transformer` 时启用 Transformer |
+| `dropout` | 层间随机丢弃比例 | 注意力、前馈网络及输入输出处的随机丢弃比例 |
+| `nhead` | 不使用 | 多头注意力的头数 |
+| `max_seq_len` | 不使用 | 位置编码支持的最大序列长度 |
+
+特别需要注意：`hidden_dim` 在两类模型中的含义不完全相同。
+
+RNN 中：
+
+```text
+out.shape = (B, T, hidden_dim)
+```
+
+Transformer 中：
+
+```text
+out.shape = (B, T, embed_dim)
+```
+
+Transformer 的 `hidden_dim` 只用于每层内部的前馈网络：
+
+```text
+embed_dim → hidden_dim → embed_dim
+```
+
+通常建议：
+
+```text
+hidden_dim = 4 × embed_dim
+```
+
+例如：
+
+```text
+embed_dim  = 128
+hidden_dim = 512
+```
+
+---
+
+## 三、保存模型类型
+
+增加了：
+
+```python
+self.model_type = model_type
+```
+
+这是为了在 `forward()` 中判断当前应该使用哪一种调用方式：
+
+```python
+if self.model_type == "transformer":
+    ...
+else:
+    ...
+```
+
+因为两类模型返回值不同：
+
+```python
+# Transformer 直接返回一个张量
+out = self.rnn(e, mask=causal_mask)
+
+# RNN/LSTM 返回输出和隐藏状态
+out, hidden = self.rnn(e)
+```
+
+---
+
+## 四、字符嵌入层
+
+这部分两类模型共用：
+
+```python
+self.embed = nn.Embedding(vocab_size, embed_dim)
+```
+
+假设：
+
+```text
+vocab_size = 4000
+embed_dim  = 128
+```
+
+内部参数矩阵形状就是：
+
+```text
+(4000, 128)
+```
+
+输入 `x` 是字符编号：
+
+```text
+x.shape = (B, T)
+```
+
+其中：
+
+- `B`：batch size
+- `T`：序列长度
+
+经过嵌入层以后：
+
+```python
+e = self.embed(x)
+```
+
+得到：
+
+```text
+e.shape = (B, T, embed_dim)
+```
+
+例如：
+
+```text
+输入：(128, 64)
+输出：(128, 64, 128)
+```
+
+也就是一个 batch 有 128 条序列，每条序列有 64 个字符，每个字符用 128 维向量表示。
+
+---
+
+## 五、Dropout
+
+公共 Dropout 定义是：
+
+```python
+self.drop = nn.Dropout(dropout)
+```
+
+如果：
+
+```python
+dropout = 0.3
+```
+
+训练时会随机把大约 30% 的元素置零，以降低过拟合风险。
+
+它被用于两个位置：
+
+```python
+e = self.drop(e + position_embedding)
+logits = self.fc(self.drop(out))
+```
+
+调用 `model.eval()` 后，Dropout 会自动关闭，不再随机置零。
+
+---
+
+## 六、检查 `embed_dim` 和 `nhead`
+
+你原来写的是：
+
+```python
+if embed_dim % nhead == 0:
+    raise ValueError(...)
+```
+
+这个条件写反了。
+
+例如：
+
+```text
+embed_dim = 128
+nhead     = 8
+128 % 8   = 0
+```
+
+余数为零说明可以整除，这是合法情况，不应该报错。
+
+现在改为：
+
+```python
+if nhead <= 0 or embed_dim % nhead != 0:
+    raise ValueError(...)
+```
+
+这里包含两个检查：
+
+### 1. `nhead <= 0`
+
+注意力头数不能是 0 或负数，也避免后面的取余操作出现除零错误。
+
+### 2. `embed_dim % nhead != 0`
+
+每个注意力头会分到相同维度：
+
+```text
+每个头的维度 = embed_dim / nhead
+```
+
+例如：
+
+```text
+embed_dim = 128
+nhead = 8
+每个头维度 = 16
+```
+
+这是合法的。
+
+如果写成：
+
+```text
+embed_dim = 128
+nhead = 6
+```
+
+那么：
+
+```text
+128 / 6 = 21.333...
+```
+
+无法平均分配，因此报错。
+
+---
+
+## 七、增加可学习的位置编码
+
+Transformer 本身不能区分字符顺序。
+
+对于下面两个序列：
+
+```text
+我 喜欢 你
+你 喜欢 我
+```
+
+如果没有位置编码，Transformer 只能看到三个字符向量，不知道哪个字符在前、哪个字符在后。
+
+因此增加：
+
+```python
+self.position_embed = nn.Embedding(max_seq_len, embed_dim)
+self.max_seq_len = max_seq_len
+```
+
+假设：
+
+```text
+max_seq_len = 64
+embed_dim   = 128
+```
+
+位置编码参数矩阵形状是：
+
+```text
+(64, 128)
+```
+
+它会为位置 `0～63` 分别学习一个 128 维向量。
+
+这里使用的是“可学习位置编码”，模型会在训练过程中自动学习每个位置应该使用什么向量。
+
+---
+
+## 八、构建一层 Transformer
+
+代码是：
+
+```python
+encoder_layer = nn.TransformerEncoderLayer(
+    d_model=embed_dim,
+    nhead=nhead,
+    dim_feedforward=hidden_dim,
+    dropout=dropout,
+    activation="gelu",
+    batch_first=True,
+)
+```
+
+下面解释这里的每一个参数。
+
+### `d_model=embed_dim`
+
+`d_model` 是 Transformer 的主维度。
+
+字符进入 Transformer 前后的维度都保持为：
+
+```text
+(B, T, embed_dim)
+```
+
+例如：
+
+```text
+(B, T, 128) → Transformer → (B, T, 128)
+```
+
+因此必须和字符嵌入维度一致。
+
+### `nhead=nhead`
+
+多头自注意力的头数。
+
+例如：
+
+```text
+embed_dim = 128
+nhead = 8
+```
+
+模型会把 128 维拆成 8 个 16 维的注意力头。
+
+不同的头可以学习不同关系，例如：
+
+- 某些头关注相邻字符。
+- 某些头关注较远的词语。
+- 某些头关注语法关系。
+- 某些头关注固定搭配。
+
+最后再把这些头的结果合并回 128 维。
+
+### `dim_feedforward=hidden_dim`
+
+每个 Transformer 层里除了注意力，还有一个前馈网络：
+
+```text
+embed_dim → hidden_dim → embed_dim
+```
+
+如果：
+
+```text
+embed_dim = 128
+hidden_dim = 512
+```
+
+前馈网络就是：
+
+```text
+128 → 512 → 128
+```
+
+它负责对每个位置的特征进行非线性变换。
+
+### `dropout=dropout`
+
+控制 Transformer 层内部的 Dropout 比例，包括注意力和前馈网络中的 Dropout。
+
+例如：
+
+```text
+dropout = 0.3
+```
+
+表示训练时随机丢弃约 30% 的中间特征。
+
+### `activation="gelu"`
+
+指定前馈网络使用 GELU 激活函数。
+
+近似流程为：
+
+```text
+Linear(embed_dim, hidden_dim)
+→ GELU
+→ Dropout
+→ Linear(hidden_dim, embed_dim)
+```
+
+GELU 是现代 Transformer 中常用的激活函数，相比 ReLU 更平滑。
+
+### `batch_first=True`
+
+告诉 PyTorch 输入张量按下面的顺序组织：
+
+```text
+(B, T, E)
+```
+
+也就是：
+
+```text
+(batch_size, sequence_length, embedding_dimension)
+```
+
+如果不设置，默认通常要求：
+
+```text
+(T, B, E)
+```
+
+当前数据集和 RNN 都使用 `(B, T, E)`，所以设置 `batch_first=True` 可以避免频繁转置张量。
+
+---
+
+## 九、堆叠多层 Transformer
+
+代码是：
+
+```python
+self.rnn = nn.TransformerEncoder(
+    encoder_layer=encoder_layer,
+    num_layers=num_layers,
+    norm=nn.LayerNorm(embed_dim),
+)
+```
+
+虽然属性仍叫 `self.rnn`，但里面实际已经是 Transformer。保留这个名字只是为了减少周边代码改动。
+
+每个参数的作用如下。
+
+### `encoder_layer=encoder_layer`
+
+指定每层 Transformer 使用什么结构，也就是前面创建的：
+
+```python
+nn.TransformerEncoderLayer(...)
+```
+
+`TransformerEncoder` 会根据它创建多层结构。
+
+### `num_layers=num_layers`
+
+指定堆叠层数。
+
+例如：
+
+```text
+num_layers = 4
+```
+
+表示：
+
+```text
+输入
+ ↓
+Transformer 第1层
+ ↓
+Transformer 第2层
+ ↓
+Transformer 第3层
+ ↓
+Transformer 第4层
+ ↓
+输出
+```
+
+层数越多，模型表达能力通常越强，但训练时间和显存占用也会增加。
+
+### `norm=nn.LayerNorm(embed_dim)`
+
+在最后一层 Transformer 输出后增加 LayerNorm（层归一化）。
+
+输入和输出维度都是：
+
+```text
+embed_dim
+```
+
+LayerNorm 可以让特征数值分布更加稳定，有利于训练。
+
+---
+
+## 十、为什么 Transformer 的 `fc` 输入是 `embed_dim`
+
+Transformer 分支中：
+
+```python
+self.fc = nn.Linear(embed_dim, vocab_size)
+```
+
+参数含义：
+
+```python
+nn.Linear(
+    in_features=embed_dim,
+    out_features=vocab_size,
+)
+```
+
+Transformer 输出形状为：
+
+```text
+(B, T, embed_dim)
+```
+
+全连接层将每个位置的 `embed_dim` 维向量转换成词表上每个字符的分数：
+
+```text
+(B, T, embed_dim)
+→ Linear
+→ (B, T, vocab_size)
+```
+
+假设词表有 4000 个字符：
+
+```text
+(B, T, 128)
+→ Linear(128, 4000)
+→ (B, T, 4000)
+```
+
+最后一维的 4000 个数分别表示下一个字符是词表中各字符的分数。
+
+RNN/LSTM 的输出是 `hidden_dim`，所以原分支仍然使用：
+
+```python
+self.fc = nn.Linear(hidden_dim, vocab_size)
+```
+
+这是两个分支必须不同的地方。
+
+---
+
+## 十一、保留 RNN/LSTM 分支
+
+代码为：
+
+```python
+elif model_type in {"rnn", "lstm"}:
+    rnn_cls = nn.LSTM if model_type == "lstm" else nn.RNN
+```
+
+只有明确传入 `"rnn"` 或 `"lstm"` 才会进入这个分支。
+
+原来如果传入拼写错误的模型名称，也可能被默认当成 RNN。现在增加：
+
+```python
+else:
+    raise ValueError(f"不支持的模型类型: {model_type}")
+```
+
+例如传入：
+
+```python
+model_type="transfomer"
+```
+
+会立即报错，而不会悄悄创建错误的模型。
+
+RNN/LSTM 的参数为：
+
+```python
+self.rnn = rnn_cls(
+    embed_dim,
+    hidden_dim,
+    num_layers=num_layers,
+    batch_first=True,
+    dropout=dropout if num_layers > 1 else 0.0,
+)
+```
+
+其中：
+
+- 第一个位置参数 `embed_dim`：输入特征维度。
+- 第二个位置参数 `hidden_dim`：隐藏状态维度。
+- `num_layers`：堆叠层数。
+- `batch_first=True`：输入使用 `(B, T, E)`。
+- `dropout`：多层 RNN 之间的 Dropout。
+
+PyTorch 的 RNN/LSTM 只有在 `num_layers > 1` 时才能使用层间 Dropout，所以保留了：
+
+```python
+dropout if num_layers > 1 else 0.0
+```
+
+---
+
+## 十二、`forward()` 输入是什么
+
+前向传播位于 [language_model.py](<D:\xxl\study\workspace\test\week04\循环神经网络语言模型\language_model.py:105>)：
+
+```python
+def forward(self, x):
+    e = self.embed(x)
+```
+
+其中：
+
+```text
+x.shape = (B, T)
+x.dtype = torch.long
+```
+
+`x` 中保存的是字符编号，例如：
+
+```python
+x = [
+    [12, 35, 81, 7],
+    [19, 23, 11, 6],
+]
+```
+
+经过嵌入以后：
+
+```text
+(B, T) → (B, T, embed_dim)
+```
+
+---
+
+## 十三、读取当前序列长度
+
+Transformer 分支中：
+
+```python
+seq_len = x.size(1)
+```
+
+因为 `x` 形状是：
+
+```text
+(B, T)
+```
+
+所以：
+
+```python
+x.size(0)  # B，batch size
+x.size(1)  # T，序列长度
+```
+
+这里的 `seq_len` 就是当前实际输入的字符数量。
+
+---
+
+## 十四、检查位置编码是否足够长
+
+代码为：
+
+```python
+if seq_len > self.max_seq_len:
+    raise ValueError(
+        f"输入长度 {seq_len} 超过 max_seq_len={self.max_seq_len}"
+    )
+```
+
+位置编码矩阵只有：
+
+```text
+0 ～ max_seq_len - 1
+```
+
+如果模型只建立了 64 个位置，却传入 100 个字符，那么位置 64～99 没有对应的位置向量。
+
+因此需要提前报出容易理解的错误，而不是等到 `nn.Embedding` 出现索引越界。
+
+---
+
+## 十五、生成位置编号
+
+代码为：
+
+```python
+positions = torch.arange(
+    seq_len,
+    device=x.device,
+).unsqueeze(0)
+```
+
+假设：
+
+```text
+seq_len = 4
+```
+
+`torch.arange(seq_len)` 得到：
+
+```python
+[0, 1, 2, 3]
+```
+
+形状是：
+
+```text
+(4,)
+```
+
+调用：
+
+```python
+.unsqueeze(0)
+```
+
+以后变成：
+
+```python
+[[0, 1, 2, 3]]
+```
+
+形状是：
+
+```text
+(1, 4)
+```
+
+### `device=x.device`
+
+确保位置编号和输入处于同一个设备。
+
+例如输入在 GPU 上：
+
+```text
+x.device = cuda:0
+```
+
+位置编号也会直接创建在 GPU 上，避免 CPU 张量与 GPU 张量混用报错。
+
+### 为什么第一维只有 1
+
+位置在不同 batch 中是一样的：
+
+```text
+第一个样本：0 1 2 3
+第二个样本：0 1 2 3
+第三个样本：0 1 2 3
+```
+
+因此只创建 `(1, T)`，PyTorch 会通过广播机制自动应用到所有 batch，无需创建 `(B, T)` 的重复数据。
+
+---
+
+## 十六、组合字符编码和位置编码
+
+代码为：
+
+```python
+e = self.drop(e + self.position_embed(positions))
+```
+
+两部分形状分别是：
+
+```text
+字符嵌入：  (B, T, embed_dim)
+位置嵌入：  (1, T, embed_dim)
+```
+
+相加时位置嵌入会沿 batch 维广播：
+
+```text
+(B, T, embed_dim)
++
+(1, T, embed_dim)
+=
+(B, T, embed_dim)
+```
+
+每个字符最终表示为：
+
+```text
+最终表示 = 字符本身的向量 + 字符所在位置的向量
+```
+
+这样模型既知道“这是哪个字符”，也知道“它位于第几个位置”。
+
+---
+
+## 十七、构造因果掩码
+
+这是 Transformer 语言模型最关键的改动：
+
+```python
+causal_mask = torch.triu(
+    torch.ones(
+        seq_len,
+        seq_len,
+        dtype=torch.bool,
+        device=x.device,
+    ),
+    diagonal=1,
+)
+```
+
+### `torch.ones(seq_len, seq_len, ...)`
+
+首先创建一个 `T × T` 的矩阵。
+
+假设 `T=4`：
+
+```text
+1 1 1 1
+1 1 1 1
+1 1 1 1
+1 1 1 1
+```
+
+### `dtype=torch.bool`
+
+将掩码设置成布尔类型：
+
+- `False`：允许关注。
+- `True`：禁止关注。
+
+### `device=x.device`
+
+确保掩码和模型输入位于同一个 CPU 或 GPU。
+
+### `torch.triu(..., diagonal=1)`
+
+`triu` 表示保留上三角。
+
+`diagonal=1` 表示从主对角线右上方开始保留，不屏蔽当前位置本身。
+
+最终得到：
+
+```text
+False  True   True   True
+False  False  True   True
+False  False  False  True
+False  False  False  False
+```
+
+含义是：
+
+- 第 0 个位置只能看位置 0。
+- 第 1 个位置可以看位置 0、1。
+- 第 2 个位置可以看位置 0、1、2。
+- 第 3 个位置可以看位置 0、1、2、3。
+
+为什么当前位置可以看自己？
+
+训练数据采用错位预测：
+
+```text
+输入 x：我 喜 欢 你
+标签 y：喜 欢 你 。
+```
+
+输入位置 0 的“我”负责预测标签位置 0 的“喜”，所以允许它看到“我”本身是正确的。
+
+如果没有因果掩码，位置 0 还能直接看到后面的“喜”，相当于提前看到答案，训练损失会虚假地变低，但实际生成时效果会很差。
+
+---
+
+## 十八、调用 Transformer
+
+代码为：
+
+```python
+out = self.rnn(e, mask=causal_mask)
+```
+
+参数分别是：
+
+- `e`：Transformer 输入，形状 `(B, T, embed_dim)`。
+- `mask=causal_mask`：形状 `(T, T)`，限制每个位置只能关注自己和过去。
+
+输出为：
+
+```text
+out.shape = (B, T, embed_dim)
+```
+
+Transformer 只返回一个张量，因此不能写：
+
+```python
+out, _ = self.rnn(...)
+```
+
+这也是你原来的 `forward()` 必须修改的原因。
+
+---
+
+## 十九、RNN/LSTM 的前向传播为什么不同
+
+RNN/LSTM 分支仍然是：
+
+```python
+e = self.drop(e)
+out, _ = self.rnn(e)
+```
+
+RNN 返回：
+
+```python
+out, h_n
+```
+
+LSTM 返回：
+
+```python
+out, (h_n, c_n)
+```
+
+当前语言模型只需要每个时间位置的 `out`，不需要最后的隐藏状态，所以使用 `_` 丢弃第二部分。
+
+---
+
+## 二十、转换为词表分数
+
+两个分支最终统一执行：
+
+```python
+logits = self.fc(self.drop(out))
+return logits
+```
+
+假设：
+
+```text
+B = 128
+T = 64
+vocab_size = 4000
+```
+
+输出形状为：
+
+```text
+(128, 64, 4000)
+```
+
+其中：
+
+```python
+logits[b, t, v]
+```
+
+表示：
+
+```text
+第 b 条样本
+第 t 个位置
+预测词表中第 v 个字符
+对应的未归一化分数
+```
+
+训练时 `CrossEntropyLoss` 会在内部对最后一维执行类似 Softmax 的计算，因此这里不需要主动调用 Softmax。
+
+---
+
+## 二十一、命令行参数的改动
+
+参数定义位于 [language_model.py](<D:\xxl\study\workspace\test\week04\循环神经网络语言模型\language_model.py:159>)。
+
+### 修改 `--model`
+
+原来：
+
+```python
+choices=["rnn", "lstm"]
+```
+
+现在：
+
+```python
+choices=["rnn", "lstm", "transformer"]
+```
+
+参数解释：
+
+- `default="lstm"`：没有传 `--model` 时默认使用 LSTM。
+- `choices=...`：限制只能输入这三种值，输入其他值时 `argparse` 会直接报错。
+
+### 新增 `--nhead`
+
+```python
+parser.add_argument(
+    "--nhead",
+    type=int,
+    default=8,
+    help="Transformer 注意力头数",
+)
+```
+
+每个参数含义：
+
+- `"--nhead"`：命令行参数名。
+- `type=int`：把命令行字符串转换为整数。
+- `default=8`：不传时默认使用 8 个注意力头。
+- `help=...`：在 `python language_model.py --help` 中展示说明。
+
+---
+
+## 二十二、当前所有训练参数的作用
+
+| 参数 | 默认值 | 作用 |
+|---|---:|---|
+| `--model` | `lstm` | 选择 RNN、LSTM 或 Transformer |
+| `--epochs` | `20` | 完整遍历训练集的轮数 |
+| `--seq_len` | `64` | 每条训练序列包含的字符数，同时决定 Transformer 最大上下文长度 |
+| `--stride` | `1` | 相邻样本起点之间移动多少字符 |
+| `--batch_size` | `128` | 一次训练多少条序列 |
+| `--embed_dim` | `128` | 字符嵌入维度，也是 Transformer 的 `d_model` |
+| `--hidden_dim` | `256` | RNN 隐藏维度，或 Transformer 前馈网络中间维度 |
+| `--num_layers` | `2` | 模型堆叠层数 |
+| `--nhead` | `8` | Transformer 注意力头数 |
+| `--dropout` | `0.3` | Dropout 比例 |
+| `--lr` | `0.001` | Adam 优化器学习率 |
+| `--val_ratio` | `0.05` | 验证集占总数据的比例 |
+| `--max_vocab` | `4000` | 最多保留多少个字符，0 表示不限制 |
+| `--seed` | `42` | PyTorch 和 Python 随机种子 |
+| `--corpus` | `*.txt` | 训练语料匹配模式 |
+| `--save` | `best_model.pt` | 最佳 checkpoint 保存位置 |
+
+### `seq_len` 和 `stride` 的区别
+
+假设语料是：
+
+```text
+ABCDEFGHIJK...
+```
+
+如果：
+
+```text
+seq_len=4
+stride=1
+```
+
+样本会是：
+
+```text
+ABCD
+BCDE
+CDEF
+DEFG
+```
+
+如果：
+
+```text
+seq_len=4
+stride=4
+```
+
+样本会是：
+
+```text
+ABCD
+EFGH
+IJKL
+```
+
+`stride=1` 样本更多，但训练明显更慢。Transformer 的计算量随序列长度大致按 `T²` 增长，因此 Transformer 训练时通常建议适当增加 `stride`，例如：
+
+```powershell
+--seq_len 64 --stride 64
+```
+
+或者折中使用：
+
+```powershell
+--seq_len 64 --stride 16
+```
+
+---
+
+## 二十三、创建模型时新增的参数传递
+
+代码为：
+
+```python
+model = LM(
+    vocab_size=vocab_size,
+    embed_dim=args.embed_dim,
+    hidden_dim=args.hidden_dim,
+    num_layers=args.num_layers,
+    model_type=args.model,
+    dropout=args.dropout,
+    nhead=args.nhead,
+    max_seq_len=args.seq_len,
+).to(device)
+```
+
+其中两个关键新增传递是：
+
+```python
+nhead=args.nhead
+```
+
+把命令行的注意力头数传给 Transformer。
+
+```python
+max_seq_len=args.seq_len
+```
+
+让位置编码长度与训练样本长度保持一致。
+
+例如：
+
+```powershell
+--seq_len 64
+```
+
+会创建：
+
+```python
+nn.Embedding(64, embed_dim)
+```
+
+模型支持位置编号 `0～63`。
+
+`.to(device)` 会把模型的所有参数移动到：
+
+```python
+cuda  # 有可用 GPU
+```
+
+或者：
+
+```python
+cpu   # 没有可用 GPU
+```
+
+---
+
+## 二十四、输入法不再复制一份 `LM`
+
+输入法原来自己定义了一份 `LM`。这样存在一个问题：
+
+```text
+训练脚本已经改成 Transformer
+输入法仍然使用旧 RNN/LSTM 定义
+```
+
+加载 checkpoint 时就会出现参数名称或形状不匹配。
+
+所以删除了输入法中的重复模型定义，改为 [pinyin_ime.py](<D:\xxl\study\workspace\test\week04\循环神经网络语言模型\pinyin_ime.py:14>)：
+
+```python
+from language_model import LM
+```
+
+现在训练和推理必然使用同一个类。以后再修改 `LM`，只需要修改一个文件。
+
+---
+
+## 二十五、输入法限制 Transformer 上下文长度
+
+输入法会把已经确认的文字作为模型上下文：
+
+```python
+context = prefix + partial
+ids = [char2idx[c] for c in context if c in char2idx]
+```
+
+用户可能不断输入，导致 `context` 长度超过训练时的 `seq_len`。
+
+因此增加：
+
+```python
+if hasattr(model, "max_seq_len"):
+    ids = ids[-model.max_seq_len:]
+```
+
+### `hasattr(model, "max_seq_len")`
+
+只有 Transformer 分支设置了：
+
+```python
+self.max_seq_len
+```
+
+因此：
+
+- Transformer：执行截断。
+- RNN/LSTM：保持原来的完整上下文行为。
+
+### `ids[-model.max_seq_len:]`
+
+只保留最近的 `max_seq_len` 个字符。
+
+假设：
+
+```text
+上下文长度 = 100
+max_seq_len = 64
+```
+
+最终保留：
+
+```text
+最近的 64 个字符
+```
+
+语言模型通常也是最近的上下文比很久以前的上下文更重要。
+
+---
+
+## 二十六、输入法创建模型时的参数
+
+加载代码位于 [pinyin_ime.py](<D:\xxl\study\workspace\test\week04\循环神经网络语言模型\pinyin_ime.py:217>)：
+
+```python
+model = LM(
+    vocab_size=len(char2idx),
+    embed_dim=cfg["embed_dim"],
+    hidden_dim=cfg["hidden_dim"],
+    num_layers=cfg["num_layers"],
+    model_type=cfg["model"],
+    dropout=0.0,
+    nhead=cfg.get("nhead", 8),
+    max_seq_len=cfg.get("seq_len", 1024),
+).to(device)
+```
+
+参数来自训练 checkpoint 中保存的：
+
+```python
+"args": vars(args)
+```
+
+### `vocab_size=len(char2idx)`
+
+使用 checkpoint 中词表的实际长度，必须和训练时输出层大小一致。
+
+### `embed_dim=cfg["embed_dim"]`
+
+恢复训练时的字符嵌入维度。
+
+### `hidden_dim=cfg["hidden_dim"]`
+
+恢复训练时的 RNN 隐藏维度或 Transformer 前馈层维度。
+
+### `num_layers=cfg["num_layers"]`
+
+恢复训练时的层数。
+
+### `model_type=cfg["model"]`
+
+确保 Transformer checkpoint 使用 Transformer 创建，LSTM checkpoint 使用 LSTM 创建。
+
+### `dropout=0.0`
+
+推理时不需要随机丢弃特征。
+
+后面的：
+
+```python
+model.eval()
+```
+
+也会关闭 Dropout。两者同时存在可以明确表达“推理输出应当稳定”。
+
+Dropout 没有可训练参数，因此将构造值从训练时的 `0.3` 改为推理时的 `0.0` 不影响 `state_dict` 加载。
+
+### `nhead=cfg.get("nhead", 8)`
+
+从 checkpoint 配置中读取训练时的注意力头数。
+
+使用 `get` 而不是：
+
+```python
+cfg["nhead"]
+```
+
+是为了兼容以前保存的 RNN/LSTM checkpoint。旧 checkpoint 可能没有 `nhead`，此时默认返回 8。
+
+对于 RNN/LSTM，这个值不会参与模型结构。
+
+### `max_seq_len=cfg.get("seq_len", 1024)`
+
+训练时没有单独保存 `max_seq_len`，因为它直接等于 `seq_len`，所以从：
+
+```python
+cfg["seq_len"]
+```
+
+恢复。
+
+如果旧 checkpoint 没有该字段，则临时使用 1024。
+
+### `load_state_dict`
+
+```python
+model.load_state_dict(ckpt["model_state"])
+```
+
+把训练得到的权重加载进刚刚创建的同结构模型。
+
+模型结构参数必须保持一致，包括：
+
+- `vocab_size`
+- `embed_dim`
+- `hidden_dim`
+- `num_layers`
+- `model_type`
+- `nhead`
+- `max_seq_len`
+
+其中任何一个影响参数形状的值不同，都可能导致 checkpoint 加载失败。
+
+---
+
+## 二十七、完整的数据形状变化
+
+以以下参数为例：
+
+```text
+batch_size = 128
+seq_len = 64
+vocab_size = 4000
+embed_dim = 128
+hidden_dim = 512
+nhead = 8
+```
+
+整个 Transformer 前向过程为：
+
+```text
+字符编号 x
+(128, 64)
+      │
+      ▼
+Token Embedding
+(128, 64, 128)
+      │
+      ├── Position Embedding: (1, 64, 128)
+      │
+      ▼
+相加 + Dropout
+(128, 64, 128)
+      │
+      ├── Causal Mask: (64, 64)
+      │
+      ▼
+Transformer Encoder
+(128, 64, 128)
+      │
+      ▼
+Linear(128, 4000)
+(128, 64, 4000)
+      │
+      ▼
+与标签 y=(128, 64) 计算交叉熵
+```
+
+---
+
+## 二十八、我做的验证分别证明了什么
+
+我实际执行了以下检查：
+
+1. 分别创建 RNN、LSTM、Transformer。
+
+三种模型都得到：
+
+```text
+输入：(3, 8)
+输出：(3, 8, 31)
+```
+
+证明它们对训练循环暴露了统一接口。
+
+2. 因果掩码验证。
+
+构造两个序列：
+
+```text
+1 2 3 4
+1 2 9 8
+```
+
+前两个字符相同，后两个字符不同。验证前两个位置的输出完全一致，证明前面位置没有看到未来的 `3/4` 或 `9/8`。
+
+3. 反向传播验证。
+
+执行了：
+
+```python
+loss.backward()
+```
+
+模型参数成功获得梯度，证明 Transformer 不仅能推理，也能进入现有训练循环。
+
+4. 输入法模型一致性验证。
+
+确认：
+
+```python
+pinyin_ime.LM is language_model.LM
+```
+
+证明训练脚本和输入法确实引用同一个模型类。
+
+---
+
+推荐的 Transformer 训练参数是：
+
+```powershell
+python language_model.py `
+  --model transformer `
+  --embed_dim 128 `
+  --hidden_dim 512 `
+  --num_layers 4 `
+  --nhead 8 `
+  --seq_len 64 `
+  --stride 16 `
+  --dropout 0.1 `
+  --epochs 20
+```
+
+这里 `hidden_dim=512` 是 `embed_dim=128` 的四倍；`nhead=8` 能整除 `embed_dim=128`；`stride=16` 在训练速度和样本重叠程度之间做了折中。
