@@ -1,0 +1,39 @@
+{
+  "corpus": "data\\corpus_general.txt",
+  "encoding": "utf-8",
+  "eos_token": "<eos>",
+  "special_tokens": [
+    "<pad>",
+    "<unk>",
+    "<bos>",
+    "<eos>"
+  ],
+  "train_ratio": 0.9,
+  "seed": 42,
+  "min_freq": 1,
+  "dedup": false,
+  "source_lines": 395286,
+  "removed_duplicate_lines": 0,
+  "duplicate_lines": 149057,
+  "total_lines": 395286,
+  "total_chars": 5626360,
+  "average_line_chars": 14.23,
+  "train": {
+    "lines": 355757,
+    "chars": 5063705,
+    "tokens": 5419462,
+    "file": "data\\train.txt"
+  },
+  "test": {
+    "lines": 39529,
+    "chars": 562655,
+    "tokens": 602184,
+    "unk_tokens": 45,
+    "unk_rate": 7.5e-05,
+    "file": "data\\test.txt"
+  },
+  "vocab": {
+    "size": 5262,
+    "file": "data\\vocab.txt"
+  }
+}

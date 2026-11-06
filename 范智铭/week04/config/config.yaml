@@ -1,0 +1,35 @@
+# 配置手动实现transformer模型的参数
+transformer:
+  # 模型参数
+  model_size: 128 # 模型维度
+  num_heads: 8    # 多头注意力头数
+  dropout: 0.1    # dropout概率
+  d_ff: 512      # ffn维度
+  act: gelu       # ffn中使用的激活函数 可用relu，gelu
+  ln: true        # 是否使用layer norm
+  causal: true    # 是否使用因果mask
+
+# 超参数设置
+hparams:
+  # 学习率
+  lr: 1e-4
+  # 批量大小
+  batch_size: 64
+  # 训练轮数
+  epochs: 100
+  # 最大输入长度
+  max_len: 128
+  # transformer层数
+  num_layers: 6
+  # 随机种子
+  seed: 42
+  # 早停耐心值：test loss 连续多少个 epoch 没下降就停止训练
+  # 设为 0 或负数则不启用早停
+  early_stop_patience: 10
+
+  # 词表路径
+  vocab_path: data/vocab.txt
+  # 训练数据集文件名
+  train_filename: train.txt
+  # 测试数据集文件名
+  test_filename: test.txt
