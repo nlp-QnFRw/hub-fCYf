@@ -1,0 +1,10 @@
+# Model weights
+*.msgpack
+*.bin
+*.h5
+*.safetensors
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
