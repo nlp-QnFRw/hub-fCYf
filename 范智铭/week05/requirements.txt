@@ -1,0 +1,7 @@
+# week05 SFT 依赖
+# CUDA 版 torch 必须从官方 cu124 索引装（PyPI 上的 torch 默认是 CPU 版）：
+#   pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+#   pip install -r requirements.txt
+torch>=2.0
+numpy>=1.26
+omegaconf>=2.3

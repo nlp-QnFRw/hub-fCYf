@@ -1,0 +1,65 @@
+{
+  "vocab_size": 5343,
+  "max_len": 128,
+  "train": {
+    "file": "sft_train.jsonl",
+    "rows": 3000,
+    "prompt_len": {
+      "min": 13,
+      "median": 39,
+      "mean": 37.8,
+      "p95": 52,
+      "max": 53
+    },
+    "answer_len": {
+      "min": 5,
+      "median": 23,
+      "mean": 28.1,
+      "p95": 60,
+      "max": 65
+    },
+    "total_len": {
+      "min": 24,
+      "median": 64,
+      "mean": 66.0,
+      "p95": 99,
+      "max": 117
+    },
+    "truncated": 0,
+    "supervised_tokens": 84412,
+    "all_tokens": 197956,
+    "supervised_ratio": 0.4264,
+    "oov_chars": ""
+  },
+  "val": {
+    "file": "sft_val.jsonl",
+    "rows": 200,
+    "prompt_len": {
+      "min": 16,
+      "median": 38,
+      "mean": 38.0,
+      "p95": 52,
+      "max": 53
+    },
+    "answer_len": {
+      "min": 7,
+      "median": 23,
+      "mean": 29.0,
+      "p95": 62,
+      "max": 64
+    },
+    "total_len": {
+      "min": 33,
+      "median": 64,
+      "mean": 67.0,
+      "p95": 100,
+      "max": 111
+    },
+    "truncated": 0,
+    "supervised_tokens": 5792,
+    "all_tokens": 13397,
+    "supervised_ratio": 0.4323,
+    "oov_chars": ""
+  },
+  "train_val_overlap": 0
+}
