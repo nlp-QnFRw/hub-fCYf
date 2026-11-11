@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>miniGPT 代码速览 · 第五周</title>
+<style>
+:root{
+  --bg:#0e1116; --bg2:#12161d; --panel:#161b23; --panel2:#1b2129;
+  --line:#252c37; --line2:#323a47;
+  --tx:#d9e0ea; --dim:#8b95a7; --dim2:#6b7484;
+  --blue:#6ea8fe; --green:#68d3a4; --gold:#e8b062; --purple:#b98cf0;
+  --pink:#e88ba8; --cyan:#56c7d8; --red:#e07070;
+  --mono:ui-monospace,"SF Mono",Consolas,"Cascadia Mono",Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--tx);
+  font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+code,pre,.mono{font-family:var(--mono)}
+
+/* ── 布局 ── */
+.wrap{display:flex;max-width:1560px;margin:0 auto}
+nav{
+  position:sticky;top:0;height:100vh;width:246px;flex:0 0 246px;
+  border-right:1px solid var(--line);padding:26px 0 40px;overflow-y:auto;
+  background:linear-gradient(180deg,#0e1116,#0c0f14);
+}
+nav::-webkit-scrollbar{width:6px}
+nav::-webkit-scrollbar-thumb{background:#2a323d;border-radius:3px}
+.brand{padding:0 22px 18px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.brand h1{font-size:15px;margin:0 0 4px;letter-spacing:.3px}
+.brand p{margin:0;font-size:11.5px;color:var(--dim2);font-family:var(--mono)}
+nav a{
+  display:flex;gap:10px;align-items:baseline;padding:6px 22px;color:var(--dim);
+  text-decoration:none;font-size:13px;border-left:2px solid transparent;transition:.15s;
+}
+nav a:hover{color:var(--tx);background:#151a22}
+nav a.on{color:var(--blue);border-left-color:var(--blue);background:#141a24}
+nav a i{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--dim2);width:15px;flex:0 0 15px}
+nav a.on i{color:var(--blue);opacity:.7}
+.navgrp{padding:14px 22px 6px;font-size:10.5px;letter-spacing:1.4px;color:#4e5866;text-transform:uppercase}
+
+main{flex:1;min-width:0;padding:0 0 120px}
+
+/* ── 章节 ── */
+section{padding:56px 52px 8px;border-bottom:1px solid #1a2028;scroll-margin-top:0}
+section:last-of-type{border-bottom:none}
+.hd{display:flex;align-items:flex-start;gap:16px;margin-bottom:8px}
+.num{
+  font-family:var(--mono);font-size:11px;color:var(--blue);background:#16202e;
+  border:1px solid #24354d;border-radius:4px;padding:3px 7px;margin-top:6px;flex:0 0 auto;
+}
+h2{font-size:25px;margin:0;font-weight:600;letter-spacing:-.2px}
+h2 small{font-size:12.5px;color:var(--dim2);font-weight:400;margin-left:10px;font-family:var(--mono)}
+.lead{color:var(--dim);margin:0 0 30px;max-width:820px;font-size:14.5px}
+h3{font-size:15px;margin:38px 0 14px;color:#eef3fa;font-weight:600}
+h3::before{content:"";display:inline-block;width:3px;height:13px;background:var(--blue);
+  border-radius:2px;margin-right:9px;vertical-align:-2px;opacity:.85}
+h4{font-size:13.5px;margin:22px 0 10px;color:var(--tx);font-weight:600}
+
+/* ── 通用组件 ── */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:1180px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:860px){.g2,.g3,.g4{grid-template-columns:1fr}section{padding:40px 22px 8px}}
+.muted{color:var(--dim)}
+.tiny{font-size:12px;line-height:1.65}
+.tag{
+  display:inline-block;font-family:var(--mono);font-size:10.5px;padding:1.5px 6px;
+  border-radius:3px;background:#1d242e;color:var(--dim);border:1px solid #2b3441;white-space:nowrap;
+}
+.tag.b{color:var(--blue);background:#152130;border-color:#243952}
+.tag.g{color:var(--green);background:#12241d;border-color:#1e3b31}
+.tag.y{color:var(--gold);background:#241d12;border-color:#3d3119}
+.tag.p{color:var(--purple);background:#1e1829;border-color:#322942}
+.tag.c{color:var(--cyan);background:#122328;border-color:#1d3a42}
+
+pre{
+  background:#0b0e13;border:1px solid var(--line);border-left:2px solid #334052;
+  border-radius:7px;padding:14px 16px;overflow-x:auto;font-size:12.5px;line-height:1.72;
+  margin:14px 0;color:#b8c3d3;
+}
+pre::-webkit-scrollbar{height:8px}
+pre::-webkit-scrollbar-thumb{background:#2a323d;border-radius:4px}
+pre .c{color:#5c6878;font-style:italic}
+pre .k{color:#c792ea}
+pre .s{color:#8ec07c}
+pre .n{color:#e8b062}
+pre .f{color:#6ea8fe}
+
+.kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed #232a34;font-size:13px}
+.kv:last-child{border-bottom:none}
+.kv span:first-child{color:var(--dim)}
+.kv span:last-child{font-family:var(--mono);font-size:12.5px}
+
+/* 数字卡片 */
+.stat{background:linear-gradient(160deg,#182029,#141920);border:1px solid var(--line);border-radius:9px;padding:15px 17px}
+.stat b{display:block;font-family:var(--mono);font-size:22px;font-weight:600;letter-spacing:-.5px;line-height:1.25}
+.stat span{display:block;font-size:11.5px;color:var(--dim2);margin-top:3px}
+.stat i{font-style:normal;font-size:11px;color:var(--dim2)}
+
+/* ── 文件地图 ── */
+.fmap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:6px 0 0}
+@media(max-width:980px){.fmap{grid-template-columns:1fr}}
+.fbox{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px 15px;position:relative}
+.fbox h5{margin:0 0 3px;font-size:13.5px;font-family:var(--mono);font-weight:600}
+.fbox .role{font-size:11px;color:var(--dim2);margin-bottom:8px}
+.fbox p{margin:0;font-size:12px;color:var(--dim);line-height:1.6}
+.fbox.core{border-color:#2c4a6e;background:linear-gradient(160deg,#152130,#141a22)}
+.fbox.core h5{color:var(--blue)}
+.fbox.gen{border-color:#3d3120;background:linear-gradient(160deg,#221c12,#161a1e)}
+.fbox.gen h5{color:var(--gold)}
+.fbox.run{border-color:#1e3b31;background:linear-gradient(160deg,#12241d,#141a1e)}
+.fbox.run h5{color:var(--green)}
+
+/* ── 管道图 ── */
+.pipe{display:flex;flex-direction:column;gap:0;align-items:stretch;margin:8px 0}
+.prow{display:grid;grid-template-columns:96px 26px 1fr;gap:0;align-items:center;min-height:44px}
+.prow .sh{font-family:var(--mono);font-size:10.5px;color:var(--dim2);text-align:right;padding-right:8px;line-height:1.3}
+.prow .ln{position:relative;height:100%;display:flex;align-items:center;justify-content:center}
+.prow .ln::before{content:"";position:absolute;top:0;bottom:0;width:1px;background:#2c3541}
+.prow .ln::after{content:"";position:absolute;bottom:0;width:5px;height:5px;border-right:1px solid #3c4756;border-bottom:1px solid #3c4756;transform:rotate(45deg) translateY(-1px)}
+.prow:last-child .ln::after{display:none}
+.pbox{
+  border-radius:7px;padding:9px 14px;font-size:13px;display:flex;align-items:center;gap:10px;
+  border:1px solid var(--line2);background:var(--panel2);
+}
+.pbox .op{font-family:var(--mono);font-size:12.5px;font-weight:600}
+.pbox .ds{font-size:11.5px;color:var(--dim2);margin-left:auto;text-align:right;font-family:var(--mono)}
+.pbox.emb{border-color:#3a3320;background:#221d13;color:var(--gold)}
+.pbox.norm{border-color:#1e3b31;background:#13251e;color:var(--green)}
+.pbox.attn{border-color:#243952;background:#152130;color:var(--blue)}
+.pbox.ffn{border-color:#322942;background:#1e1829;color:var(--purple)}
+.pbox.out{border-color:#3d2a2a;background:#241818;color:var(--pink)}
+.pbox.ghost{background:transparent;border-style:dashed;color:var(--dim)}
+.pbox.rep{border-color:#4a3a22;background:#241d12;color:var(--gold)}
+.pbox b{font-weight:600}
+
+/* ── Block 内部 ── */
+.blk{background:#0c1015;border:1px solid var(--line);border-radius:10px;padding:22px 20px 18px;overflow-x:auto}
+.blk::-webkit-scrollbar{height:8px}
+.blk::-webkit-scrollbar-thumb{background:#2a323d;border-radius:4px}
+.blkin{min-width:1010px}
+.brow{display:flex;align-items:center;gap:0;margin:0}
+.node{
+  border-radius:7px;padding:8px 12px;font-size:12px;text-align:center;line-height:1.4;
+  border:1px solid var(--line2);background:var(--panel2);white-space:nowrap;flex:0 0 auto;
+}
+.node b{display:block;font-family:var(--mono);font-size:11.5px;font-weight:600}
+.node u{display:block;text-decoration:none;font-family:var(--mono);font-size:10px;color:var(--dim2);margin-top:2px}
+.arw{flex:0 0 auto;width:22px;text-align:center;color:#4a5464;font-size:12px;font-family:var(--mono)}
+.arw.long{width:34px}
+.node.n1{border-color:#1e3b31;background:#13251e}
+.node.n1 b{color:var(--green)}
+.node.at{border-color:#243952;background:#152130}
+.node.at b{color:var(--blue)}
+.node.rp{border-color:#3d3119;background:#221d13}
+.node.rp b{color:var(--gold)}
+.node.ff{border-color:#322942;background:#1e1829}
+.node.ff b{color:var(--purple)}
+.node.add{border-radius:50%;width:26px;height:26px;padding:0;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--dim);background:#1a2028;border-color:#3a4453}
+.node.io{border-color:#39434f;background:#1a1f27;color:var(--dim)}
+.node.io b{color:#aab5c5}
+.bnote{font-size:11px;color:var(--dim2);font-family:var(--mono);padding-left:4px}
+.resid{
+  margin:2px 0 2px 40px;padding:2px 0;
+  font-family:var(--mono);font-size:10.5px;color:#7d8798;
+  border-left:1px dashed #3c4653;padding-left:12px;
+}
+.resid b{color:var(--gold);font-weight:500}
+
+/* ── 条形/矩阵 ── */
+.bars{display:grid;gap:6px;margin:10px 0}
+.bar{display:grid;grid-template-columns:74px 1fr 56px;align-items:center;gap:9px;font-size:12px}
+.bar .lb{font-family:var(--mono);color:var(--dim);text-align:right;font-size:11px}
+.bar .tr{height:16px;background:#0d1116;border-radius:3px;position:relative;overflow:hidden;border:1px solid #1e242c}
+.bar .tr i{position:absolute;top:0;bottom:0;background:var(--blue);opacity:.75}
+.bar .tr i.neg{background:#3a4a5e}
+.bar .vl{font-family:var(--mono);font-size:11px;color:var(--dim);text-align:right}
+
+table{border-collapse:collapse;width:100%;font-size:12.5px;margin:12px 0}
+th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--line)}
+th{font-size:11px;color:var(--dim2);font-weight:500;letter-spacing:.4px;text-transform:uppercase;background:#12161d}
+td.mono,th.mono{font-family:var(--mono);font-size:11.5px}
+tr:hover td{background:#151a22}
+
+/* mask 矩阵 */
+.maskwrap{display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap}
+.mask{display:grid;grid-template-columns:24px repeat(8,36px);gap:2px}
+.mcell{
+  width:36px;height:36px;border-radius:3px;background:#161b23;border:1px solid #232a34;
+  display:flex;align-items:center;justify-content:center;font-size:11px;
+  font-family:var(--mono);color:#3f4856;transition:.12s;cursor:pointer;
+}
+.mcell.vis{background:#1c3557;border-color:#33608f;color:#9dc4ef}
+.mcell.blk{
+  background:#1b212a;border-color:#2b3441;color:#49525f;
+  background-image:repeating-linear-gradient(45deg,transparent 0 3px,#222a34 3px,#222a34 5px);
+}
+.rlab{display:flex;align-items:center;justify-content:flex-end;padding-right:3px;
+  font-family:var(--mono);font-size:10px;color:#7c8798}
+.mrowlab{display:grid;grid-template-columns:24px repeat(8,36px);gap:2px;margin-top:5px}
+.mrowlab span{text-align:center;font-family:var(--mono);font-size:10px;color:var(--dim2)}
+.mhl .mcell.vis{background:#2f5585;border-color:#5487c4;color:#dbeafd}
+.mhl .mcell.blk{color:#333c48}
+.maskinfo{flex:1;min-width:280px}
+
+/* 采样 */
+.sampler{display:grid;grid-template-columns:1fr 300px;gap:22px;align-items:start}
+@media(max-width:900px){.sampler{grid-template-columns:1fr}}
+.slider{display:block;margin:14px 0}
+.slider .sl{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px}
+.slider .sl b{font-family:var(--mono);color:var(--gold);font-weight:600}
+input[type=range]{
+  -webkit-appearance:none;width:100%;height:3px;border-radius:2px;
+  background:#2a323d;outline:none;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:13px;height:13px;border-radius:50%;
+  background:var(--gold);cursor:pointer;border:2px solid #12161d;
+}
+.distbars{display:flex;align-items:flex-end;gap:4px;height:136px;padding:0 2px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.db{flex:1;position:relative;background:linear-gradient(180deg,#2f5f96,#1d3c5f);border-radius:2px 2px 0 0;min-height:2px;transition:.18s}
+.db.kill{background:#242a33}
+.db .lab{position:absolute;bottom:-17px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:9px;color:var(--dim2)}
+.db .pl{position:absolute;top:-15px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:9px;color:var(--dim)}
+
+/* 曲线 */
+.chart{background:#0b0e13;border:1px solid var(--line);border-radius:8px;padding:8px}
+svg{display:block;max-width:100%}
+
+.why{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(max-width:980px){.why{grid-template-columns:1fr}}
+.why .card{padding:15px 17px}
+.why h5{margin:0 0 6px;font-size:13px;color:#e8eef7;font-weight:600}
+.why p{margin:0;font-size:12.5px;color:var(--dim);line-height:1.65}
+.why .card .tag{margin-bottom:8px}
+
+.note{
+  border-left:2px solid var(--gold);background:#1a1710;border-radius:0 6px 6px 0;
+  padding:11px 15px;margin:14px 0;font-size:12.5px;color:#d6c9ac;line-height:1.7;
+}
+.note b{color:var(--gold)}
+.note.blue{border-left-color:var(--blue);background:#121a24;color:#b9cbe0}
+.note.blue b{color:var(--blue)}
+.note.green{border-left-color:var(--green);background:#111d18;color:#b7d4c6}
+.note.green b{color:var(--green)}
+
+.foot{padding:40px 52px;color:var(--dim2);font-size:12px;line-height:1.9}
+.foot b{color:var(--dim)}
+@media(max-width:860px){.foot{padding:30px 22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <div class="brand">
+    <h1>miniGPT 代码速览</h1>
+    <p>16.1M · Decoder-only · 从零手写</p>
+  </div>
+  <div class="navgrp">先看这个</div>
+  <a href="#s00"><i>00</i>全景与文件地图</a>
+  <a href="#s01"><i>01</i>一次前向的全貌</a>
+  <a href="#s02"><i>02</i>Block 内部拆解</a>
+  <div class="navgrp">model.py</div>
+  <a href="#s03"><i>03</i>RMSNorm</a>
+  <a href="#s04"><i>04</i>RoPE 旋转位置</a>
+  <a href="#s05"><i>05</i>Causal Mask</a>
+  <a href="#s06"><i>06</i>KV Cache</a>
+  <a href="#s07"><i>07</i>SwiGLU 与参数账</a>
+  <div class="navgrp">其余脚本</div>
+  <a href="#s08"><i>08</i>train.py 训练</a>
+  <a href="#s09"><i>09</i>sample.py 采样</a>
+  <a href="#s10"><i>10</i>chat / scaling / 语料</a>
+  <div class="navgrp">收尾</div>
+  <a href="#s11"><i>11</i>一页速查表</a>
+</nav>
+
+<main>
+
+<!-- ══════════ 00 ══════════ -->
+<section id="s00">
+  <div class="hd"><div class="num">00</div>
+    <h2>全景与文件地图 <small>7 files · 3090 lines</small></h2>
+  </div>
+  <p class="lead">
+    这个项目做的是<b>预训练阶段</b>的一个小模型：拿 8000 万字中文小说，训练一个 16.1M 参数的
+    Decoder-only Transformer，让它学会续写。目标是"语句通顺"，不是"知识正确"——16M 参数装不下事实。
+    下面按"先看结构、再看细节"的顺序排，你现在只需要扫一遍图，细节等回头再对代码。
+  </p>
+
+  <div class="grid g4" style="margin-bottom:26px">
+    <div class="stat"><b style="color:var(--blue)">16,141,056</b><span>参数量</span><i>≈ 16.1M，8 层 384 维</i></div>
+    <div class="stat"><b style="color:var(--gold)">297M</b><span>训练 token</span><i>≈ 18.4 token / 参数</i></div>
+    <div class="stat"><b style="color:var(--green)">19.74</b><span>验证集 PPL</span><i>loss 2.982</i></div>
+    <div class="stat"><b style="color:var(--purple)">51.4</b><span>训练分钟</span><i>RTX 5050 Laptop 8G</i></div>
+  </div>
+
+  <h3>七个文件各自负责什么</h3>
+  <div class="fmap">
+    <div class="fbox core">
+      <h5>model.py</h5>
+      <div class="role">581 行 · 模型本体</div>
+      <p>分词器、RMSNorm、RoPE、Attention、SwiGLU、Block、GPT、采样算子、存取。<b>只有这一个文件定义"模型长什么样"</b>。</p>
+    </div>
+    <div class="fbox gen">
+      <h5>prepare_novel.py</h5>
+      <div class="role">255 行 · 语料清洗</div>
+      <p>原始小说 → 去广告/作者注/网址/乱码 → 一行一段的纯文本。把脏数据挡在训练之外。</p>
+    </div>
+    <div class="fbox run">
+      <h5>train.py</h5>
+      <div class="role">425 行 · 训练循环</div>
+      <p>建数据集、warmup+余弦、bf16、梯度累积、裁剪、验证、存 ckpt。内含一个 LSTM 对照组。</p>
+    </div>
+    <div class="fbox">
+      <h5>sample.py</h5>
+      <div class="role">342 行 · 采样实验台</div>
+      <p>把 temperature / top-k / top-p / greedy / beam / 重复惩罚 六种策略并排跑，还带 KV Cache 加速比基准。</p>
+    </div>
+    <div class="fbox">
+      <h5>chat.py</h5>
+      <div class="role">387 行 · 本地服务</div>
+      <p>标准库 http.server + SSE 流式，把模型包成网页可用。多轮历史拼成纯文本喂回去。</p>
+    </div>
+    <div class="fbox">
+      <h5>scaling.py</h5>
+      <div class="role">208 行 · 规模实验</div>
+      <p>依次训 tiny→large 五档 + 一遍 LSTM，读 metrics 画曲线、拟合幂律。</p>
+    </div>
+  </div>
+
+  <h3>依赖关系</h3>
+  <div class="card" style="padding:18px 22px">
+    <div class="blkin" style="min-width:0">
+      <div class="brow" style="flex-wrap:wrap;gap:8px;font-size:12px">
+        <div class="node io"><b>原始 txt 小说</b></div>
+        <div class="arw">→</div>
+        <div class="node n1"><b>prepare_novel</b><u>清洗</u></div>
+        <div class="arw">→</div>
+        <div class="node io"><b>corpus_novel.txt</b><u>248 MB</u></div>
+        <div class="arw">→</div>
+        <div class="node at"><b>train.py</b><u>读 corpus</u></div>
+        <div class="arw">→</div>
+        <div class="node rp"><b>best.pt</b><u>权重+配置+词表</u></div>
+        <div class="arw">→</div>
+        <div class="node ff"><b>sample / chat</b><u>推理</u></div>
+      </div>
+      <div class="resid" style="margin-left:0;border:none;padding-left:0;margin-top:14px">
+        <b>model.py 被以上四个脚本共同 import</b>　·　scaling.py 不直接 import 模型，它是起子进程调 train.py 换 preset
+      </div>
+    </div>
+  </div>
+
+  <div class="note blue">
+    <b>读法建议：</b>这一页按「图 → 一句话 → 关键数字」组织，跳过所有代码块也不影响理解。
+    等你看完第五周后续内容再回来，05 / 06 两节（mask 和 KV Cache）值得对着 <code>model.py</code> 的
+    <code>CausalSelfAttention.forward</code> 逐行读一次。
+  </div>
+</section>
+
+<!-- ══════════ 01 ══════════ -->
+<section id="s01">
+  <div class="hd"><div class="num">01</div>
+    <h2>一次前向的全貌 <small>ids (B,T) → logits (B,T,V)</small></h2>
+  </div>
+  <p class="lead">
+    所有 Decoder-only 模型都是这条管道，差别只在中间那个 Block 里塞了什么。左边是张量形状，
+    形状不变的地方就是可以无限堆叠的地方。
+  </p>
+
+  <div class="pipe">
+    <div class="prow"><div class="sh">(B,T)<br>int64</div><div class="ln"></div>
+      <div class="pbox emb"><span class="op">Embedding</span><span>查表：每个字符 id 取一行向量</span><span class="ds">5153 × 384</span></div></div>
+
+    <div class="prow"><div class="sh">(B,T,D)</div><div class="ln"></div>
+      <div class="pbox ghost"><span class="op">Dropout</span><span>训练时 0.12，推理时关闭</span><span class="ds">不变</span></div></div>
+
+    <div class="prow"><div class="sh">(B,T,D)</div><div class="ln"></div>
+      <div class="pbox attn"><span class="op">Block × 8</span><span>每个 Block 内部见下一节，输入输出同形状</span><span class="ds">T ≤ 512</span></div></div>
+
+    <div class="prow"><div class="sh">(B,T,D)</div><div class="ln"></div>
+      <div class="pbox norm"><span class="op">RMSNorm</span><span>最后一层归一化，进输出层之前</span><span class="ds">384 → 384</span></div></div>
+
+    <div class="prow"><div class="sh">(B,T,D)</div><div class="ln"></div>
+      <div class="pbox out"><span class="op">lm_head</span><span>和 Embedding <b>共享同一块权重</b>（weight tying）</span><span class="ds">384 → 5153</span></div></div>
+
+    <div class="prow"><div class="sh">(B,T,V)</div><div class="ln"></div>
+      <div class="pbox"><span class="op">logits</span><span>每个位置一个词表分布，取最后一位就是"下一个字"</span><span class="ds">B×T×5153</span></div></div>
+  </div>
+
+  <h3>为什么 loss 密度是 100%</h3>
+  <p class="tiny muted" style="max-width:820px">
+    输入 <code>x = ids[:-1]</code>、标签 <code>y = ids[1:]</code>，这样一个长度为 512 的窗口会产生
+    <b>512 个预测任务</b>，每一个位置都在预测"下一个字是什么"。这就是课程里说的"next-token prediction
+    让每个 token 都参与 loss"，对比 BERT 只对被 mask 掉的 15% 算 loss，信号密度高一个量级。
+    注意位移是在 <code>train.py</code> 造数据时做的，<code>model.py</code> 里只做交叉熵，不重复 shift。
+  </p>
+
+  <pre><code># train.py 的数据集：随机取一个窗口，切一刀就得到 (x, y)
+i = torch.randint(0, len(ids) - block_size - 1, (1,)).item()
+x = ids[i : i + block_size]          # 前 512 个
+y = ids[i + 1 : i + block_size + 1]  # 后移一位，就是每个位置的"正确答案"</code></pre>
+</section>
+
+<!-- ══════════ 02 ══════════ -->
+<section id="s02">
+  <div class="hd"><div class="num">02</div>
+    <h2>Block 内部拆解 <small>RMSNorm → Attn → 残差 → RMSNorm → FFN → 残差</small></h2>
+  </div>
+  <p class="lead">
+    你提到想看的"先均方根归一化，然后 RoPE"就在这条链上。注意一个容易看漏的点：
+    <b>RoPE 不在 RMSNorm 后面紧挨着</b>，中间还隔着一个 qkv 线性层。归一化作用在 384 维的隐藏状态上，
+    而旋转作用在切头后的 64 维 q/k 上。
+  </p>
+
+  <div class="blk">
+    <div class="blkin">
+      <!-- 上半：注意力 -->
+      <div class="brow">
+        <div class="node io"><b>x</b><u>(B,T,384)</u></div>
+        <div class="arw">→</div>
+        <div class="node n1"><b>RMSNorm</b><u>n1 · 384</u></div>
+        <div class="arw">→</div>
+        <div class="node at"><b>qkv Linear</b><u>384→1152</u></div>
+        <div class="arw">→</div>
+        <div class="node at"><b>split + 切头</b><u>→(B,6,T,64)</u></div>
+        <div class="arw long">→</div>
+        <div class="node rp"><b>RoPE</b><u>q,k 旋转</u></div>
+        <div class="arw">→</div>
+        <div class="node at"><b>Causal Attn</b><u>softmax(QKᵀ/√64)</u></div>
+        <div class="arw">→</div>
+        <div class="node at"><b>proj</b><u>384→384</u></div>
+        <div class="arw">→</div>
+        <div class="node add">+</div>
+        <div class="arw">→</div>
+        <div class="node io"><b>x₁</b><u>残差后</u></div>
+      </div>
+      <div class="resid">↑&nbsp; 残差旁路：<b>x</b> 不经过 norm/attn，直接加到注意力输出上 —— 梯度可以从这里直通浅层</div>
+
+      <!-- 下半：FFN -->
+      <div class="brow" style="margin-top:6px">
+        <div class="node io"><b>x₁</b><u>(B,T,384)</u></div>
+        <div class="arw">→</div>
+        <div class="node n1"><b>RMSNorm</b><u>n2 · 384</u></div>
+        <div class="arw">→</div>
+        <div class="node ff"><b>w1</b><u>384→1024</u></div>
+        <div class="arw">→</div>
+        <div class="node ff"><b>SiLU</b><u>闸门 0~∞</u></div>
+        <div class="arw long">×</div>
+        <div class="node ff"><b>w2</b><u>1024→384</u></div>
+        <div class="arw">→</div>
+        <div class="node add">+</div>
+        <div class="arw">→</div>
+        <div class="node io"><b>x₂</b><u>输出</u></div>
+      </div>
+      <div class="resid" style="margin-left:0;border:none;padding-left:0;margin-top:2px">
+        <b>w3</b>（384→1024）是并行的另一条支路，从 RMSNorm 直接接过来，和 SiLU(w1x) 逐元素相乘 —— 上面为了排版省略了这条线
+      </div>
+    </div>
+  </div>
+
+  <h3>Pre-Norm 与 Post-Norm</h3>
+  <div class="grid g2">
+    <div class="card">
+      <h4 style="margin-top:0">这个项目：Pre-Norm</h4>
+      <pre style="margin:0"><code>x = x + Attn(<b>Norm(x)</b>)
+x = x + FFN(<b>Norm(x)</b>)</code></pre>
+      <p class="tiny muted" style="margin:8px 0 0">
+        归一化在子层<b>之前</b>。残差主路上是一条干净的恒等通路，梯度不经过 norm 的缩放，
+        8 层不加精细 warmup 也不容易崩。代价是最后必须补一个 <code>norm_f</code>，否则输出尺度不受控。
+      </p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">原始 GPT-2：Post-Norm</h4>
+      <pre style="margin:0"><code>x = <b>Norm(</b>x + Attn(x)<b>)</b>
+x = <b>Norm(</b>x + FFN(x)<b>)</b></pre>
+      <p class="tiny muted" style="margin:8px 0 0">
+        归一化在残差<b>之后</b>。每一层都往主路上插一次缩放，层数一多梯度就衰减，
+        必须靠 warmup 小心翼翼地起步。深层网络基本已经淘汰这个写法。
+      </p>
+    </div>
+  </div>
+
+  <h3>为什么输入输出形状一定相同</h3>
+  <p class="tiny muted" style="max-width:820px">
+    每个 Block 都是 <code>(B,T,D) → (B,T,D)</code>。这个性质是"能无脑堆 N 层"的前提——
+    堆 8 层和堆 80 层，除了显存和耗时，接口完全一样。<code>scaling.py</code> 换 preset 时只改
+    <code>n_layer / d_model / n_head</code> 三个数，其余代码一行不动，靠的就是这个不变式。
+  </p>
+</section>
+
+<!-- ══════════ 03 ══════════ -->
+<section id="s03">
+  <div class="hd"><div class="num">03</div>
+    <h2>RMSNorm <small>y = x / rms(x) · g</small></h2>
+  </div>
+  <p class="lead">
+    一句话：LayerNorm 去掉"减均值"和"加偏置"之后，剩下的就是 RMSNorm。
+    看起来像偷工减料，但实验上几乎不损失效果，而每一层都少一次逐元素运算。
+  </p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4 style="margin-top:0">逐元素走一遍（取真实数据）</h4>
+      <p class="tiny muted" style="margin:0 0 4px">
+        输入向量 <code>x = [2, −1, 0.5, 3]</code>，下面四行是同一组数在不同阶段的取值。
+      </p>
+
+      <div class="bars" id="rmsBars" style="display:none"></div>
+      <svg id="rmsSvg" viewBox="0 0 430 215" width="430" height="215" style="margin:2px 0 0 -6px"></svg>
+      <p class="tiny muted" style="margin:4px 0 0">
+        每一组是一个分量（x₀~x₃），组内四根柱是四个阶段的取值。
+        关键差别看<b style="color:var(--green)">绿色</b>和<b style="color:var(--blue)">蓝色</b>两组：
+        RMSNorm 只是整体缩放，四个值的正负格局原样保留；LayerNorm 强行把均值拉到 0，
+        分布被重新排布。灰色那根就是被减掉的均值本身。
+      </p>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-top:0">两行代码，没有 bias</h4>
+      <pre style="margin:0 0 10px"><code>rms = x.pow(2).mean(-1, keepdim=True).add(eps).rsqrt()
+return (x * rms) * self.weight</code></pre>
+      <div class="kv"><span>可学习参数</span><span>g ∈ R³⁸⁴，初始全 1</span></div>
+      <div class="kv"><span>bias</span><span style="color:var(--red)">没有</span></div>
+      <div class="kv"><span>减均值</span><span style="color:var(--red)">没有</span></div>
+      <div class="kv"><span>整模型 norm 参数占比</span><span>0.04%（6,528 个）</span></div>
+      <div class="kv"><span>eps</span><span>1e-6</span></div>
+      <p class="tiny muted" style="margin:10px 0 0">
+        <code>rsqrt()</code> 是 <code>1/√x</code> 的融合算子。写成 <code>1/torch.sqrt(...)</code> 数学等价，
+        但会多一次 kernel 和一次中间张量。
+      </p>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>容易误解的地方：</b>RMSNorm 并不"更简单所以更弱"。它砍掉的是<b>冗余</b>——
+    对 384 维向量来说，减均值只改变一个自由度，而计算要遍历全部 384 个元素。
+    Llama、Qwen、GLM 全系都是这个选择，不是这个项目的省事做法。
+  </div>
+</section>
+
+<!-- ══════════ 04 ══════════ -->
+<section id="s04">
+  <div class="hd"><div class="num">04</div>
+    <h2>RoPE 旋转位置编码 <small>让内积只跟相对距离有关</small></h2>
+  </div>
+  <p class="lead">
+    Self-Attention 本身是<b>置换等变</b>的：把输入打乱，输出跟着打乱，每个位置算出的东西一模一样。
+    也就是说"猫追狗"和"狗追猫"在它眼里没有区别。位置信息必须从外面注入。
+  </p>
+
+  <div class="grid g2" style="align-items:start">
+    <div class="card">
+      <h4 style="margin-top:0">① 把 (x₁,x₂) 按位置转一个角度</h4>
+      <p class="tiny muted" style="margin:0 0 8px">
+        拖动滑块改变 token 的位置，看这对 q/k 的二维分量怎么转。频率固定时，
+        <b>两个 token 的内积只取决于它们的角度差，也就是位置差</b>。
+      </p>
+      <div class="chart" style="padding:0;background:transparent;border:none">
+        <svg id="ropeSvg" viewBox="0 0 420 300" width="420" height="300"></svg>
+      </div>
+      <label class="slider" style="margin-top:2px">
+        <div class="sl"><span>token 位置 pos</span><b id="ropePos">5</b></div>
+        <input type="range" id="ropeRange" min="0" max="12" value="5">
+      </label>
+      <div class="kv"><span>当前角度</span><span id="ropeAng">—</span></div>
+      <div class="kv"><span>与 pos=0 的内积</span><span id="ropeDot">—</span></div>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-top:0">② 32 个频率，各管一段距离</h4>
+      <p class="tiny muted" style="margin:0 0 6px">
+        每头 64 维 → 配 32 个旋转频率，从 θ₀=1 一路衰减到 θ₃₁≈1/10000<sup>62/64</sup>。
+        高频转得快，负责分辨"隔壁字"；低频转得慢，负责分辨"隔了几段"。
+      </p>
+      <div class="chart" style="padding:6px">
+        <svg id="freqSvg" viewBox="0 0 420 190" width="420" height="190"></svg>
+      </div>
+      <p class="tiny muted" style="margin:6px 0 0">
+        横轴是相对距离 Δ，纵轴是 <code>cos(Δ·θ)</code>。五条线是五组不同频率：
+        间隔越小振荡越快。一组频率覆盖不了所有尺度，32 组叠起来才有"既知道相邻、也知道段落"的效果。
+      </p>
+    </div>
+  </div>
+
+  <h3>实现只有三行</h3>
+  <div class="grid g2" style="align-items:start">
+    <div>
+      <pre><code><span class="c"># 1. 预计算：位置 × 频率，做成表（不是参数）</span>
+inv_freq = 1.0 / (base ** (arange(0, hd, 2) / hd))
+freqs = outer(pos, inv_freq)        <span class="c"># (T, hd/2)</span>
+emb   = cat([freqs, freqs], -1)     <span class="c"># (T, hd)</span>
+cos_t, sin_t = emb.cos(), emb.sin()
+
+<span class="c"># 2. 旋转：[−x₂, x₁]</span>
+x1, x2 = x.chunk(2, -1)
+rotate_half = cat([-x2, x1], -1)
+
+<span class="c"># 3. 作用到 q 和 k（v 不动）</span>
+out = x * cos_t + rotate_half(x) * sin_t</code></pre>
+    </div>
+    <div>
+      <div class="kv"><span>新增参数</span><span style="color:var(--green)">0 个</span></div>
+      <div class="kv"><span>表存哪</span><span>register_buffer，不算参数</span></div>
+      <div class="kv"><span>为什么预计算</span><span>只跟位置有关，与数据无关</span></div>
+      <div class="kv"><span>v 要不要旋转</span><span>不要，只有 q/k 带位置</span></div>
+      <div class="kv"><span>decode 时位置怎么定</span><span>= 已有缓存长度 offset</span></div>
+      <div class="kv"><span>超长怎么办</span><span>_refresh_rope() 动态扩展</span></div>
+      <div class="note green" style="margin-top:14px">
+        <b>和可学习位置编码的差别：</b>那种要 512×384 ≈ 19.7 万参数，而且训练时只见过 ≤512 的位置，
+        喂进 600 就完全没见过。RoPE 是<b>算出来的</b>，理论上可以外推（实际会衰减，但比查表好得多）。
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>为什么"旋转"能编码相对位置：</b>二维旋转矩阵乘上去，两个向量各自转了 p₁θ 和 p₂θ，
+    它们的内积里只剩下 <code>cos((p₁−p₂)θ)</code> 这一项——绝对位置 p₁、p₂ 都消失了，只有差留了下来。
+    这就是"天然相对"的代数来源，不是工程 trick。
+  </div>
+</section>
+
+<!-- ══════════ 05 ══════════ -->
+<section id="s05">
+  <div class="hd"><div class="num">05</div>
+    <h2>Causal Mask <small>第 i 行 = 第 i 个 token 能看谁</small></h2>
+  </div>
+  <p class="lead">
+    鼠标划过任意一行，看这个位置的 token 能看见哪些位置。训练时这张矩阵是固定的下三角，
+    和输入内容无关——这是"自回归"三个字的全部含义。
+  </p>
+
+  <div class="maskwrap">
+    <div>
+      <div class="mask" id="maskGrid"></div>
+      <div class="mrowlab" id="maskLab"></div>
+      <p class="tiny muted" style="margin:12px 0 0;width:270px">
+        蓝色 = 可见，暗色 = 被屏蔽。对角线永远是蓝色：每个 token 至少能看见自己。
+      </p>
+    </div>
+
+    <div class="maskinfo">
+      <div class="card" style="padding:16px 18px">
+        <h4 style="margin-top:0" id="maskTitle">悬停某一行查看</h4>
+        <p class="tiny muted" id="maskDesc" style="margin:0 0 12px">
+          8×8 只是示意，真实训练时是 512×512。
+        </p>
+        <pre style="margin:0"><code>scores = q @ k.transpose(-2,-1) / sqrt(hd)
+mask   = (cols &lt;= rows)              <span class="c"># True=可见</span>
+scores = scores.masked_fill(~mask, -inf)
+w      = softmax(scores, -1)         <span class="c"># -inf → 权重 0</span>
+y      = w @ v</code></pre>
+      </div>
+      <div class="note" style="margin-top:14px">
+        <b>为什么是 −inf 不是 0：</b>softmax 里 <code>exp(0)=1</code>，填 0 等于给了一个"中性偏好"，
+        被屏蔽的位置仍会分走一份权重。<code>exp(−inf)=0</code> 才是真正的"看不见"。
+      </div>
+      <div class="note blue" style="margin-top:10px">
+        <b>代码里有两套实现：</b><code>fast_attn=True</code> 走 PyTorch 融合核（默认，快）；
+        <code>False</code> 走手写的 <code>masked_fill</code>（慢，但能把 mask 打印出来讲原理）。
+        两套在同一个 <code>forward</code> 里用 if 分开，教学和实用兼得。
+      </div>
+    </div>
+  </div>
+
+  <h3>decode 时 mask 为什么会算错</h3>
+  <p class="tiny muted" style="max-width:860px">
+    训练时 q 和 k 一样长，用 <code>is_causal=True</code> 就够了。但生成第 100 个 token 时，
+    q 只有 1 行、k 有 101 行，PyTorch 的 <code>is_causal</code> 默认按"右上角对齐"来切，
+    会把这一行错判成全可见。所以代码里显式算了一个 <code>(T, Tk)</code> 的布尔矩阵：
+  </p>
+  <pre><code>rows = arange(T).view(-1,1) + (Tk - T)   <span class="c"># query 的绝对位置</span>
+cols = arange(Tk).view(1,-1)             <span class="c"># key 的绝对位置</span>
+attn_mask = (cols &lt;= rows)               <span class="c"># 只允许看"不晚于自己"的</span></code></pre>
+  <p class="tiny muted" style="max-width:860px">
+    这是工程上最容易踩的一个坑：小模型测试时 q/k 等长，一切正常；接了 KV Cache 之后才开始胡说，
+    而且报错不报在 attention 里，报在生成结果上。
+  </p>
+</section>
+
+<!-- ══════════ 06 ══════════ -->
+<section id="s06">
+  <div class="hd"><div class="num">06</div>
+    <h2>KV Cache <small>生成第 t 个字要重算多少</small></h2>
+  </div>
+  <p class="lead">
+    自回归生成最朴素的做法是：每生成一个字，就把"提示词 + 已生成的全部"重新喂一遍。
+    前面的 K/V 每次都被重算，而这些值其实一个都没变。
+  </p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4 style="margin-top:0;color:var(--red)">不用缓存</h4>
+      <div class="chart" style="padding:12px">
+        <svg viewBox="0 0 360 150" width="360" height="150" id="kvNo"></svg>
+      </div>
+      <p class="tiny muted" style="margin:8px 0 0">
+        每步都跑完整序列。第 t 步要处理 t 个 token，累计 <b>O(T²)</b>。
+        T=512 时累计约 13 万次 token 前向。
+      </p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0;color:var(--green)">有缓存</h4>
+      <div class="chart" style="padding:12px">
+        <svg viewBox="0 0 360 150" width="360" height="150" id="kvYes"></svg>
+      </div>
+      <p class="tiny muted" style="margin:8px 0 0">
+        每步只算 1 个新 token，历史 K/V 直接读。累计 <b>O(T)</b>。
+        代价是显存：每层存 2×T×384 个 bf16。
+      </p>
+    </div>
+  </div>
+
+  <h3>三个必须一起改的地方</h3>
+  <div class="grid g3">
+    <div class="card">
+      <h5 style="margin:0 0 6px;font-size:13px;color:var(--blue)">① RoPE 的 offset</h5>
+      <p class="tiny muted" style="margin:0">
+        新 token 的绝对位置不是 0，而是已有缓存长度。所以 <code>cos[offset:offset+T]</code> 切片，
+        否则每个字都以为自己是第一个字。
+      </p>
+    </div>
+    <div class="card">
+      <h5 style="margin:0 0 6px;font-size:var(--blue)">② mask 的形状</h5>
+      <p class="tiny muted" style="margin:0">
+        q 有 1 行、k 有 Tk 行，得手算 <code>(T,Tk)</code> 的可见矩阵，
+        不能直接用 <code>is_causal=True</code>。
+      </p>
+    </div>
+    <div class="card">
+      <h5 style="margin:0 0 6px;font-size:var(--blue)">③ cache 的传递</h5>
+      <p class="tiny muted" style="margin:0">
+        每个 Block 返回自己的 <code>(k,v)</code>，主循环收集成 list，长度 = n_layer。
+        下次前向时按层号对应喂回去。
+      </p>
+    </div>
+  </div>
+
+  <h3>实测差距</h3>
+  <div class="bars" style="max-width:620px">
+    <div class="bar"><div class="lb">无缓存</div><div class="tr"><i style="left:0;width:100%;background:#8a4a4a"></i></div><div class="vl">基准</div></div>
+    <div class="bar"><div class="lb">有缓存</div><div class="tr"><i style="left:0;width:14%;background:#3f8a6a"></i></div><div class="vl">≈6~8× 快</div></div>
+  </div>
+  <p class="tiny muted" style="max-width:700px">
+    <code>sample.py</code> 里的 <code>bench_kv()</code> 会现场跑一遍并打印真实倍率。序列越长差距越大，
+    因为省掉的是二次项。短 prompt（十几个字）时差距不明显，这也是很多人误以为"缓存没用"的原因。
+  </p>
+</section>
+
+<!-- ══════════ 07 ══════════ -->
+<section id="s07">
+  <div class="hd"><div class="num">07</div>
+    <h2>SwiGLU 与参数账 <small>16,141,056 花在哪</small></h2>
+  </div>
+  <p class="lead">
+    FFN 占了接近六成参数，是所有小模型里最"吃预算"的部分。SwiGLU 的做法是多开一条门控支路，
+    然后把中间维压到 4D 的 2/3，让总参数量和经典 FFN 持平。
+  </p>
+
+  <div class="grid g2" style="align-items:start">
+    <div class="card">
+      <h4 style="margin-top:0">门控结构</h4>
+        <svg id="swiSvg" viewBox="0 0 416 168" width="100%" height="168" style="max-width:416px"></svg>
+      <pre style="margin:14px 0 0"><code>hidden = int(D * 4 * <b>2/3</b>)   <span class="c"># 384 → 1024</span>
+hidden = (hidden + 63) // 64 * 64  <span class="c"># 对齐 64</span>
+out = w2( silu(w1(x)) * w3(x) )</code></pre>
+      <p class="tiny muted" style="margin:8px 0 0">
+        为什么是 2/3：SwiGLU 有三块矩阵（w1/w2/w3），经典 FFN 只有两块。多出来的那一块，
+        正好要靠"中间维缩到 2/3"来抵消，两者参数量才等价。
+      </p>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-top:0">参数分布（实测）</h4>
+      <div class="bars" id="paramBars"></div>
+      <table style="margin-top:6px">
+        <tr><th>模块</th><th class="mono">参数</th><th class="mono">占比</th></tr>
+        <tr><td>FFN（w1+w2+w3）</td><td class="mono">9,437,184</td><td class="mono">58.5%</td></tr>
+        <tr><td>Attention（qkv+proj）</td><td class="mono">4,718,592</td><td class="mono">29.2%</td></tr>
+        <tr><td>Embedding（与 lm_head 共享）</td><td class="mono">1,978,752</td><td class="mono">12.3%</td></tr>
+        <tr><td>RMSNorm 全部</td><td class="mono">6,528</td><td class="mono">0.04%</td></tr>
+        <tr style="background:#12181f"><td><b>合计</b></td><td class="mono"><b>16,141,056</b></td><td class="mono"><b>100%</b></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3>weight tying 省下的钱</h3>
+  <div class="grid g2">
+    <div class="card">
+      <p class="tiny muted" style="margin:0 0 10px">
+        <code>lm_head</code> 如果独立，要多 5153×384 = <b>1,978,752</b> 参数，
+        模型从 16.14M 涨到 18.12M，<b>+12.3%</b>。
+      </p>
+      <p class="tiny muted" style="margin:0">
+        共享的理由不只是省钱：输入层做"字符 → 向量"，输出层做"向量 → 字符"，
+        本来就是同一张查找表的两面。共享之后两边梯度一起更新，表征也更一致。
+        代价是"输入嵌入"和"输出映射"被迫用同一个尺度，表达能力略有损失——在 16M 这个量级，这笔交易划算。
+      </p>
+    </div>
+    <div class="card">
+      <div class="kv"><span>独立 lm_head</span><span>18,119,808</span></div>
+      <div class="kv"><span>实际（共享）</span><span style="color:var(--green)">16,141,056</span></div>
+      <div class="kv"><span>省掉</span><span style="color:var(--gold)">1,978,752（12.3%）</span></div>
+      <div class="kv"><span>实现</span><span>lm_head.weight = embed.weight</span></div>
+      <div class="kv"><span>注意</span><span>必须放在 init 之后赋值</span></div>
+    </div>
+  </div>
+  <div class="note">
+    <b>顺序陷阱：</b><code>self.apply(self._init)</code> 会把 lm_head 也重新初始化一遍。
+    如果先 tie 再 init，共享的那块 tensor 会被覆盖两次（虽然结果差不多，但语义上不对）。
+    所以代码里是 <b>先 init，最后一句才赋值共享</b>。
+  </div>
+</section>
+
+<!-- ══════════ 08 ══════════ -->
+<section id="s08">
+  <div class="hd"><div class="num">08</div>
+    <h2>train.py 训练循环 <small>425 行里真正重要的只有 40 行</small></h2>
+  </div>
+  <p class="lead">
+    训练代码的复杂度和模型复杂度基本无关，全是工程细节：精度、累积、裁剪、调度、断点。
+    下面这条链就是全部主干。
+  </p>
+
+  <div class="pipe">
+    <div class="prow"><div class="sh">磁盘</div><div class="ln"></div>
+      <div class="pbox emb"><span class="op">corpus_novel.txt</span><span>248MB，一行一段</span><span class="ds">8000 万字</span></div></div>
+    <div class="prow"><div class="sh">内存</div><div class="ln"></div>
+      <div class="pbox"><span class="op">build_ids</span><span>整本编码成一个 int32 大数组（不是 int64，省一半内存）</span><span class="ds">≈ 8000 万个 id</span></div></div>
+    <div class="prow"><div class="sh">采样</div><div class="ln"></div>
+      <div class="pbox at"><span class="op">LMDataset</span><span>每次随机取一个 512 长度的窗口，切 (x, y)</span><span class="ds">(512,) ×2</span></div></div>
+    <div class="prow"><div class="sh">前向</div><div class="ln"></div>
+      <div class="pbox attn"><span class="op">autocast(bfloat16)</span><span>权重和激活走 bf16，loss 仍在 fp32</span><span class="ds">显存减半</span></div></div>
+    <div class="prow"><div class="sh">反向</div><div class="ln"></div>
+      <div class="pbox rep"><span class="op">backward ÷ grad_accum</span><span>累积 2 次再更新，等效 batch 翻倍</span><span class="ds">2 × batch</span></div></div>
+    <div class="prow"><div class="sh">更新</div><div class="ln"></div>
+      <div class="pbox n1"><span class="op">clip_grad_norm_(1.0)</span><span>先裁梯度再 step，防单个坏 batch 炸掉</span><span class="ds">max_norm=1</span></div></div>
+    <div class="prow"><div class="sh">落盘</div><div class="ln"></div>
+      <div class="pbox out"><span class="op">save_ckpt</span><span>权重 + 配置 + 词表 + 指标，四件套一起存</span><span class="ds">best / last</span></div></div>
+  </div>
+
+  <h3>学习率：warmup 120 步 + 余弦退火到 10%</h3>
+  <div class="chart" style="padding:10px;max-width:760px">
+    <svg id="lrSvg" viewBox="0 0 760 190" width="760" height="190"></svg>
+  </div>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card"><div class="kv" style="border:none;padding:0"><span>峰值 lr</span><span>6e-4</span></div></div>
+    <div class="card"><div class="kv" style="border:none;padding:0"><span>warmup</span><span>120 步线性</span></div></div>
+    <div class="card"><div class="kv" style="border:none;padding:0"><span>终止 lr</span><span>6e-5（10%）</span></div></div>
+  </div>
+  <p class="tiny muted" style="max-width:820px;margin-top:12px">
+    为什么必须 warmup：AdamW 的动量估计一开始是空的，前几步的有效步长会异常大。
+    6e-4 直接砸下去，8 层模型会在几十步内 loss 变 NaN。余弦退火则是让后期用小步长精修，
+    避免在最优解附近反复横跳。
+  </p>
+
+  <h3>真实训练曲线</h3>
+  <div class="chart" style="padding:12px">
+    <svg id="lossSvg" viewBox="0 0 900 260" width="900" height="260"></svg>
+  </div>
+  <p class="tiny muted" style="max-width:900px;margin-top:8px">
+    实线 = 验证集，虚线 = 训练集。两者几乎重合且验证略低于训练，说明<b>没有过拟合</b>——
+    数据量（2.97 亿 token）远大于模型容量（16M），属于欠训练而非过训练。
+    这也解释了为什么加大模型能继续降 loss（见下一节的 scaling 实验）。
+  </p>
+</section>
+
+<!-- ══════════ 09 ══════════ -->
+<section id="s09">
+  <div class="hd"><div class="num">09</div>
+    <h2>sample.py 采样策略 <small>logits → 一个字，中间发生了什么</small></h2>
+  </div>
+  <p class="lead">
+    模型只吐 logits，怎么把它变成"一个字"是另一套东西。这里的顺序很关键：
+    <b>温度 → 封禁 → 重复惩罚 → top-k → softmax → top-p</b>。顺序错了结果会不一样。
+    下面可以拖动滑块，实时看分布怎么被裁。
+  </p>
+
+  <div class="sampler">
+    <div class="card">
+      <h4 style="margin-top:0">一维分布被逐层裁剪</h4>
+      <div class="distbars" id="distBars"></div>
+      <p class="tiny muted" id="distStat" style="margin:6px 0 0"></p>
+      <p class="tiny muted" style="margin:6px 0 0">
+        柱子高度 = 归一化后的概率。变暗的柱子 = 被某一层策略砍掉（概率归零）。
+        横轴是 12 个候选 token。
+      </p>
+    </div>
+
+    <div class="card">
+      <label class="slider">
+        <div class="sl"><span>Temperature</span><b id="vT">0.90</b></div>
+        <input type="range" id="sT" min="0.1" max="2" step="0.05" value="0.9">
+      </label>
+      <label class="slider">
+        <div class="sl"><span>Top-K</span><b id="vK">50</b></div>
+        <input type="range" id="sK" min="0" max="12" step="1" value="12">
+      </label>
+      <label class="slider">
+        <div class="sl"><span>Top-P</span><b id="vP">0.90</b></div>
+        <input type="range" id="sP" min="0.05" max="1" step="0.01" value="0.9">
+      </label>
+      <label class="slider">
+        <div class="sl"><span>重复惩罚</span><b id="vR">1.15</b></div>
+        <input type="range" id="sR" min="1" max="2" step="0.05" value="1.15">
+      </label>
+      <div class="kv"><span>温度的作用</span><span>缩放 logits</span></div>
+      <div class="kv"><span>K 的作用</span><span>硬截断</span></div>
+      <div class="kv"><span>P 的作用</span><span>累积概率截断</span></div>
+    </div>
+  </div>
+
+  <h3>Top-P 的一个细节：边界怎么取</h3>
+  <p class="tiny muted" style="max-width:860px">
+    课程里写的是 <code>cum &lt;= P</code>，代码里写的是 <code>prev &lt; P</code>（prev = 不含自己的累积）。
+    两者只差"会不会多留一个 token"，但后者有两个好处：排名第 1 的 token 的 prev 恒为 0，
+    所以<b>永远保留</b>，P 调到 0.01 也不会出现"全军覆没"；以及不会出现"刚好达到 P 又多带一个"的边界抖动。
+  </p>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card">
+      <h4 style="margin-top:0">六种策略在 sample.py 里都能跑</h4>
+      <div class="kv"><span>greedy</span><span>argmax，确定性最强，容易复读</span></div>
+      <div class="kv"><span>temperature</span><span>只用温度，看分布形状变化</span></div>
+      <div class="kv"><span>top-k</span><span>硬截断到 K 个</span></div>
+      <div class="kv"><span>top-p</span><span>核采样，候选数随分布自适应</span></div>
+      <div class="kv"><span>beam search</span><span>保留 beam 条路径，找最大似然</span></div>
+      <div class="kv"><span>repeat penalty</span><span>压低已出现的 token（先去重）</span></div>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">为什么重复惩罚要先去重</h4>
+      <p class="tiny muted" style="margin:0">
+        如果一个字已经出现 10 次，逐次惩罚会让它的分数被压低 10 遍，
+        直接压到 −inf 附近，模型再也不敢用这个字。代码里 <code>sorted(set(prev_ids))</code>
+        先转成集合，一个 token 只惩罚一次。
+      </p>
+      <p class="tiny muted" style="margin:10px 0 0">
+        另一半细节：正分数<b>除以</b> rp，负分数<b>乘以</b> rp。两个方向都是"更不可能"，
+        但保持单调性，不会把排序搞乱。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 10 ══════════ -->
+<section id="s10">
+  <div class="hd"><div class="num">10</div>
+    <h2>chat.py / scaling.py / prepare_novel.py</h2>
+  </div>
+  <p class="lead">三个外围脚本，各管一件事：把模型变成网页、把规模实验跑完、把脏语料洗干净。</p>
+
+  <h3>chat.py：387 行，零依赖服务</h3>
+  <div class="blk" style="padding:20px">
+    <div class="blkin">
+      <div class="brow" style="flex-wrap:wrap;gap:8px">
+        <div class="node io"><b>chat.html</b><u>单文件前端</u></div>
+        <div class="arw">⇄</div>
+        <div class="node at"><b>http.server</b><u>标准库</u></div>
+        <div class="arw">→</div>
+        <div class="node rp"><b>build_prompt</b><u>多轮 → 纯文本</u></div>
+        <div class="arw">→</div>
+        <div class="node ff"><b>generate</b><u>on_token 回调</u></div>
+        <div class="arw">→</div>
+        <div class="node n1"><b>SSE 流</b><u>边生成边推</u></div>
+      </div>
+      <div class="resid" style="margin-left:0;border:none;padding-left:0;margin-top:12px">
+        全局 <b>GPU_LOCK</b> 串行化：一次只有一个请求能进 GPU　·　<b>_Abort</b> 异常用于前端点"停止"
+      </div>
+    </div>
+  </div>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card">
+      <h5 style="margin:0 0 6px;font-size:13px;color:var(--blue)">为什么不用 FastAPI</h5>
+      <p class="tiny muted" style="margin:0">单用户、几个路由，装框架不划算。标准库意味着"复制到别的电脑也能跑"。</p>
+    </div>
+    <div class="card">
+      <h5 style="margin:0 0 6px;font-size:13px;color:var(--blue)">"对话"是假的</h5>
+      <p class="tiny muted" style="margin:0">模型只学过续写，没有指令微调。多轮历史被拼成一段文本喂回去，它是在"接着写"而不是"回答"。</p>
+    </div>
+    <div class="card">
+      <h5 style="margin:0 0 6px;font-size:13px;color:var(--blue)">为什么要 ban_ids</h5>
+      <p class="tiny muted" style="margin:0">聊天界面里压掉 EOS，否则模型十几个字就收尾。这是"界面需求"倒逼采样参数。</p>
+    </div>
+  </div>
+
+  <h3>scaling.py：同一个 token 预算，只改模型大小</h3>
+  <div class="chart" style="padding:12px;margin-top:10px">
+    <svg id="scaleSvg" viewBox="0 0 760 240" width="760" height="240"></svg>
+  </div>
+  <p class="tiny muted" style="max-width:860px;margin-top:8px">
+    五档 + 一个 LSTM 对照组，token 预算相同。注意 LSTM 那条：参数量 15.96M，和 base 的 16.14M 几乎一样，
+    但 val loss 4.249 明显更差。<b>同等参数下 Transformer 更强</b>，这就是换掉 LSTM 的直接证据。
+    另外 base 档 val 反而比 small 差一点，是因为 1.8 分钟太短、没训透——这也说明小模型在小预算下"更划算"。
+  </p>
+
+  <h3>prepare_novel.py：把脏文本挡在训练之外</h3>
+  <div class="grid g4">
+    <div class="card" style="padding:15px"><h5 style="margin:0 0 5px;font-size:12.5px;color:var(--gold)">八条正则</h5><p class="tiny muted" style="margin:0">章节标题、广告、作者注、网址、符号噪声、繁体、目录页</p></div>
+    <div class="card" style="padding:15px"><h5 style="margin:0 0 5px;font-size:12.5px;color:var(--gold)">编码兜底</h5><p class="tiny muted" style="margin:0">utf-8 / gbk / gb18030 依次尝试，失败返回空串而不是崩</p></div>
+    <div class="card" style="padding:15px"><h5 style="margin:0 0 5px;font-size:12.5px;color:var(--gold)">汉字占比</h5><p class="tiny muted" style="margin:0">低于阈值整行丢弃，挡住乱码和英文混排</p></div>
+    <div class="card" style="padding:15px"><h5 style="margin:0 0 5px;font-size:12.5px;color:var(--gold)">一行一段</h5><p class="tiny muted" style="margin:0">不拼成一个大字符串，训练时按段采样</p></div>
+  </div>
+  <div class="note">
+    <b>为什么清洗比调参重要：</b>第一版语料是 21 万字财经新闻，模型训出来满屏 <code>★</code> 和乱码。
+    问题不在模型，在于语料里混了大量表格符号和重复模板。换语料之后同一个模型立刻通顺了。
+  </div>
+</section>
+
+<!-- ══════════ 11 ══════════ -->
+<section id="s11">
+  <div class="hd"><div class="num">11</div>
+    <h2>一页速查 <small>所有"为什么"压缩成卡片</small></h2>
+  </div>
+  <p class="lead">回头查代码时，先在这里定位是哪一类问题。</p>
+
+  <div class="why">
+    <div class="card"><span class="tag g">norm</span><h5>为什么 RMSNorm 不减均值</h5>
+      <p>减均值只改变一个自由度，却要遍历全部 384 个元素。后面紧跟线性层，偏移本来就能被吸收。</p></div>
+    <div class="card"><span class="tag y">rope</span><h5>为什么位置编码要"旋转"</h5>
+      <p>旋转后两个向量的内积只剩 cos((p₁−p₂)θ)，绝对位置消失、相对距离留下。零参数，且天然外推。</p></div>
+    <div class="card"><span class="tag b">attn</span><h5>为什么 mask 填 −inf 而不是 0</h5>
+      <p>softmax 里 exp(0)=1 会分走权重，exp(−inf)=0 才是完全不可见。</p></div>
+    <div class="card"><span class="tag b">attn</span><h5>为什么要除以 √hd</h5>
+      <p>q·k 是 64 个数相乘求和，维度越高数值越大，softmax 会饱和成 one-hot。除以 √64 把方差拉回 1。</p></div>
+    <div class="card"><span class="tag p">ffn</span><h5>为什么 SwiGLU 是 2/3</h5>
+      <p>三块矩阵 vs 经典两块，中间维缩到 4D×2/3 才能让总参数量等价。</p></div>
+    <div class="card"><span class="tag p">ffn</span><h5>为什么 hidden 取 64 的倍数</h5>
+      <p>对齐显存块，tensor core 更喜欢这种尺寸。1024 刚好已经是 64 的倍数。</p></div>
+    <div class="card"><span class="tag c">init</span><h5>为什么残差层要缩小初始化</h5>
+      <p>proj 和 w2 在残差主路上，输出会被 8 层反复累加。标准差按 1/√(2N) 缩，否则激活指数级放大。</p></div>
+    <div class="card"><span class="tag c">init</span><h5>为什么 tie 要放在 init 之后</h5>
+      <p><code>apply(_init)</code> 会重新初始化 lm_head。先 tie 再 init 等于把共享张量覆盖两次。</p></div>
+    <div class="card"><span class="tag y">train</span><h5>为什么必须 warmup</h5>
+      <p>AdamW 动量初值是空的，前几步有效步长异常大。6e-4 直接砸下去，几十步内就 NaN。</p></div>
+    <div class="card"><span class="tag y">train</span><h5>为什么 loss 在 fp32 算</h5>
+      <p>bf16 只有 8 位尾数，交叉熵里 log(sum(exp)) 的精度不够，会让梯度噪声变大。</p></div>
+    <div class="card"><span class="tag b">infer</span><h5>为什么 KV Cache 要改 mask</h5>
+      <p>q 长 1、k 长 Tk，<code>is_causal</code> 按右上对齐会判成全可见，必须手算 (T,Tk) 的布尔矩阵。</p></div>
+    <div class="card"><span class="tag b">infer</span><h5>为什么 decode 时位置是 offset</h5>
+      <p>新 token 的绝对位置 = 已有缓存长度。用 0 会让每个字都以为自己是第一个字，上下文全乱。</p></div>
+    <div class="card"><span class="tag g">sample</span><h5>为什么重复惩罚要去重</h5>
+      <p>同一个字出现 10 次会被惩罚 10 遍，直接压到 −inf。先 <code>set()</code> 再惩罚。</p></div>
+    <div class="card"><span class="tag g">sample</span><h5>为什么 top-p 用 prev &lt; P</h5>
+      <p>排名第 1 的 prev 恒为 0，永远保留，P 再小也不会全军覆没；也不会边界多留一个。</p></div>
+    <div class="card"><span class="tag" >data</span><h5>为什么 val 比 train 还低</h5>
+      <p>不是 bug。数据量远大于模型容量，属于欠训练；train loss 是训练中滑动的，天然偏高。</p></div>
+    <div class="card"><span class="tag">data</span><h5>为什么 16M 会胡说事实</h5>
+      <p>容量限制，不是训练问题。它学的是"中文怎么连成句子"，不是"世界知识库"。</p></div>
+  </div>
+
+  <div class="note blue" style="margin-top:24px">
+    <b>接下来怎么用：</b>先把这节课的内容过完，回头再看项目时，从 <code>model.py</code> 的
+    <code>Block.forward</code>（约 130 行处）开始往上读——那是所有组件汇合的地方，
+    读懂这 6 行，其余都是它的展开。
+  </div>
+</section>
+
+<div class="foot">
+  <b>数据来源</b>：所有数字取自 <code>ckpt_novel/best.pt</code>、<code>ckpt_novel/metrics.jsonl</code>、
+  <code>docs/scaling.json</code> 的实际记录，参数量由 <code>named_parameters()</code> 现场统计。<br>
+  <b>版本</b>：model.py 581 行 · 训练配置 block_size=512, dropout=0.12, lr=6e-4, batch×accum 等效放大。<br>
+  <b>说明</b>：本页只做结构速览，不替代代码注释与 GUIDE.md。图表为静态示意 + 少量交互，不依赖任何外部库。
+</div>
+
+</main>
+</div>
+
+<script>
+/* ══════════ 导航高亮 ══════════ */
+(function(){
+  const links = [...document.querySelectorAll('nav a')];
+  const secs = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, {rootMargin: '-15% 0px -70% 0px'});
+  secs.forEach(s => io.observe(s));
+})();
+
+/* ══════════ 代码块极简着色 ══════════ */
+(function(){
+  document.querySelectorAll('pre code').forEach(c => {
+    let h = c.innerHTML;
+    // 注释
+    h = h.replace(/(#[^\n<]*)/g, '<span class="c">$1</span>');
+    // 数字
+    h = h.replace(/(?<![\w.])(\d+\.?\d*(?:e-?\d+)?)(?![\w.])/g, '<span class="n">$1</span>');
+    c.innerHTML = h;
+  });
+})();
+
+/* ══════════ RMSNorm 分组柱状图 ══════════ */
+(function(){
+  const svg = document.getElementById('rmsSvg');
+  const NS = 'http://www.w3.org/2000/svg';
+  function mk(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+
+  const x = [2, -1, 0.5, 3];
+  const mean = x.reduce((a,b)=>a+b,0)/x.length;               // 1.125
+  const rms = Math.sqrt(x.reduce((a,b)=>a+b*b,0)/x.length);   // 1.8875
+  const variance = x.reduce((a,b)=>a+(b-mean)**2,0)/x.length;
+  const std = Math.sqrt(variance);
+
+  const series = [
+    {n:'原始 x',        v:x,                    c:'#e8b062', note:''},
+    {n:'RMSNorm',       v:x.map(v=>v/rms),      c:'#68d3a4', note:'÷1.888'},
+    {n:'LayerNorm',     v:x.map(v=>(v-mean)/std), c:'#6ea8fe', note:'−μ ÷ σ'},
+    {n:'x − μ',         v:x.map(v=>v-mean),     c:'#8b95a7', note:''}
+  ];
+
+  const W=430, H=215, L=32, R=8, T=44, B=172;
+  const pw = W-L-R, ph = B-T;
+  const ymin = -2.3, ymax = 3.4;
+  const Y = v => T + ph*(1-(v-ymin)/(ymax-ymin));
+
+  // 网格
+  [-2,-1,0,1,2,3].forEach(v=>{
+    const y=Y(v);
+    svg.appendChild(mk('line',{x1:L,y1:y,x2:L+pw,y2:y,
+      stroke: v===0?'#3a4453':'#1c232c','stroke-width': v===0?1.2:1}));
+    const t=mk('text',{x:L-6,y:y+3.5,fill:'#5c6878','font-size':9,'font-family':'monospace','text-anchor':'end'});
+    t.textContent=v; svg.appendChild(t);
+  });
+
+  const gw = pw/4;            // 每组宽
+  const bw = 10, bgap = 2.5;  // 柱宽与间隔
+  const y0 = Y(0);
+
+  for (let g=0; g<4; g++){
+    const cx = L + gw*(g+0.5);
+    series.forEach((s,k)=>{
+      const v = s.v[g];
+      const bx = cx + (k-1.5)*(bw+bgap) - bw/2;
+      const by = v>=0 ? Y(v) : y0;
+      const bh = Math.abs(Y(v)-y0);
+      svg.appendChild(mk('rect',{x:bx, y:by, width:bw, height:Math.max(1,bh), rx:1.5,
+        fill:s.c, opacity:.82}));
+    });
+    const lab = mk('text',{x:cx, y:B+16, fill:'#6b7484','font-size':9.5,'font-family':'monospace','text-anchor':'middle'});
+    lab.textContent='x' + g; svg.appendChild(lab);
+  }
+
+  // 图例（两行两列）
+  series.forEach((s,k)=>{
+    const col = k % 2, row = Math.floor(k/2);
+    const lx = L + col*200, ly = 14 + row*16;
+    svg.appendChild(mk('rect',{x:lx,y:ly-7,width:8,height:8,rx:1.5,fill:s.c,opacity:.85}));
+    const t = mk('text',{x:lx+13,y:ly,fill:'#8b95a7','font-size':9.5,'font-family':'monospace'});
+    t.textContent = s.n + (s.note ? '  ' + s.note : '');
+    svg.appendChild(t);
+  });
+})();
+
+/* ══════════ RoPE 交互 ══════════ */
+(function(){
+  const svg = document.getElementById('ropeSvg');
+  const range = document.getElementById('ropeRange');
+  const posEl = document.getElementById('ropePos');
+  const angEl = document.getElementById('ropeAng');
+  const dotEl = document.getElementById('ropeDot');
+  const CX = 150, CY = 150, R = 92;
+  const theta = 0.24;   // 示意频率（rad / 位置）
+
+  const NS = 'http://www.w3.org/2000/svg';
+  function mk(t, a){ const e = document.createElementNS(NS, t); for(const k in a) e.setAttribute(k, a[k]); return e; }
+
+  function arrow(svg, x, y, color, label){
+    svg.appendChild(mk('line', {x1:CX, y1:CY, x2:x, y2:y, stroke:color, 'stroke-width':2.5, 'stroke-linecap':'round'}));
+    const ang = Math.atan2(y-CY, x-CX);
+    const hx = x - 10*Math.cos(ang - .38), hy = y - 10*Math.sin(ang - .38);
+    const hx2 = x - 10*Math.cos(ang + .38), hy2 = y - 10*Math.sin(ang + .38);
+    svg.appendChild(mk('path', {d:`M${x},${y} L${hx},${hy} L${hx2},${hy2} Z`, fill:color}));
+    const tx = x + 16*Math.cos(ang), ty = y + 18*Math.sin(ang);
+    const t = mk('text', {x:tx, y:ty, fill:color, 'font-size':11, 'font-family':'monospace', 'text-anchor':'middle'});
+    t.textContent = label; svg.appendChild(t);
+  }
+
+  function draw(pos){
+    svg.innerHTML = '';
+    // 坐标轴：覆盖整个圆
+    svg.appendChild(mk('line', {x1:CX-122, y1:CY, x2:CX+122, y2:CY, stroke:'#2a323d', 'stroke-width':1}));
+    svg.appendChild(mk('line', {x1:CX, y1:CY-122, x2:CX, y2:CY+122, stroke:'#2a323d', 'stroke-width':1}));
+    // 箭头头部
+    svg.appendChild(mk('path', {d:`M${CX+122},${CY} l-5,-2.5 l0,5 Z`, fill:'#39434f'}));
+    svg.appendChild(mk('path', {d:`M${CX},${CY-122} l-2.5,5 l5,0 Z`, fill:'#39434f'}));
+
+    // 原点参考向量（pos=0）
+    arrow(svg, CX + R, CY, '#5c6878', 'pos 0');
+
+    // 旋转后的向量
+    const a = pos * theta;
+    arrow(svg, CX + R*Math.cos(a), CY + R*Math.sin(a), '#e8b062', 'pos ' + pos);
+
+    // 圆弧
+    const steps = 30;
+    let d = '';
+    for (let i=0;i<=steps;i++){
+      const aa = a*i/steps;
+      d += (i? 'L':'M') + (CX + 48*Math.cos(aa)).toFixed(1) + ',' + (CY + 48*Math.sin(aa)).toFixed(1);
+    }
+    if (pos > 0) svg.appendChild(mk('path', {d, fill:'none', stroke:'#e8b062', 'stroke-width':1.5, 'stroke-dasharray':'3 3', opacity:.7}));
+
+    // 角度标注
+    if (pos > 0){
+      const mid = a/2;
+      const t = mk('text', {x:CX + 66*Math.cos(mid), y:CY + 66*Math.sin(mid) + 3,
+        fill:'#b08443', 'font-size':10, 'font-family':'monospace', 'text-anchor':'middle'});
+      t.textContent = (a/Math.PI*180).toFixed(0) + '°';
+      svg.appendChild(t);
+    }
+
+    const lab = mk('text', {x:CX, y:22, fill:'#8b95a7', 'font-size':11, 'font-family':'monospace', 'text-anchor':'middle'});
+    lab.textContent = '旋转角 = 位置 × θ';
+    svg.appendChild(lab);
+
+    const t2 = mk('text', {x:12, y:290, fill:'#5c6878', 'font-size':10, 'font-family':'monospace'});
+    t2.textContent = 'θ = ' + theta.toFixed(2) + ' rad/pos（示意，真实频率有 32 组）';
+    svg.appendChild(t2);
+
+    angEl.textContent = (a/Math.PI*180).toFixed(1) + '°';
+    dotEl.textContent = Math.cos(a).toFixed(4);
+  }
+
+  range.addEventListener('input', () => {
+    posEl.textContent = range.value;
+    draw(+range.value);
+  });
+  draw(5);
+})();
+
+/* ══════════ 频率谱曲线 ══════════ */
+(function(){
+  const svg = document.getElementById('freqSvg');
+  const NS = 'http://www.w3.org/2000/svg';
+  function mk(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+  const L=44, Rm=14, T=16, B=130, W=420, H=190;
+  const plotW = W-L-Rm, plotH = B-T;
+  const N = 40;                              // 相对距离 0..39
+  const base = 10000;
+  const hd = 64;
+  // 取 5 个不同频率序号
+  const idxs = [0, 8, 16, 24, 31];
+  const colors = ['#e88ba8','#e8b062','#68d3a4','#56c7d8','#6ea8fe'];
+
+  // 网格
+  for (let i=0;i<=4;i++){
+    const y = T + plotH*i/4;
+    svg.appendChild(mk('line',{x1:L,y1:y,x2:L+plotW,y2:y,stroke:'#1c232c','stroke-width':1}));
+    const t = mk('text',{x:L-7,y:y+3.5,fill:'#5c6878','font-size':9.5,'font-family':'monospace','text-anchor':'end'});
+    t.textContent = (1-i/4).toFixed(2); svg.appendChild(t);
+  }
+  for (let i=0;i<=4;i++){
+    const x = L + plotW*i/4;
+    svg.appendChild(mk('line',{x1:x,y1:T,x2:x,y2:T+plotH,stroke:'#1c232c','stroke-width':1}));
+    const t = mk('text',{x:x,y:B+14,fill:'#5c6878','font-size':9.5,'font-family':'monospace','text-anchor':'middle'});
+    t.textContent = Math.round(N*i/4); svg.appendChild(t);
+  }
+  // 零线
+  const zy = T + plotH*0.5;
+  svg.appendChild(mk('line',{x1:L,y1:zy,x2:L+plotW,y2:zy,stroke:'#2e3743','stroke-width':1}));
+
+  idxs.forEach((idx, k) => {
+    const omega = Math.pow(base, -2*idx/hd);   // 该维度的角频率
+    let d = '';
+    for (let i=0;i<=N;i++){
+      const x = L + plotW*i/N;
+      const y = zy - Math.cos(i*omega)*plotH*0.46;
+      d += (i? 'L':'M') + x.toFixed(1) + ',' + y.toFixed(1);
+    }
+    svg.appendChild(mk('path',{d,fill:'none',stroke:colors[k],'stroke-width':1.7,opacity:.9}));
+  });
+
+  // 图例
+  const lg = mk('text',{x:L,y:10,fill:'#6b7484','font-size':9.5,'font-family':'monospace'});
+  lg.textContent = 'cos(Δ·θ)，θ 从 1 递减到 1/10000^(62/64)';
+  svg.appendChild(lg);
+  const ax = mk('text',{x:W-Rm,y:H-4,fill:'#5c6878','font-size':9.5,'font-family':'monospace','text-anchor':'end'});
+  ax.textContent = '相对距离 Δ';
+  svg.appendChild(ax);
+})();
+
+/* ══════════ Causal Mask ══════════ */
+(function(){
+  const grid = document.getElementById('maskGrid');
+  const lab = document.getElementById('maskLab');
+  const title = document.getElementById('maskTitle');
+  const desc = document.getElementById('maskDesc');
+  const N = 8;
+
+  for (let i=0;i<N;i++){
+    const rl = document.createElement('div');
+    rl.className = 'rlab';
+    rl.textContent = i;
+    grid.appendChild(rl);
+    for (let j=0;j<N;j++){
+      const c = document.createElement('div');
+      c.className = 'mcell ' + (j<=i ? 'vis' : 'blk');
+      c.dataset.r = i;
+      c.textContent = j<=i ? '1' : '0';
+      grid.appendChild(c);
+    }
+    const l = document.createElement('span');
+    l.textContent = i;
+    lab.appendChild(l);
+  }
+  // 列标签行最左边补一个占位，对齐网格
+  const pad = document.createElement('span');
+  pad.textContent = '';
+  lab.insertBefore(pad, lab.firstChild);
+
+  const cells = [...grid.querySelectorAll('.mcell')];
+  cells.forEach(c => {
+    c.addEventListener('mouseenter', () => {
+      const r = +c.dataset.r;
+      grid.classList.add('mhl');
+      cells.forEach(x => x.style.opacity = (+x.dataset.r === r) ? '1' : '.28');
+      title.textContent = '第 ' + r + ' 个 token';
+      desc.innerHTML = r === 0
+        ? '只能看见自己（第 0 个位置）。这就是序列开头为什么"没什么可参考的"。'
+        : '能看见位置 0 ~ ' + r + '，共 <b style="color:var(--blue)">' + (r+1) + '</b> 个；位置 ' +
+          (r+1) + ' 及以后全被屏蔽。它要预测的是第 ' + (r+1) + ' 个字 —— 正好是它看不见的那个。';
+    });
+    c.addEventListener('mouseleave', () => {
+      grid.classList.remove('mhl');
+      cells.forEach(x => x.style.opacity = '1');
+      title.textContent = '悬停某一行查看';
+      desc.textContent = '8×8 只是示意，真实训练时是 512×512。';
+    });
+  });
+})();
+
+/* ══════════ KV Cache 对比 ══════════ */
+(function(){
+  const NS = 'http://www.w3.org/2000/svg';
+  function mk(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+
+  function draw(id, cached){
+    const svg = document.getElementById(id);
+    const steps = 8, cellW = 26, cellH = 12, gap = 4;
+    const x0 = 34, y0 = 22;
+    for (let s=0;s<steps;s++){
+      const y = y0 + s*(cellH+gap);
+      // 行标签
+      const t = mk('text',{x:x0-6,y:y+9.5,fill:'#5c6878','font-size':9,'font-family':'monospace','text-anchor':'end'});
+      t.textContent = 't' + (s+1); svg.appendChild(t);
+      // 历史
+      for (let k=0;k<=s;k++){
+        const isNew = (k === s);
+        const fill = cached
+          ? (isNew ? '#3f8a6a' : '#242c36')
+          : '#8a4a4a';
+        svg.appendChild(mk('rect',{x:x0+k*cellW, y, width:cellW-2, height:cellH, rx:2, fill, opacity: cached && !isNew ? .55 : .8}));
+      }
+    }
+    // 列标签
+    const c1 = mk('text',{x:x0,y:14,fill:'#6b7484','font-size':9,'font-family':'monospace'});
+    c1.textContent = cached ? '历史 K/V 直接读（灰） · 只算 1 个（绿）' : '每步重算全部（红）';
+    svg.appendChild(c1);
+    // 总计
+    const tot = cached ? steps : steps*(steps+1)/2;
+    const t2 = mk('text',{x:x0, y:y0+steps*(cellH+gap)+12, fill:'#8b95a7','font-size':9.5,'font-family':'monospace'});
+    t2.textContent = '计算量 ∝ ' + tot + ' 格';
+    svg.appendChild(t2);
+  }
+  draw('kvNo', false);
+  draw('kvYes', true);
+})();
+
+/* ══════════ SwiGLU 分支图 ══════════ */
+(function(){
+  const svg = document.getElementById('swiSvg');
+  if (!svg) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  function mk(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+
+  const PUR = '#c9a4f5', DRK = '#423458', BG = '#221a2e', TXT = '#d8c6f2', SUB = '#8f7ba8';
+
+  function box(x,y,w,h,title,sub){
+    svg.appendChild(mk('rect',{x,y,width:w,height:h,rx:6,fill:BG,stroke:DRK,'stroke-width':1.2}));
+    const t = mk('text',{x:x+w/2, y:sub?y+h/2-3:y+h/2+4, fill:TXT,'font-size':12,
+      'font-family':'monospace','font-weight':600,'text-anchor':'middle'});
+    t.textContent = title; svg.appendChild(t);
+    if (sub){
+      const s = mk('text',{x:x+w/2,y:y+h/2+11,fill:SUB,'font-size':9.5,'font-family':'monospace','text-anchor':'middle'});
+      s.textContent = sub; svg.appendChild(s);
+    }
+  }
+  function path(d){
+    svg.appendChild(mk('path',{d, fill:'none', stroke:'#7d6a99','stroke-width':1.4,'stroke-linejoin':'round'}));
+  }
+  function tip(x,y){ // 右向箭头
+    svg.appendChild(mk('path',{d:`M${x},${y} l-5,-2.8 l0,5.6 Z`, fill:'#7d6a99'}));
+  }
+
+  // u
+  box(2, 60, 52, 40, 'u', '384');
+  path('M54,80 L74,80');
+  path('M74,80 L74,35 L92,35');
+  path('M74,80 L74,125 L92,125');
+
+  // 闸门支路
+  box(92, 16, 82, 38, 'w1', '384→1024');
+  path('M174,35 L188,35'); tip(188,35);
+  box(188, 16, 56, 38, 'SiLU', '0~∞');
+  path('M244,35 L281,35 L281,66');
+
+  // 内容支路
+  box(92, 106, 82, 38, 'w3', '384→1024');
+  path('M174,125 L281,125 L281,94');
+
+  // 汇合
+  svg.appendChild(mk('circle',{cx:281,cy:80,r:14,fill:'#2b2138',stroke:DRK,'stroke-width':1.2}));
+  const oc = mk('text',{x:281,y:85,fill:PUR,'font-size':15,'text-anchor':'middle'});
+  oc.textContent='×'; svg.appendChild(oc);
+
+  path('M295,80 L312,80'); tip(312,80);
+
+  // 输出
+  box(312, 60, 84, 40, 'w2', '1024→384');
+  path('M396,80 L404,80'); tip(404,80);
+
+  // 支路标注（贴在节点下方，字号够小但不至于看不见）
+  const l1 = mk('text',{x:216,y:11,fill:'#8f7ba8','font-size':9.5,'font-family':'monospace','text-anchor':'middle'});
+  l1.textContent = '闸门'; svg.appendChild(l1);
+  const l2 = mk('text',{x:200,y:160,fill:'#8f7ba8','font-size':9.5,'font-family':'monospace','text-anchor':'middle'});
+  l2.textContent = '内容（被闸门逐元素乘）'; svg.appendChild(l2);
+})();
+
+/* ══════════ 参数分布条 ══════════ */
+(function(){
+  const host = document.getElementById('paramBars');
+  const data = [
+    {n:'FFN', v:9437184, c:'#b98cf0'},
+    {n:'Attention', v:4718592, c:'#6ea8fe'},
+    {n:'Embedding', v:1978752, c:'#e8b062'},
+    {n:'Norm', v:6528, c:'#68d3a4'}
+  ];
+  const tot = 16141056;
+  data.forEach(d => {
+    const row = document.createElement('div');
+    row.className = 'bar';
+    row.innerHTML = `<div class="lb">${d.n}</div>
+      <div class="tr"><i style="left:0;width:${(d.v/tot*100).toFixed(2)}%;background:${d.c}"></i></div>
+      <div class="vl">${(d.v/tot*100).toFixed(1)}%</div>`;
+    host.appendChild(row);
+  });
+})();
+
+/* ══════════ 学习率曲线 ══════════ */
+(function(){
+  const svg = document.getElementById('lrSvg');
+  const NS='http://www.w3.org/2000/svg';
+  function mk(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+  const W=760,H=190,L=52,R=16,T=20,B=150;
+  const pw=W-L-R, ph=B-T;
+  const total=9063, warm=120, base=6e-4, minR=0.1;
+
+  function lr(step){
+    if(step<warm) return base*(step+1)/warm;
+    const p=(step-warm)/(total-warm);
+    return base*(minR+(1-minR)*0.5*(1+Math.cos(Math.PI*Math.min(p,1))));
+  }
+  // 网格
+  for(let i=0;i<=4;i++){
+    const y=T+ph*i/4;
+    svg.appendChild(mk('line',{x1:L,y1:y,x2:L+pw,y2:y,stroke:'#1c232c'}));
+    const t=mk('text',{x:L-8,y:y+3.5,fill:'#5c6878','font-size':9.5,'font-family':'monospace','text-anchor':'end'});
+    t.textContent=(6e-4*(1-i/4)*1e4).toFixed(1); svg.appendChild(t);
+  }
+  for(let i=0;i<=6;i++){
+    const x=L+pw*i/6;
+    svg.appendChild(mk('line',{x1:x,y1:T,x2:x,y2:T+ph,stroke:'#1c232c'}));
+    const t=mk('text',{x:x,y:B+15,fill:'#5c6878','font-size':9.5,'font-family':'monospace','text-anchor':'middle'});
+    t.textContent=Math.round(total*i/6); svg.appendChild(t);
+  }
+  // 曲线
+  let d='';
+  for(let i=0;i<=400;i++){
+    const s=total*i/400;
+    const x=L+pw*s/total;
+    const y=T+ph*(1-lr(s)/base);
+    d+=(i?'L':'M')+x.toFixed(1)+','+y.toFixed(1);
+  }
+  svg.appendChild(mk('path',{d,fill:'none',stroke:'#68d3a4','stroke-width':2}));
+  // warmup 区
+  svg.appendChild(mk('rect',{x:L,y:T,width:pw*warm/total+2,height:ph,fill:'#e8b062',opacity:.1}));
+  const wt=mk('text',{x:L+8,y:T+14,fill:'#e8b062','font-size':9.5,'font-family':'monospace'});
+  wt.textContent='warmup 120 步'; svg.appendChild(wt);
+  const yl=mk('text',{x:L-8,y:12,fill:'#6b7484','font-size':9.5,'font-family':'monospace','text-anchor':'end'});
+  yl.textContent='lr ×1e-4'; svg.appendChild(yl);
+  const xl=mk('text',{x:W-R,y:B+30,fill:'#6b7484','font-size':9.5,'font-family':'monospace','text-anchor':'end'});
+  xl.textContent='step'; svg.appendChild(xl);
+})();
+
+/* ══════════ 真实 loss 曲线 ══════════ */
+(function(){
+  const svg=document.getElementById('lossSvg');
+  const NS='http://www.w3.org/2000/svg';
+  function mk(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+  const data=[[420,4.091,4.002],[780,3.809,3.675],[1140,3.648,3.51],[1500,3.468,3.409],[1860,3.512,3.348],[2220,3.594,3.299],[2580,3.344,3.255],[2940,3.367,3.222],[3300,3.295,3.197],[3660,3.193,3.166],[4020,3.293,3.145],[4380,3.288,3.125],[4740,3.121,3.099],[5100,3.249,3.087],[5460,3.185,3.07],[5820,3.249,3.053],[6180,3.207,3.041],[6540,3.191,3.029],[6900,3.208,3.017],[7260,3.09,3.01],[7620,3.046,3.002],[7980,3.122,2.996],[8340,3.023,2.991],[8700,3.059,2.984],[9060,3.082,2.982]];
+  const W=900,H=260,L=58,R=120,T=24,B=205;
+  const pw=W-L-R, ph=B-T;
+  const ymin=2.95, ymax=4.10, xmin=0, xmax=9063;
+  const X=s=>L+pw*(s-xmin)/(xmax-xmin);
+  const Y=v=>T+ph*(1-(v-ymin)/(ymax-ymin));
+
+  for(let i=0;i<=5;i++){
+    const v=ymin+(ymax-ymin)*i/5, y=Y(v);
+    svg.appendChild(mk('line',{x1:L,y1:y,x2:L+pw,y2:y,stroke:'#1c232c'}));
+    const t=mk('text',{x:L-8,y:y+3.5,fill:'#5c6878','font-size':9.5,'font-family':'monospace','text-anchor':'end'});
+    t.textContent=v.toFixed(1); svg.appendChild(t);
+  }
+  [0,2000,4000,6000,8000].forEach(s=>{
+    const x=X(s);
+    svg.appendChild(mk('line',{x1:x,y1:T,x2:x,y2:T+ph,stroke:'#1c232c'}));
+    const t=mk('text',{x,y:B+15,fill:'#5c6878','font-size':9.5,'font-family':'monospace','text-anchor':'middle'});
+    t.textContent=s; svg.appendChild(t);
+  });
+
+  function line(key,color,dash){
+    let d='';
+    data.forEach((p,i)=>{ d+=(i?'L':'M')+X(p[0]).toFixed(1)+','+Y(p[key]).toFixed(1); });
+    svg.appendChild(mk('path',{d,fill:'none',stroke:color,'stroke-width':2,'stroke-dasharray':dash||'none','stroke-linejoin':'round'}));
+  }
+  line(1,'#6ea8fe','5 4');   // train 虚线
+  line(2,'#68d3a4');         // val 实线
+
+  // 终点标注
+  const last=data[data.length-1];
+  svg.appendChild(mk('circle',{cx:X(last[0]),cy:Y(last[2]),r:3.5,fill:'#68d3a4'}));
+  const t=mk('text',{x:X(last[0])+10,y:Y(last[2])+4,fill:'#68d3a4','font-size':11,'font-family':'monospace'});
+  t.textContent='2.982 (PPL 19.74)'; svg.appendChild(t);
+
+  // 图例
+  const l1=mk('line',{x1:W-R+10,y1:T+8,x2:W-R+34,y2:T+8,stroke:'#68d3a4','stroke-width':2});
+  svg.appendChild(l1);
+  const t1=mk('text',{x:W-R+40,y:T+12,fill:'#8b95a7','font-size':10,'font-family':'monospace'});
+  t1.textContent='val'; svg.appendChild(t1);
+
+  const l2=mk('line',{x1:W-R+10,y1:T+30,x2:W-R+34,y2:T+30,stroke:'#6ea8fe','stroke-width':2,'stroke-dasharray':'5 4'});
+  svg.appendChild(l2);
+  const t2=mk('text',{x:W-R+40,y:T+34,fill:'#8b95a7','font-size':10,'font-family':'monospace'});
+  t2.textContent='train'; svg.appendChild(t2);
+
+  const note = mk('text',{x:L+2,y:B+32,fill:'#4e5866','font-size':9.5,'font-family':'monospace'});
+  note.textContent = '第 60 步 val 5.70 未入图（Y 轴范围只覆盖 2.95~4.10）';
+  svg.appendChild(note);
+})();
+
+/* ══════════ 采样交互 ══════════ */
+(function(){
+  const svgBars = document.getElementById('distBars');
+  const sT=document.getElementById('sT'), sK=document.getElementById('sK'),
+        sP=document.getElementById('sP'), sR=document.getElementById('sR');
+  const vT=document.getElementById('vT'), vK=document.getElementById('vK'),
+        vP=document.getElementById('vP'), vR=document.getElementById('vR');
+  const stat=document.getElementById('distStat');
+
+  // 12 个候选 token 的原始 logits（造一个长尾分布）
+  const logits=[4.2, 3.6, 3.1, 2.7, 2.3, 1.9, 1.4, 0.9, 0.4, -0.2, -0.9, -1.8];
+  const names=['的','了','他','一','人','是','在','我','不','有','这','个'];
+  const seen=[0,2,5];   // 假装这三个 token 已经出现过（用于重复惩罚）
+
+  function compute(){
+    const T=+sT.value, K=+sK.value, P=+sP.value, RP=+sR.value;
+
+    // ① 温度
+    let z = logits.map(v => v/T);
+
+    // ② 重复惩罚
+    if (RP !== 1){
+      z = z.map((v,i) => seen.includes(i) ? (v>0 ? v/RP : v*RP) : v);
+    }
+
+    // ③ top-k
+    const killed = new Array(logits.length).fill(false);
+    let kept = logits.map((_,i)=>i);
+    if (K > 0 && K < logits.length){
+      kept = [...logits.keys()].sort((a,b)=>z[b]-z[a]).slice(0,K);
+      logits.forEach((_,i)=>{ if(!kept.includes(i)) killed[i]=true; });
+    }
+
+    // ④ softmax
+    const mx = Math.max(...z.filter((_,i)=>!killed[i]));
+    let ex = z.map((v,i)=> killed[i] ? 0 : Math.exp(v-mx));
+    let sum = ex.reduce((a,b)=>a+b,0);
+    let p = ex.map(v=>v/sum);
+
+    // ⑤ top-p（prev < P 保留）
+    const order = [...p.keys()].sort((a,b)=>p[b]-p[a]);
+    let cum = 0;
+    const inCore = new Array(p.length).fill(false);
+    order.forEach(i=>{
+      if (cum < P){ inCore[i]=true; cum += p[i]; }
+      else killed[i]=true;
+    });
+    p = p.map((v,i)=> killed[i] ? 0 : v);
+    const s2 = p.reduce((a,b)=>a+b,0) || 1;
+    p = p.map(v=>v/s2);
+
+    // 渲染
+    const maxP = Math.max(...p);
+    svgBars.innerHTML = '';
+    p.forEach((v,i)=>{
+      const col = document.createElement('div');
+      col.className = 'db' + (killed[i] ? ' kill' : '');
+      col.style.height = Math.max(2, (v/maxP)*106) + 'px';
+      if (!killed[i] && v > 0.02){
+        col.innerHTML = `<span class="pl">${(v*100).toFixed(0)}%</span><span class="lab">${names[i]}</span>`;
+      } else {
+        col.innerHTML = `<span class="lab">${names[i]}</span>`;
+      }
+      svgBars.appendChild(col);
+    });
+
+    const alive = p.filter(v=>v>0).length;
+    stat.innerHTML = `存活候选 <b style="color:var(--gold)">${alive}</b> / 12　·　` +
+      `最大概率 <b style="color:var(--gold)">${(maxP*100).toFixed(1)}%</b>　·　` +
+      `熵 <b style="color:var(--gold)">${(-p.filter(v=>v>0).reduce((a,v)=>a+v*Math.log(v),0)).toFixed(2)}</b>`;
+  }
+
+  [sT,sK,sP,sR].forEach(el => el.addEventListener('input', () => {
+    vT.textContent=(+sT.value).toFixed(2);
+    vK.textContent=(+sK.value)===12?'∞（关）':sK.value;
+    vP.textContent=(+sP.value).toFixed(2);
+    vR.textContent=(+sR.value).toFixed(2);
+    compute();
+  }));
+  vK.textContent='∞（关）';
+  compute();
+})();
+
+/* ══════════ Scaling 柱状图 ══════════ */
+(function(){
+  const svg=document.getElementById('scaleSvg');
+  const NS='http://www.w3.org/2000/svg';
+  function mk(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+  const data=[
+    {n:'tiny',  p:2.27,  v:4.198, m:0.43, c:'#4a5464'},
+    {n:'mini',  p:4.08,  v:4.031, m:0.75, c:'#5a6474'},
+    {n:'small', p:6.72,  v:3.948, m:1.03, c:'#6ea8fe'},
+    {n:'base',  p:15.15, v:4.007, m:1.85, c:'#68d3a4'},
+    {n:'large', p:28.89, v:4.099, m:4.57, c:'#b98cf0'},
+    {n:'LSTM',  p:15.96, v:4.249, m:5.09, c:'#e07070'}
+  ];
+  const W=760,H=240,L=54,R=20,T=26,B=170;
+  const pw=W-L-R, ph=B-T;
+  const ymin=3.85, ymax=4.30;
+  const Y=v=>T+ph*(1-(v-ymin)/(ymax-ymin));
+
+  for(let i=0;i<=3;i++){
+    const v=ymin+(ymax-ymin)*i/3, y=Y(v);
+    svg.appendChild(mk('line',{x1:L,y1:y,x2:L+pw,y2:y,stroke:'#1c232c'}));
+    const t=mk('text',{x:L-8,y:y+3.5,fill:'#5c6878','font-size':9.5,'font-family':'monospace','text-anchor':'end'});
+    t.textContent=v.toFixed(2); svg.appendChild(t);
+  }
+  const bw = pw/data.length*0.5;
+  data.forEach((d,i)=>{
+    const cx = L + pw*(i+0.5)/data.length;
+    const x = cx-bw/2, y=Y(d.v), h=B-y;
+    svg.appendChild(mk('rect',{x,y,width:bw,height:h,rx:3,fill:d.c,opacity:.8}));
+    const vt=mk('text',{x:cx,y:y-6,fill:d.c,'font-size':11,'font-family':'monospace','text-anchor':'middle'});
+    vt.textContent=d.v.toFixed(3); svg.appendChild(vt);
+    const nt=mk('text',{x:cx,y:B+16,fill:'#8b95a7','font-size':11,'font-family':'monospace','text-anchor':'middle'});
+    nt.textContent=d.n; svg.appendChild(nt);
+    const pt=mk('text',{x:cx,y:B+31,fill:'#5c6878','font-size':9.5,'font-family':'monospace','text-anchor':'middle'});
+    pt.textContent=d.p.toFixed(1)+'M'; svg.appendChild(pt);
+  });
+  // 基线
+  svg.appendChild(mk('line',{x1:L,y1:B,x2:L+pw,y2:B,stroke:'#2e3743'}));
+  const yl=mk('text',{x:L-8,y:14,fill:'#6b7484','font-size':9.5,'font-family':'monospace','text-anchor':'end'});
+  yl.textContent='val loss'; svg.appendChild(yl);
+
+  // LSTM 注释
+  const i=5, cx=L+pw*(i+0.5)/data.length;
+  const an=mk('text',{x:cx,y:Y(4.249)-22,fill:'#e07070','font-size':9.5,'font-family':'monospace','text-anchor':'middle'});
+  an.textContent='同参数量'; svg.appendChild(an);
+  const an2=mk('text',{x:cx,y:Y(4.249)-11,fill:'#e07070','font-size':9.5,'font-family':'monospace','text-anchor':'middle'});
+  an2.textContent='但更差'; svg.appendChild(an2);
+})();
+</script>
+</body>
+</html>

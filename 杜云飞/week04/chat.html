@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>miniGPT · 对话台</title>
+<style>
+/* #region 0. 设计变量：所有颜色集中在这里
+   深色不是因为好看，是长时间写作不刺眼；改主题只需要改这一段 */
+:root{
+  --bg:#191a1c; --side:#121315; --card:#232427; --card2:#2b2c30;  /* 四级背景：页面→侧栏→卡片→卡片高亮 */
+  --line:#2e2f33; --fg:#e8e9ec; --dim:#9a9ca4; --dim2:#6e7078;
+  --accent:#4d6bfe; --accent-soft:rgba(77,107,254,.16);
+  --ok:#39c07a; --warn:#e8a33d;
+  --r:14px;
+}
+/* #endregion 0
+/* #region 1. 基础重置
+   box-sizing:border-box 让 width 包含 padding 和 border，
+   否则加了内边距的元素会比预期宽，布局会溢出 */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--bg); color:var(--fg); overflow:hidden;
+  font:15px/1.7 "PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#3a3b40;border-radius:8px;border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:#4a4b52;background-clip:padding-box}
+::-webkit-scrollbar-track{background:transparent}
+
+/* #endregion 1
+/* #region 2. 布局：左侧栏固定 264px + 右主区自适应
+   #app 是 flex 容器，aside 写死宽度，main 用 flex:1 吃掉剩下的空间 *//* ───────── 布局 ───────── */
+#app{display:flex;height:100%}
+
+/* #endregion 2
+/* #region 3. 侧栏：品牌 → 新建按钮 → 会话列表 → 底部模型信息
+   transition 只写 margin/transform，避免宽度变化引起重排抖动 *//* ───────── 侧栏 ───────── */
+aside{
+  width:264px;flex:0 0 264px;background:var(--side);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;padding:14px 10px 10px;transition:margin .22s ease;
+}
+.brand{display:flex;align-items:center;gap:9px;padding:4px 8px 14px}
+.logo{
+  width:26px;height:26px;border-radius:8px;flex:0 0 26px;
+  background:linear-gradient(135deg,#5b7cff,#3a4fd8);
+  display:grid;place-items:center;font-size:12px;font-weight:700;letter-spacing:-.5px;color:#fff;
+}
+.brand b{font-size:14.5px;font-weight:600;letter-spacing:.2px}
+.brand span{font-size:11px;color:var(--dim2);display:block;margin-top:-3px}
+
+.newbtn{
+  display:flex;align-items:center;gap:8px;width:100%;padding:9px 11px;margin-bottom:12px;
+  background:var(--card);border:1px solid var(--line);border-radius:11px;
+  font-size:13.5px;color:var(--fg);transition:.16s;
+}
+.newbtn:hover{background:var(--card2);border-color:#3c3d43}
+.newbtn svg{width:15px;height:15px}
+
+.listlabel{font-size:11px;color:var(--dim2);padding:0 8px 7px;letter-spacing:.4px}
+#chatList{flex:1;overflow-y:auto;margin:0 -4px;padding:0 4px}
+.chatitem{
+  display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:9px;
+  font-size:13.5px;color:var(--dim);cursor:pointer;margin-bottom:1px;transition:.13s;
+}
+.chatitem:hover{background:#1d1e21;color:var(--fg)}
+.chatitem.on{background:#232428;color:var(--fg)}
+.chatitem span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chatitem .del{opacity:0;width:16px;height:16px;flex:0 0 16px;color:var(--dim2)}
+.chatitem:hover .del{opacity:1}
+.chatitem .del:hover{color:#e06b6b}
+
+.sidefoot{border-top:1px solid var(--line);padding-top:10px;margin-top:6px;font-size:11.5px;color:var(--dim2);line-height:1.65}
+.sidefoot .row{display:flex;justify-content:space-between;padding:1px 8px}
+.sidefoot .row b{color:var(--dim);font-weight:500}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ok);margin-right:5px;vertical-align:1px}
+.dot.bad{background:#e06b6b}
+
+/* #endregion 3
+/* #region 4. 主区：顶栏 54px（sticky 视觉）+ 滚动区 + 输入区
+   header 用 backdrop-filter:blur 做毛玻璃，消息从它下面滚过去 *//* ───────── 主区 ───────── */
+main{flex:1;display:flex;flex-direction:column;min-width:0;position:relative}
+
+header{
+  height:54px;flex:0 0 54px;display:flex;align-items:center;gap:10px;
+  padding:0 18px;border-bottom:1px solid var(--line);background:rgba(25,26,28,.85);
+  backdrop-filter:blur(10px);z-index:5;
+}
+.menubtn{display:none;width:32px;height:32px;border-radius:8px;place-items:center;color:var(--dim)}
+.menubtn:hover{background:var(--card)}
+header .ttl{font-size:14px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.tag{
+  font-size:11px;padding:2px 8px;border-radius:20px;background:var(--accent-soft);
+  color:#93a4ff;border:1px solid rgba(77,107,254,.3);white-space:nowrap;
+}
+.tag.grey{background:#26272b;color:var(--dim);border-color:var(--line)}
+.iconbtn{
+  width:32px;height:32px;border-radius:8px;display:grid;place-items:center;color:var(--dim);transition:.13s;
+}
+.iconbtn:hover{background:var(--card);color:var(--fg)}
+.iconbtn svg{width:17px;height:17px}
+
+/* #endregion 4
+/* #region 5. 滚动区与欢迎页
+   欢迎页只在"当前会话还没有消息"时显示，见 renderHero() *//* ───────── 滚动区 ───────── */
+#scroll{flex:1;overflow-y:auto;scroll-behavior:smooth}
+#msgs{max-width:768px;margin:0 auto;padding:26px 22px 12px}
+
+/* 欢迎页 */
+.hero{padding:34px 0 10px;text-align:center;animation:fade .4s ease both}
+.hero .big{
+  width:54px;height:54px;border-radius:16px;margin:0 auto 16px;
+  background:linear-gradient(135deg,#5b7cff,#3a4fd8);display:grid;place-items:center;
+  font-size:20px;font-weight:700;color:#fff;letter-spacing:-1px;box-shadow:0 8px 26px rgba(77,107,254,.3);
+}
+.hero h1{font-size:21px;font-weight:600;letter-spacing:.2px;margin-bottom:7px}
+.hero p{color:var(--dim);font-size:13.5px;max-width:470px;margin:0 auto;line-height:1.75}
+.hero p em{color:#9fa9ff;font-style:normal}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:26px}
+.card{
+  text-align:left;padding:13px 14px;background:var(--card);border:1px solid var(--line);
+  border-radius:12px;transition:.15s;color:var(--dim);
+}
+.card:hover{background:var(--card2);border-color:#3d3e44;color:var(--fg);transform:translateY(-1px)}
+.card b{display:block;font-size:12.5px;color:#a9b4ff;font-weight:500;margin-bottom:4px}
+.card span{font-size:12.5px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* #endregion 5
+/* #region 6. 消息气泡
+   用户消息右对齐、浅底；模型消息左对齐、无底，靠行距读起来更像文档 *//* 消息 */
+.msg{margin-bottom:22px;animation:fade .28s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.msg.user{display:flex;justify-content:flex-end}
+.msg.user .bubble{
+  max-width:82%;background:var(--card2);padding:10px 15px;border-radius:16px 16px 4px 16px;
+  font-size:14.5px;white-space:pre-wrap;word-break:break-word;
+}
+.msg.bot .who{display:flex;align-items:center;gap:7px;margin-bottom:7px}
+.msg.bot .who i{
+  width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,#5b7cff,#3a4fd8);
+  display:grid;place-items:center;font-size:9px;font-weight:700;color:#fff;font-style:normal;
+}
+.msg.bot .who b{font-size:12.5px;color:var(--dim);font-weight:500}
+.msg.bot .text{
+  font-size:15px;line-height:1.85;white-space:pre-wrap;word-break:break-word;
+  padding-left:0;color:#e2e3e7;
+}
+.msg.bot .text.err{color:#e08a8a}
+.caret{
+  display:inline-block;width:7px;height:15px;background:var(--accent);
+  vertical-align:-2px;margin-left:2px;border-radius:1px;animation:blink 1s step-end infinite;
+}
+@keyframes blink{50%{opacity:0}}
+
+.thinking{display:flex;gap:4px;padding-left:2px;padding-top:3px}
+.thinking i{width:6px;height:6px;border-radius:50%;background:var(--dim2);animation:bounce 1.3s infinite}
+.thinking i:nth-child(2){animation-delay:.16s}
+.thinking i:nth-child(3){animation-delay:.32s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-5px);opacity:1}}
+
+.meta{
+  display:flex;align-items:center;gap:12px;padding-left:0;margin-top:8px;
+  font-size:11.5px;color:var(--dim2);
+}
+.meta .act{display:flex;align-items:center;gap:4px;padding:2px 6px;border-radius:6px;transition:.13s}
+.meta .act:hover{background:var(--card);color:var(--fg)}
+.meta .act svg{width:13px;height:13px}
+.ctxbar{width:56px;height:3px;border-radius:2px;background:#33343a;overflow:hidden}
+.ctxbar i{display:block;height:100%;background:var(--accent);border-radius:2px;transition:width .3s}
+.ctxbar.full i{background:var(--warn)}
+
+/* #endregion 6
+/* #region 7. 输入区：多行输入 + 模式切换 + 随机开头 + 发送/停止
+   .composer 用 focus-within 做聚焦高亮，比给 textarea 单独加边框干净 *//* ───────── 输入区 ───────── */
+#dock{flex:0 0 auto;padding:0 22px 16px;background:linear-gradient(to top,var(--bg) 62%,transparent)}
+.composer{
+  max-width:768px;margin:0 auto;background:var(--card);border:1px solid var(--line);
+  border-radius:16px;padding:10px 10px 8px 14px;transition:.18s;
+}
+.composer:focus-within{border-color:#43454d;box-shadow:0 0 0 3px rgba(77,107,254,.09)}
+.composer textarea{
+  width:100%;background:none;border:none;outline:none;resize:none;color:var(--fg);
+  font:inherit;font-size:14.5px;line-height:1.65;max-height:170px;padding:2px 0;
+}
+.composer textarea::placeholder{color:var(--dim2)}
+.crow{display:flex;align-items:center;gap:8px;margin-top:4px}
+.modeSw{display:flex;background:#1b1c1f;border-radius:9px;padding:2px;gap:1px}
+.modeSw button{font-size:11.5px;padding:4px 10px;border-radius:7px;color:var(--dim2);transition:.14s;white-space:nowrap}
+.modeSw button.on{background:var(--card2);color:var(--fg)}
+.randbtn{font-size:11.5px;padding:5px 10px;border-radius:8px;border:1px solid var(--line);
+  color:var(--dim);background:transparent;transition:.14s;white-space:nowrap}
+.randbtn:hover{color:var(--fg);border-color:#3a3d45}
+.crow .sp{flex:1}
+.sendbtn{
+  width:34px;height:34px;border-radius:10px;background:var(--accent);color:#fff;
+  display:grid;place-items:center;transition:.15s;flex:0 0 34px;
+}
+.sendbtn:disabled{background:#2e3036;color:var(--dim2);cursor:not-allowed}
+.sendbtn:not(:disabled):hover{background:#5f7bff}
+.sendbtn svg{width:17px;height:17px}
+.stopbtn{
+  height:34px;padding:0 13px;border-radius:10px;background:var(--card2);border:1px solid var(--line);
+  font-size:12.5px;display:flex;align-items:center;gap:6px;color:var(--dim);
+}
+.stopbtn:hover{color:var(--fg);border-color:#45464d}
+.stopbtn i{width:8px;height:8px;background:#e06b6b;border-radius:2px;display:block}
+.hint{max-width:768px;margin:8px auto 0;font-size:11px;color:var(--dim2);text-align:center}
+
+/* #endregion 7
+/* #region 8. 参数抽屉：从右侧滑出，遮罩 #veil 一起出现
+   用 transform:translateX(100%) 藏起来而不是 display:none，
+   这样能做出滑动动画，且不影响布局 *//* ───────── 参数抽屉 ───────── */
+#veil{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.2s;z-index:40}
+#veil.on{opacity:1;pointer-events:auto}
+#drawer{
+  position:fixed;top:0;right:0;width:328px;height:100%;background:#17181a;border-left:1px solid var(--line);
+  z-index:50;transform:translateX(100%);transition:transform .24s cubic-bezier(.3,.9,.3,1);
+  display:flex;flex-direction:column;
+}
+#drawer.on{transform:none}
+.dhead{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
+.dhead b{font-size:14px;font-weight:600}
+.dhead span{font-size:11px;color:var(--dim2);display:block;margin-top:2px}
+.dbody{flex:1;overflow-y:auto;padding:6px 18px 18px}
+.grp{margin-top:18px}
+.grp>label{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;color:var(--dim);margin-bottom:9px}
+.grp>label b{color:#a9b4ff;font-weight:600;font-size:12.5px;font-variant-numeric:tabular-nums}
+.grp .why{font-size:11px;color:var(--dim2);line-height:1.55;margin-top:6px}
+input[type=range]{
+  width:100%;height:4px;border-radius:3px;background:#2e2f34;outline:none;-webkit-appearance:none;appearance:none;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#e8e9ec;
+  border:3px solid var(--accent);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+.switchrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0}
+.switchrow span{font-size:12.5px;color:var(--dim)}
+.sw{width:38px;height:21px;border-radius:12px;background:#2e2f34;position:relative;transition:.18s;flex:0 0 38px}
+.sw::after{content:"";position:absolute;top:2.5px;left:2.5px;width:16px;height:16px;border-radius:50%;background:#8b8d95;transition:.18s}
+.sw.on{background:var(--accent)}
+.sw.on::after{left:19.5px;background:#fff}
+.resetbtn{width:100%;margin-top:22px;padding:9px;border-radius:9px;background:var(--card);border:1px solid var(--line);font-size:12.5px;color:var(--dim)}
+.resetbtn:hover{color:var(--fg);border-color:#45464d}
+.dfoot{padding:12px 18px;border-top:1px solid var(--line);font-size:11px;color:var(--dim2);line-height:1.6}
+
+/* #endregion 8
+/* #region 9. 提示条：说明"这是一台续写机，不是聊天助手"
+   用暖色（--warn）而不是红色，因为这是"说明"不是"错误" *//* 提示条 */
+#notice{flex:0 0 auto;padding:0 22px 10px}
+#notice:empty{display:none}
+.notice{
+  max-width:768px;margin:12px auto 0;padding:10px 14px;border-radius:11px;
+  background:rgba(232,163,61,.08);border:1px solid rgba(232,163,61,.25);
+  font-size:12.5px;color:#d9b678;line-height:1.65;display:flex;gap:9px;align-items:flex-start;
+}
+.notice b{color:#e8a33d;font-weight:600}
+.notice .x{margin-left:auto;color:#8a7550;flex:0 0 auto;font-size:15px;line-height:1}
+
+/* #endregion 9
+/* #region 10. 响应式：窄屏把侧栏变成抽屉、卡片改单列
+   断点 860px 是按"侧栏 264 + 正文 600"估算出来的最小可读宽度 */@media(max-width:860px){
+  aside{position:fixed;left:0;top:0;bottom:0;z-index:60;transform:translateX(-100%);transition:transform .22s}
+  aside.on{transform:none}
+  .menubtn{display:grid}
+  #msgs{padding:18px 14px 8px}
+  #dock{padding:0 14px 12px}
+  .cards{grid-template-columns:1fr}
+  #drawer{width:100%}
+}
+/* #endregion 样式到此结束，下面是页面结构 */
+</style>
+</head>
+<body>
+<!-- #region 11. 页面骨架：左侧栏（会话列表）+ 右主区（消息与输入） -->
+<div id="app">
+  <!-- #region 11.1 侧栏：品牌、新建对话、会话列表、模型状态 -->
+  <aside id="side">
+    <div class="brand">
+      <div class="logo">mg</div>
+      <div><b>miniGPT</b><span>16.2M 参数 · 纯预训练</span></div>
+    </div>
+    <button class="newbtn" id="newChat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      新建对话
+    </button>
+    <div class="listlabel">最近对话</div>
+    <div id="chatList"></div>
+    <div class="sidefoot">
+      <div class="row"><span><i class="dot" id="stDot"></i><span id="stText">连接中</span></span></div>
+      <div class="row"><b>模型</b><span id="siModel">—</span></div>
+      <!-- 下面四行是模型信息，值由 boot() 里 fetch /api/info 填进来 -->
+      <div class="row"><b>上下文</b><span id="siCtx">—</span></div>
+      <div class="row"><b>验证 PPL</b><span id="siPpl">—</span></div>
+      <div class="row"><b>显卡</b><span id="siDev">—</span></div>
+    </div>
+  </aside>
+  <!-- #endregion 11.1 -->
+
+  <!-- #region 11.2 主区：顶栏 → 提示条 → 消息滚动区 → 输入区 -->
+  <main>
+    <header>
+      <button class="iconbtn menubtn" id="btnMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="ttl" id="ttl">新对话</div>
+      <div class="tag grey" id="modeTag">续写模式</div>
+      <button class="iconbtn" id="btnParams" title="采样参数">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>
+        </svg>
+      </button>
+    </header>
+
+    <div id="notice"></div>
+
+    <div id="scroll">
+      <div id="msgs"></div>
+    </div>
+
+    <div id="dock">
+      <div class="composer">
+        <textarea id="ta" rows="1" placeholder="输入一段开头，让它接着写……（Enter 发送，Shift+Enter 换行）"></textarea>
+        <div class="crow">
+          <div class="modeSw" id="modeSw">
+            <button data-mode="chat">对话（会跑偏）</button>
+            <button data-mode="continue" class="on">续写</button>
+          </div>
+          <button class="randbtn" id="btnRand" title="模型需要几十字的上文才写得像样，短句开头容易崩">随机开头</button>
+          <div class="sp"></div>
+          <button class="sendbtn" id="btnSend" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="hint" id="hint">16.1M 参数 · 在 8000 万字中文小说上从零预训练 —— 它只会接着写故事，不会回答问题</div>
+    </div>
+  </main>
+  <!-- #endregion 11.2 -->
+</div>
+<!-- #endregion 11 -->
+
+<!-- #region 11.3 参数抽屉：点右上角滑块按钮滑出，#veil 是半透明遮罩 -->
+<div id="veil"></div>
+<div id="drawer">
+  <div class="dhead">
+    <div><b>采样参数</b><span>改完立即生效，下一句就用新参数</span></div>
+    <button class="iconbtn" id="btnClose">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="dbody">
+    <div class="grp">
+      <label>温度 temperature <b id="vT">0.90</b></label>
+      <input type="range" id="sT" min="0.1" max="1.4" step="0.05" value="0.9">
+      <div class="why">越低越确定、越容易复读同一句；叙事文本 1.0~1.2 能换个写法又不崩，再往上就是词句拼接了。</div>
+    </div>
+    <div class="grp">
+      <label>Top-P（核采样） <b id="vP">0.90</b></label>
+      <input type="range" id="sP" min="0.1" max="1" step="0.01" value="0.9">
+      <div class="why">只从"累积概率达到 P"的最小候选集合里抽。0.5 已经很保守。</div>
+    </div>
+    <div class="grp">
+      <label>Top-K <b id="vK">40</b></label>
+      <input type="range" id="sK" min="0" max="100" step="1" value="40">
+      <div class="why">硬性只留前 K 个候选。0 表示关闭。</div>
+    </div>
+    <div class="grp">
+      <label>重复惩罚 <b id="vR">1.25</b></label>
+      <input type="range" id="sR" min="1" max="1.6" step="0.01" value="1.25">
+      <div class="why">把出现过的字降权。1.0 关闭；这个小模型很爱复读，1.2 比较合适。</div>
+    </div>
+    <div class="grp">
+      <label>最大生成长度 <b id="vN">160</b></label>
+      <input type="range" id="sN" min="30" max="400" step="10" value="160">
+      <div class="why">单位是字符（1 字 = 1 token）。它和上下文共用 512 的窗口：设成 400，就只剩 112 字留给历史了。</div>
+    </div>
+    <div class="grp">
+      <div class="switchrow"><span>允许模型自己收尾（EOS）</span><div class="sw" id="swEos"></div></div>
+      <div class="why">关掉它，模型会一路写满长度；打开则写到段落结束就停 —— 它学的是"维基每段都有个结尾"。</div>
+    </div>
+    <button class="resetbtn" id="btnReset">恢复默认</button>
+  </div>
+  <div class="dfoot">参数是前端直接传过去的，后端只做 <code>softmax(logits/T)</code> → top-k → top-p 这一条链。</div>
+</div>
+<!-- #endregion 11.3 -->
+
+<!-- #region 12. 前端逻辑：状态 → 持久化 → 渲染 → 发送/流式 → 参数面板 → 启动 -->
+<script>
+"use strict";
+// #region 12.1 全局状态   【集合:DEFAULT_P(默认采样参数)，S(运行时状态)】
+// 整个页面只有这两份"全局变量"，其余都是局部变量 —— 状态越少越好调试
+/* ══════════════════════════════════════════════════════════════════
+   状态
+   ══════════════════════════════════════════════════════════════════ */
+// 默认参数：这组值是这个 16M 小说模型实测最不容易崩的组合
+// temperature=0.9 有变化但不乱；top_p+top_k 双截断砍掉长尾；rep_penalty=1.2 压复读；ban_eos 防止它写两行就收尾
+const DEFAULT_P = { temperature:0.9, top_p:0.92, top_k:40, rep_penalty:1.2, max_new:240, ban_eos:true, mode:"continue" };
+const S = {   // 运行时状态，字段含义见下面各行
+  chats: [],            // 数组，元素 {id, title, msgs[]}，按最近使用倒序
+  cur: null,            // 当前打开的会话（引用 chats 里的某一项）
+  params: {...DEFAULT_P},  // 采样参数，拖滑块改的就是这里
+  info: null,           // /api/info 返回的模型信息，没连上就是 null
+  busy: false,          // 是否正在生成（生成时禁止再发）
+  ctrl: null,           // AbortController，用来中断请求
+  demo: false           // true = 没连上后端，走本地演示
+};
+const $ = id => document.getElementById(id);  // 简写：$("ta") 就是取 id=ta 的元素
+// 建一个带 class 的元素：el("div","msg user") → <div class="msg user">
+const el = (t,c)=>{const e=document.createElement(t); if(c)e.className=c; return e;};
+// 转义 HTML 特殊字符：把 < > & " ' 换掉，防止用户输入被当成标签解析
+const esc = s => s.replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+
+/* ══════════════════════════════════════════════════════════════════
+   持久化
+   ══════════════════════════════════════════════════════════════════ */
+// #endregion 12.1
+// #region 12.2 持久化：会话和参数存 localStorage，刷新页面不丢
+function load(){
+  try{
+    S.chats = JSON.parse(localStorage.getItem("mg.chats") || "[]");   // 存的是 JSON 字符串，取出来要 parse
+    // Object.assign 用默认值兜底：老版本存下的参数缺字段也不会崩
+    S.params = Object.assign({...DEFAULT_P}, JSON.parse(localStorage.getItem("mg.params") || "{}"));
+  }catch(e){ S.chats = []; }   // localStorage 被禁用 / 内容坏了，退回空状态，别让页面白屏
+  if(!Array.isArray(S.chats)) S.chats = [];
+}
+const save = ()=>{ try{
+  // 只存最近 40 个会话：localStorage 只有 5MB 左右，会话多了会把配额写爆
+  localStorage.setItem("mg.chats", JSON.stringify(S.chats.slice(0,40)));
+  localStorage.setItem("mg.params", JSON.stringify(S.params));   // 参数也一起存，下次打开还是这套
+}catch(e){} };
+
+// #endregion 12.2
+
+
+// #region 12.3 渲染：左侧会话列表
+/* ══════════════════════════════════════════════════════════════════
+   渲染：侧栏
+   ══════════════════════════════════════════════════════════════════ */
+function renderList(){
+  const box = $("chatList"); box.innerHTML = "";   // 先清空再整体重建（会话很少，不值得做增量 diff）
+  if(!S.chats.length){
+    const p = el("div","listlabel"); p.style.padding = "4px 8px"; p.textContent = "还没有对话";
+    box.appendChild(p); return;
+  }
+  S.chats.forEach(c=>{   // c = {id, title, msgs[]}
+    const it = el("div","chatitem" + (S.cur && c.id===S.cur.id ? " on":""));   // 当前打开的那个加高亮
+    const sp = el("span"); sp.textContent = c.title || "新对话";   // 没标题就显示默认文案
+    const del = el("button","del");
+    del.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>';
+    del.onclick = e => { e.stopPropagation(); delChat(c.id); };   // stopPropagation：别顺带触发"打开会话"
+    it.append(sp, del);
+    it.onclick = ()=> openChat(c.id);
+    box.appendChild(it);
+  });
+}
+
+// #endregion 12.3
+
+
+// #region 12.4 会话：新建 / 打开 / 删除
+/* ══════════════════════════════════════════════════════════════════
+   会话
+   ══════════════════════════════════════════════════════════════════ */
+function newChat(){
+  // id = "c" + 时间戳 + 4 位 36 进制随机字符，够用且不会撞
+  const c = { id: "c"+Date.now()+Math.random().toString(36).slice(2,6), title:"", msgs:[] };
+  // unshift 插到数组最前面，所以列表里最新的会话排在最上面
+  S.chats.unshift(c); S.cur = c; save(); renderList(); renderMsgs(); $("ttl").textContent = "新对话";
+  $("ta").focus();
+}
+function openChat(id){
+  const c = S.chats.find(x=>x.id===id); if(!c) return;
+  S.cur = c; renderList(); renderMsgs(); $("ttl").textContent = c.title || "新对话";
+  $("side").classList.remove("on");
+}
+function delChat(id){
+  const i = S.chats.findIndex(x=>x.id===id); if(i<0) return;
+  S.chats.splice(i,1);   // splice(下标, 删除个数)
+  if(S.cur && S.cur.id===id){ S.cur = S.chats[0] || null; renderMsgs(); }
+  save(); renderList();
+}
+
+// #endregion 12.4
+
+
+// #region 12.5 渲染：欢迎页、示例卡片、消息气泡、统计行
+// 欢迎页只在当前会话没有任何消息时出现
+/* ══════════════════════════════════════════════════════════════════
+   渲染：消息
+   ══════════════════════════════════════════════════════════════════ */
+const EXAMPLES = [
+  ["民国二十三年的秋天，保定府城外的官道上尘土飞扬。天还没亮，福来茶馆的门板就卸了一半，伙计提着铜壶在桌椅之间来回穿行。老掌柜把茶碗往前一推，说道：“",
+   "民国茶馆 —— 看它怎么接对话"],
+  ["列车在夜里十一点驶出站台，窗外的灯光一盏一盏往后退。她靠着车窗，手里攥着那张已经没有用处的车票。",
+   "现代叙事 —— 看它怎么铺开场景"],
+  ["他推开门，屋里没有人，只有桌上那盏灯还亮着。桌角放着一只没有喝完的茶碗，碗底压着一张纸。",
+   "悬疑开头 —— 看它能不能把线索接下去"],
+  ["剑光一闪，青石板上溅起三点火星。少年后退半步，握剑的手在发抖，却始终没有松开。",
+   "武侠 —— 这本书库里最常见的语域，写得最熟"]
+];
+
+/* 随机开头：模型只见过 512 字连续文本，短句开头等于冷启动，容易崩。
+   给一段 60~120 字的铺垫，输出质量差别非常直观。 */
+const STARTERS = [
+  "民国二十三年的秋天，保定府城外的官道上尘土飞扬。天还没亮，福来茶馆的门板就卸了一半，伙计提着铜壶在桌椅之间来回穿行。老掌柜把茶碗往前一推，说道：“",
+  "雨下了整整三天。屋檐下的水线连成一片，把院子里的青砖冲得发亮。他站在门口，看着远处的山影，忽然想起十年前也是这样一个雨天，那个人就是从这里走出去的。",
+  "列车在夜里十一点驶出站台，窗外的灯光一盏一盏往后退。她靠着车窗，手里攥着那张已经没有用处的车票。对面坐着一个戴眼镜的男人，从上车起就一直在看她。",
+  "他推开门，屋里没有人，只有桌上那盏灯还亮着。桌角放着一只没有喝完的茶碗，碗底压着一张纸。他走过去，把纸抽出来，只看了一眼，脸色就变了。",
+  "剑光一闪，青石板上溅起三点火星。少年后退半步，握剑的手在发抖，却始终没有松开。对面的黑衣人冷笑一声，缓缓把剑收回鞘中，说了一句他听不懂的话。",
+  "山谷里起了雾，帐篷外的马不安地刨着蹄子。向导蹲在火堆边，把最后一根柴添进去，抬头看了看天色，说这场雾要到中午才能散。没有人接话，因为所有人都听见了远处传来的那一声。",
+  "公司楼下那家面馆已经开了十二年。老板姓陈，见谁都笑，唯独见到穿西装的人不笑。这天下午，一个穿西装的中年人走进去，要了一碗最便宜的阳春面，坐在角落里吃了很久。"
+];
+
+function renderMsgs(){   // 整个消息列表重建一次，最省心，不会有状态不同步的 bug
+  const box = $("msgs"); box.innerHTML = "";
+  const c = S.cur;
+  if(!c || !c.msgs.length){ renderHero(box); return; }   // 没有会话 / 没有消息 → 欢迎页
+  // m 是消息对象 {role, text, err?, stats?}，i 是它在数组里的下标
+  c.msgs.forEach((m,i)=> box.appendChild(msgEl(m, i)));
+  scrollBottom(true);
+}
+
+function renderHero(box){
+  const h = el("div","hero");
+  h.innerHTML = `
+    <div class="big">mg</div>
+    <h1>这是一个 1614 万参数的小说续写模型</h1>
+    <p>它和你平时用的对话助手不一样：没有经过任何指令微调，只会<em>接着你给的文字往下写</em>。<br>
+       语料是 8000 万字中文小说（3.7 个 epoch / 2.97 亿 token）—— 给一段像小说的开头，它写得最像样。<br>
+       <b>开头别太短</b>：它训练时看到的永远是 512 字连续文本，一两句话等于冷启动，容易崩。点右下角「随机开头」最快。</p>`;
+  const cards = el("div","cards");
+  EXAMPLES.forEach(([a,b])=>{
+    const btn = el("button","card");
+    btn.innerHTML = `<b>${esc(a)}</b><span>${esc(b)}</span>`;
+    btn.onclick = ()=>{ $("ta").value = a; autoGrow(); send(); };
+    cards.appendChild(btn);
+  });
+  h.appendChild(cards);
+  box.appendChild(h);
+}
+
+function msgEl(m, i){   // 返回一个 <div class="msg user|bot">
+  const wrap = el("div","msg " + (m.role==="user" ? "user":"bot"));
+  if(m.role==="user"){
+    // 用 textContent 而不是 innerHTML：用户输入里的 < > 不会被当成标签
+    const b = el("div","bubble"); b.textContent = m.text; wrap.appendChild(b);
+    return wrap;
+  }
+  const who = el("div","who");
+  who.innerHTML = `<i>mg</i><b>miniGPT</b>`;
+  const tx = el("div","text" + (m.err?" err":""));   // err=true 时套红色样式
+  tx.textContent = m.text;
+  wrap.append(who, tx);
+
+  if(m.stats){
+    const meta = el("div","meta");
+    const st = m.stats;
+    // 上下文占用百分比，画成统计行里那根小进度条；封顶 100 防止溢出
+    const pct = st.ctx_max ? Math.min(100, Math.round(st.ctx / st.ctx_max * 100)) : 0;
+    const ctxHtml = st.ctx
+      ? `<span style="display:flex;align-items:center;gap:6px">上下文 ${st.ctx}/${st.ctx_max}` +
+        `<i class="ctxbar${pct>=95?" full":""}"><i style="width:${pct}%"></i></i></span>`
+      : "";
+    meta.innerHTML =
+      // 统计行：字数 / 速度 / 耗时，被手动停止时补一个标记
+      `<span>${st.tokens} 字 · ${st.tps} 字/秒 · ${st.secs}s${st.stopped?" · 已停止":""}</span>` + ctxHtml;
+    const cp = el("button","act");
+    cp.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>复制';
+    cp.onclick = ()=>{ navigator.clipboard?.writeText(m.text); cp.lastChild.textContent="已复制"; setTimeout(()=>cp.lastChild.textContent="复制",1200); };
+    meta.appendChild(cp);
+    wrap.appendChild(meta);
+  }
+  return wrap;
+}
+
+function scrollBottom(force){   // force=true 时无视用户位置，强制滚到底
+  const sc = $("scroll");  // 消息滚动容器
+  // near = 用户当前是否还贴着底部（留 160px 容差，几行以内都算"在看最新"）
+  const near = sc.scrollHeight - sc.scrollTop - sc.clientHeight < 160;
+  // 只有本来就在底部才自动滚：否则用户往上翻历史时，新出的字会把人拽回来
+  if(force || near) sc.scrollTop = sc.scrollHeight;
+}
+
+// #endregion 12.5
+
+
+// #region 12.6 输入框：自动增高、Enter 发送、随机开头按钮
+/* ══════════════════════════════════════════════════════════════════
+   输入框
+   ══════════════════════════════════════════════════════════════════ */
+const ta = $("ta");
+function autoGrow(){
+  ta.style.height = "auto";
+  ta.style.height = Math.min(170, ta.scrollHeight) + "px";   // 跟着内容长高，最高 170px 之后出滚动条
+  $("btnSend").disabled = !ta.value.trim() || S.busy;   // 空输入或正在生成时禁用发送
+}
+ta.addEventListener("input", autoGrow);
+ta.addEventListener("keydown", e=>{
+  // Enter 直接发，Shift+Enter 换行；preventDefault 是为了不让 Enter 在文本框里插入换行
+  if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); if(!$("btnSend").disabled) send(); }
+});
+$("btnSend").onclick = ()=> send();
+
+// 随机开头：模型训练时看到的永远是 512 字连续文本，一两句话等于冷启动，容易崩，
+// 所以这里一次填 60~120 字的铺垫。点一下换一条，尽量不和当前内容重复。
+$("btnRand").onclick = ()=>{
+  const cur = $("ta").value.trim();
+  let pick = STARTERS[Math.floor(Math.random()*STARTERS.length)];
+  // 最多重抽 12 次，避免抽到和输入框里一样的那条；12 次还撞就认了，防止死循环
+  if(STARTERS.length > 1){ let i = 0; while(pick === cur && i++ < 12) pick = STARTERS[Math.floor(Math.random()*STARTERS.length)]; }
+  $("ta").value = pick;
+  autoGrow();
+  $("ta").focus();
+  $("ta").setSelectionRange(pick.length, pick.length);   // 光标放到末尾，可以直接接着写
+  $("btnSend").disabled = false;
+};
+
+// #endregion 12.6
+
+
+// #region 12.7 发送与流式接收（整个前端最核心的一段）
+// 流程：拼历史 → push 一条空消息占位 → POST /api/chat → 逐条读 SSE → 逐字填进 DOM
+/* ══════════════════════════════════════════════════════════════════
+   发送 / 流式接收
+   ══════════════════════════════════════════════════════════════════ */
+async function send(){
+  if(S.busy) return;   // 同一时刻只允许一个请求在跑
+  const text = ta.value.trim(); if(!text) return;
+  if(!S.cur) newChat();
+
+  if(S.demo){
+    pushMsg({role:"user", text});
+    ta.value=""; autoGrow();
+    const m = {role:"assistant", text:"", stats:null};   // 先占位，边生成边往里填
+    S.cur.msgs.push(m); renderMsgs();
+    await demoType(m);
+    return;
+  }
+
+  const c = S.cur;
+  const history = [];                       // 只取成对的（用户问过 → 它答过）
+  // 为什么只取成对的：Base Model 的上下文很宝贵（只有 512 字），
+  // 中间夹着报错消息或空回答的历史只会白占预算
+  c.msgs.forEach((m,i)=>{
+    if(m.role === "assistant" && !m.err){
+      const prev = c.msgs[i-1];
+      history.push({ u: (prev && prev.role === "user") ? prev.text : "", a: m.text });
+    }
+  });
+  pushMsg({role:"user", text});
+  ta.value=""; autoGrow();
+
+  const m = {role:"assistant", text:"", stats:null};
+  c.msgs.push(m);
+  if(!c.title){ c.title = text.slice(0,18); $("ttl").textContent = c.title; }
+  save(); renderList(); renderMsgs();
+
+  // 占位节点：气泡 + 三点动画
+  // 刚渲染出来的那条 bot 消息就是最后一个子节点，直接在它上面挂"三点动画"和光标
+  const wrap = $("msgs").lastElementChild;
+  const tx = wrap.querySelector(".text");
+  const think = el("div","thinking"); think.innerHTML = "<i></i><i></i><i></i>";
+  tx.after(think);
+  const caret = el("span","caret");   // 闪烁光标，中文输入法的既视感
+  let first = true;
+
+  S.busy = true; $("btnSend").disabled = true; setStopUI(true); scrollBottom(true);
+
+  const ctrl = new AbortController(); S.ctrl = ctrl;   // 点"停止"时 ctrl.abort() 会中断下面的 fetch
+  // payload 就是后端 p 参数的全集：prompt + history + 全部采样参数（...S.params 展开）
+  const payload = { prompt:text, history, ...S.params };
+  const t0 = performance.now();
+
+  try{
+    const res = await fetch("/api/chat", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify(payload), signal: ctrl.signal
+    });
+    if(!res.ok || !res.body) throw new Error("HTTP " + res.status);
+
+    // 流式读取：res.body 是 ReadableStream，getReader() 拿到读取器；TextDecoder 把字节转成字符串
+    const rd = res.body.getReader(); const dec = new TextDecoder(); let buf = "";
+    while(true){
+      const {done, value} = await rd.read();
+      if(done) break;
+      // stream:true 表示这一块可能不是完整字符（中文是 3 字节），要留到下一块拼起来
+      buf += dec.decode(value, {stream:true});
+      let k;
+      // SSE 用空行分隔事件：找到一个空行就切出一条完整消息
+      while((k = buf.indexOf("\n\n")) >= 0){
+        const raw = buf.slice(0,k); buf = buf.slice(k+2);
+        if(!raw.startsWith("data: ")) continue;   // 不是 data 行（心跳、注释）直接跳过
+        const body = raw.slice(6);
+        if(body === "[DONE]") continue;   // 后端的收尾标记，本身不带数据
+        let ev; try{ ev = JSON.parse(body); }catch{ continue; }   // 一行坏数据不该中断整个流
+
+        if(ev.type === "tok"){   // 增量：一个或几个字
+          // 第一个字到了：撤掉"三点动画"，挂上光标
+          if(first){ think.remove(); first = false; tx.appendChild(caret); }
+          // 光标先摘下来 → 插入新文字 → 再把光标接到末尾（顺序反了光标会跑到文字前面）
+          caret.remove(); tx.appendChild(document.createTextNode(ev.t)); tx.appendChild(caret);
+          m.text += ev.t;
+          scrollBottom(false);
+        }else if(ev.type === "done"){   // 结束：带统计信息
+          m.stats = ev.stats;
+          // 一个字都没生成：基本是模型开局就吐 EOS，提示用户去关"允许模型自己收尾"
+          if(!m.text && !ev.stats.stopped)
+            m.text = "（模型在这儿输出了结束符，一个字都没往下写。把参数里的「允许模型自己收尾」关掉再试。）";
+        }else if(ev.type === "err"){   // 后端抛异常，把消息显示出来
+          m.err = true; m.text += (m.text?"\n\n":"") + "⚠ " + ev.msg;
+        }
+      }
+    }
+  }catch(e){
+    // AbortError 是我们自己点了停止，不算错误；其他异常才是真错误
+    if(e.name !== "AbortError"){ m.err = true; m.text += (m.text?"\n\n":"") + "⚠ " + e.message; }
+    else if(!m.text){ m.text = "（已停止）"; }
+  }finally{
+    caret.remove(); think.remove();
+    if(!m.stats && m.text){                     // 被停止 / 断连：本地估一下统计
+      // 被停止 / 断连时拿不到后端统计，就按本地字数和耗时估一个，别让统计行空着
+      const secs = Math.max(0.01, (performance.now()-t0)/1000);
+      m.stats = { tokens:m.text.length, secs:+secs.toFixed(2),
+                  tps:+(m.text.length/secs).toFixed(1),
+                  ctx:0, ctx_max:(S.info?S.info.block_size:512), stopped:true };
+    }
+    S.busy = false; S.ctrl = null; setStopUI(false);
+    save(); renderMsgs(); autoGrow();
+    $("btnSend").disabled = !ta.value.trim();
+    ta.focus();
+  }
+}
+
+// #endregion 12.7
+
+
+// #region 12.8 发送按钮的两种形态：发送↑ / 停止■
+function pushMsg(m){ if(!S.cur) newChat(); S.cur.msgs.push(m); save(); renderMsgs(); }
+
+function setStopUI(on){   // on=true 时按钮变成红色的"停止"
+  const btn = $("btnSend");
+  if(on){
+    btn.onclick = ()=> { S.ctrl?.abort(); };
+    btn.disabled = false;
+    btn.innerHTML = '<i style="width:11px;height:11px;background:#fff;border-radius:2px;display:block"></i>';
+    btn.style.background = "#c0554f";
+  }else{
+    btn.onclick = ()=> send();
+    btn.style.background = "";
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  }
+}
+
+// #endregion 12.8
+// #region 12.9 演示模式：没连上后端时，用一段固定文字假装在流式输出
+// 纯粹为了"双击 html 也能看到界面"，不参与真实推理
+/* 离线演示：没有后端时，用一段固定文字模拟流式，至少能看界面 */
+async function demoType(m){
+  const sample = "我国期货市场总体运行平稳，投资者结构持续优化。从近期数据看，大豆、玉米等农产品期货成交活跃，" +
+    "部分品种的持仓量出现明显上升，市场对于下半年供需格局的预期正在发生变化。分析人士指出，随着宏观调控政策逐步落地，" +
+    "相关产业链的盈利水平有望得到修复，但仍需关注外部环境的不确定性。";
+  const tx = $("msgs").lastElementChild.querySelector(".text");
+  const caret = el("span","caret"); tx.appendChild(caret);
+  for(const ch of sample){   // 逐字吐出来，模拟流式
+    caret.remove(); tx.appendChild(document.createTextNode(ch)); tx.appendChild(caret);
+    m.text += ch; await new Promise(r=>setTimeout(r,18)); scrollBottom(false);
+  }
+  caret.remove();
+  m.stats = {tokens:sample.length, tps:0, secs:sample.length*0.018, ctx:sample.length, ctx_max:512};
+  save(); renderMsgs();
+}
+
+// #endregion 12.9
+// #region 12.10 参数面板：滑块 ↔ S.params 双向绑定
+/* ══════════════════════════════════════════════════════════════════
+   参数面板
+   ══════════════════════════════════════════════════════════════════ */
+// 一张表描述"哪个滑块控制哪个参数、数值怎么显示"，避免写五遍同样的代码
+// 格式：[滑块 id, 数值显示 id, S.params 里的字段名, 格式化函数]
+const BIND = [
+  ["sT","vT","temperature", v=>v.toFixed(2)],
+  ["sP","vP","top_p",       v=>v.toFixed(2)],
+  ["sK","vK","top_k",       v=>String(v)],
+  ["sR","vR","rep_penalty", v=>v.toFixed(2)],
+  ["sN","vN","max_new",     v=>String(v)],
+];
+function bindParams(){   // 把 S.params 灌进滑块，并把滑块的变化写回 S.params
+  BIND.forEach(([sid,vid,key,fmt])=>{
+    const s = $(sid);
+    s.value = S.params[key];   // 状态 → 滑块
+    $(vid).textContent = fmt(parseFloat(s.value));
+    s.oninput = ()=>{
+      S.params[key] = parseFloat(s.value);   // 滑块 → 状态（拖一下就生效，下一句就用新参数）
+      $(vid).textContent = fmt(S.params[key]);
+      save();
+    };
+  });
+  $("swEos").classList.toggle("on", !S.params.ban_eos);
+  $("swEos").onclick = ()=>{
+    S.params.ban_eos = !S.params.ban_eos;
+    $("swEos").classList.toggle("on", !S.params.ban_eos);
+    save();
+  };
+  // 模式切换：对话 / 续写。对话模式会拼"用户：/助手："模板，续写模式直接拼接
+  document.querySelectorAll("#modeSw button").forEach(b=>{
+    b.classList.toggle("on", b.dataset.mode === S.params.mode);
+    b.onclick = ()=>{
+      S.params.mode = b.dataset.mode;
+      document.querySelectorAll("#modeSw button").forEach(x=>x.classList.toggle("on", x===b));
+      $("modeTag").textContent = S.params.mode === "chat" ? "对话模式" : "续写模式";
+      $("ta").placeholder = S.params.mode === "chat"
+        ? "问它点什么……它只会用百科的口吻接着写"
+        : "写一段开头，让它顺着往下写……";
+      save();
+    };
+  });
+  $("modeTag").textContent = S.params.mode === "chat" ? "对话模式" : "续写模式";
+  $("btnReset").onclick = ()=>{   // 恢复默认：重置状态后用 bindParams 把滑块也刷回去
+    S.params = {...DEFAULT_P};
+    bindParams(); save();
+  };
+}
+// #endregion 12.10
+// #region 12.11 抽屉开关与全局按钮绑定
+// 抽屉和遮罩同时加 .on：CSS 里一个做右滑、一个做淡入
+function openDrawer(){ $("drawer").classList.add("on"); $("veil").classList.add("on"); }
+function closeDrawer(){ $("drawer").classList.remove("on"); $("veil").classList.remove("on"); }
+$("btnParams").onclick = openDrawer;
+$("btnClose").onclick = closeDrawer;
+$("veil").onclick = closeDrawer;
+$("btnMenu").onclick = ()=> $("side").classList.toggle("on");   // 窄屏下开合侧栏
+$("newChat").onclick = newChat;
+
+/* ══════════════════════════════════════════════════════════════════
+   启动
+   ══════════════════════════════════════════════════════════════════ */
+// #endregion 12.11
+// #region 12.12 启动：恢复本地状态 → 拉 /api/info → 决定在线还是演示模式
+async function boot(){
+  load();   // 从 localStorage 恢复会话和参数
+  bindParams();  // 把参数灌进滑块
+  renderList();  // 画左侧列表
+  if(S.chats.length){ S.cur = S.chats[0]; $("ttl").textContent = S.cur.title || "新对话"; }  // 默认打开最近一个会话
+  renderMsgs();  // 画消息区
+
+  try{
+    const r = await fetch("/api/info", {cache:"no-store"});
+    if(!r.ok) throw new Error();   // 后端没起，进 catch 走演示模式
+    S.info = await r.json();   // {params, layers, d_model, heads, block_size, vocab, device, ckpt, val_ppl}
+    $("stDot").classList.remove("bad");
+    $("stText").textContent = "已连接";
+    $("siModel").textContent = (S.info.params/1e6).toFixed(1) + "M 参数";
+    $("siCtx").textContent = S.info.block_size + " 字符";
+    $("siPpl").textContent = S.info.val_ppl ? S.info.val_ppl : "—";
+    // 显卡名太长（NVIDIA GeForce RTX 5050 Laptop GPU），砍掉前后缀只留型号
+    $("siDev").textContent = S.info.device.replace("NVIDIA ","").replace("GeForce ","").replace(" Laptop GPU","");
+    $("notice").innerHTML =
+      `<div class="notice"><div><b>这是一台小说续写机，不是聊天助手。</b>` +
+      `它在 8000 万字中文小说上做过 next-token 预训练（严肃文学 + 通俗长篇），没做过任何指令微调 —— ` +
+      `所以你给它一段开头，它顺着往下写；你问它问题，它会把问题当成小说的第一句继续编。` +
+      `它学到的是<b>叙事的句式</b>（引号、对话、提行、人称），` +
+      `但 1614 万参数装不下情节逻辑，写到第三段就会开始跑偏。上下文窗口 ${S.info.block_size} 个字符，` +
+      `太长的历史会被从头丢掉。</div><button class="x" onclick="this.parentNode.remove()">×</button></div>`;
+  }catch(e){
+    S.demo = true;   // 连不上后端 → 演示模式，发送时会走 demoType()
+    $("stDot").classList.add("bad");
+    $("stText").textContent = "后端未连接";
+    $("siModel").textContent = "演示模式";
+    $("siCtx").textContent = "—"; $("siDev").textContent = "—";
+    $("notice").innerHTML =
+      `<div class="notice"><div><b>没有连上推理后端，现在是界面演示模式。</b><br>` +
+      `在项目目录下执行 <code>python chat.py</code>，它会自动打开这个页面并接上真模型。</div></div>`;
+  }
+  autoGrow();
+
+  // ?q=北京是中华人民共和国的首都，  → 打开就自动发一条（方便做演示 / 分享固定开场）
+  // 支持 ?q=xxx 直接带一段开场白，方便演示时固定开场
+  const q = new URLSearchParams(location.search).get("q");
+  if(q){ ta.value = q; autoGrow(); setTimeout(()=>send(), 400); }
+}
+// #endregion 12.12
+
+boot();   // 页面加载完就启动
+</script>
+<!-- #endregion 12 -->
+</body>
+</html>
