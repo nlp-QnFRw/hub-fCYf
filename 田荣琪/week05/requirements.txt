@@ -1,0 +1,7 @@
+# 已验证的直接依赖；本次未安装或更改环境。
+--extra-index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0+cu124
+transformers==5.17.0
+numpy==2.3.1
+tqdm==4.70.0
+safetensors==0.8.0

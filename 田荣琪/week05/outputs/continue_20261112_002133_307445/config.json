@@ -1,0 +1,22 @@
+{
+  "source": "D:\\Project\\Lesson\\week05\\outputs\\train_20261111_235809_349617\\model",
+  "epochs_cap": 4,
+  "learning_rate": 1e-05,
+  "seconds_cap": 2400,
+  "eval_every": 125,
+  "patience": 3,
+  "min_delta": 0.01,
+  "length": 128,
+  "accumulation": 8,
+  "batch_size": 1,
+  "optimizer_restored": false,
+  "scheduler_restored": false,
+  "target_token_accuracy": 0.8,
+  "python": "D:\\Anaconda3\\envs\\py312\\python.exe",
+  "script_sha256": "c35e1f3247648c1186d134a65879e2728ffa7c451df0e5be6b42d0e150005694",
+  "source_state_sha256": "908c1150ed2a9ebcadcd5963b207d57d053a0170e4709f766acc155d9d2e0bcf",
+  "planned_updates": 1500,
+  "warmup": 75,
+  "precision": "bfloat16",
+  "trainable_parameters": 102290312
+}

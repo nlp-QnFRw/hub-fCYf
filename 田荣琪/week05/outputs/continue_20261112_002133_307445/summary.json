@@ -1,0 +1,476 @@
+{
+  "status": "passed",
+  "training_executed": true,
+  "updates": 1500,
+  "stop_reason": "epoch_budget",
+  "config": {
+    "source": "D:\\Project\\Lesson\\week05\\outputs\\train_20261111_235809_349617\\model",
+    "epochs_cap": 4,
+    "learning_rate": 1e-05,
+    "seconds_cap": 2400,
+    "eval_every": 125,
+    "patience": 3,
+    "min_delta": 0.01,
+    "length": 128,
+    "accumulation": 8,
+    "batch_size": 1,
+    "optimizer_restored": false,
+    "scheduler_restored": false,
+    "target_token_accuracy": 0.8,
+    "python": "D:\\Anaconda3\\envs\\py312\\python.exe",
+    "script_sha256": "c35e1f3247648c1186d134a65879e2728ffa7c451df0e5be6b42d0e150005694",
+    "source_state_sha256": "908c1150ed2a9ebcadcd5963b207d57d053a0170e4709f766acc155d9d2e0bcf",
+    "planned_updates": 1500,
+    "warmup": 75,
+    "precision": "bfloat16",
+    "trainable_parameters": 102290312
+  },
+  "baseline": {
+    "loss": 2.4283083607630096,
+    "token_accuracy": 0.4920665634674923,
+    "correct": 2543,
+    "targets": 5168,
+    "samples": 200
+  },
+  "baseline_train_probe": {
+    "loss": 2.273253521483664,
+    "token_accuracy": 0.5214761040532365,
+    "correct": 1724,
+    "targets": 3306,
+    "samples": 128
+  },
+  "best": {
+    "update": 1500,
+    "epoch": 4,
+    "directory": "D:\\Project\\Lesson\\week05\\outputs\\continue_20261112_002133_307445\\checkpoints\\update_001500\\model",
+    "validation": {
+      "loss": 1.9151111225087207,
+      "token_accuracy": 0.5979102167182663,
+      "correct": 3090,
+      "targets": 5168,
+      "samples": 200
+    },
+    "train_probe": {
+      "loss": 1.450970456301625,
+      "token_accuracy": 0.6690865093768905,
+      "correct": 2212,
+      "targets": 3306,
+      "samples": 128
+    },
+    "state_sha256": "84aabddf66f8ecf20647b57735983bf585865965690ca009178bbbf62c08b39c"
+  },
+  "reloaded_validation": {
+    "loss": 1.9151111225087207,
+    "token_accuracy": 0.5979102167182663,
+    "correct": 3090,
+    "targets": 5168,
+    "samples": 200
+  },
+  "best_state_identical_after_reload": true,
+  "highest_observed_accuracy": 0.5979102167182663,
+  "target_80_reached": false,
+  "validation_history": [
+    {
+      "update": 125,
+      "epoch": 1,
+      "validation": {
+        "loss": 2.309715130980539,
+        "token_accuracy": 0.5181888544891641,
+        "correct": 2678,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 2.1069030212187725,
+        "token_accuracy": 0.5486993345432547,
+        "correct": 1814,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.20281210976176656,
+      "stale_checks": 0,
+      "overfit_signal": false,
+      "elapsed_seconds": 110.53200000000652
+    },
+    {
+      "update": 250,
+      "epoch": 1,
+      "validation": {
+        "loss": 2.174156403670739,
+        "token_accuracy": 0.5427631578947368,
+        "correct": 2805,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 1.905508384586318,
+        "token_accuracy": 0.5916515426497277,
+        "correct": 1956,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.26864801908442093,
+      "stale_checks": 0,
+      "overfit_signal": false,
+      "elapsed_seconds": 220.06300000002375
+    },
+    {
+      "update": 375,
+      "epoch": 1,
+      "validation": {
+        "loss": 2.09108690193194,
+        "token_accuracy": 0.5638544891640866,
+        "correct": 2914,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 1.8205519173265008,
+        "token_accuracy": 0.6010284331518452,
+        "correct": 1987,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.27053498460543923,
+      "stale_checks": 0,
+      "overfit_signal": false,
+      "elapsed_seconds": 329.969000000041
+    },
+    {
+      "update": 500,
+      "epoch": 2,
+      "validation": {
+        "loss": 2.063425172777737,
+        "token_accuracy": 0.5702399380804953,
+        "correct": 2947,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 1.7414263152960785,
+        "token_accuracy": 0.6131276467029643,
+        "correct": 2027,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.3219988574816586,
+      "stale_checks": 0,
+      "overfit_signal": false,
+      "elapsed_seconds": 437.704000000027
+    },
+    {
+      "update": 625,
+      "epoch": 2,
+      "validation": {
+        "loss": 2.0070616402216372,
+        "token_accuracy": 0.5814628482972136,
+        "correct": 3005,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 1.6466305542915285,
+        "token_accuracy": 0.6388384754990926,
+        "correct": 2112,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.36043108593010875,
+      "stale_checks": 0,
+      "overfit_signal": false,
+      "elapsed_seconds": 545.5320000000065
+    },
+    {
+      "update": 750,
+      "epoch": 2,
+      "validation": {
+        "loss": 1.966180973677628,
+        "token_accuracy": 0.5882352941176471,
+        "correct": 3040,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 1.5930106892992495,
+        "token_accuracy": 0.6460980036297641,
+        "correct": 2136,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.3731702843783784,
+      "stale_checks": 0,
+      "overfit_signal": false,
+      "elapsed_seconds": 653.0470000000205
+    },
+    {
+      "update": 875,
+      "epoch": 3,
+      "validation": {
+        "loss": 1.964525254402921,
+        "token_accuracy": 0.5899767801857585,
+        "correct": 3049,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 1.5633029349269971,
+        "token_accuracy": 0.6533575317604355,
+        "correct": 2160,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.4012223194759239,
+      "stale_checks": 1,
+      "overfit_signal": false,
+      "elapsed_seconds": 761.75
+    },
+    {
+      "update": 1000,
+      "epoch": 3,
+      "validation": {
+        "loss": 1.9384095016463254,
+        "token_accuracy": 0.5919117647058824,
+        "correct": 3059,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 1.5189373989359076,
+        "token_accuracy": 0.6566848154869933,
+        "correct": 2171,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.4194721027104178,
+      "stale_checks": 0,
+      "overfit_signal": false,
+      "elapsed_seconds": 870.454000000027
+    },
+    {
+      "update": 1125,
+      "epoch": 3,
+      "validation": {
+        "loss": 1.9257846356776107,
+        "token_accuracy": 0.5922987616099071,
+        "correct": 3061,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 1.4844590244477833,
+        "token_accuracy": 0.6645493042952209,
+        "correct": 2197,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.4413256112298274,
+      "stale_checks": 0,
+      "overfit_signal": false,
+      "elapsed_seconds": 979.8130000000237
+    },
+    {
+      "update": 1250,
+      "epoch": 4,
+      "validation": {
+        "loss": 1.9235382445456444,
+        "token_accuracy": 0.5938467492260062,
+        "correct": 3069,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 1.4695176085918078,
+        "token_accuracy": 0.6657592256503327,
+        "correct": 2201,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.45402063595383657,
+      "stale_checks": 1,
+      "overfit_signal": false,
+      "elapsed_seconds": 1088.079000000027
+    },
+    {
+      "update": 1375,
+      "epoch": 4,
+      "validation": {
+        "loss": 1.9199615799974732,
+        "token_accuracy": 0.5963622291021672,
+        "correct": 3082,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 1.4561728637144915,
+        "token_accuracy": 0.6678765880217786,
+        "correct": 2208,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.4637887162829817,
+      "stale_checks": 2,
+      "overfit_signal": false,
+      "elapsed_seconds": 1196.469000000041
+    },
+    {
+      "update": 1500,
+      "epoch": 4,
+      "validation": {
+        "loss": 1.9151111225087207,
+        "token_accuracy": 0.5979102167182663,
+        "correct": 3090,
+        "targets": 5168,
+        "samples": 200
+      },
+      "train_probe": {
+        "loss": 1.450970456301625,
+        "token_accuracy": 0.6690865093768905,
+        "correct": 2212,
+        "targets": 3306,
+        "samples": 128
+      },
+      "loss_gap": 0.4641406662070957,
+      "stale_checks": 0,
+      "overfit_signal": false,
+      "elapsed_seconds": 1304.625
+    }
+  ],
+  "generation_after": [
+    {
+      "index": 0,
+      "instruction": "提供一个分类任务，让GPT确定一个人是否已经完成大学教育。 年龄：28 学位：硕士 工作：没有",
+      "reference": "基于提供的年龄和学位，GPT可以确定这个人已经完成大学教育。",
+      "prediction": "年 龄 ： 28 - 28 学 位 ： 学 士 ， 年 龄 ： 28 岁 。",
+      "generated_ids": [
+        2399,
+        7977,
+        8038,
+        8143,
+        118,
+        8143,
+        2110,
+        855,
+        8038,
+        2110,
+        1894,
+        8024,
+        2399,
+        7977,
+        8038,
+        8143,
+        2259,
+        511,
+        102
+      ]
+    },
+    {
+      "index": 1,
+      "instruction": "将以下句子转换为被动语态。 句子： Tom 发现了一份工作。",
+      "reference": "一份工作被Tom发现了。",
+      "prediction": "句 子 ： 发 现 了 一 份 工 作 。",
+      "generated_ids": [
+        1368,
+        2094,
+        8038,
+        100,
+        1355,
+        4385,
+        749,
+        671,
+        819,
+        2339,
+        868,
+        511,
+        102
+      ]
+    },
+    {
+      "index": 2,
+      "instruction": "创建一个简单的待办事项清单。 1. 水果店购买水果。 2. 向朋友回复电子邮件。 3. 洗衣服",
+      "reference": "待办事项清单：，1. 购买水果，2. 回复朋友的邮件，3. 洗衣服",
+      "prediction": "4. 给 朋 友 回 复 电 子 邮 件 ： ， 5. 给 朋 友 回 复 电 子 邮 件",
+      "generated_ids": [
+        125,
+        119,
+        5314,
+        3301,
+        1351,
+        1726,
+        1908,
+        4510,
+        2094,
+        6934,
+        816,
+        8038,
+        8024,
+        126,
+        119,
+        5314,
+        3301,
+        1351,
+        1726,
+        1908,
+        4510,
+        2094,
+        6934,
+        816,
+        102
+      ]
+    },
+    {
+      "index": 3,
+      "instruction": "给定两个数，判断它们是否互质。 数字1：12，数字2：25",
+      "reference": "数字1和数字2不互质，因为它们都可以被5整除。",
+      "prediction": "数 字 1 和 数 字 2 的 和 是 ： 25 。",
+      "generated_ids": [
+        3144,
+        2099,
+        122,
+        1469,
+        3144,
+        2099,
+        123,
+        4638,
+        1469,
+        3221,
+        8038,
+        8132,
+        511,
+        102
+      ]
+    },
+    {
+      "index": 4,
+      "instruction": "给定一组数据，判断其中是否存在异常值。 数据组：1,2,3,4,5,6,1000",
+      "reference": "是，数据组中的1000是异常值。",
+      "prediction": "， 这 组 数 据 中 存 在 异 常 值 。",
+      "generated_ids": [
+        8024,
+        6821,
+        5299,
+        3144,
+        2945,
+        704,
+        2100,
+        1762,
+        2460,
+        2382,
+        966,
+        511,
+        102
+      ]
+    }
+  ],
+  "reload_loading": {
+    "missing_keys": [],
+    "unexpected_keys": []
+  },
+  "source_loading": {
+    "missing_keys": [],
+    "unexpected_keys": []
+  },
+  "peak_allocated_mib": 1977.52880859375,
+  "total_seconds": 1313.75,
+  "source_files_unmodified": true,
+  "note": "Best within this finite run; not proof of global optimum or absence of overfitting. Validation has been reused; no new independent test."
+}

@@ -1,0 +1,16 @@
+{
+  "validation": {
+    "loss": 2.4283083607630096,
+    "token_accuracy": 0.4920665634674923,
+    "correct": 2543,
+    "targets": 5168,
+    "samples": 200
+  },
+  "train_probe": {
+    "loss": 2.273253521483664,
+    "token_accuracy": 0.5214761040532365,
+    "correct": 1724,
+    "targets": 3306,
+    "samples": 128
+  }
+}
