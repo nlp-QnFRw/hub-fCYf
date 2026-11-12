@@ -1,0 +1,33 @@
+# 阶段二：SFT（监督微调）
+# 目标：把「续写器」改造成「问答助手」—— 改的只有数据格式和 loss 位置。
+# 数据：<|user|>问题<|assistant|>回答<|end|>，prompt 段 label=-100，只学回答。
+stage: sft
+seed: 1337
+
+# 从阶段一的检查点热启动。不填就从头训（也可以，但对比效果会差很多）。
+init_from: outputs/pretrain/best.pt
+
+data:
+  train: data/raw/sft_train.jsonl
+  val: data/raw/sft_val.jsonl
+  vocab: data/processed/vocab.json
+
+model:
+  n_layer: 6
+  n_head: 6
+  d_model: 384
+  block_size: 256
+  dropout: 0.1
+
+train:
+  batch_size: 32
+  epochs: 25
+  lr: 6.0e-4          # 微调学习率一般比预训练小一个量级，避免把预训练学到的知识洗掉
+  min_lr: 6.0e-5
+  warmup_steps: 40
+  weight_decay: 0.1
+  grad_clip: 1.0
+  log_interval: 10
+  eval_batches: 30
+  num_workers: 0
+  out_dir: outputs/sft
