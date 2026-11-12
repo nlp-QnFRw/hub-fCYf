@@ -1,0 +1,4 @@
+# 底座权重 1.19GB，不入库；执行 01_download_model.py 可重新拉取
+models/
+__pycache__/
+*.pyc
