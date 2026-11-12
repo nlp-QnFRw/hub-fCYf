@@ -127,7 +127,7 @@ def run_epoch(model, loader, criterion, optimizer, device, train=True):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--epochs",     type=int,   default=20)
+    parser.add_argument("--epochs",     type=int,   default=60)
     parser.add_argument("--seq_len",    type=int,   default=64)
     parser.add_argument("--stride",     type=int,   default=64, help="切块间隔：1=密集重叠，seq_len=不重叠")
     parser.add_argument("--batch_size", type=int,   default=64)
