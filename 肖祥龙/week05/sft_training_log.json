@@ -1,0 +1,356 @@
+{
+  "config": {
+    "base_model": "D:\\xxl\\study\\workspace\\hub-fCYf\\肖祥龙\\week04\\best_model_trans.pt",
+    "train": "D:\\xxl\\study\\workspace\\hub-fCYf\\肖祥龙\\week05\\sft_train_tagged.jsonl",
+    "val": "D:\\xxl\\study\\workspace\\hub-fCYf\\肖祥龙\\week05\\sft_val_tagged.jsonl",
+    "save": "D:\\xxl\\study\\workspace\\hub-fCYf\\肖祥龙\\week05\\best_model_sft.pt",
+    "log": "D:\\xxl\\study\\workspace\\hub-fCYf\\肖祥龙\\week05\\sft_training_log.json",
+    "epochs": 10,
+    "batch_size": 16,
+    "seq_len": 128,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "dropout": 0.1,
+    "grad_clip": 1.0,
+    "patience": 3,
+    "seed": 42,
+    "device": "auto"
+  },
+  "device": "cpu",
+  "torch_version": "2.6.0+cpu",
+  "input_sha256": {
+    "base_model": "30859d79d5cdca542630a0dccb71a6233a914234ac9bfc9e7f91762a4c470503",
+    "train": "05db6d49493f4a8563b22c4b991a1096e331d241f3a18789e894ccb04c154b36",
+    "val": "4f4780602ec28dd6ffb607e96805c38c26875ea59feeb812078e3f94839c4d8f"
+  },
+  "base_vocab_size": 4000,
+  "vocab_size": 4096,
+  "added_chars": [
+    "$",
+    "%",
+    "&",
+    "*",
+    "+",
+    "<",
+    "@",
+    "^",
+    "{",
+    "}",
+    "~",
+    " ",
+    "°",
+    "²",
+    "×",
+    "á",
+    "è",
+    "é",
+    "ö",
+    "÷",
+    "ā",
+    "ō",
+    "ū",
+    "ǐ",
+    "ǒ",
+    "ǔ",
+    "ɒ",
+    "ə",
+    "ɪ",
+    "ʊ",
+    "ˈ",
+    "π",
+    "–",
+    "•",
+    "₂",
+    "℃",
+    "√",
+    "∫",
+    "「",
+    "」",
+    "な",
+    "の",
+    "侏",
+    "俾",
+    "個",
+    "吠",
+    "呤",
+    "哆",
+    "啶",
+    "嘌",
+    "嘧",
+    "墉",
+    "壬",
+    "婀",
+    "孫",
+    "寫",
+    "屍",
+    "廿",
+    "忒",
+    "悚",
+    "書",
+    "楔",
+    "歆",
+    "氖",
+    "氦",
+    "漕",
+    "焙",
+    "無",
+    "璞",
+    "礫",
+    "禀",
+    "紀",
+    "膳",
+    "苓",
+    "苷",
+    "語",
+    "說",
+    "谧",
+    "赅",
+    "跤",
+    "踱",
+    "車",
+    "達",
+    "顸",
+    "颅",
+    "颟",
+    "骸",
+    "鳕",
+    "鸵",
+    "％",
+    "／"
+  ],
+  "special_token_ids": {
+    "user": 4091,
+    "assistant": 4092,
+    "end": 4093,
+    "pad": 4094,
+    "unk": 4095
+  },
+  "train_stats": {
+    "samples": 3000,
+    "max_input_tokens": 113,
+    "supervised_tokens": 84412,
+    "unknown_instruction_tokens": 0,
+    "unknown_output_tokens": 0
+  },
+  "val_stats": {
+    "samples": 200,
+    "max_input_tokens": 107,
+    "supervised_tokens": 5792,
+    "unknown_instruction_tokens": 1,
+    "unknown_output_tokens": 4
+  },
+  "epochs": [
+    {
+      "epoch": 1,
+      "train": {
+        "loss": 4.607435559681884,
+        "ppl": 100.2267941591495,
+        "tokens": 84412
+      },
+      "val": {
+        "loss": 4.137693668597311,
+        "ppl": 62.65814423085205,
+        "tokens": 5792
+      },
+      "seconds": 14.135753699985798,
+      "saved_best": true
+    },
+    {
+      "epoch": 2,
+      "train": {
+        "loss": 4.12271464077188,
+        "ppl": 61.7265805222308,
+        "tokens": 84412
+      },
+      "val": {
+        "loss": 3.750609371543589,
+        "ppl": 42.547001033794984,
+        "tokens": 5792
+      },
+      "seconds": 14.987171100015985,
+      "saved_best": true
+    },
+    {
+      "epoch": 3,
+      "train": {
+        "loss": 3.8337296653696584,
+        "ppl": 46.234656860825844,
+        "tokens": 84412
+      },
+      "val": {
+        "loss": 3.588523885821769,
+        "ppl": 36.1806297493008,
+        "tokens": 5792
+      },
+      "seconds": 14.832517200004077,
+      "saved_best": true
+    },
+    {
+      "epoch": 4,
+      "train": {
+        "loss": 3.6915930698410864,
+        "ppl": 40.10869203659792,
+        "tokens": 84412
+      },
+      "val": {
+        "loss": 3.488936671894558,
+        "ppl": 32.751104014993444,
+        "tokens": 5792
+      },
+      "seconds": 14.953554099978646,
+      "saved_best": true
+    },
+    {
+      "epoch": 5,
+      "train": {
+        "loss": 3.5805021606960135,
+        "ppl": 35.891559653092436,
+        "tokens": 84412
+      },
+      "val": {
+        "loss": 3.4120555793382845,
+        "ppl": 30.32752085548126,
+        "tokens": 5792
+      },
+      "seconds": 14.933324199984781,
+      "saved_best": true
+    },
+    {
+      "epoch": 6,
+      "train": {
+        "loss": 3.498812583782704,
+        "ppl": 33.07615347044204,
+        "tokens": 84412
+      },
+      "val": {
+        "loss": 3.343617665833531,
+        "ppl": 28.321398957818783,
+        "tokens": 5792
+      },
+      "seconds": 14.429300800024066,
+      "saved_best": true
+    },
+    {
+      "epoch": 7,
+      "train": {
+        "loss": 3.4172841601590265,
+        "ppl": 30.48650602056405,
+        "tokens": 84412
+      },
+      "val": {
+        "loss": 3.293597005348838,
+        "ppl": 26.93959144093478,
+        "tokens": 5792
+      },
+      "seconds": 14.30569489998743,
+      "saved_best": true
+    },
+    {
+      "epoch": 8,
+      "train": {
+        "loss": 3.3566227628965204,
+        "ppl": 28.69212695183174,
+        "tokens": 84412
+      },
+      "val": {
+        "loss": 3.2443637953278768,
+        "ppl": 25.6453891526626,
+        "tokens": 5792
+      },
+      "seconds": 14.407899199984968,
+      "saved_best": true
+    },
+    {
+      "epoch": 9,
+      "train": {
+        "loss": 3.294745499797496,
+        "ppl": 26.970549186150198,
+        "tokens": 84412
+      },
+      "val": {
+        "loss": 3.20017226624884,
+        "ppl": 24.536756688091383,
+        "tokens": 5792
+      },
+      "seconds": 14.21109619998606,
+      "saved_best": true
+    },
+    {
+      "epoch": 10,
+      "train": {
+        "loss": 3.2405306130050286,
+        "ppl": 25.547273867325035,
+        "tokens": 84412
+      },
+      "val": {
+        "loss": 3.167044033661732,
+        "ppl": 23.737214143431203,
+        "tokens": 5792
+      },
+      "seconds": 14.779876100015827,
+      "saved_best": true
+    }
+  ],
+  "baseline": {
+    "loss": 5.056184189095681,
+    "ppl": 156.99032654636164,
+    "tokens": 5792
+  },
+  "examples_before": [
+    {
+      "instruction": "提供一个分类任务，让GPT确定一个人是否已经完成大学教育。 年龄：28 学位：硕士 工作：没有",
+      "reference": "基于提供的年龄和学位，GPT可以确定这个人已经完成大学教育。",
+      "text": "心理学习\n怎么样才能让自己变得快\n怎么办理\n怎么样才能让自己的人的人变得快速变得快\n怎么样才能让自己的人变得快\n怎么样才能让自己",
+      "ended": false,
+      "generated_tokens": 64
+    },
+    {
+      "instruction": "将以下句子转换为被动语态。 句子： Tom 发现了一份工作。",
+      "reference": "一份工作被Tom发现了。",
+      "text": "心理学习，\n怎么样才能让自己变得快\n怎么样才能让自己变得快\n怎么样才能让自己的微信号码变得快速变得快速变得快速长得快速长得快速长",
+      "ended": false,
+      "generated_tokens": 64
+    },
+    {
+      "instruction": "创建一个简单的待办事项清单。 1. 水果店购买水果。 2. 向朋友回复电子邮件。 3. 洗衣服",
+      "reference": "待办事项清单：，1. 购买水果，2. 回复朋友的邮件，3. 洗衣服",
+      "text": "心\n怎么样才能让自己变得快\n怎么样才能让自己的微信号码变得快速变得快速变得快速长得快速长得快速长得快速长得快速长得快速长得快速度",
+      "ended": false,
+      "generated_tokens": 64
+    }
+  ],
+  "best_epoch": 10,
+  "best_val_loss": 3.167044033661732,
+  "best_val_ppl": 23.737214143431203,
+  "reloaded_validation": {
+    "loss": 3.167044033661732,
+    "ppl": 23.737214143431203,
+    "tokens": 5792
+  },
+  "examples_after": [
+    {
+      "instruction": "提供一个分类任务，让GPT确定一个人是否已经完成大学教育。 年龄：28 学位：硕士 工作：没有",
+      "reference": "基于提供的年龄和学位，GPT可以确定这个人已经完成大学教育。",
+      "text": "，201年1月1日，2022年1月1日是星期六。",
+      "ended": true,
+      "generated_tokens": 25
+    },
+    {
+      "instruction": "将以下句子转换为被动语态。 句子： Tom 发现了一份工作。",
+      "reference": "一份工作被Tom发现了。",
+      "text": "我们的问题：我们的世界手机版，我是一个人类的人类的人类，我是一个人类的人类的人类的人类的人类的人类。",
+      "ended": true,
+      "generated_tokens": 51
+    },
+    {
+      "instruction": "创建一个简单的待办事项清单。 1. 水果店购买水果。 2. 向朋友回复电子邮件。 3. 洗衣服",
+      "reference": "待办事项清单：，1. 购买水果，2. 回复朋友的邮件，3. 洗衣服",
+      "text": "，2. 我们的电脑，2. 我推荐一个好的电子邮件，3. 我推荐一个好的电子邮件，3. 我推荐一个好，3. 我推荐一个好，3. 我",
+      "ended": false,
+      "generated_tokens": 64
+    }
+  ],
+  "improved_over_baseline": true,
+  "total_seconds": 148.70973790000426,
+  "completed": true
+}
