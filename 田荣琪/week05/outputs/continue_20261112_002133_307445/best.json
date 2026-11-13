@@ -1,0 +1,20 @@
+{
+  "update": 1500,
+  "epoch": 4,
+  "directory": "D:\\Project\\Lesson\\week05\\outputs\\continue_20261112_002133_307445\\checkpoints\\update_001500\\model",
+  "validation": {
+    "loss": 1.9151111225087207,
+    "token_accuracy": 0.5979102167182663,
+    "correct": 3090,
+    "targets": 5168,
+    "samples": 200
+  },
+  "train_probe": {
+    "loss": 1.450970456301625,
+    "token_accuracy": 0.6690865093768905,
+    "correct": 2212,
+    "targets": 3306,
+    "samples": 128
+  },
+  "state_sha256": "84aabddf66f8ecf20647b57735983bf585865965690ca009178bbbf62c08b39c"
+}

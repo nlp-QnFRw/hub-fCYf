@@ -1,0 +1,19 @@
+{
+  "mode": "train",
+  "model_source": "D:\\Project\\Lesson\\week04\\bert-base-chinese",
+  "length": 128,
+  "batch_size": 1,
+  "accumulation": 8,
+  "epochs": 1,
+  "learning_rate": 2e-05,
+  "seed": 42,
+  "train_seconds_cap": 2400,
+  "updates_cap": 400,
+  "python": "D:\\Anaconda3\\envs\\py312\\python.exe",
+  "script_sha256": "800b1d1052a7b94c35ddffeee4afc8d753a9271b37c5ad18b12b4c0274709a7b",
+  "planned_updates": 375,
+  "warmup_updates": 19,
+  "mixed_precision": "bfloat16",
+  "parameters": 102290312,
+  "trainable_parameters": 102290312
+}
