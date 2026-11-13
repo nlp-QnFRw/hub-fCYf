@@ -1,0 +1,15 @@
+{
+  "train": 3000,
+  "val": 200,
+  "max_len": 512,
+  "token_len": {
+    "p50": 51,
+    "p95": 75,
+    "max": 101
+  },
+  "answer_tokens": {
+    "min": 5,
+    "mean": 21.6
+  },
+  "truncated": 0
+}
