@@ -1,0 +1,52 @@
+# week05：在预训练模型（checkpoints/best.pt）上做 SFT（指令微调）
+#
+# 注意：transformer.* 与 hparams.num_layers / max_len 必须和预训练 checkpoint 完全一致，
+# 否则权重加载会失败。sft_train.py 启动时会拿 checkpoint 里的 cfg 做校验并以其为准。
+
+transformer:
+  # 模型结构（与 week04 预训练权重对应，不要改）
+  model_size: 128   # 模型维度
+  num_heads: 8      # 多头注意力头数
+  dropout: 0.1      # dropout 概率
+  d_ff: 512         # FFN 维度
+  act: gelu         # FFN 激活函数：relu / gelu
+  ln: true          # 是否使用 LayerNorm
+  causal: true      # 是否使用因果 mask
+
+hparams:
+  # 结构相关（与预训练一致）
+  num_layers: 6     # Transformer Block 层数
+  max_len: 128      # 位置编码长度 = 单条样本最大 token 数
+  seed: 42
+
+  # 词表（字符级，5343 个 token；与预训练 embedding 行数必须相同）
+  vocab_path: data/vocab.txt
+
+  # SFT 数据
+  sft_train_filename: sft_train.jsonl
+  sft_val_filename: sft_val.jsonl
+
+# SFT 训练超参
+sft:
+  # 起点：week04 预训练好的模型
+  init_ckpt: checkpoints/best.pt
+  # 产物：与预训练权重分开保存，避免覆盖 best.pt
+  save_path: checkpoints/sft_best.pt
+
+  batch_size: 32        # 每条样本 <=128 token，32 足够
+  epochs: 15            # SFT 一般 3~15 轮，配合早停
+  lr: 3e-4              # 小模型 + 3000 条数据，实测 3e-4 比 5e-5 收敛快得多
+  min_lr_ratio: 0.1     # 余弦退火到 lr * min_lr_ratio
+  warmup_ratio: 0.05    # 前 5% 的 step 线性 warmup
+  weight_decay: 0.01    # 只作用于 Linear / Embedding 权重，bias 与 LayerNorm 不衰减
+  label_smoothing: 0.0
+  grad_clip: 1.0
+  grad_accum_steps: 1   # 梯度累积，等效 batch = batch_size * grad_accum_steps
+  early_stop_patience: 4
+  log_every: 20         # 每 N 个 step 打印一次
+
+  # 验证阶段：Greedy 生成评估的样本条数（0 表示只算 loss）
+  eval_gen_samples: 10
+
+  # 生成相关
+  max_new_tokens: 80    # 最多生成多少个字符
