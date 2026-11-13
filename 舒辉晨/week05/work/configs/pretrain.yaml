@@ -1,0 +1,30 @@
+# 阶段一：预训练（续写器）
+# 目标：让模型学会「给定前文，猜下一个字」—— 这是所有 LLM 的地基。
+# 数据：问题和回答被拼成一条长流，没有模板、没有 mask，每个位置都算 loss。
+stage: pretrain
+seed: 1337
+
+data:
+  train: data/raw/sft_train.jsonl
+  val: data/raw/sft_val.jsonl
+  vocab: data/processed/vocab.json
+
+model:
+  n_layer: 6          # 4 层，够学格式级规律，又不至于在 3000 条数据上瞬间过拟合
+  n_head: 6
+  d_model: 384
+  block_size: 256     # 上下文长度：中文一条指令+回答大约 60~120 字，256 够用
+  dropout: 0.05
+
+train:
+  batch_size: 32
+  epochs: 25
+  lr: 1.0e-3
+  min_lr: 1.0e-4
+  warmup_steps: 60
+  weight_decay: 0.1
+  grad_clip: 1.0
+  log_interval: 10
+  eval_batches: 30
+  num_workers: 0
+  out_dir: outputs/pretrain
