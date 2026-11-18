@@ -1,0 +1,9 @@
+# Python 编译产物（自动生成，不入库）
+__pycache__/
+*.py[cod]
+
+# 常见虚拟环境 / 缓存目录
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
