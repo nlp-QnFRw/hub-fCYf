@@ -1,0 +1,43 @@
+{
+  "accuracy": 0.2,
+  "total": 5,
+  "correct": 1,
+  "unparseable": 3,
+  "results": [
+    {
+      "text": "小产权3500和大产权6500的房子，应该选哪个？",
+      "true_label": "农业",
+      "pred_label": null,
+      "raw_output": "房地产",
+      "correct": false
+    },
+    {
+      "text": "企业同时属于高新企业和科技型中小企业，研发费用如何扣除？",
+      "true_label": "财经",
+      "pred_label": "科技",
+      "raw_output": "科技",
+      "correct": false
+    },
+    {
+      "text": "步枪之王M416枪械搭配及实战运用",
+      "true_label": "电竞",
+      "pred_label": null,
+      "raw_output": "武器",
+      "correct": false
+    },
+    {
+      "text": "如何寻找转世灵童---探秘西藏活佛转世制度",
+      "true_label": "文化",
+      "pred_label": null,
+      "raw_output": "宗教",
+      "correct": false
+    },
+    {
+      "text": "华南师范大学，厦门大学和广东外语外贸大学谁更好？",
+      "true_label": "教育",
+      "pred_label": "教育",
+      "raw_output": "教育",
+      "correct": true
+    }
+  ]
+}
