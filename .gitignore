@@ -1,0 +1,14 @@
+# IDE —— 本地配置，含解释器路径与个人窗口布局
+.idea/
+.vscode/
+
+# Python 运行产物 —— .pyc 是解释器自动生成的字节码，随 Python 版本变化
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 系统
+Thumbs.db
+.DS_Store

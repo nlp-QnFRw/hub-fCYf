@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>THUCNews 分类方法对比实验</title>
+<style>
+ body{margin:0;background:#FAFAF8;color:#2C2C2A;font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.7}
+ .wrap{max-width:900px;margin:0 auto;padding:48px 28px 72px}
+ h1{font-size:26px;font-weight:500;margin:0 0 8px;letter-spacing:.2px}
+ .sub{color:#5F5E5A;font-size:14px;margin-bottom:28px}
+ h2{font-size:17px;font-weight:500;margin:38px 0 12px;padding-bottom:8px;border-bottom:1px solid #E3E1D9}
+ p{font-size:14px}
+ table{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0 8px;background:#fff;
+       border:1px solid #E3E1D9;border-radius:8px;overflow:hidden}
+ th{background:#F1EFE8;text-align:left;font-weight:500;padding:9px 12px;border-bottom:1px solid #E3E1D9}
+ td{padding:9px 12px;border-bottom:1px solid #F1EFE8}
+ tr:last-child td{border-bottom:none}
+ .num{text-align:right;font-variant-numeric:tabular-nums}
+ img{width:100%;border:1px solid #E3E1D9;border-radius:8px;margin:10px 0;background:#fff}
+ .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+ .card{background:#fff;border:1px solid #E3E1D9;border-radius:10px;padding:14px 16px}
+ .card .k{font-size:12px;color:#5F5E5A}
+ .card .v{font-size:20px;font-weight:500;margin-top:2px}
+ .note{background:#FAEEDA;border-left:3px solid #EF9F27;padding:10px 14px;font-size:13px;border-radius:0 6px 6px 0}
+ ul.concl{padding-left:20px;font-size:14px;margin:10px 0}
+ ul.concl li{margin:11px 0;line-height:1.75}
+ code{background:#F1EFE8;padding:1px 5px;border-radius:4px;font-size:12px}
+</style></head><body><div class="wrap">
+ <h1>THUCNews 十类新闻分类 · 方法对比实验</h1>
+ <div class="sub">数据集 THUCNews（49993 条 / 10 类）· 训练 40000 / 验证 8000
+ · 截断 256 字 · seed 42 · 预训练模型 MacBERT-base 与 rbt3</div>
+
+ <div class="cards">
+  <div class="card"><div class="k">语料规模</div><div class="v">49993</div></div>
+  <div class="card"><div class="k">全量重复率</div><div class="v">0.25%</div></div>
+  <div class="card"><div class="k">最优方法</div><div class="v">MacBERT 微调</div></div>
+ </div>
+
+ <h2>一、主结果</h2>
+ <table><thead><tr><th>方法</th><th class="num">准确率</th><th class="num">Macro-F1</th>
+ <th class="num">难例四类 F1</th><th class="num">参数量(M)</th><th class="num">训练耗时(s)</th><th class="num">解析失败</th></tr></thead>
+ <tbody><tr><td>MacBERT 微调</td><td class='num'>0.983</td><td class='num'><b>0.983</b></td><td class='num'>0.980</td><td class='num'>102.280</td><td class='num'>1086.900</td><td class='num'>0</td></tr><tr><td>rbt3 微调</td><td class='num'>0.977</td><td class='num'><b>0.977</b></td><td class='num'>0.975</td><td class='num'>38.480</td><td class='num'>311.300</td><td class='num'>0</td></tr><tr><td>TF-IDF + SVM</td><td class='num'>0.971</td><td class='num'><b>0.971</b></td><td class='num'>0.969</td><td class='num'>-</td><td class='num'>19.400</td><td class='num'>0</td></tr><tr><td>TextCNN 从零</td><td class='num'>0.952</td><td class='num'><b>0.952</b></td><td class='num'>0.949</td><td class='num'>0.840</td><td class='num'>31.500</td><td class='num'>0</td></tr><tr><td>规则·关键词表</td><td class='num'>0.540</td><td class='num'><b>0.549</b></td><td class='num'>0.403</td><td class='num'>-</td><td class='num'>-</td><td class='num'>0</td></tr><tr><td>Qwen3 零样本</td><td class='num'>0.495</td><td class='num'><b>0.495</b></td><td class='num'>0.561</td><td class='num'>-</td><td class='num'>-</td><td class='num'>91</td></tr><tr><td>规则·类名匹配</td><td class='num'>0.407</td><td class='num'><b>0.413</b></td><td class='num'>0.302</td><td class='num'>-</td><td class='num'>-</td><td class='num'>0</td></tr></tbody></table>
+ <img src="charts/methods.png" alt="方法对比">
+
+ <h2>二、难例子集：分数被天花板压平之后</h2>
+ <p>十类全量上 TF-IDF 已接近饱和，方法之间的差距被均值掩盖。只在 财经 / 房产 / 科技 / 家居
+ 这四类（业务上同属「金融 + 产业」，词面高度重叠）上重算 Macro-F1，才看得出谁真的更强。</p>
+ <img src="charts/hard_subset.png" alt="难例子集对比">
+
+ <h2>三、错误长什么样</h2>
+ <img src="charts/confusion.png" alt="混淆矩阵">
+
+  <h2>四、数据量实验</h2>
+  <p>固定验证集，只改训练集比例。若微调优势随数据减少而扩大，说明它赢在「预训练知识」而不是「模型更大」。</p>
+  <img src="charts/scale.png" alt="数据量曲线">
+  <table><thead><tr><th>训练条数</th><th>比例</th><th>TF-IDF F1</th><th>rbt3 F1</th><th>差距</th></tr></thead>
+  <tbody><tr><td class='num'>6000</td><td class='num'>15%</td><td class='num'>0.9583</td><td class='num'>0.9569</td><td class='num'>-0.0014</td></tr><tr><td class='num'>12000</td><td class='num'>30%</td><td class='num'>0.9623</td><td class='num'>0.9651</td><td class='num'>0.0028</td></tr><tr><td class='num'>24000</td><td class='num'>60%</td><td class='num'>0.9675</td><td class='num'>0.9715</td><td class='num'>0.004</td></tr><tr><td class='num'>40000</td><td class='num'>100%</td><td class='num'>0.9707</td><td class='num'>0.9769</td><td class='num'>0.0062</td></tr></tbody></table>
+
+ <h2>五、结论</h2>
+ <ul class="concl"><li><b>判别式微调仍是最优解</b>：MacBERT 微调取得 Macro-F1 0.9827，比规则关键词表（0.549）高 43 个点。</li><li><b>但本任务的边际收益被文本长度吃掉了</b>：TF-IDF 只用 19.4 秒达到 0.9707，与最优解只差 1.2 个点，训练耗时却相差 56 倍。正文（平均 900 字）里的类别词远比标题密集，字面特征已经够用。</li><li><b>小模型性价比最高</b>：rbt3 参数只有 38.48M（最优解的 38%），F1 达 0.9770，训练 311.3 秒。预算紧或要频繁重训时选它，不必上 base。</li><li><b>零样本可以兜底但不能上线</b>：Qwen3-0.6B 零样本 0.4952，覆盖 10/10 类，解析失败 91 条。它比规则法强，但仍低于有监督方案 48 个点——适合冷启动期临时过渡。</li><li><b>规则法只能做下限与快筛</b>：类名匹配 0.413、关键词表 0.549，在难例四类上更是跌到 0.30 / 0.40，说明同义改写的表述它完全接不住。</li><li><b>「小样本才是微调主场」在本任务不成立</b>：训练集 15% 时两者差距 -0.1 个点，升到 100% 后扩大到 +0.6 个点。原因是正文长、类别信号强，TF-IDF 在几千条时就已接近天花板，而微调的预训练优势需要更多数据才兑现。这条结论直接反驳了原项目在新闻标题上得到的规律——<b>方法选型不能跨任务照搬</b>。</li></ul>
+ <div class="note">本章表格与图表由 <code>eval/make_report.py</code> 依据 <code>outputs/*_pred.json</code>
+ 的逐条预测自动生成，结论文字也是从这些数字反推的，可复核。</div>
+</div></body></html>

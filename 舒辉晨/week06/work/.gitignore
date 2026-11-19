@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+data/
+outputs/
+pretrain_models/
+
