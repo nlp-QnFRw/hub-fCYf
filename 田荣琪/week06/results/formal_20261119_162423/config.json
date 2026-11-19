@@ -1,0 +1,43 @@
+{
+  "args": {
+    "smoke": false,
+    "epochs": 3,
+    "data_dir": "D:\\Project\\Lesson\\week03\\data\\langid\\v12",
+    "model_dir": "D:\\Project\\Lesson\\week04\\bert-base-chinese",
+    "methods": [
+      "tfidf",
+      "full_cls",
+      "full_mean",
+      "lora_mean"
+    ]
+  },
+  "seed": 42,
+  "labels": [
+    "ar",
+    "en",
+    "es",
+    "hi",
+    "ja",
+    "ko",
+    "pt",
+    "ru",
+    "th",
+    "tr",
+    "vi",
+    "zh"
+  ],
+  "python": "D:\\Anaconda3\\envs\\py312\\python.exe",
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.11.1",
+    "numpy": "2.3.1",
+    "safetensors": "0.8.0",
+    "tqdm": "4.70.0"
+  },
+  "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+  "base_weight_sha256": "8a693db616eaf647ed2bfe531e1fa446637358fc108a8bf04e8d4db17e837ee9",
+  "source_sha256": "12a667241aa6c2023585dffcee7af8ffe4b1cc0707adcccb2c9a01af2332a290"
+}

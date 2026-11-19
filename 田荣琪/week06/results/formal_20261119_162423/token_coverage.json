@@ -1,0 +1,189 @@
+{
+  "train": {
+    "ar": {
+      "tokens": 1799,
+      "unknown": 737,
+      "unknown_ratio": 0.40967204002223456
+    },
+    "en": {
+      "tokens": 1829,
+      "unknown": 230,
+      "unknown_ratio": 0.12575177692728268
+    },
+    "es": {
+      "tokens": 2074,
+      "unknown": 364,
+      "unknown_ratio": 0.1755062680810029
+    },
+    "hi": {
+      "tokens": 1435,
+      "unknown": 1354,
+      "unknown_ratio": 0.9435540069686411
+    },
+    "ja": {
+      "tokens": 2776,
+      "unknown": 294,
+      "unknown_ratio": 0.10590778097982709
+    },
+    "ko": {
+      "tokens": 1511,
+      "unknown": 1264,
+      "unknown_ratio": 0.8365320979483786
+    },
+    "pt": {
+      "tokens": 2006,
+      "unknown": 365,
+      "unknown_ratio": 0.18195413758723827
+    },
+    "ru": {
+      "tokens": 3203,
+      "unknown": 333,
+      "unknown_ratio": 0.1039650327817671
+    },
+    "th": {
+      "tokens": 235,
+      "unknown": 218,
+      "unknown_ratio": 0.9276595744680851
+    },
+    "tr": {
+      "tokens": 1529,
+      "unknown": 442,
+      "unknown_ratio": 0.289077828646174
+    },
+    "vi": {
+      "tokens": 1639,
+      "unknown": 1132,
+      "unknown_ratio": 0.6906650396583283
+    },
+    "zh": {
+      "tokens": 4476,
+      "unknown": 14,
+      "unknown_ratio": 0.003127792672028597
+    }
+  },
+  "dev": {
+    "ar": {
+      "tokens": 481,
+      "unknown": 197,
+      "unknown_ratio": 0.4095634095634096
+    },
+    "en": {
+      "tokens": 486,
+      "unknown": 61,
+      "unknown_ratio": 0.12551440329218108
+    },
+    "es": {
+      "tokens": 484,
+      "unknown": 76,
+      "unknown_ratio": 0.15702479338842976
+    },
+    "hi": {
+      "tokens": 343,
+      "unknown": 333,
+      "unknown_ratio": 0.9708454810495627
+    },
+    "ja": {
+      "tokens": 632,
+      "unknown": 69,
+      "unknown_ratio": 0.10917721518987342
+    },
+    "ko": {
+      "tokens": 434,
+      "unknown": 370,
+      "unknown_ratio": 0.8525345622119815
+    },
+    "pt": {
+      "tokens": 565,
+      "unknown": 85,
+      "unknown_ratio": 0.1504424778761062
+    },
+    "ru": {
+      "tokens": 938,
+      "unknown": 76,
+      "unknown_ratio": 0.08102345415778252
+    },
+    "th": {
+      "tokens": 53,
+      "unknown": 50,
+      "unknown_ratio": 0.9433962264150944
+    },
+    "tr": {
+      "tokens": 330,
+      "unknown": 125,
+      "unknown_ratio": 0.3787878787878788
+    },
+    "vi": {
+      "tokens": 434,
+      "unknown": 311,
+      "unknown_ratio": 0.716589861751152
+    },
+    "zh": {
+      "tokens": 906,
+      "unknown": 2,
+      "unknown_ratio": 0.002207505518763797
+    }
+  },
+  "test": {
+    "ar": {
+      "tokens": 910,
+      "unknown": 372,
+      "unknown_ratio": 0.4087912087912088
+    },
+    "en": {
+      "tokens": 970,
+      "unknown": 112,
+      "unknown_ratio": 0.1154639175257732
+    },
+    "es": {
+      "tokens": 998,
+      "unknown": 174,
+      "unknown_ratio": 0.1743486973947896
+    },
+    "hi": {
+      "tokens": 730,
+      "unknown": 703,
+      "unknown_ratio": 0.963013698630137
+    },
+    "ja": {
+      "tokens": 1509,
+      "unknown": 151,
+      "unknown_ratio": 0.10006626905235255
+    },
+    "ko": {
+      "tokens": 872,
+      "unknown": 731,
+      "unknown_ratio": 0.838302752293578
+    },
+    "pt": {
+      "tokens": 1083,
+      "unknown": 161,
+      "unknown_ratio": 0.14866112650046168
+    },
+    "ru": {
+      "tokens": 1705,
+      "unknown": 170,
+      "unknown_ratio": 0.09970674486803519
+    },
+    "th": {
+      "tokens": 118,
+      "unknown": 109,
+      "unknown_ratio": 0.923728813559322
+    },
+    "tr": {
+      "tokens": 725,
+      "unknown": 227,
+      "unknown_ratio": 0.31310344827586206
+    },
+    "vi": {
+      "tokens": 783,
+      "unknown": 562,
+      "unknown_ratio": 0.7177522349936143
+    },
+    "zh": {
+      "tokens": 2301,
+      "unknown": 5,
+      "unknown_ratio": 0.0021729682746631897
+    }
+  },
+  "token_collision_train_test": 57
+}

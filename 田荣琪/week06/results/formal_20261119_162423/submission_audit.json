@@ -1,0 +1,196 @@
+{
+  "status": "passed",
+  "file_count": 32,
+  "total_bytes": 1145224,
+  "maximum_file_bytes": 629167,
+  "files_above_100_MiB": [],
+  "scope": "允许清单与本实验轻量结果；本文件自身不参与内容摘要计算",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 15001,
+      "sha256": "033edb8eb09e73ef0ecf835437ad06df27c4fe3d1f477869087ddc1ef55e0eb0"
+    },
+    {
+      "path": "compare_classifiers.py",
+      "bytes": 13721,
+      "sha256": "12a667241aa6c2023585dffcee7af8ffe4b1cc0707adcccb2c9a01af2332a290"
+    },
+    {
+      "path": "infer_classifier.py",
+      "bytes": 1997,
+      "sha256": "d2ffcecf46734e34ee6983b64ab4f9e3c21eed364e4cefd1938febfc621ef39d"
+    },
+    {
+      "path": "report_results.py",
+      "bytes": 4597,
+      "sha256": "6d82f01bbee56f4ec9d4aff8d78abd96a718abcafb9855d512da47eb9faa2730"
+    },
+    {
+      "path": "test_comparison.py",
+      "bytes": 1481,
+      "sha256": "93cbeff3dfdbb15316f5544c7d706b4aa7118134d9e8d91f8cc135a777d20bac"
+    },
+    {
+      "path": "verify_delivery.py",
+      "bytes": 3855,
+      "sha256": "9eb885f9d48cb941de247c946f15da72c939a4991c4e31b4226a6b1dbae5e18d"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 151,
+      "sha256": "2f1b4e5e7c0478506dbfc070ce9cb5879d3393e2c0ab5307097b13a1bcc495a7"
+    },
+    {
+      "path": "experiment_settings.json",
+      "bytes": 781,
+      "sha256": "1bd2f424651f7923a65da205e313cb2a763d7a8cdc1b8ae1bf585afe39d64141"
+    },
+    {
+      "path": "TASK.md",
+      "bytes": 1241,
+      "sha256": "9d0cbaba556ee204d7053d5a3bbf796ac11fe3cc3cf57096e00e6fdc4d031fd1"
+    },
+    {
+      "path": "PLANS.md",
+      "bytes": 3398,
+      "sha256": "6e53490094e2a50cf230619c5c9a0b28fb9fd16acdcb5395f32e45e770ef4775"
+    },
+    {
+      "path": "PROGRESS.md",
+      "bytes": 7876,
+      "sha256": "d098226964c620d61553fd57ca8725541d3213e8d5e8176a06b095f17c881c6f"
+    },
+    {
+      "path": "DECISIONS.md",
+      "bytes": 2257,
+      "sha256": "adbf587d072deada28bebb9149c63f156ceeca5ba52ca9ab831eba6c7239bf1c"
+    },
+    {
+      "path": "SUBMISSION.md",
+      "bytes": 3966,
+      "sha256": "e4adfdcf8139937c5310dc6487d2f426aee7d1223851f8758542da3b1b15cd85"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 81,
+      "sha256": "2d7a50a81f265d444badc74869d3f67dfdb97a0b71071fffb6ca79737a76c5c4"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\checks.json",
+      "bytes": 474,
+      "sha256": "743ae585c4d241ae5bd53932b4c42fef33cb9e1852104bed1fe4c57c31d6c8ab"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\comparison.png",
+      "bytes": 51343,
+      "sha256": "5a04b7a31e216a02ad36f0c45c0a556ae78785b274b673c69761032454dbcd64"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\config.json",
+      "bytes": 990,
+      "sha256": "9ab7e288c60069b62f0286b3fdab817f3c598050a6cefe220d47479ca018b8f8"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\data_audit.json",
+      "bytes": 1271,
+      "sha256": "5f073b6b79666098d009764656c940cad58140f869c25390c9cf3c417d982e91"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\error_analysis.json",
+      "bytes": 17293,
+      "sha256": "e37300e6a0a87a5dc51af133df8c55051b5e8c7c1b61c5e575739fe3d7ce64bf"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\full_cls_confusion.png",
+      "bytes": 40164,
+      "sha256": "4c9dae24aecf8c2ba0c6a9bb326917759c1122e03957175a90343e8726de511f"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\full_cls_history.json",
+      "bytes": 8226,
+      "sha256": "60570d1f0a6543d7c400f95e9786a293e73211b164f79865760896fb0bbee826"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\full_mean_confusion.png",
+      "bytes": 41009,
+      "sha256": "50b400a6deba11e7ddb447fdc8a746656fe84f77e913d093ee62020a7ade443f"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\full_mean_history.json",
+      "bytes": 8149,
+      "sha256": "444371524c60e72999e00837144452275049e42a951073d697e934ded721cf7c"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\learning_curves.png",
+      "bytes": 120947,
+      "sha256": "9f784176e430838529065df7b9ce45ddd3923ad980f2f0d0e39d840f4d1ac091"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\lora_mean_confusion.png",
+      "bytes": 41273,
+      "sha256": "5ca3cb56bb6c8a6e8516c196d64b9eaa87882089b48a82339c37981bec110029"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\lora_mean_history.json",
+      "bytes": 8204,
+      "sha256": "7685737d41c48ebb1521353d83bd4faf8f1dae97df20d4c2d16ac4f368ca0689"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\per_class.csv",
+      "bytes": 1058,
+      "sha256": "1a4c15842a88a3f10f3eef98436522ac10765e3dd2f5a70682d2808838d755e0"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\RESULTS.md",
+      "bytes": 598,
+      "sha256": "b53da4257c0e64790a6df0d2aa84d1bbabd9d2d0713ccdc70fac99f7289391d2"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\split_indices.json",
+      "bytes": 629167,
+      "sha256": "24e558ed79da108fd897e35aa780bb9cd8f4d2f3bc51fdf19710886c1088ee5e"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\summary.json",
+      "bytes": 71093,
+      "sha256": "b33294b73937aaf5b3331291ca5d977971b8d683afbfb060851645b61840c67b"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\tfidf_confusion.png",
+      "bytes": 39522,
+      "sha256": "df86143bad9b8019f302eae4555b315a23d419410291f1db6273fb3a5ed07f2f"
+    },
+    {
+      "path": "results\\formal_20261119_162423\\token_coverage.json",
+      "bytes": 4040,
+      "sha256": "590328990455395170dc2b4040728c791e6c0e7a01db4f67a7f5955bf51b0abe"
+    }
+  ],
+  "excluded_large_weights": [
+    {
+      "path": "experiments\\formal_20261119_162423\\full_cls\\best.safetensors",
+      "bytes": 409130976
+    },
+    {
+      "path": "experiments\\formal_20261119_162423\\full_mean\\best.safetensors",
+      "bytes": 409130976
+    },
+    {
+      "path": "experiments\\formal_20261119_162423\\lora_mean\\best.safetensors",
+      "bytes": 1223760
+    },
+    {
+      "path": "experiments\\smoke_20261119_162052\\full_cls\\best.safetensors",
+      "bytes": 409130976
+    },
+    {
+      "path": "experiments\\smoke_20261119_162052\\full_mean\\best.safetensors",
+      "bytes": 409130976
+    },
+    {
+      "path": "experiments\\smoke_20261119_162052\\lora_mean\\best.safetensors",
+      "bytes": 1223760
+    }
+  ]
+}

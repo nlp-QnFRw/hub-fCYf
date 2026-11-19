@@ -1,0 +1,63 @@
+{
+  "train": {
+    "source_sha256": "af9c94ff241ace66f73698f1dd1c9cc28cebe26ceba763b29d37cb632b165f81",
+    "original": 9600,
+    "removed": 0,
+    "selected": 2400,
+    "counts": {
+      "ar": 200,
+      "en": 200,
+      "es": 200,
+      "hi": 200,
+      "ja": 200,
+      "ko": 200,
+      "pt": 200,
+      "ru": 200,
+      "th": 200,
+      "tr": 200,
+      "vi": 200,
+      "zh": 200
+    }
+  },
+  "dev": {
+    "source_sha256": "1121761916cebf214449d4792a2931e9cbe93b9d6e8ce51b00718388fb88e540",
+    "original": 1200,
+    "removed": 0,
+    "selected": 600,
+    "counts": {
+      "ar": 50,
+      "en": 50,
+      "es": 50,
+      "hi": 50,
+      "ja": 50,
+      "ko": 50,
+      "pt": 50,
+      "ru": 50,
+      "th": 50,
+      "tr": 50,
+      "vi": 50,
+      "zh": 50
+    }
+  },
+  "test": {
+    "source_sha256": "04f8a238395338aaa456fd39e45e88ba0efa9e02b7a724a2a5b0cba3675592d0",
+    "original": 1800,
+    "removed": 0,
+    "selected": 1200,
+    "counts": {
+      "ar": 100,
+      "en": 100,
+      "es": 100,
+      "hi": 100,
+      "ja": 100,
+      "ko": 100,
+      "pt": 100,
+      "ru": 100,
+      "th": 100,
+      "tr": 100,
+      "vi": 100,
+      "zh": 100
+    }
+  },
+  "normalized_cross_split_overlap": 0
+}
