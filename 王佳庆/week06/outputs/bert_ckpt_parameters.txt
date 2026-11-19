@@ -1,0 +1,39 @@
+log_name:bert_train_log_4.json	
+args:{'pool': 'mean', 'epochs': 5, 'batch_size': 64, 'lr': 2e-05, 'head_lr_mult': 5.0, 'max_length': 64, 'no_class_weight': False, 'label_smoothing': 0.0, 'focal_gamma': 0.0, 'fgm': False, 'fgm_eps': 1.0, 'max_steps': 0, 'max_eval': 0, 'no_save': False}
+
+log_name:bert_train_log_6.json
+args:{'pool': 'cls', 'epochs': 3, 'patience': 3, 'min_delta': 0.0, 'batch_size': 64, 'lr': 2e-05, 'head_lr_mult': 5.0, 'max_length': 64, 'no_class_weight': False, 'label_smoothing': 0.0, 'focal_gamma': 0.0, 'fgm': False, 'fgm_eps': 1.0, 'max_steps': 0, 'max_eval': 0, 'no_save': False}
+val Macro-F1 = 0.5669
+
+log_name:bert_train_log_7.json
+args:{'pool': 'cls', 'epochs': 10, 'patience': 3, 'min_delta': 0.0, 'batch_size': 64, 'lr': 2e-05, 'head_lr_mult': 5.0, 'max_length': 64, 'no_class_weight': False, 'label_smoothing': 0.0, 'focal_gamma': 0.0, 'fgm': False, 'fgm_eps': 1.0, 'max_steps': 0, 'max_eval': 0, 'no_save': False}
+val Macro-F1 = 0.5821
+
+log_name:bert_train_log_8.json
+args:{'pool': 'max', 'epochs': 10, 'patience': 3, 'min_delta': 0.015, 'batch_size': 64, 'lr': 2e-05, 'head_lr_mult': 5.0, 'max_length': 64, 'no_class_weight': False, 'label_smoothing': 0.0, 'focal_gamma': 0.0, 'fgm': False, 'fgm_eps': 1.0, 'max_steps': 0, 'max_eval': 0, 'no_save': False}
+val Macro-F1 = 0.5671
+
+log_name:bert_train_log_9.json
+args:{'pool': 'mean', 'epochs': 10, 'patience': 3, 'min_delta': 0.015, 'batch_size': 64, 'lr': 2e-05, 'head_lr_mult': 5.0, 'max_length': 64, 'no_class_weight': False, 'label_smoothing': 0.0, 'focal_gamma': 0.0, 'fgm': False, 'fgm_eps': 1.0, 'max_steps': 0, 'max_eval': 0, 'no_save': False}
+val Macro-F1 = 0.5646
+
+log_name:bert_train_log_10.json
+args:{'pool': 'cls', 'epochs': 10, 'patience': 3, 'min_delta': 0.015, 'batch_size': 64, 'lr': 2e-05, 'head_lr_mult': 5.0, 'max_length': 64, 'no_class_weight': True, 'label_smoothing': 0.0, 'focal_gamma': 0.0, 'fgm': False, 'fgm_eps': 1.0, 'max_steps': 0, 'max_eval': 0, 'no_save': False}
+val Macro-F1 = 0.5725
+
+log_name:bert_train_log_11.json
+args:{'pool': 'cls', 'epochs': 10, 'patience': 0, 'min_delta': 0.005, 'batch_size': 64, 'lr': 2e-05, 'head_lr_mult': 5.0, 'max_length': 64, 'no_class_weight': False, 'label_smoothing': 0.1, 'focal_gamma': 0.0, 'fgm': False, 'fgm_eps': 1.0, 'max_steps': 0, 'max_eval': 0, 'no_save': False}
+val Macro-F1 = 0.5774
+
+log_name:bert_train_log_12.json
+args:{'pool': 'cls', 'epochs': 10, 'patience': 0, 'min_delta': 0.005, 'batch_size': 64, 'lr': 2e-05, 'head_lr_mult': 5.0, 'max_length': 64, 'no_class_weight': False, 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'fgm': False, 'fgm_eps': 1.0, 'max_steps': 0, 'max_eval': 0, 'no_save': False}
+val Macro-F1 = 0.5809
+
+log_name:bert_train_log_13.json
+args:{'pool': 'cls', 'epochs': 10, 'patience': 0, 'min_delta': 0.005, 'batch_size': 64, 'lr': 2e-05, 'head_lr_mult': 5.0, 'max_length': 64, 'no_class_weight': False, 'label_smoothing': 0.0, 'focal_gamma': 0.0, 'fgm': True, 'fgm_eps': 1.0, 'max_steps': 0, 'max_eval': 0, 'no_save': False}
+val Macro-F1 = 0.582
+
+log_name:bert_train_log_14.json
+args:{'pool': 'cls', 'epochs': 10, 'patience': 0, 'min_delta': 0.005, 'batch_size': 64, 'lr': 2e-05, 'head_lr_mult': 5.0, 'max_length': 64, 'no_class_weight': False, 'label_smoothing': 0.0, 'focal_gamma': 0.0, 'fgm': True, 'fgm_eps': 0.5, 'max_steps': 0, 'max_eval': 0, 'no_save': False}
+val Macro-F1 = 0.5833
+

@@ -1,0 +1,56 @@
+{
+  "framework": "pytorch",
+  "task": "fill-mask",
+  "model": {
+      "type": "structbert",
+      "language": "zh"
+  },
+  "pipeline": {
+      "type": "fill-mask"
+  },
+  "preprocessor": {
+      "type": "fill-mask"
+  },
+  "train": {
+      "work_dir": "/tmp",
+      "max_epochs": 5,
+      "dataloader": {
+          "batch_size_per_gpu": 32,
+          "workers_per_gpu": 1
+      },
+      "optimizer": {
+          "type": "AdamW",
+          "lr": 2e-5,
+          "options": {}
+      },
+      "lr_scheduler": {
+          "type": "LinearLR",
+          "start_factor": 1.0,
+          "end_factor": 0.0,
+          "total_iters": null,
+          "options": { 
+              "by_epoch": false
+          }
+      },
+      "hooks": [{
+          "type": "CheckpointHook",
+          "interval": 1
+      }, {
+          "type": "TextLoggerHook",
+          "interval": 1
+      }, {
+          "type": "IterTimerHook"
+      }, {
+          "type": "EvaluationHook",
+          "by_epoch": false,
+          "interval": 100
+      }]
+  },
+  "evaluation": {
+      "dataloader": {
+          "batch_size_per_gpu": 32,
+          "workers_per_gpu": 1,
+          "shuffle": false
+      }
+  }
+}
