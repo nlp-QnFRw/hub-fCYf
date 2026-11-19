@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "model_dir": "E:\\project\\py-project\\badou\\nlp-study\\王振飞\\week06\\code\\pretrain_models\\roberta-chinese",
+  "model_files": {
+    "config.json": "8ea5cd975b03ac3f657b372f643ff5893e54b1d8ca24ba14156fd429b650ce06",
+    "configuration.json": "5f751dd2d690ad1332ebc6912e7a5c420822c0d9e85d7a96e9737febd88212a2",
+    "pytorch_model.bin": "e0ffd1803dbbad6015bd367311d0b56f2b1a646be103edbd3a3ce4c818bd784b",
+    "vocab.txt": "09105b31dc888761488116f539fc18401c3e86e2659441d0306aebe5c8be29b6"
+  },
+  "train_sha256": "2975cc56abb68bc25b92d771276743258629dd8e5853edc6b6d6487e0867c4c2",
+  "val_sha256": "3346dc1b9640c6cf8cdd2bb3f26cac90c5510c4136f6392ed60874ad9e0dfcbb",
+  "n_train": 53360,
+  "n_eval": 8901,
+  "duplicates_removed": 1099,
+  "epochs": 3,
+  "batch_size": 64,
+  "lr": 2e-05,
+  "seed": 42,
+  "max_steps": 0,
+  "max_eval": 0,
+  "no_model": false
+}
