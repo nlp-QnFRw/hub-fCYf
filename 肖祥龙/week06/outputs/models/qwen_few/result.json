@@ -1,0 +1,178 @@
+{
+  "method": "qwen_few",
+  "title": "Qwen3 Few-shot",
+  "family": "qwen",
+  "options": {
+    "mode": "few"
+  },
+  "threads": 8,
+  "seed": 42,
+  "labels": [
+    "ecomm",
+    "news",
+    "spoken",
+    "tech"
+  ],
+  "train_count": 0,
+  "validation_count": 741,
+  "test_count": 742,
+  "demos": [
+    [
+      851,
+      "瑕疵捡漏特惠 实木卷纸架厨用纸巾架马克杯架水杯架 钥匙收纳挂架",
+      "ecomm"
+    ],
+    [
+      3187,
+      "化学馆是仿照康乃尔大学化学馆建造的,沈理源设计,采用近代折衷式、装饰派风格。",
+      "news"
+    ],
+    [
+      6312,
+      "亲,您的订单不是我们guan'bi",
+      "spoken"
+    ],
+    [
+      4162,
+      "目前所有区域均升级至DataWorks V2.0版本。",
+      "tech"
+    ]
+  ],
+  "epochs": 0,
+  "qwen_prompt_cache": true,
+  "hyperparameters": {
+    "fit_seconds": 0.0,
+    "precision": "float32",
+    "system_prompt": "你是中文文本分类器，按文本的语体选一个类别。A：电商商品标题或描述。B：新闻报道、书面叙述。C：日常口语、对话或随口表达。D：技术文档、产品技术说明。只回答对应的大写字母 A、B、C 或 D。",
+    "text_length": 96,
+    "demo_length": 48,
+    "context_length": 512,
+    "label_tokens": {
+      "ecomm": 32,
+      "news": 33,
+      "spoken": 34,
+      "tech": 35
+    },
+    "total_parameters": 596049920,
+    "trainable_parameters": 0
+  },
+  "schema": 1,
+  "dataset_sha256": "1346802260b776025c958dc2a67e8bfca86aaaae6740caba0fd13197e2bebafa",
+  "history": [],
+  "validation": {
+    "macro_f1": 0.10626992561105207,
+    "weighted_f1": 0.1147313636826473,
+    "accuracy": 0.2699055330634278,
+    "classes": {
+      "ecomm": {
+        "precision": 0.2699055330634278,
+        "recall": 1.0,
+        "f1-score": 0.4250797024442083,
+        "support": 200.0
+      },
+      "news": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 200.0
+      },
+      "spoken": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 141.0
+      },
+      "tech": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 200.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        200,
+        0,
+        0,
+        0
+      ],
+      [
+        200,
+        0,
+        0,
+        0
+      ],
+      [
+        141,
+        0,
+        0,
+        0
+      ],
+      [
+        200,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "test": {
+    "macro_f1": 0.10615711252653928,
+    "weighted_f1": 0.11445510784532538,
+    "accuracy": 0.2695417789757412,
+    "classes": {
+      "ecomm": {
+        "precision": 0.2695417789757412,
+        "recall": 1.0,
+        "f1-score": 0.42462845010615713,
+        "support": 200.0
+      },
+      "news": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 200.0
+      },
+      "spoken": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 142.0
+      },
+      "tech": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 200.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        200,
+        0,
+        0,
+        0
+      ],
+      [
+        200,
+        0,
+        0,
+        0
+      ],
+      [
+        142,
+        0,
+        0,
+        0
+      ],
+      [
+        200,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "test_seconds": 44.23189990001265,
+  "total_seconds": 95.38943320000544
+}

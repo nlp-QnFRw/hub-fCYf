@@ -1,0 +1,23 @@
+{
+  "method": "tfidf_svm",
+  "title": "TF-IDF + 线性 SVM",
+  "family": "tfidf",
+  "options": {},
+  "threads": 8,
+  "seed": 42,
+  "labels": [
+    "ecomm",
+    "news",
+    "spoken",
+    "tech"
+  ],
+  "train_count": 5928,
+  "validation_count": 741,
+  "test_count": 742,
+  "demos": [],
+  "epochs": 0,
+  "hyperparameters": {
+    "C": 0.5,
+    "fit_seconds": 1.1907152000349015
+  }
+}

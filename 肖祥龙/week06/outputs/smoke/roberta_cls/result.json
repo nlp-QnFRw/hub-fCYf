@@ -1,0 +1,180 @@
+{
+  "method": "roberta_cls",
+  "title": "RoBERTa CLS 池化",
+  "family": "roberta",
+  "options": {
+    "pool": "cls",
+    "loss": "ce"
+  },
+  "threads": 8,
+  "seed": 42,
+  "labels": [
+    "ecomm",
+    "news",
+    "spoken",
+    "tech"
+  ],
+  "train_count": 16,
+  "validation_count": 12,
+  "test_count": 12,
+  "demos": [],
+  "epochs": 1,
+  "hyperparameters": {
+    "fit_seconds": 2.5393626999575645,
+    "precision": "float32",
+    "batch_size": 16,
+    "gradient_accumulation": 1,
+    "learning_rate": 2e-05,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01,
+    "max_length": 128,
+    "total_parameters": 101680132,
+    "trainable_parameters": 101680132,
+    "optimizer_steps": 1,
+    "warmup_steps": 0,
+    "gradient_clip": 1.0,
+    "token_lengths": {
+      "10": 2,
+      "13": 1,
+      "14": 1,
+      "28": 1,
+      "30": 2,
+      "31": 3,
+      "32": 1,
+      "34": 1,
+      "37": 1,
+      "46": 1,
+      "65": 1,
+      "107": 1
+    },
+    "best_epoch": 1,
+    "peak_working_set_gib": 2.6410369873046875
+  },
+  "schema": 1,
+  "dataset_sha256": "1346802260b776025c958dc2a67e8bfca86aaaae6740caba0fd13197e2bebafa",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.4451079368591309,
+      "validation_macro_f1": 0.07692307692307693,
+      "fit_seconds": 2.5393626999575645,
+      "validation_seconds": 0.2370822000084445
+    }
+  ],
+  "validation": {
+    "macro_f1": 0.07692307692307693,
+    "weighted_f1": 0.07692307692307693,
+    "accuracy": 0.16666666666666666,
+    "classes": {
+      "ecomm": {
+        "precision": 0.2,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.3076923076923077,
+        "support": 3.0
+      },
+      "news": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "spoken": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "tech": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        2,
+        0,
+        0,
+        1
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        1
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "test": {
+    "macro_f1": 0.18333333333333335,
+    "weighted_f1": 0.18333333333333335,
+    "accuracy": 0.25,
+    "classes": {
+      "ecomm": {
+        "precision": 0.2222222222222222,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.3333333333333333,
+        "support": 3.0
+      },
+      "news": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "spoken": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "tech": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.4,
+        "support": 3.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        2,
+        0,
+        0,
+        1
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        1,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        1
+      ]
+    ]
+  },
+  "test_seconds": 0.22277899994514883,
+  "total_seconds": 8.139415099984035
+}

@@ -1,0 +1,180 @@
+{
+  "method": "roberta_mean",
+  "title": "RoBERTa Mean 池化",
+  "family": "roberta",
+  "options": {
+    "pool": "mean",
+    "loss": "ce"
+  },
+  "threads": 8,
+  "seed": 42,
+  "labels": [
+    "ecomm",
+    "news",
+    "spoken",
+    "tech"
+  ],
+  "train_count": 16,
+  "validation_count": 12,
+  "test_count": 12,
+  "demos": [],
+  "epochs": 1,
+  "hyperparameters": {
+    "fit_seconds": 2.732345200027339,
+    "precision": "float32",
+    "batch_size": 16,
+    "gradient_accumulation": 1,
+    "learning_rate": 2e-05,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01,
+    "max_length": 128,
+    "total_parameters": 101680132,
+    "trainable_parameters": 101680132,
+    "optimizer_steps": 1,
+    "warmup_steps": 0,
+    "gradient_clip": 1.0,
+    "token_lengths": {
+      "10": 2,
+      "13": 1,
+      "14": 1,
+      "28": 1,
+      "30": 2,
+      "31": 3,
+      "32": 1,
+      "34": 1,
+      "37": 1,
+      "46": 1,
+      "65": 1,
+      "107": 1
+    },
+    "best_epoch": 1,
+    "peak_working_set_gib": 2.6557998657226562
+  },
+  "schema": 1,
+  "dataset_sha256": "1346802260b776025c958dc2a67e8bfca86aaaae6740caba0fd13197e2bebafa",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.3948084115982056,
+      "validation_macro_f1": 0.17045454545454547,
+      "fit_seconds": 2.732345200027339,
+      "validation_seconds": 0.23008310003206134
+    }
+  ],
+  "validation": {
+    "macro_f1": 0.17045454545454547,
+    "weighted_f1": 0.17045454545454544,
+    "accuracy": 0.16666666666666666,
+    "classes": {
+      "ecomm": {
+        "precision": 0.125,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.18181818181818182,
+        "support": 3.0
+      },
+      "news": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 3.0
+      },
+      "spoken": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "tech": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        1,
+        0,
+        0,
+        2
+      ],
+      [
+        2,
+        1,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        1
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "test": {
+    "macro_f1": 0.0,
+    "weighted_f1": 0.0,
+    "accuracy": 0.0,
+    "classes": {
+      "ecomm": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "news": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "spoken": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "tech": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        0,
+        0,
+        0,
+        3
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        2,
+        0,
+        0
+      ]
+    ]
+  },
+  "test_seconds": 0.31535859999712557,
+  "total_seconds": 8.362148000043817
+}

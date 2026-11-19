@@ -1,0 +1,54 @@
+{
+  "method": "roberta_focal",
+  "title": "RoBERTa Focal Loss",
+  "family": "roberta",
+  "options": {
+    "pool": "cls",
+    "loss": "focal",
+    "gamma": 2.0
+  },
+  "threads": 8,
+  "seed": 42,
+  "labels": [
+    "ecomm",
+    "news",
+    "spoken",
+    "tech"
+  ],
+  "train_count": 16,
+  "validation_count": 12,
+  "test_count": 12,
+  "demos": [],
+  "epochs": 1,
+  "hyperparameters": {
+    "fit_seconds": 2.667538599926047,
+    "precision": "float32",
+    "batch_size": 16,
+    "gradient_accumulation": 1,
+    "learning_rate": 2e-05,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01,
+    "max_length": 128,
+    "total_parameters": 101680132,
+    "trainable_parameters": 101680132,
+    "optimizer_steps": 1,
+    "warmup_steps": 0,
+    "gradient_clip": 1.0,
+    "token_lengths": {
+      "10": 2,
+      "13": 1,
+      "14": 1,
+      "28": 1,
+      "30": 2,
+      "31": 3,
+      "32": 1,
+      "34": 1,
+      "37": 1,
+      "46": 1,
+      "65": 1,
+      "107": 1
+    },
+    "best_epoch": 1,
+    "peak_working_set_gib": 2.6505165100097656
+  }
+}

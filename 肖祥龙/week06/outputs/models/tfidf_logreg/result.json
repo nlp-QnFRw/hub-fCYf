@@ -1,0 +1,155 @@
+{
+  "method": "tfidf_logreg",
+  "title": "TF-IDF + 逻辑回归",
+  "family": "tfidf",
+  "options": {},
+  "threads": 8,
+  "seed": 42,
+  "labels": [
+    "ecomm",
+    "news",
+    "spoken",
+    "tech"
+  ],
+  "train_count": 5928,
+  "validation_count": 741,
+  "test_count": 742,
+  "demos": [],
+  "epochs": 0,
+  "hyperparameters": {
+    "C": 2.0,
+    "fit_seconds": 2.8172549000009894
+  },
+  "schema": 1,
+  "dataset_sha256": "1346802260b776025c958dc2a67e8bfca86aaaae6740caba0fd13197e2bebafa",
+  "history": [
+    {
+      "C": 0.5,
+      "validation_macro_f1": 0.8033628719255372
+    },
+    {
+      "C": 1.0,
+      "validation_macro_f1": 0.7988192741947031
+    },
+    {
+      "C": 2.0,
+      "validation_macro_f1": 0.8057756725872758
+    }
+  ],
+  "validation": {
+    "macro_f1": 0.8057756725872758,
+    "weighted_f1": 0.8156173765915206,
+    "accuracy": 0.8178137651821862,
+    "classes": {
+      "ecomm": {
+        "precision": 0.941747572815534,
+        "recall": 0.97,
+        "f1-score": 0.9556650246305419,
+        "support": 200.0
+      },
+      "news": {
+        "precision": 0.7348837209302326,
+        "recall": 0.79,
+        "f1-score": 0.7614457831325301,
+        "support": 200.0
+      },
+      "spoken": {
+        "precision": 0.7521367521367521,
+        "recall": 0.624113475177305,
+        "f1-score": 0.6821705426356589,
+        "support": 141.0
+      },
+      "tech": {
+        "precision": 0.8177339901477833,
+        "recall": 0.83,
+        "f1-score": 0.8238213399503722,
+        "support": 200.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        194,
+        0,
+        1,
+        5
+      ],
+      [
+        5,
+        158,
+        18,
+        19
+      ],
+      [
+        5,
+        35,
+        88,
+        13
+      ],
+      [
+        2,
+        22,
+        10,
+        166
+      ]
+    ]
+  },
+  "test": {
+    "macro_f1": 0.8548430910270621,
+    "weighted_f1": 0.8622809397813663,
+    "accuracy": 0.8638814016172507,
+    "classes": {
+      "ecomm": {
+        "precision": 0.9707317073170731,
+        "recall": 0.995,
+        "f1-score": 0.9827160493827161,
+        "support": 200.0
+      },
+      "news": {
+        "precision": 0.7802690582959642,
+        "recall": 0.87,
+        "f1-score": 0.8226950354609929,
+        "support": 200.0
+      },
+      "spoken": {
+        "precision": 0.8448275862068966,
+        "recall": 0.6901408450704225,
+        "f1-score": 0.7596899224806202,
+        "support": 142.0
+      },
+      "tech": {
+        "precision": 0.8585858585858586,
+        "recall": 0.85,
+        "f1-score": 0.8542713567839196,
+        "support": 200.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        199,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        174,
+        11,
+        14
+      ],
+      [
+        4,
+        27,
+        98,
+        13
+      ],
+      [
+        1,
+        22,
+        7,
+        170
+      ]
+    ]
+  },
+  "test_seconds": 0.022685899981297553,
+  "total_seconds": 3.200409199926071
+}

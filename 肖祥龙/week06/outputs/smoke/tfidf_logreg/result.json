@@ -1,0 +1,155 @@
+{
+  "method": "tfidf_logreg",
+  "title": "TF-IDF + 逻辑回归",
+  "family": "tfidf",
+  "options": {},
+  "threads": 8,
+  "seed": 42,
+  "labels": [
+    "ecomm",
+    "news",
+    "spoken",
+    "tech"
+  ],
+  "train_count": 16,
+  "validation_count": 12,
+  "test_count": 12,
+  "demos": [],
+  "epochs": 0,
+  "hyperparameters": {
+    "C": 2.0,
+    "fit_seconds": 0.012449300033040345
+  },
+  "schema": 1,
+  "dataset_sha256": "1346802260b776025c958dc2a67e8bfca86aaaae6740caba0fd13197e2bebafa",
+  "history": [
+    {
+      "C": 0.5,
+      "validation_macro_f1": 0.2153846153846154
+    },
+    {
+      "C": 1.0,
+      "validation_macro_f1": 0.31666666666666665
+    },
+    {
+      "C": 2.0,
+      "validation_macro_f1": 0.41666666666666663
+    }
+  ],
+  "validation": {
+    "macro_f1": 0.41666666666666663,
+    "weighted_f1": 0.4166666666666667,
+    "accuracy": 0.4166666666666667,
+    "classes": {
+      "ecomm": {
+        "precision": 0.4,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.5,
+        "support": 3.0
+      },
+      "news": {
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.6666666666666666,
+        "support": 3.0
+      },
+      "spoken": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 3.0
+      },
+      "tech": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        2,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        2,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        0
+      ]
+    ]
+  },
+  "test": {
+    "macro_f1": 0.29166666666666663,
+    "weighted_f1": 0.2916666666666667,
+    "accuracy": 0.3333333333333333,
+    "classes": {
+      "ecomm": {
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.6666666666666666,
+        "support": 3.0
+      },
+      "news": {
+        "precision": 0.4,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.5,
+        "support": 3.0
+      },
+      "spoken": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "tech": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        2,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        2,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        3,
+        0,
+        0
+      ]
+    ]
+  },
+  "test_seconds": 0.0005455999635159969,
+  "total_seconds": 0.05634939996525645
+}

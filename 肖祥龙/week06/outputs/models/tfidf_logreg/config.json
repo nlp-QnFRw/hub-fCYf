@@ -1,0 +1,23 @@
+{
+  "method": "tfidf_logreg",
+  "title": "TF-IDF + 逻辑回归",
+  "family": "tfidf",
+  "options": {},
+  "threads": 8,
+  "seed": 42,
+  "labels": [
+    "ecomm",
+    "news",
+    "spoken",
+    "tech"
+  ],
+  "train_count": 5928,
+  "validation_count": 741,
+  "test_count": 742,
+  "demos": [],
+  "epochs": 0,
+  "hyperparameters": {
+    "C": 2.0,
+    "fit_seconds": 2.8172549000009894
+  }
+}

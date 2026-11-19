@@ -1,0 +1,196 @@
+{
+  "method": "qwen_lora",
+  "title": "Qwen3 LoRA",
+  "family": "qwen",
+  "options": {
+    "mode": "lora",
+    "rank": 8,
+    "alpha": 16,
+    "lora_dropout": 0.05
+  },
+  "threads": 8,
+  "seed": 42,
+  "labels": [
+    "ecomm",
+    "news",
+    "spoken",
+    "tech"
+  ],
+  "train_count": 16,
+  "validation_count": 12,
+  "test_count": 12,
+  "demos": [],
+  "epochs": 1,
+  "hyperparameters": {
+    "fit_seconds": 8.915767800062895,
+    "precision": "float32",
+    "system_prompt": "你是中文文本分类器，按文本的语体选一个类别。A：电商商品标题或描述。B：新闻报道、书面叙述。C：日常口语、对话或随口表达。D：技术文档、产品技术说明。只回答对应的大写字母 A、B、C 或 D。",
+    "text_length": 96,
+    "demo_length": 48,
+    "context_length": 512,
+    "label_tokens": {
+      "ecomm": 32,
+      "news": 33,
+      "spoken": 34,
+      "tech": 35
+    },
+    "batch_size": 4,
+    "gradient_accumulation": 2,
+    "learning_rate": 0.0002,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ],
+    "total_parameters": 597196800,
+    "trainable_parameters": 1146880,
+    "optimizer_steps": 2,
+    "warmup_steps": 0,
+    "gradient_clip": 1.0,
+    "token_lengths": {
+      "91": 1,
+      "92": 2,
+      "94": 2,
+      "95": 1,
+      "98": 1,
+      "105": 1,
+      "106": 1,
+      "107": 1,
+      "108": 2,
+      "116": 1,
+      "120": 1,
+      "131": 1,
+      "136": 1
+    },
+    "best_epoch": 1,
+    "peak_working_set_gib": 4.275779724121094
+  },
+  "schema": 1,
+  "dataset_sha256": "1346802260b776025c958dc2a67e8bfca86aaaae6740caba0fd13197e2bebafa",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 9.350428462028503,
+      "validation_macro_f1": 0.1,
+      "fit_seconds": 8.915767800062895,
+      "validation_seconds": 2.6954709000419825
+    }
+  ],
+  "validation": {
+    "macro_f1": 0.1,
+    "weighted_f1": 0.10000000000000002,
+    "accuracy": 0.25,
+    "classes": {
+      "ecomm": {
+        "precision": 0.25,
+        "recall": 1.0,
+        "f1-score": 0.4,
+        "support": 3.0
+      },
+      "news": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "spoken": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "tech": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "test": {
+    "macro_f1": 0.1,
+    "weighted_f1": 0.10000000000000002,
+    "accuracy": 0.25,
+    "classes": {
+      "ecomm": {
+        "precision": 0.25,
+        "recall": 1.0,
+        "f1-score": 0.4,
+        "support": 3.0
+      },
+      "news": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "spoken": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "tech": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "test_seconds": 2.921700100065209,
+  "total_seconds": 21.117427800083533
+}
