@@ -1,0 +1,200 @@
+[
+  {
+    "run_id": "t1__rule__keyword",
+    "finished_at": "2026-11-19 14:36:10",
+    "method": "rule"
+  },
+  {
+    "run_id": "t1__tfidf__char-lr-100k",
+    "finished_at": "2026-11-19 14:42:57",
+    "method": "tfidf"
+  },
+  {
+    "run_id": "t1__bert__bert-base-l256-100k-3ep",
+    "finished_at": "2026-11-19 14:45:24",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t1__tfidf__char-svm-100k",
+    "finished_at": "2026-11-19 14:48:47",
+    "method": "tfidf"
+  },
+  {
+    "run_id": "t1__tfidf__word-lr-100k",
+    "finished_at": "2026-11-19 14:56:09",
+    "method": "tfidf"
+  },
+  {
+    "run_id": "t1__llm-local__qwen2-0shot",
+    "finished_at": "2026-11-19 15:51:02",
+    "method": "llm-local",
+    "model": "qwen2-0.5b",
+    "shots": 0
+  },
+  {
+    "run_id": "t3__lora__10k-r8-3ep-qkvo",
+    "finished_at": "2026-11-19 16:53:32",
+    "method": "lora",
+    "r": 8
+  },
+  {
+    "run_id": "t1__bert__bert-base-l256-30k-2ep",
+    "finished_at": "2026-11-19 17:34:18",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t1__bert__roberta-l256-30k-2ep",
+    "finished_at": "2026-11-19 17:46:40",
+    "method": "bert",
+    "backbone": "roberta-wwm"
+  },
+  {
+    "run_id": "t1__bert__macbert-l256-30k-2ep",
+    "finished_at": "2026-11-19 17:59:03",
+    "method": "bert",
+    "backbone": "macbert"
+  },
+  {
+    "run_id": "t1__bert__bert-base-l256-5k-3ep",
+    "finished_at": "2026-11-19 18:03:54",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t1__bert__bert-base-l256-20k-3ep",
+    "finished_at": "2026-11-19 18:16:34",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t1__bert__bert-base-l256-50k-3ep",
+    "finished_at": "2026-11-19 18:44:54",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t3__llm-local__qwen2-1shot",
+    "finished_at": "2026-11-19 18:54:44",
+    "method": "llm-local",
+    "model": "qwen2-0.5b",
+    "shots": 1
+  },
+  {
+    "run_id": "t3__llm-local__qwen2-3shot",
+    "finished_at": "2026-11-19 19:10:09",
+    "method": "llm-local",
+    "model": "qwen2-0.5b",
+    "shots": 3
+  },
+  {
+    "run_id": "t3__llm-local__qwen2-5shot",
+    "finished_at": "2026-11-19 19:37:36",
+    "method": "llm-local",
+    "model": "qwen2-0.5b",
+    "shots": 5
+  },
+  {
+    "run_id": "t2__bert__l128-30k-2ep",
+    "finished_at": "2026-11-19 19:51:14",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t1__llm-api__ds-v4flash-0shot",
+    "finished_at": "2026-11-19 20:00:17",
+    "method": "llm-api",
+    "cost_cny": 3.02
+  },
+  {
+    "run_id": "t2__bert__l384-30k-2ep",
+    "finished_at": "2026-11-19 20:10:00",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__l512-30k-2ep",
+    "finished_at": "2026-11-19 20:37:14",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__trunc-head-30k-2ep",
+    "finished_at": "2026-11-19 20:49:30",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__trunc-title-30k-2ep",
+    "finished_at": "2026-11-19 20:52:18",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__pool-mean-30k-2ep",
+    "finished_at": "2026-11-19 21:04:23",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__freeze6-30k-2ep",
+    "finished_at": "2026-11-19 21:12:32",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__lr3e5-30k-2ep",
+    "finished_at": "2026-11-19 21:24:36",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__lr1e5-30k-2ep",
+    "finished_at": "2026-11-19 21:36:47",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__warmup0-30k-2ep",
+    "finished_at": "2026-11-19 21:48:50",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__dropout3-30k-2ep",
+    "finished_at": "2026-11-19 22:00:52",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__cweight-30k-2ep",
+    "finished_at": "2026-11-19 22:12:54",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__bs16-30k-2ep",
+    "finished_at": "2026-11-19 22:25:47",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t2__bert__seed123-30k-2ep",
+    "finished_at": "2026-11-19 22:37:49",
+    "method": "bert",
+    "backbone": "bert-base"
+  },
+  {
+    "run_id": "t3__llm-api__ds-v4flash-3shot",
+    "finished_at": "2026-11-19 22:41:48",
+    "method": "llm-api",
+    "cost_cny": 0.431
+  },
+  {
+    "run_id": "t2__bert__seed2024-30k-2ep",
+    "finished_at": "2026-11-19 22:49:50",
+    "method": "bert",
+    "backbone": "bert-base"
+  }
+]

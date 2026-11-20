@@ -1,0 +1,22 @@
+{
+  "run_id": "t3__llm-local__qwen2-1shot",
+  "tier": "t3",
+  "method": "llm-local",
+  "backbone": "qwen2-0.5b",
+  "n_train": 0,
+  "seed": 42,
+  "hyperparams": {
+    "shots": 1,
+    "max_chars": 600,
+    "truncation": "head_tail",
+    "parse": "lenient",
+    "thinking": "off",
+    "batch_size": 16,
+    "max_new_tokens": 8
+  },
+  "elapsed_s": 579.4,
+  "device": "cuda",
+  "peak_mem_gb": 1.59,
+  "cost_usd": 0.0,
+  "written_at": "2026-11-19 18:54:44"
+}

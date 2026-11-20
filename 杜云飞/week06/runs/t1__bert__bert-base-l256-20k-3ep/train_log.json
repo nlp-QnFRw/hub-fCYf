@@ -1,0 +1,29 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 0.3289,
+    "val_loss": 0.6024,
+    "val_acc": 0.862304,
+    "val_macro_f1": 0.847201,
+    "elapsed_s": 208.1,
+    "peak_mem_gb": 4.53
+  },
+  {
+    "epoch": 2,
+    "train_loss": 0.0648,
+    "val_loss": 0.7662,
+    "val_acc": 0.860803,
+    "val_macro_f1": 0.853366,
+    "elapsed_s": 206.5,
+    "peak_mem_gb": 4.53
+  },
+  {
+    "epoch": 3,
+    "train_loss": 0.0242,
+    "val_loss": 0.7316,
+    "val_acc": 0.867307,
+    "val_macro_f1": 0.862865,
+    "elapsed_s": 207.0,
+    "peak_mem_gb": 4.53
+  }
+]

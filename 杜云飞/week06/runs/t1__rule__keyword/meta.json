@@ -1,0 +1,34 @@
+{
+  "run_id": "t1__rule__keyword",
+  "tier": "t1",
+  "method": "rule",
+  "variant": "keyword",
+  "backbone": "规则表",
+  "n_train": 0,
+  "seed": 42,
+  "hyperparams": {
+    "title_weight": 2.0,
+    "softmax_T": 1.5,
+    "n_keywords": {
+      "财经": 10,
+      "彩票": 8,
+      "房产": 9,
+      "股票": 10,
+      "家居": 9,
+      "教育": 10,
+      "科技": 10,
+      "社会": 10,
+      "时尚": 9,
+      "时政": 10,
+      "体育": 10,
+      "星座": 9,
+      "游戏": 9,
+      "娱乐": 10
+    }
+  },
+  "elapsed_s": 1.4,
+  "device": "cpu",
+  "peak_mem_gb": 0.0,
+  "cost_usd": 0.0,
+  "written_at": "2026-11-19 17:07:29"
+}

@@ -1,0 +1,26 @@
+{
+  "run_id": "t1__llm-api__ds-v4flash-0shot",
+  "tier": "t1",
+  "method": "llm-api",
+  "backbone": "deepseek-flash",
+  "n_train": 0,
+  "seed": 42,
+  "hyperparams": {
+    "shots": 0,
+    "thinking": "off",
+    "max_chars": 600,
+    "truncation": "head_tail",
+    "parse": "lenient",
+    "n_per_split": 10000,
+    "concurrency": 12
+  },
+  "usage": {
+    "prompt_tokens": 5979001,
+    "completion_tokens": 15021
+  },
+  "cost_usd": 3.0195,
+  "elapsed_s": 910.4,
+  "device": "api",
+  "peak_mem_gb": 0.0,
+  "written_at": "2026-11-19 20:00:17"
+}

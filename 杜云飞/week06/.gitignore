@@ -1,0 +1,13 @@
+# 数据与中间产物不入库（体积大，可重跑生成）
+data/
+cache/
+runs/*/best.pt
+runs/*/adapter/
+runs/*/ckpt/
+runs/*/probs_*
+runs/*/pred_*.jsonl
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/

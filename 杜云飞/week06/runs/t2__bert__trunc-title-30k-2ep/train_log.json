@@ -1,0 +1,20 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 0.4302,
+    "val_loss": 0.7535,
+    "val_acc": 0.809667,
+    "val_macro_f1": 0.78977,
+    "elapsed_s": 69.4,
+    "peak_mem_gb": 1.94
+  },
+  {
+    "epoch": 2,
+    "train_loss": 0.1403,
+    "val_loss": 0.8078,
+    "val_acc": 0.819474,
+    "val_macro_f1": 0.798559,
+    "elapsed_s": 67.7,
+    "peak_mem_gb": 1.95
+  }
+]

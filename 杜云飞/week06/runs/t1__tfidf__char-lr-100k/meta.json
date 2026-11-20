@@ -1,0 +1,24 @@
+{
+  "run_id": "t1__tfidf__char-lr-100k",
+  "tier": "t1",
+  "method": "tfidf",
+  "variant": "char-lr-100k",
+  "backbone": "tfidf-char",
+  "n_train": 99993,
+  "seed": 42,
+  "hyperparams": {
+    "feature": "char",
+    "clf": "lr",
+    "C": 4.0,
+    "max_features": 50000,
+    "min_df": 3,
+    "ngram": "(1,3)",
+    "max_chars": 1500,
+    "n_features": 50000
+  },
+  "elapsed_s": 379.5,
+  "device": "cpu",
+  "peak_mem_gb": 0.0,
+  "cost_usd": 0.0,
+  "written_at": "2026-11-19 17:13:51"
+}

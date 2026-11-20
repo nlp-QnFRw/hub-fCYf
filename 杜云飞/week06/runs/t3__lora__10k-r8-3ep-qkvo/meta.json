@@ -1,0 +1,32 @@
+{
+  "run_id": "t3__lora__10k-r8-3ep-qkvo",
+  "tier": "t3",
+  "method": "lora",
+  "backbone": "qwen2-0.5b",
+  "n_train": 10000,
+  "seed": 42,
+  "hyperparams": {
+    "model": "qwen2-0.5b",
+    "train_split": "sub_10k",
+    "epochs": 3,
+    "r": 8,
+    "targets": "qkvo",
+    "lr": 0.0002,
+    "batch_size": 2,
+    "grad_accum": 8,
+    "max_len": 384,
+    "max_chars": 300,
+    "truncation": "head_tail",
+    "max_steps": null,
+    "num_val": 500,
+    "splits": [
+      "test_bal",
+      "test_nat_10k"
+    ]
+  },
+  "elapsed_s": 3390.4,
+  "peak_mem_gb": 4.6,
+  "device": "cuda",
+  "cost_usd": 0.0,
+  "written_at": "2026-11-19 16:53:32"
+}
