@@ -1,0 +1,1 @@
+{"id": "test-001", "title": "手工测试", "n_sentences": 1, "events": [{"type": "质押", "trigger": {"text": "质押", "start": 18, "end": 20}, "args": [], "confidence": 0.4626, "sent_ids": [0]}], "needs_review": true}

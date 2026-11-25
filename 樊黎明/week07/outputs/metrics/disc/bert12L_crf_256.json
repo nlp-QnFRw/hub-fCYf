@@ -1,0 +1,660 @@
+{
+  "num_samples": 930,
+  "missing_predictions": 0,
+  "trigger": {
+    "precision": 0.8257,
+    "recall": 0.6828,
+    "f1": 0.7475,
+    "tp": 635,
+    "fp": 134,
+    "fn": 295
+  },
+  "argument": {
+    "precision": 0.2669,
+    "recall": 0.3137,
+    "f1": 0.2884,
+    "tp": 1293,
+    "fp": 3552,
+    "fn": 2829
+  },
+  "event_exact": {
+    "precision": 0.0156,
+    "recall": 0.0129,
+    "f1": 0.0141,
+    "tp": 12,
+    "fp": 757,
+    "fn": 918
+  },
+  "per_type": {
+    "中标": {
+      "precision": 1.0,
+      "recall": 0.9569,
+      "f1": 0.978,
+      "tp": 111,
+      "fp": 0,
+      "fn": 5
+    },
+    "亏损": {
+      "precision": 0.981,
+      "recall": 0.9717,
+      "f1": 0.9763,
+      "tp": 103,
+      "fp": 2,
+      "fn": 3
+    },
+    "企业收购": {
+      "precision": 0.812,
+      "recall": 0.931,
+      "f1": 0.8675,
+      "tp": 108,
+      "fp": 25,
+      "fn": 8
+    },
+    "企业破产": {
+      "precision": 1.0,
+      "recall": 0.2121,
+      "f1": 0.35,
+      "tp": 7,
+      "fp": 0,
+      "fn": 26
+    },
+    "企业融资": {
+      "precision": 1.0,
+      "recall": 0.6226,
+      "f1": 0.7674,
+      "tp": 33,
+      "fp": 0,
+      "fn": 20
+    },
+    "公司上市": {
+      "precision": 1.0,
+      "recall": 0.1897,
+      "f1": 0.3188,
+      "tp": 11,
+      "fp": 0,
+      "fn": 47
+    },
+    "股东减持": {
+      "precision": 0.7374,
+      "recall": 0.8795,
+      "f1": 0.8022,
+      "tp": 73,
+      "fp": 26,
+      "fn": 10
+    },
+    "股东增持": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 31
+    },
+    "股份回购": {
+      "precision": 0.967,
+      "recall": 0.9888,
+      "f1": 0.9778,
+      "tp": 176,
+      "fp": 6,
+      "fn": 2
+    },
+    "被约谈": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 11
+    },
+    "解除质押": {
+      "precision": 0.7931,
+      "recall": 0.575,
+      "f1": 0.6667,
+      "tp": 23,
+      "fp": 6,
+      "fn": 17
+    },
+    "质押": {
+      "precision": 0.7931,
+      "recall": 0.807,
+      "f1": 0.8,
+      "tp": 46,
+      "fp": 12,
+      "fn": 11
+    },
+    "高管变动": {
+      "precision": 1.0,
+      "recall": 0.0208,
+      "f1": 0.0408,
+      "tp": 1,
+      "fp": 0,
+      "fn": 47
+    }
+  },
+  "per_role": {
+    "上市公司": {
+      "precision": 0.1667,
+      "recall": 0.0517,
+      "f1": 0.0789,
+      "tp": 3,
+      "fp": 15,
+      "fn": 55
+    },
+    "中标公司": {
+      "precision": 0.2833,
+      "recall": 0.4755,
+      "f1": 0.3551,
+      "tp": 68,
+      "fp": 172,
+      "fn": 75
+    },
+    "中标日期": {
+      "precision": 0.3333,
+      "recall": 0.0278,
+      "f1": 0.0513,
+      "tp": 2,
+      "fp": 4,
+      "fn": 70
+    },
+    "中标标的": {
+      "precision": 0.0483,
+      "recall": 0.1182,
+      "f1": 0.0686,
+      "tp": 13,
+      "fp": 256,
+      "fn": 97
+    },
+    "中标金额": {
+      "precision": 0.2427,
+      "recall": 0.3788,
+      "f1": 0.2959,
+      "tp": 25,
+      "fp": 78,
+      "fn": 41
+    },
+    "事件时间": {
+      "precision": 0.3188,
+      "recall": 0.1789,
+      "f1": 0.2292,
+      "tp": 22,
+      "fp": 47,
+      "fn": 101
+    },
+    "亏损变化": {
+      "precision": 0.2667,
+      "recall": 0.1194,
+      "f1": 0.1649,
+      "tp": 8,
+      "fp": 22,
+      "fn": 59
+    },
+    "交易完成时间": {
+      "precision": 0.0615,
+      "recall": 0.1096,
+      "f1": 0.0788,
+      "tp": 8,
+      "fp": 122,
+      "fn": 65
+    },
+    "交易股票/股份数量": {
+      "precision": 0.1687,
+      "recall": 0.1944,
+      "f1": 0.1806,
+      "tp": 14,
+      "fp": 69,
+      "fn": 58
+    },
+    "交易金额": {
+      "precision": 0.127,
+      "recall": 0.2133,
+      "f1": 0.1592,
+      "tp": 48,
+      "fp": 330,
+      "fn": 177
+    },
+    "任职公司": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 29
+    },
+    "债务规模": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 5
+    },
+    "债权人": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 6
+    },
+    "公司名称": {
+      "precision": 0.8545,
+      "recall": 0.8319,
+      "f1": 0.843,
+      "tp": 94,
+      "fp": 16,
+      "fn": 19
+    },
+    "净亏损": {
+      "precision": 0.3131,
+      "recall": 0.3924,
+      "f1": 0.3483,
+      "tp": 31,
+      "fp": 68,
+      "fn": 48
+    },
+    "减持方": {
+      "precision": 0.2529,
+      "recall": 0.22,
+      "f1": 0.2353,
+      "tp": 22,
+      "fp": 65,
+      "fn": 78
+    },
+    "减持部分占总股本比例": {
+      "precision": 0.1724,
+      "recall": 0.098,
+      "f1": 0.125,
+      "tp": 5,
+      "fp": 24,
+      "fn": 46
+    },
+    "减持部分占所持比例": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    "募资金额": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 7
+    },
+    "占公司总股本比例": {
+      "precision": 0.0588,
+      "recall": 0.0581,
+      "f1": 0.0585,
+      "tp": 5,
+      "fp": 80,
+      "fn": 81
+    },
+    "发行价格": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 8
+    },
+    "变动后公司名称": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 10
+    },
+    "变动后职位": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 32
+    },
+    "变动类型": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 42
+    },
+    "回购完成时间": {
+      "precision": 0.4756,
+      "recall": 0.781,
+      "f1": 0.5912,
+      "tp": 107,
+      "fp": 118,
+      "fn": 30
+    },
+    "回购方": {
+      "precision": 0.7735,
+      "recall": 0.9211,
+      "f1": 0.8408,
+      "tp": 140,
+      "fp": 41,
+      "fn": 12
+    },
+    "回购股份数量": {
+      "precision": 0.3668,
+      "recall": 0.6709,
+      "f1": 0.4743,
+      "tp": 106,
+      "fp": 183,
+      "fn": 52
+    },
+    "增持方": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 34
+    },
+    "增持部分占总股本比例": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 10
+    },
+    "市值": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4
+    },
+    "投资方": {
+      "precision": 0.1538,
+      "recall": 0.2154,
+      "f1": 0.1795,
+      "tp": 14,
+      "fp": 77,
+      "fn": 51
+    },
+    "披露日期": {
+      "precision": 0.2131,
+      "recall": 0.3291,
+      "f1": 0.2587,
+      "tp": 26,
+      "fp": 96,
+      "fn": 53
+    },
+    "披露时间": {
+      "precision": 0.3538,
+      "recall": 0.5559,
+      "f1": 0.4324,
+      "tp": 184,
+      "fp": 336,
+      "fn": 147
+    },
+    "招标方": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 19,
+      "fn": 70
+    },
+    "收购完成时间": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 23
+    },
+    "收购方": {
+      "precision": 0.1453,
+      "recall": 0.1574,
+      "f1": 0.1511,
+      "tp": 17,
+      "fp": 100,
+      "fn": 91
+    },
+    "收购标的": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 7,
+      "fn": 66
+    },
+    "每股交易价格": {
+      "precision": 0.2116,
+      "recall": 0.5953,
+      "f1": 0.3122,
+      "tp": 128,
+      "fp": 477,
+      "fn": 87
+    },
+    "环节": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    "破产公司": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 30
+    },
+    "破产时间": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 13
+    },
+    "约谈机构": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 11
+    },
+    "股票简称": {
+      "precision": 0.339,
+      "recall": 0.3922,
+      "f1": 0.3636,
+      "tp": 40,
+      "fp": 78,
+      "fn": 62
+    },
+    "融资轮次": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 30
+    },
+    "融资金额": {
+      "precision": 0.5333,
+      "recall": 0.3556,
+      "f1": 0.4267,
+      "tp": 16,
+      "fp": 14,
+      "fn": 29
+    },
+    "被投资方": {
+      "precision": 0.2745,
+      "recall": 0.2642,
+      "f1": 0.2692,
+      "tp": 14,
+      "fp": 37,
+      "fn": 39
+    },
+    "被收购方": {
+      "precision": 0.1006,
+      "recall": 0.1301,
+      "f1": 0.1135,
+      "tp": 16,
+      "fp": 143,
+      "fn": 107
+    },
+    "被约谈时间": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 5
+    },
+    "证券代码": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 14
+    },
+    "财报周期": {
+      "precision": 0.1983,
+      "recall": 0.2824,
+      "f1": 0.233,
+      "tp": 24,
+      "fp": 97,
+      "fn": 61
+    },
+    "质押方": {
+      "precision": 0.2174,
+      "recall": 0.3093,
+      "f1": 0.2553,
+      "tp": 30,
+      "fp": 108,
+      "fn": 67
+    },
+    "质押物": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 3,
+      "fn": 96
+    },
+    "质押物占总股比": {
+      "precision": 0.0476,
+      "recall": 0.0175,
+      "f1": 0.0256,
+      "tp": 1,
+      "fp": 20,
+      "fn": 56
+    },
+    "质押物占持股比": {
+      "precision": 0.1509,
+      "recall": 0.2857,
+      "f1": 0.1975,
+      "tp": 16,
+      "fp": 90,
+      "fn": 40
+    },
+    "质押物所属公司": {
+      "precision": 0.0968,
+      "recall": 0.0984,
+      "f1": 0.0976,
+      "tp": 6,
+      "fp": 56,
+      "fn": 55
+    },
+    "质押股票/股份数量": {
+      "precision": 0.339,
+      "recall": 0.4762,
+      "f1": 0.396,
+      "tp": 40,
+      "fp": 78,
+      "fn": 44
+    },
+    "质权方": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 21
+    },
+    "领投方": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 24
+    },
+    "高管姓名": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 3,
+      "fn": 46
+    },
+    "高管职位": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 37
+    }
+  },
+  "type_macro_f1": 0.5804,
+  "method": "bert12L_crf_256",
+  "gold": "F:\\flm\\hub-fCYf\\樊黎明\\week07\\data\\processed\\dev_extract.jsonl",
+  "pred": "F:\\flm\\hub-fCYf\\樊黎明\\week07\\outputs\\disc\\pred_bert12L_crf_256.jsonl",
+  "meta": {
+    "display_name": "BERT-12L+CRF",
+    "train_s": 22833.1,
+    "params_m": 174.5,
+    "ms_per_sentence": 302.63,
+    "peak_gpu_mb": 0.0,
+    "decoder": "crf",
+    "bert_layers": 12,
+    "max_len": 256,
+    "epochs": 3,
+    "lr": 2e-05,
+    "head_lr_mult": 5.0,
+    "batch_size": 8,
+    "grad_accum": 4,
+    "best_epoch": 3,
+    "inner_val_span_f1": 0.37,
+    "num_labels": 149,
+    "illegal_dev": {
+      "illegal_start": 90,
+      "illegal_transition": 4043,
+      "total_seqs": 930,
+      "illegal_seqs": 871,
+      "total_illegal": 4133,
+      "illegal_seq_rate": 0.9366,
+      "illegal_per_seq": 4.444
+    },
+    "illegal_train_pred": {
+      "illegal_start": 480,
+      "illegal_transition": 22594,
+      "total_seqs": 5173,
+      "illegal_seqs": 4816,
+      "total_illegal": 23074,
+      "illegal_seq_rate": 0.931,
+      "illegal_per_seq": 4.46
+    },
+    "n_truncated": 122,
+    "hard_constraint": false,
+    "seed": 42,
+    "selection_note": "按 train 切出的 10% 内层验证集选 epoch；dev 未参与训练与选点"
+  }
+}

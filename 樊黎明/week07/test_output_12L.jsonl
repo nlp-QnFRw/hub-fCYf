@@ -1,0 +1,1 @@
+{"id": "test-001", "title": "手工测试", "n_sentences": 1, "events": [{"type": "质押", "trigger": {"text": "质", "start": 18, "end": 19}, "args": [{"role": "回购方", "text": "天", "start": 0, "end": 1, "source": "model"}, {"role": "回购方", "text": "文化", "start": 2, "end": 4, "source": "model"}], "confidence": 0.4093, "sent_ids": [0]}], "needs_review": true}
