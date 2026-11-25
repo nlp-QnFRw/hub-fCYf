@@ -1,0 +1,335 @@
+{
+  "dataset": "resume",
+  "method": "llm_few",
+  "tag": "few_nall",
+  "test": {
+    "overall": {
+      "precision": 0.9633699633699634,
+      "recall": 1.0,
+      "f1": 0.9813432835820896,
+      "tp": 1052,
+      "fp": 40,
+      "fn": 0,
+      "n_docs": 80,
+      "n_gold": 1052,
+      "n_pred": 1092,
+      "missing_pred_docs": 0
+    },
+    "macro_f1": 0.9800000000000001,
+    "n_labels": 10,
+    "per_type": {
+      "POS": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 203,
+        "fp": 0,
+        "fn": 0,
+        "support": 203
+      },
+      "TIME": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 166,
+        "fp": 0,
+        "fn": 0,
+        "support": 166
+      },
+      "ORG": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 123,
+        "fp": 0,
+        "fn": 0,
+        "support": 123
+      },
+      "NAME": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "support": 80
+      },
+      "TEL": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "support": 80
+      },
+      "EMAIL": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "support": 80
+      },
+      "EDU": {
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": 80,
+        "fp": 40,
+        "fn": 0,
+        "support": 80
+      },
+      "SCHOOL": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "support": 80
+      },
+      "MAJOR": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "support": 80
+      },
+      "SALARY": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "support": 80
+      }
+    },
+    "error_attribution": {
+      "type_err": 0,
+      "boundary_err": 0,
+      "both_err": 0,
+      "miss": 0
+    },
+    "groups": {},
+    "length_buckets": {
+      "1-2": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "tp": 120,
+        "fp": 120,
+        "fn": 0,
+        "n_gold": 120
+      },
+      "3-4": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "tp": 180,
+        "fp": 180,
+        "fn": 0,
+        "n_gold": 180
+      },
+      "5-8": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "tp": 287,
+        "fp": 287,
+        "fn": 0,
+        "n_gold": 287
+      },
+      "9+": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "tp": 465,
+        "fp": 465,
+        "fn": 0,
+        "n_gold": 465
+      }
+    },
+    "hard_subset": {
+      "overall": {
+        "precision": 0.9739952718676123,
+        "recall": 1.0,
+        "f1": 0.9868263473053891,
+        "tp": 412,
+        "fp": 11,
+        "fn": 0,
+        "n_docs": 32,
+        "n_gold": 412,
+        "n_pred": 423,
+        "missing_pred_docs": 0
+      },
+      "macro_f1": 0.9853333333333334,
+      "n_labels": 10,
+      "per_type": {
+        "POS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 75,
+          "fp": 0,
+          "fn": 0,
+          "support": 75
+        },
+        "TIME": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 70,
+          "fp": 0,
+          "fn": 0,
+          "support": 70
+        },
+        "ORG": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 43,
+          "fp": 0,
+          "fn": 0,
+          "support": 43
+        },
+        "NAME": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0,
+          "support": 32
+        },
+        "TEL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0,
+          "support": 32
+        },
+        "EMAIL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0,
+          "support": 32
+        },
+        "EDU": {
+          "precision": 0.7441860465116279,
+          "recall": 1.0,
+          "f1": 0.8533333333333333,
+          "tp": 32,
+          "fp": 11,
+          "fn": 0,
+          "support": 32
+        },
+        "SCHOOL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0,
+          "support": 32
+        },
+        "MAJOR": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0,
+          "support": 32
+        },
+        "SALARY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0,
+          "support": 32
+        }
+      },
+      "error_attribution": {
+        "type_err": 0,
+        "boundary_err": 0,
+        "both_err": 0,
+        "miss": 0
+      },
+      "groups": {},
+      "length_buckets": {
+        "1-2": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "tp": 43,
+          "fp": 43,
+          "fn": 0,
+          "n_gold": 43
+        },
+        "3-4": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "tp": 79,
+          "fp": 79,
+          "fn": 0,
+          "n_gold": 79
+        },
+        "5-8": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "tp": 114,
+          "fp": 114,
+          "fn": 0,
+          "n_gold": 114
+        },
+        "9+": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "tp": 176,
+          "fp": 176,
+          "fn": 0,
+          "n_gold": 176
+        }
+      }
+    }
+  },
+  "llm": {
+    "dataset": "resume",
+    "mode": "few",
+    "model": "deepseek-chat",
+    "tag": "few_nall",
+    "n": 80,
+    "json_ok_rate": 1.0,
+    "json_ok": 80,
+    "repaired": 0,
+    "noise_stripped": 0,
+    "hallucinated_spans": 0,
+    "label_invalid": 0,
+    "prompt_tokens": 124520,
+    "completion_tokens": 17541,
+    "avg_latency_s": 1.3549882437499832,
+    "p50_latency_s": 1.3619884999998249,
+    "elapsed_s": 14.0,
+    "cost_cny": 0.38936800000000005,
+    "price_in_per_m": 2.0,
+    "price_out_per_m": 8.0
+  },
+  "n_params": 0,
+  "train_seconds": 0,
+  "ms_per_sentence": 1354.99
+}

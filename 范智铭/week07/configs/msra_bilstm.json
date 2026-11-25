@@ -1,0 +1,26 @@
+{
+  "script": "src.train_bilstm",
+  "dataset": "msra",
+  "method": "bilstm",
+  "args": {
+    "dataset": "msra",
+    "out": null,
+    "epochs": 12,
+    "batch": 64,
+    "lr": 0.001,
+    "emb": 128,
+    "hidden": 256,
+    "max_len": 256,
+    "dropout": 0.3,
+    "patience": 4,
+    "no_crf": false,
+    "seed": 42,
+    "device": "auto"
+  },
+  "result": {
+    "dev_f1_best": 0.8193087903831705,
+    "test_f1": 0.8114139381745015,
+    "n_params": 1294296,
+    "train_seconds": 333.9
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "dataset": "resume",
+  "splits": {
+    "train": {
+      "n": 500,
+      "entities": 6682,
+      "chars": 168709,
+      "unique_entity_strings": 2216
+    },
+    "dev": {
+      "n": 60,
+      "entities": 790,
+      "chars": 19830,
+      "unique_entity_strings": 361
+    },
+    "test": {
+      "n": 80,
+      "entities": 1052,
+      "chars": 25477,
+      "unique_entity_strings": 501
+    },
+    "train_dev_overlap": 102,
+    "train_test_overlap": 107,
+    "dev_test_overlap": 59
+  },
+  "problems": []
+}

@@ -1,0 +1,13 @@
+# 本项目实测可用的版本（Windows + RTX 3060Ti 8GB，conda py312）
+# 安装：pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+torch==2.11.0+cu128
+transformers==4.55.0
+huggingface_hub==0.36.2
+matplotlib==3.11.2
+numpy==2.5.2
+
+# 说明：
+# 1) 不依赖 seqeval —— 实体级严格匹配在 src/metrics.py 里自己实现，口径更透明；
+# 2) 不依赖 openai SDK —— 调 DeepSeek 只用标准库 urllib，少一个依赖少一处坑；
+# 3) 若 torchvision 与 torch 版本不匹配（import transformers 时报 torchvision::nms），
+#    直接 pip uninstall torchvision 即可，NLP 任务用不到它。

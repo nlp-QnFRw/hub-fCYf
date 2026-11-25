@@ -1,0 +1,27 @@
+{
+  "dataset": "cluener",
+  "splits": {
+    "train": {
+      "n": 8600,
+      "entities": 19172,
+      "chars": 321178,
+      "unique_entity_strings": 9434
+    },
+    "dev": {
+      "n": 1074,
+      "entities": 2387,
+      "chars": 40159,
+      "unique_entity_strings": 1729
+    },
+    "test": {
+      "n": 1074,
+      "entities": 2410,
+      "chars": 40427,
+      "unique_entity_strings": 1757
+    },
+    "train_dev_overlap": 865,
+    "train_test_overlap": 908,
+    "dev_test_overlap": 387
+  },
+  "problems": []
+}

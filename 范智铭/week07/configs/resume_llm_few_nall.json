@@ -1,0 +1,20 @@
+{
+  "script": "src.llm_extract",
+  "dataset": "resume",
+  "tag": "few_nall",
+  "args": {
+    "model": "deepseek-chat",
+    "mode": "few",
+    "n": 80,
+    "temperature": 0,
+    "max_tokens": 512,
+    "prompt_version": "v1"
+  },
+  "result": {
+    "test_f1": 0.9813432835820896,
+    "json_ok_rate": 1.0,
+    "prompt_tokens": 124520,
+    "completion_tokens": 17541,
+    "cost_cny": 0.38936800000000005
+  }
+}

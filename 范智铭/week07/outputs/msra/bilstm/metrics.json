@@ -1,0 +1,116 @@
+{
+  "dataset": "msra",
+  "method": "bilstm",
+  "test": {
+    "overall": {
+      "precision": 0.8269947800149142,
+      "recall": 0.7964093357271095,
+      "f1": 0.8114139381745015,
+      "tp": 2218,
+      "fp": 464,
+      "fn": 567,
+      "n_docs": 1000,
+      "n_gold": 2785,
+      "n_pred": 2682,
+      "missing_pred_docs": 0
+    },
+    "macro_f1": 0.802206562578475,
+    "n_labels": 3,
+    "per_type": {
+      "LOC": {
+        "precision": 0.8493754592211609,
+        "recall": 0.8210227272727273,
+        "f1": 0.8349584687612855,
+        "tp": 1156,
+        "fp": 205,
+        "fn": 252,
+        "support": 1408
+      },
+      "PER": {
+        "precision": 0.8539823008849557,
+        "recall": 0.8143459915611815,
+        "f1": 0.8336933045356372,
+        "tp": 579,
+        "fp": 99,
+        "fn": 132,
+        "support": 711
+      },
+      "ORG": {
+        "precision": 0.7511664074650077,
+        "recall": 0.7252252252252253,
+        "f1": 0.7379679144385026,
+        "tp": 483,
+        "fp": 160,
+        "fn": 183,
+        "support": 666
+      }
+    },
+    "error_attribution": {
+      "type_err": 50,
+      "boundary_err": 217,
+      "both_err": 59,
+      "miss": 241
+    },
+    "groups": {},
+    "length_buckets": {
+      "1-2": {
+        "precision": 0.5,
+        "recall": 0.7995226730310262,
+        "f1": 0.6152433425160698,
+        "tp": 1005,
+        "fp": 1005,
+        "fn": 252,
+        "n_gold": 1257
+      },
+      "3-4": {
+        "precision": 0.5,
+        "recall": 0.8130311614730878,
+        "f1": 0.6192017259978425,
+        "tp": 861,
+        "fp": 861,
+        "fn": 198,
+        "n_gold": 1059
+      },
+      "5-8": {
+        "precision": 0.5,
+        "recall": 0.7845303867403315,
+        "f1": 0.610752688172043,
+        "tp": 284,
+        "fp": 284,
+        "fn": 78,
+        "n_gold": 362
+      },
+      "9+": {
+        "precision": 0.5,
+        "recall": 0.6355140186915887,
+        "f1": 0.559670781893004,
+        "tp": 68,
+        "fp": 68,
+        "fn": 39,
+        "n_gold": 107
+      }
+    }
+  },
+  "dev_f1_best": 0.8193087903831705,
+  "best_epoch": 12,
+  "n_params": 1294296,
+  "train_seconds": 333.9,
+  "infer_seconds": 1.64,
+  "ms_per_sentence": 1.64,
+  "epochs_run": 12,
+  "args": {
+    "dataset": "msra",
+    "out": null,
+    "epochs": 12,
+    "batch": 64,
+    "lr": 0.001,
+    "emb": 128,
+    "hidden": 256,
+    "max_len": 256,
+    "dropout": 0.3,
+    "patience": 4,
+    "no_crf": false,
+    "seed": 42,
+    "device": "auto"
+  }
+}

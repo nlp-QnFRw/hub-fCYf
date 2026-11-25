@@ -1,0 +1,26 @@
+{
+  "script": "src.train_bilstm",
+  "dataset": "resume",
+  "method": "bilstm",
+  "args": {
+    "dataset": "resume",
+    "out": null,
+    "epochs": 20,
+    "batch": 64,
+    "lr": 0.001,
+    "emb": 128,
+    "hidden": 256,
+    "max_len": 512,
+    "dropout": 0.3,
+    "patience": 5,
+    "no_crf": false,
+    "seed": 42,
+    "device": "auto"
+  },
+  "result": {
+    "dev_f1_best": 1.0,
+    "test_f1": 0.9134847752537457,
+    "n_params": 866470,
+    "train_seconds": 61.1
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "dataset": "resume",
+  "mode": "zero",
+  "model": "deepseek-chat",
+  "tag": "zero_nall",
+  "n": 80,
+  "json_ok_rate": 1.0,
+  "json_ok": 80,
+  "repaired": 0,
+  "noise_stripped": 0,
+  "hallucinated_spans": 0,
+  "label_invalid": 0,
+  "prompt_tokens": 42040,
+  "completion_tokens": 17490,
+  "avg_latency_s": 1.3540043699999955,
+  "p50_latency_s": 1.3572393000004013,
+  "elapsed_s": 14.1,
+  "cost_cny": 0.22399999999999998,
+  "price_in_per_m": 2.0,
+  "price_out_per_m": 8.0
+}

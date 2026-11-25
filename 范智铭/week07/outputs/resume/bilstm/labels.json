@@ -1,0 +1,37 @@
+{
+  "labels": [
+    "NAME",
+    "TEL",
+    "EMAIL",
+    "EDU",
+    "SCHOOL",
+    "MAJOR",
+    "ORG",
+    "POS",
+    "TIME",
+    "SALARY"
+  ],
+  "tags": [
+    "O",
+    "B-NAME",
+    "I-NAME",
+    "B-TEL",
+    "I-TEL",
+    "B-EMAIL",
+    "I-EMAIL",
+    "B-EDU",
+    "I-EDU",
+    "B-SCHOOL",
+    "I-SCHOOL",
+    "B-MAJOR",
+    "I-MAJOR",
+    "B-ORG",
+    "I-ORG",
+    "B-POS",
+    "I-POS",
+    "B-TIME",
+    "I-TIME",
+    "B-SALARY",
+    "I-SALARY"
+  ]
+}

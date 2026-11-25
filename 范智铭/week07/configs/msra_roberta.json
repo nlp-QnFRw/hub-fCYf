@@ -1,0 +1,24 @@
+{
+  "script": "src.train_transformer",
+  "dataset": "msra",
+  "method": "roberta",
+  "args": {
+    "dataset": "msra",
+    "model": "roberta",
+    "epochs": 4,
+    "batch": 16,
+    "lr": 2e-05,
+    "max_len": 256,
+    "warmup": 0.1,
+    "weight_decay": 0.01,
+    "seed": 42,
+    "fp16": true
+  },
+  "result": {
+    "dev_f1_best": 0.946822308690013,
+    "test_f1": 0.9461400359066428,
+    "n_params": 101682439,
+    "train_seconds": 297.5
+  },
+  "model_dir": "models/roberta"
+}

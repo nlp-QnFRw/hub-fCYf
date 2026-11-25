@@ -1,0 +1,27 @@
+{
+  "labels": [
+    "address",
+    "book",
+    "company",
+    "game",
+    "government",
+    "movie",
+    "name",
+    "organization",
+    "position",
+    "scene"
+  ],
+  "counts": {
+    "company": 2978,
+    "position": 3141,
+    "name": 3755,
+    "book": 1139,
+    "organization": 3210,
+    "game": 2376,
+    "address": 2891,
+    "scene": 1521,
+    "government": 1835,
+    "movie": 1123
+  },
+  "dropped_nested": 2
+}
