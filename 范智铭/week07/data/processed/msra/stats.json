@@ -1,0 +1,17 @@
+{
+  "train": {
+    "n": 10000,
+    "entities": 27081,
+    "chars": 527626
+  },
+  "dev": {
+    "n": 1000,
+    "entities": 2697,
+    "chars": 52738
+  },
+  "test": {
+    "n": 1000,
+    "entities": 2785,
+    "chars": 57457
+  }
+}

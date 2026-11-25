@@ -1,0 +1,26 @@
+{
+  "script": "src.train_bilstm",
+  "dataset": "cluener",
+  "method": "bilstm",
+  "args": {
+    "dataset": "cluener",
+    "out": null,
+    "epochs": 15,
+    "batch": 64,
+    "lr": 0.001,
+    "emb": 128,
+    "hidden": 256,
+    "max_len": 160,
+    "dropout": 0.3,
+    "patience": 4,
+    "no_crf": false,
+    "seed": 42,
+    "device": "auto"
+  },
+  "result": {
+    "dev_f1_best": 0.6555096718104759,
+    "test_f1": 0.6429180887372014,
+    "n_params": 1254310,
+    "train_seconds": 129.9
+  }
+}

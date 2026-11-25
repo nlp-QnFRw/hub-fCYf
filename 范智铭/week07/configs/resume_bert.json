@@ -1,0 +1,24 @@
+{
+  "script": "src.train_transformer",
+  "dataset": "resume",
+  "method": "bert",
+  "args": {
+    "dataset": "resume",
+    "model": "bert",
+    "epochs": 2,
+    "batch": 16,
+    "lr": 3e-05,
+    "max_len": 512,
+    "warmup": 0.1,
+    "weight_decay": 0.01,
+    "seed": 42,
+    "fp16": true
+  },
+  "result": {
+    "dev_f1_best": 1.0,
+    "test_f1": 0.9767441860465116,
+    "n_params": 101693205,
+    "train_seconds": 15.2
+  },
+  "model_dir": "models/bert"
+}

@@ -1,0 +1,119 @@
+{
+  "dataset": "msra",
+  "method": "llm_zero",
+  "tag": "zero_n300",
+  "test": {
+    "overall": {
+      "precision": 0.807061790668348,
+      "recall": 0.7450523864959255,
+      "f1": 0.7748184019370461,
+      "tp": 640,
+      "fp": 153,
+      "fn": 219,
+      "n_docs": 300,
+      "n_gold": 859,
+      "n_pred": 793,
+      "missing_pred_docs": 0
+    },
+    "macro_f1": 0.7818993286201397,
+    "n_labels": 3,
+    "per_type": {
+      "LOC": {
+        "precision": 0.8498498498498499,
+        "recall": 0.6643192488262911,
+        "f1": 0.7457180500658763,
+        "tp": 283,
+        "fp": 50,
+        "fn": 143,
+        "support": 426
+      },
+      "PER": {
+        "precision": 0.9409090909090909,
+        "recall": 0.92,
+        "f1": 0.9303370786516855,
+        "tp": 207,
+        "fp": 13,
+        "fn": 18,
+        "support": 225
+      },
+      "ORG": {
+        "precision": 0.625,
+        "recall": 0.7211538461538461,
+        "f1": 0.6696428571428571,
+        "tp": 150,
+        "fp": 90,
+        "fn": 58,
+        "support": 208
+      }
+    },
+    "error_attribution": {
+      "type_err": 16,
+      "boundary_err": 48,
+      "both_err": 25,
+      "miss": 130
+    },
+    "groups": {},
+    "length_buckets": {
+      "1-2": {
+        "precision": 0.5,
+        "recall": 0.6579634464751958,
+        "f1": 0.5682074408117249,
+        "tp": 252,
+        "fp": 252,
+        "fn": 131,
+        "n_gold": 383
+      },
+      "3-4": {
+        "precision": 0.5,
+        "recall": 0.8630573248407644,
+        "f1": 0.6331775700934579,
+        "tp": 271,
+        "fp": 271,
+        "fn": 43,
+        "n_gold": 314
+      },
+      "5-8": {
+        "precision": 0.5,
+        "recall": 0.7886178861788617,
+        "f1": 0.61198738170347,
+        "tp": 97,
+        "fp": 97,
+        "fn": 26,
+        "n_gold": 123
+      },
+      "9+": {
+        "precision": 0.5,
+        "recall": 0.5128205128205128,
+        "f1": 0.5063291139240506,
+        "tp": 20,
+        "fp": 20,
+        "fn": 19,
+        "n_gold": 39
+      }
+    }
+  },
+  "llm": {
+    "dataset": "msra",
+    "mode": "zero",
+    "model": "deepseek-chat",
+    "tag": "zero_n300",
+    "n": 300,
+    "json_ok_rate": 1.0,
+    "json_ok": 300,
+    "repaired": 0,
+    "noise_stripped": 0,
+    "hallucinated_spans": 0,
+    "label_invalid": 0,
+    "prompt_tokens": 73620,
+    "completion_tokens": 12121,
+    "avg_latency_s": 0.7856852446666683,
+    "p50_latency_s": 0.7477230000004056,
+    "elapsed_s": 29.9,
+    "cost_cny": 0.244208,
+    "price_in_per_m": 2.0,
+    "price_out_per_m": 8.0
+  },
+  "n_params": 0,
+  "train_seconds": 0,
+  "ms_per_sentence": 785.69
+}

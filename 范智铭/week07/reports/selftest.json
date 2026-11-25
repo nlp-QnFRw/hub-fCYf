@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "summary": {
+    "resume": {
+      "gold_as_pred_f1": 1.0,
+      "n_test": 80,
+      "n_gold": 1052,
+      "shuffled_label_f1": 0.11596958174904944
+    },
+    "cluener": {
+      "gold_as_pred_f1": 1.0,
+      "n_test": 1074,
+      "n_gold": 2410,
+      "shuffled_label_f1": 0.1008298755186722
+    },
+    "msra": {
+      "gold_as_pred_f1": 1.0,
+      "n_test": 1000,
+      "n_gold": 2785,
+      "shuffled_label_f1": 0.3249551166965889
+    }
+  }
+}

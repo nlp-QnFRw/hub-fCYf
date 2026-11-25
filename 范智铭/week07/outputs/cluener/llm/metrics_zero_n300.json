@@ -1,0 +1,182 @@
+{
+  "dataset": "cluener",
+  "method": "llm_zero",
+  "tag": "zero_n300",
+  "test": {
+    "overall": {
+      "precision": 0.5683690280065898,
+      "recall": 0.5066079295154186,
+      "f1": 0.5357142857142858,
+      "tp": 345,
+      "fp": 262,
+      "fn": 336,
+      "n_docs": 300,
+      "n_gold": 681,
+      "n_pred": 607,
+      "missing_pred_docs": 0
+    },
+    "macro_f1": 0.4723791658787631,
+    "n_labels": 10,
+    "per_type": {
+      "name": {
+        "precision": 0.8695652173913043,
+        "recall": 0.8928571428571429,
+        "f1": 0.8810572687224669,
+        "tp": 100,
+        "fp": 15,
+        "fn": 12,
+        "support": 112
+      },
+      "organization": {
+        "precision": 0.4936708860759494,
+        "recall": 0.3482142857142857,
+        "f1": 0.4083769633507853,
+        "tp": 39,
+        "fp": 40,
+        "fn": 73,
+        "support": 112
+      },
+      "position": {
+        "precision": 0.6585365853658537,
+        "recall": 0.27,
+        "f1": 0.3829787234042553,
+        "tp": 27,
+        "fp": 14,
+        "fn": 73,
+        "support": 100
+      },
+      "company": {
+        "precision": 0.6410256410256411,
+        "recall": 0.6578947368421053,
+        "f1": 0.6493506493506495,
+        "tp": 50,
+        "fp": 28,
+        "fn": 26,
+        "support": 76
+      },
+      "game": {
+        "precision": 0.4578313253012048,
+        "recall": 0.5277777777777778,
+        "f1": 0.4903225806451612,
+        "tp": 38,
+        "fp": 45,
+        "fn": 34,
+        "support": 72
+      },
+      "address": {
+        "precision": 0.4794520547945205,
+        "recall": 0.5737704918032787,
+        "f1": 0.5223880597014925,
+        "tp": 35,
+        "fp": 38,
+        "fn": 26,
+        "support": 61
+      },
+      "government": {
+        "precision": 0.7428571428571429,
+        "recall": 0.52,
+        "f1": 0.6117647058823529,
+        "tp": 26,
+        "fp": 9,
+        "fn": 24,
+        "support": 50
+      },
+      "scene": {
+        "precision": 0.5434782608695652,
+        "recall": 0.6944444444444444,
+        "f1": 0.6097560975609756,
+        "tp": 25,
+        "fp": 21,
+        "fn": 11,
+        "support": 36
+      },
+      "movie": {
+        "precision": 0.07407407407407407,
+        "recall": 0.0625,
+        "f1": 0.06779661016949153,
+        "tp": 2,
+        "fp": 25,
+        "fn": 30,
+        "support": 32
+      },
+      "book": {
+        "precision": 0.1,
+        "recall": 0.1,
+        "f1": 0.10000000000000002,
+        "tp": 3,
+        "fp": 27,
+        "fn": 27,
+        "support": 30
+      }
+    },
+    "error_attribution": {
+      "type_err": 42,
+      "boundary_err": 108,
+      "both_err": 26,
+      "miss": 160
+    },
+    "groups": {},
+    "length_buckets": {
+      "1-2": {
+        "precision": 0.5,
+        "recall": 0.505,
+        "f1": 0.5024875621890548,
+        "tp": 101,
+        "fp": 101,
+        "fn": 99,
+        "n_gold": 200
+      },
+      "3-4": {
+        "precision": 0.5,
+        "recall": 0.605072463768116,
+        "f1": 0.5475409836065573,
+        "tp": 167,
+        "fp": 167,
+        "fn": 109,
+        "n_gold": 276
+      },
+      "5-8": {
+        "precision": 0.5,
+        "recall": 0.38666666666666666,
+        "f1": 0.43609022556390975,
+        "tp": 58,
+        "fp": 58,
+        "fn": 92,
+        "n_gold": 150
+      },
+      "9+": {
+        "precision": 0.5,
+        "recall": 0.34545454545454546,
+        "f1": 0.40860215053763443,
+        "tp": 19,
+        "fp": 19,
+        "fn": 36,
+        "n_gold": 55
+      }
+    }
+  },
+  "llm": {
+    "dataset": "cluener",
+    "mode": "zero",
+    "model": "deepseek-chat",
+    "tag": "zero_n300",
+    "n": 300,
+    "json_ok_rate": 1.0,
+    "json_ok": 300,
+    "repaired": 0,
+    "noise_stripped": 0,
+    "hallucinated_spans": 0,
+    "label_invalid": 0,
+    "prompt_tokens": 81665,
+    "completion_tokens": 10070,
+    "avg_latency_s": 0.7903429086666347,
+    "p50_latency_s": 0.7561075999992681,
+    "elapsed_s": 29.9,
+    "cost_cny": 0.24389,
+    "price_in_per_m": 2.0,
+    "price_out_per_m": 8.0
+  },
+  "n_params": 0,
+  "train_seconds": 0,
+  "ms_per_sentence": 790.34
+}

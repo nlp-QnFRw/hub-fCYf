@@ -1,0 +1,21 @@
+{
+  "dataset": "cluener",
+  "mode": "few",
+  "model": "deepseek-chat",
+  "tag": "few_n300",
+  "n": 300,
+  "json_ok_rate": 1.0,
+  "json_ok": 300,
+  "repaired": 0,
+  "noise_stripped": 0,
+  "hallucinated_spans": 0,
+  "label_invalid": 0,
+  "prompt_tokens": 119765,
+  "completion_tokens": 11564,
+  "avg_latency_s": 0.7647991973333531,
+  "p50_latency_s": 0.725544699999773,
+  "elapsed_s": 29.2,
+  "cost_cny": 0.332042,
+  "price_in_per_m": 2.0,
+  "price_out_per_m": 8.0
+}

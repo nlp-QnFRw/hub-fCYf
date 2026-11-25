@@ -1,0 +1,24 @@
+{
+  "script": "src.train_transformer",
+  "dataset": "cluener",
+  "method": "roberta",
+  "args": {
+    "dataset": "cluener",
+    "model": "roberta",
+    "epochs": 5,
+    "batch": 32,
+    "lr": 2e-05,
+    "max_len": 128,
+    "warmup": 0.1,
+    "weight_decay": 0.01,
+    "seed": 42,
+    "fp16": true
+  },
+  "result": {
+    "dev_f1_best": 0.7622687047465808,
+    "test_f1": 0.7417840375586855,
+    "n_params": 101693205,
+    "train_seconds": 139.2
+  },
+  "model_dir": "models/roberta"
+}

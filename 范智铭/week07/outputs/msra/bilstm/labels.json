@@ -1,0 +1,16 @@
+{
+  "labels": [
+    "LOC",
+    "ORG",
+    "PER"
+  ],
+  "tags": [
+    "O",
+    "B-LOC",
+    "I-LOC",
+    "B-ORG",
+    "I-ORG",
+    "B-PER",
+    "I-PER"
+  ]
+}

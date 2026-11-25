@@ -1,0 +1,159 @@
+{
+  "dataset": "resume",
+  "method": "bert",
+  "subset_size": 80,
+  "test": {
+    "overall": {
+      "precision": 0.9753554502369668,
+      "recall": 0.9781368821292775,
+      "f1": 0.9767441860465116,
+      "tp": 1029,
+      "fp": 26,
+      "fn": 23,
+      "n_docs": 80,
+      "n_gold": 1052,
+      "n_pred": 1055,
+      "missing_pred_docs": 0
+    },
+    "macro_f1": 0.971508317004079,
+    "n_labels": 10,
+    "per_type": {
+      "POS": {
+        "precision": 0.9902439024390244,
+        "recall": 1.0,
+        "f1": 0.9950980392156863,
+        "tp": 203,
+        "fp": 2,
+        "fn": 0,
+        "support": 203
+      },
+      "TIME": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 166,
+        "fp": 0,
+        "fn": 0,
+        "support": 166
+      },
+      "ORG": {
+        "precision": 0.953125,
+        "recall": 0.991869918699187,
+        "f1": 0.9721115537848606,
+        "tp": 122,
+        "fp": 6,
+        "fn": 1,
+        "support": 123
+      },
+      "NAME": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "support": 80
+      },
+      "TEL": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "support": 80
+      },
+      "EMAIL": {
+        "precision": 0.9,
+        "recall": 0.9,
+        "f1": 0.9,
+        "tp": 72,
+        "fp": 8,
+        "fn": 8,
+        "support": 80
+      },
+      "EDU": {
+        "precision": 0.972972972972973,
+        "recall": 0.9,
+        "f1": 0.935064935064935,
+        "tp": 72,
+        "fp": 2,
+        "fn": 8,
+        "support": 80
+      },
+      "SCHOOL": {
+        "precision": 0.9634146341463414,
+        "recall": 0.9875,
+        "f1": 0.9753086419753086,
+        "tp": 79,
+        "fp": 3,
+        "fn": 1,
+        "support": 80
+      },
+      "MAJOR": {
+        "precision": 0.975,
+        "recall": 0.975,
+        "f1": 0.975,
+        "tp": 78,
+        "fp": 2,
+        "fn": 2,
+        "support": 80
+      },
+      "SALARY": {
+        "precision": 0.9625,
+        "recall": 0.9625,
+        "f1": 0.9625000000000001,
+        "tp": 77,
+        "fp": 3,
+        "fn": 3,
+        "support": 80
+      }
+    },
+    "error_attribution": {
+      "type_err": 0,
+      "boundary_err": 17,
+      "both_err": 0,
+      "miss": 6,
+      "total_fn": 23
+    },
+    "groups": {},
+    "length_buckets": {
+      "1-2": {
+        "precision": 0.5,
+        "recall": 0.925,
+        "f1": 0.6491228070175439,
+        "tp": 111,
+        "fp": 111,
+        "fn": 9,
+        "n_gold": 120
+      },
+      "3-4": {
+        "precision": 0.5,
+        "recall": 0.9722222222222222,
+        "f1": 0.660377358490566,
+        "tp": 175,
+        "fp": 175,
+        "fn": 5,
+        "n_gold": 180
+      },
+      "5-8": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "tp": 287,
+        "fp": 287,
+        "fn": 0,
+        "n_gold": 287
+      },
+      "9+": {
+        "precision": 0.5,
+        "recall": 0.9806451612903225,
+        "f1": 0.6623093681917211,
+        "tp": 456,
+        "fp": 456,
+        "fn": 9,
+        "n_gold": 465
+      }
+    }
+  }
+}

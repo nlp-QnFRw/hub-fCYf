@@ -1,0 +1,14 @@
+{
+  "labels": [
+    "NAME",
+    "TEL",
+    "EMAIL",
+    "EDU",
+    "SCHOOL",
+    "MAJOR",
+    "ORG",
+    "POS",
+    "TIME",
+    "SALARY"
+  ]
+}

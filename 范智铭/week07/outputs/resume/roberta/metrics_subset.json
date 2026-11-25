@@ -1,0 +1,159 @@
+{
+  "dataset": "resume",
+  "method": "roberta",
+  "subset_size": 80,
+  "test": {
+    "overall": {
+      "precision": 0.978219696969697,
+      "recall": 0.9819391634980988,
+      "f1": 0.9800759013282733,
+      "tp": 1033,
+      "fp": 23,
+      "fn": 19,
+      "n_docs": 80,
+      "n_gold": 1052,
+      "n_pred": 1056,
+      "missing_pred_docs": 0
+    },
+    "macro_f1": 0.9763348137661639,
+    "n_labels": 10,
+    "per_type": {
+      "POS": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 203,
+        "fp": 0,
+        "fn": 0,
+        "support": 203
+      },
+      "TIME": {
+        "precision": 0.9760479041916168,
+        "recall": 0.9819277108433735,
+        "f1": 0.978978978978979,
+        "tp": 163,
+        "fp": 4,
+        "fn": 3,
+        "support": 166
+      },
+      "ORG": {
+        "precision": 0.9919354838709677,
+        "recall": 1.0,
+        "f1": 0.9959514170040485,
+        "tp": 123,
+        "fp": 1,
+        "fn": 0,
+        "support": 123
+      },
+      "NAME": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "support": 80
+      },
+      "TEL": {
+        "precision": 0.9753086419753086,
+        "recall": 0.9875,
+        "f1": 0.9813664596273292,
+        "tp": 79,
+        "fp": 2,
+        "fn": 1,
+        "support": 80
+      },
+      "EMAIL": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "support": 80
+      },
+      "EDU": {
+        "precision": 0.9736842105263158,
+        "recall": 0.925,
+        "f1": 0.9487179487179489,
+        "tp": 74,
+        "fp": 2,
+        "fn": 6,
+        "support": 80
+      },
+      "SCHOOL": {
+        "precision": 0.9058823529411765,
+        "recall": 0.9625,
+        "f1": 0.9333333333333333,
+        "tp": 77,
+        "fp": 8,
+        "fn": 3,
+        "support": 80
+      },
+      "MAJOR": {
+        "precision": 0.925,
+        "recall": 0.925,
+        "f1": 0.925,
+        "tp": 74,
+        "fp": 6,
+        "fn": 6,
+        "support": 80
+      },
+      "SALARY": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "support": 80
+      }
+    },
+    "error_attribution": {
+      "type_err": 0,
+      "boundary_err": 15,
+      "both_err": 0,
+      "miss": 4,
+      "total_fn": 19
+    },
+    "groups": {},
+    "length_buckets": {
+      "1-2": {
+        "precision": 0.5,
+        "recall": 0.9666666666666667,
+        "f1": 0.6590909090909091,
+        "tp": 116,
+        "fp": 116,
+        "fn": 4,
+        "n_gold": 120
+      },
+      "3-4": {
+        "precision": 0.5,
+        "recall": 0.9555555555555556,
+        "f1": 0.6564885496183206,
+        "tp": 172,
+        "fp": 172,
+        "fn": 8,
+        "n_gold": 180
+      },
+      "5-8": {
+        "precision": 0.5,
+        "recall": 0.9790940766550522,
+        "f1": 0.6619552414605419,
+        "tp": 281,
+        "fp": 281,
+        "fn": 6,
+        "n_gold": 287
+      },
+      "9+": {
+        "precision": 0.5,
+        "recall": 0.9978494623655914,
+        "f1": 0.6661880832735104,
+        "tp": 464,
+        "fp": 464,
+        "fn": 1,
+        "n_gold": 465
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "script": "src.llm_extract",
+  "dataset": "cluener",
+  "tag": "few_n300",
+  "args": {
+    "model": "deepseek-chat",
+    "mode": "few",
+    "n": 300,
+    "temperature": 0,
+    "max_tokens": 512,
+    "prompt_version": "v1"
+  },
+  "result": {
+    "test_f1": 0.6008583690987125,
+    "json_ok_rate": 1.0,
+    "prompt_tokens": 119765,
+    "completion_tokens": 11564,
+    "cost_cny": 0.332042
+  }
+}

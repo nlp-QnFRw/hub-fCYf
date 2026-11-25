@@ -1,0 +1,21 @@
+{
+  "dataset": "msra",
+  "mode": "few",
+  "model": "deepseek-chat",
+  "tag": "few_n300",
+  "n": 300,
+  "json_ok_rate": 1.0,
+  "json_ok": 300,
+  "repaired": 0,
+  "noise_stripped": 0,
+  "hallucinated_spans": 1,
+  "label_invalid": 0,
+  "prompt_tokens": 109920,
+  "completion_tokens": 12479,
+  "avg_latency_s": 0.797822245999987,
+  "p50_latency_s": 0.763460799999848,
+  "elapsed_s": 30.4,
+  "cost_cny": 0.319672,
+  "price_in_per_m": 2.0,
+  "price_out_per_m": 8.0
+}
