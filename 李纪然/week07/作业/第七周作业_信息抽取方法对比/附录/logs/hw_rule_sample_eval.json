@@ -1,0 +1,38 @@
+{
+  "method": "hw_rule_sample",
+  "argv": [
+    "rule/run_rule.py",
+    "--data_dir",
+    "data/sample",
+    "--name",
+    "hw_rule_sample"
+  ],
+  "args": null,
+  "env": {
+    "python": "3.12.15",
+    "platform": "macOS-15.4-arm64-arm-64bit",
+    "time": "2026-11-26 17:25:45",
+    "torch": "2.6.0",
+    "cuda_available": false,
+    "transformers": "5.5.3"
+  },
+  "runtime_s": 1.4,
+  "metrics": {
+    "trigger": 0.6791,
+    "argument": 0.1558,
+    "event_exact": 0.0169
+  },
+  "type_macro_f1": 0.8512,
+  "num_triggers": 52,
+  "num_company_dict": 612,
+  "trigger_hit_rate": 0.9733,
+  "failure_counts": {
+    "wrong_trigger": 57,
+    "arg_spurious": 176,
+    "wrong_type": 34,
+    "no_trigger": 8,
+    "arg_missing": 20,
+    "exact": 5
+  },
+  "notes": "L0 规则基线（触发词词典 + 正则论元）"
+}

@@ -1,0 +1,4 @@
+{"epoch": 1, "step": 0, "loss": 5.065092, "lr": 1.25e-06, "elapsed_s": 9.79, "step_elapsed_s": 9.793}
+{"epoch": 1, "step": 50, "loss": 1.142364, "lr": 1.521e-05, "elapsed_s": 504.99, "step_elapsed_s": 495.198}
+{"epoch": 1, "step": 100, "loss": 0.746223, "lr": 8.36e-06, "elapsed_s": 989.91, "step_elapsed_s": 484.921}
+{"epoch": 1, "step": 150, "loss": 0.691706, "lr": 1.51e-06, "elapsed_s": 1468.37, "step_elapsed_s": 478.458}

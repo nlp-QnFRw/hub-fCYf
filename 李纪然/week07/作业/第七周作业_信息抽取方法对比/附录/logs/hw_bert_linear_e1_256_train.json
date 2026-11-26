@@ -1,0 +1,96 @@
+{
+  "method": "hw_bert_linear",
+  "argv": [
+    "bert/train.py",
+    "--decoder",
+    "linear",
+    "--device",
+    "cpu",
+    "--epochs",
+    "1",
+    "--max_len",
+    "256",
+    "--batch_size",
+    "32",
+    "--bert_path",
+    "/Users/lijiran/Downloads/第四周 语言模型/bert-base-chinese",
+    "--run_name",
+    "hw_bert_linear"
+  ],
+  "args": {
+    "decoder": "linear",
+    "bert_path": "/Users/lijiran/Downloads/第四周 语言模型/bert-base-chinese",
+    "bert_layers": 0,
+    "max_len": 256,
+    "epochs": 1,
+    "batch_size": 32,
+    "lr": 2e-05,
+    "head_lr_mult": 5.0,
+    "warmup_ratio": 0.1,
+    "grad_accum": 1,
+    "max_grad_norm": 1.0,
+    "weight_decay": 0.01,
+    "dropout": 0.1,
+    "inner_val": 0.1,
+    "hard_constraint": false,
+    "device": "cpu",
+    "log_every": 50,
+    "seed": 42,
+    "run_name": "hw_bert_linear",
+    "mock": false,
+    "data_dir": ""
+  },
+  "env": {
+    "python": "3.12.15",
+    "platform": "macOS-15.4-arm64-arm-64bit",
+    "time": "2026-11-26 17:17:26",
+    "torch": "2.6.0",
+    "cuda_available": false,
+    "transformers": "5.5.3"
+  },
+  "params": 102382229,
+  "log_every": 50,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 1.238565,
+      "elapsed_s": 1705.1,
+      "val": {
+        "inner_loss": 0.6514958077006869,
+        "inner_span_f1": 0.19008049857179954,
+        "dev_span_f1_monitor": 0.18341178380133094
+      },
+      "best_so_far": -1.0
+    }
+  ],
+  "total_elapsed_s": 1705.5,
+  "finished": true,
+  "best_epoch": 1,
+  "best_inner_val_span_f1": 0.19008,
+  "dev_metrics": {
+    "trigger": 0.1466,
+    "argument": 0.1909,
+    "event_exact": 0.0113
+  },
+  "inference_latency_ms": 44.52,
+  "peak_gpu_mb": 0.0,
+  "illegal_dev": {
+    "illegal_start": 51,
+    "illegal_transition": 3612,
+    "total_seqs": 930,
+    "illegal_seqs": 798,
+    "total_illegal": 3663,
+    "illegal_seq_rate": 0.8581,
+    "illegal_per_seq": 3.939
+  },
+  "illegal_train_pred_sample": {
+    "illegal_start": 344,
+    "illegal_transition": 19346,
+    "total_seqs": 5173,
+    "illegal_seqs": 4458,
+    "total_illegal": 19690,
+    "illegal_seq_rate": 0.8618,
+    "illegal_per_seq": 3.806
+  },
+  "notes": "BERT 序列标注（linear）训练过程"
+}

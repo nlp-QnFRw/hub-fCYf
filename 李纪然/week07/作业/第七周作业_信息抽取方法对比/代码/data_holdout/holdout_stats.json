@@ -1,0 +1,15 @@
+{
+  "holdout_types": [
+    "质押",
+    "高管变动",
+    "被约谈"
+  ],
+  "train_rows": 5008,
+  "dev_rows": 116,
+  "dev_type_counts": {
+    "质押": 57,
+    "高管变动": 48,
+    "被约谈": 11
+  },
+  "note": "训练集整类删掉 holdout_types；评测集只保留这些类型；schema 仍为全部 13 类"
+}
