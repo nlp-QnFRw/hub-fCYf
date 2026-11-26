@@ -1,0 +1,42 @@
+{
+  "method": "roberta_pipe_detector",
+  "dev_detect_full": {
+    "precision": 0.783,
+    "recall": 0.7439,
+    "f1": 0.7629,
+    "tp": 877,
+    "fp": 243,
+    "fn": 302,
+    "accuracy": 0.8972,
+    "confusion": {
+      "tp": 877,
+      "fp": 243,
+      "fn": 302,
+      "tn": 3880
+    }
+  },
+  "dev_detect_clean": {
+    "precision": 0.7871,
+    "recall": 0.7506,
+    "f1": 0.7684,
+    "tp": 876,
+    "fp": 237,
+    "fn": 291,
+    "accuracy": 0.8903,
+    "confusion": {
+      "tp": 876,
+      "fp": 237,
+      "fn": 291,
+      "tn": 3411
+    }
+  },
+  "meta": {
+    "display_name": "检测器（RoBERTa 二分类）",
+    "train_s": 1663.4,
+    "ms_per_sentence": 56.93,
+    "dev_detect_n": 5302,
+    "detect_train_n": 8000,
+    "dev_detect_clean_n": 4815,
+    "note": "dev_detect 与 train 有 9.2% 文本重复（真实泄漏），clean 版去掉重复后指标更能代表真实泛化"
+  }
+}

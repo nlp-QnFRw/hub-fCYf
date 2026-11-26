@@ -1,0 +1,114 @@
+{
+  "method": "roberta_crf_256",
+  "argv": [
+    "bert/train.py",
+    "--decoder",
+    "crf",
+    "--run_name",
+    "roberta_crf_256",
+    "--bert_path",
+    "D:\\xxl\\study\\workspace\\test\\week07\\study\\outputs\\model\\roberta",
+    "--device",
+    "cpu",
+    "--data_dir",
+    "D:\\xxl\\study\\workspace\\test\\week07\\week7-信息抽取\\code\\data\\processed"
+  ],
+  "args": {
+    "decoder": "crf",
+    "bert_path": "D:\\xxl\\study\\workspace\\test\\week07\\study\\outputs\\model\\roberta",
+    "bert_layers": 0,
+    "max_len": 256,
+    "epochs": 3,
+    "batch_size": 32,
+    "lr": 2e-05,
+    "head_lr_mult": 5.0,
+    "warmup_ratio": 0.1,
+    "grad_accum": 1,
+    "max_grad_norm": 1.0,
+    "weight_decay": 0.01,
+    "dropout": 0.1,
+    "inner_val": 0.1,
+    "hard_constraint": false,
+    "device": "cpu",
+    "log_every": 50,
+    "seed": 42,
+    "run_name": "roberta_crf_256",
+    "mock": false,
+    "data_dir": "D:\\xxl\\study\\workspace\\test\\week07\\week7-信息抽取\\code\\data\\processed"
+  },
+  "env": {
+    "python": "3.12.14",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "time": "2026-11-25 18:53:45",
+    "torch": "2.6.0+cpu",
+    "cuda_available": false,
+    "transformers": "5.5.3"
+  },
+  "params": 102404728,
+  "log_every": 50,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 297.094064,
+      "elapsed_s": 3800.9,
+      "val": {
+        "inner_loss": 149.53491380479602,
+        "inner_span_f1": 0.0,
+        "dev_span_f1_monitor": 0.0
+      },
+      "best_so_far": -1.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 125.894832,
+      "elapsed_s": 3805.4,
+      "val": {
+        "inner_loss": 101.19688373141818,
+        "inner_span_f1": 0.34849915046252594,
+        "dev_span_f1_monitor": 0.3365407181412814
+      },
+      "best_so_far": 0.0
+    },
+    {
+      "epoch": 3,
+      "train_loss": 97.287727,
+      "elapsed_s": 1738.7,
+      "val": {
+        "inner_loss": 89.29074350992839,
+        "inner_span_f1": 0.4409970367788042,
+        "dev_span_f1_monitor": 0.4412046397786527
+      },
+      "best_so_far": 0.348499
+    }
+  ],
+  "total_elapsed_s": 9346.0,
+  "finished": true,
+  "best_epoch": 3,
+  "best_inner_val_span_f1": 0.440997,
+  "dev_metrics": {
+    "trigger": 0.6439,
+    "argument": 0.3459,
+    "event_exact": 0.0647
+  },
+  "inference_latency_ms": 73.39,
+  "peak_gpu_mb": 0.0,
+  "illegal_dev": {
+    "illegal_start": 41,
+    "illegal_transition": 3032,
+    "total_seqs": 930,
+    "illegal_seqs": 798,
+    "total_illegal": 3073,
+    "illegal_seq_rate": 0.8581,
+    "illegal_per_seq": 3.304
+  },
+  "illegal_train_pred_sample": {
+    "illegal_start": 246,
+    "illegal_transition": 16881,
+    "total_seqs": 5173,
+    "illegal_seqs": 4541,
+    "total_illegal": 17127,
+    "illegal_seq_rate": 0.8778,
+    "illegal_per_seq": 3.311
+  },
+  "notes": "RoBERTa 序列标注（crf）训练过程"
+}

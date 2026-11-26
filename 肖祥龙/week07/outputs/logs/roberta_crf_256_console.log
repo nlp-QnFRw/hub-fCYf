@@ -1,0 +1,29 @@
+  epoch 1 step 50/162 loss=528.9271
+  epoch 1 step 100/162 loss=373.7627
+  epoch 1 step 150/162 loss=308.0832
+epoch 1/3 | train_loss=297.0941 | inner_loss=149.5349 inner_spanF1=0.0000 | dev_spanF1(监控)=0.0000 | 3801s
+  ★ 内层验证最优 → 保存 roberta_crf_256.pt
+  epoch 2 step 50/162 loss=140.3769
+  epoch 2 step 100/162 loss=134.2718
+  epoch 2 step 150/162 loss=127.3315
+epoch 2/3 | train_loss=125.8948 | inner_loss=101.1969 inner_spanF1=0.3485 | dev_spanF1(监控)=0.3365 | 3805s
+  ★ 内层验证最优 → 保存 roberta_crf_256.pt
+  epoch 3 step 50/162 loss=100.8008
+  epoch 3 step 100/162 loss=99.0264
+  epoch 3 step 150/162 loss=97.6692
+epoch 3/3 | train_loss=97.2877 | inner_loss=89.2907 inner_spanF1=0.4410 | dev_spanF1(监控)=0.4412 | 1739s
+  ★ 内层验证最优 → 保存 roberta_crf_256.pt
+加载最优 checkpoint（epoch 3，内层验证 spanF1=0.4410）
+dev 解码：930 句，其中没抽到触发词 161 句
+样本数 930（缺预测 0 条）
+  trigger      P=0.7113 R=0.5882 F1=0.6439 (tp=547 fp=222 fn=383)
+  argument     P=0.3721 R=0.3231 F1=0.3459 (tp=1332 fp=2248 fn=2790)
+  event_exact  P=0.0715 R=0.0591 F1=0.0647 (tp=55 fp=714 fn=875)
+  type_macro_f1 = 0.4292
+  指标已写入 → D:\xxl\study\workspace\test\week07\study\outputs\metrics\disc\roberta_crf_256.json
+
+【非法 BIO 统计（dev，模型原始输出）】
+  序列数 930：含非法序列 798 条（85.8%），其中非法开头 41 处、非法转移 3032 处
+  训练集对照：含非法序列 4541 条（87.8%）
+
+训练耗时 9346s | 推理延迟 73.39 ms/句 | 峰值显存 0 MiB

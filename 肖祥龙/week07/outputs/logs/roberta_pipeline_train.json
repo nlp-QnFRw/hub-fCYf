@@ -1,0 +1,90 @@
+{
+  "method": "roberta_pipeline",
+  "argv": [
+    "bert_pipeline/train.py",
+    "--bert_path",
+    "D:\\xxl\\study\\workspace\\test\\week07\\study\\outputs\\model\\roberta",
+    "--device",
+    "cpu",
+    "--data_dir",
+    "D:\\xxl\\study\\workspace\\test\\week07\\week7-信息抽取\\code\\data\\processed",
+    "--detect_limit",
+    "8000",
+    "--cls_epochs",
+    "1",
+    "--arg_lr",
+    "8e-5"
+  ],
+  "args": {
+    "bert_path": "D:\\xxl\\study\\workspace\\test\\week07\\study\\outputs\\model\\roberta",
+    "cls_epochs": 1,
+    "detect_limit": 8000,
+    "cls_lr": 2e-05,
+    "cls_batch_size": 64,
+    "cls_max_len": 192,
+    "arg_epochs": 3,
+    "arg_lr": 8e-05,
+    "arg_batch_size": 32,
+    "max_len": 256,
+    "arg_layers": 4,
+    "dropout": 0.1,
+    "device": "cpu",
+    "seed": 42,
+    "skip_train": false,
+    "log_every": 50,
+    "only_experts": false,
+    "mock": false,
+    "data_dir": "D:\\xxl\\study\\workspace\\test\\week07\\week7-信息抽取\\code\\data\\processed"
+  },
+  "env": {
+    "python": "3.12.14",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "time": "2026-11-25 20:19:57",
+    "torch": "2.6.0+cpu",
+    "cuda_available": false,
+    "transformers": "5.5.3"
+  },
+  "params": null,
+  "log_every": 50,
+  "epochs": [
+    {
+      "epoch": 3,
+      "train_loss": 0.0,
+      "elapsed_s": 1673.2,
+      "val": {
+        "中标": 206.8,
+        "亏损": 188.3,
+        "企业收购": 217.3,
+        "企业破产": 51.3,
+        "企业融资": 122.5,
+        "公司上市": 104.1,
+        "股东减持": 159.4,
+        "股东增持": 47.6,
+        "股份回购": 286.0,
+        "被约谈": 15.4,
+        "解除质押": 75.3,
+        "质押": 115.9,
+        "高管变动": 82.5
+      },
+      "stage": "13_argument_experts"
+    }
+  ],
+  "total_elapsed_s": 4535.0,
+  "finished": true,
+  "diag": {
+    "n_detect_dropped": 267,
+    "n_type_wrong": 190,
+    "type_accuracy_on_dev_extract": 0.7957,
+    "n_arg_truncated": 99
+  },
+  "dev_metrics": {
+    "trigger": 0.4271,
+    "argument": 0.269,
+    "event_exact": 0.0156
+  },
+  "inference_latency_ms": 132.45,
+  "peak_gpu_mb": 0.0,
+  "pipeline_stages": 3,
+  "num_models": 15,
+  "notes": "两段式：检测器 + 13 分类 + 13 个类型条件论元专家"
+}

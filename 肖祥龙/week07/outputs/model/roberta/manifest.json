@@ -1,0 +1,9 @@
+{
+  "model_source": "D:\\xxl\\study\\workspace\\test\\model\\roberta",
+  "sha256": {
+    "config.json": "e27bbfa400a8287319bc3acfea0eb554d342c1f54feb63dcad0a90280b920a50",
+    "vocab.txt": "27cddfd1db10e70ca98c2b9a346c44d590b144223f13b2c7dcf7ed0e42cbb558",
+    "pytorch_model.bin": "e0ffd1803dbbad6015bd367311d0b56f2b1a646be103edbd3a3ce4c818bd784b"
+  },
+  "encoder_parameters": 102267648
+}

@@ -1,0 +1,43 @@
+{
+  "method": "roberta_crf_256_hard",
+  "argv": [
+    "bert/evaluate_hard_constraint.py",
+    "--run_name",
+    "roberta_crf_256_hard",
+    "--soft_json",
+    "roberta_crf_256",
+    "--ckpt",
+    "D:\\xxl\\study\\workspace\\test\\week07\\study\\outputs\\checkpoints\\roberta_crf_256.pt",
+    "--device",
+    "cpu",
+    "--data_dir",
+    "D:\\xxl\\study\\workspace\\test\\week07\\week7-信息抽取\\code\\data\\processed"
+  ],
+  "args": "Namespace(ckpt='D:\\\\xxl\\\\study\\\\workspace\\\\test\\\\week07\\\\study\\\\outputs\\\\checkpoints\\\\roberta_crf_256.pt', run_name='roberta_crf_256_hard', soft_json='roberta_crf_256', device='cpu', data_dir='D:\\\\xxl\\\\study\\\\workspace\\\\test\\\\week07\\\\week7-信息抽取\\\\code\\\\data\\\\processed')",
+  "env": {
+    "python": "3.12.14",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "time": "2026-11-25 18:55:01",
+    "torch": "2.6.0+cpu",
+    "cuda_available": false,
+    "transformers": "5.5.3"
+  },
+  "runtime_s": 66.05,
+  "metrics": {
+    "trigger": 0.6022,
+    "argument": 0.382,
+    "event_exact": 0.0731
+  },
+  "illegal_dev": {
+    "illegal_start": 0,
+    "illegal_transition": 121,
+    "total_seqs": 930,
+    "illegal_seqs": 55,
+    "total_illegal": 121,
+    "illegal_seq_rate": 0.0591,
+    "illegal_per_seq": 0.13
+  },
+  "ckpt": "D:\\xxl\\study\\workspace\\test\\week07\\study\\outputs\\checkpoints\\roberta_crf_256.pt",
+  "constraint_note": "解码期硬约束（token 级非法归零）",
+  "notes": "纯评测：从 checkpoint 复评 dev（不训练）"
+}

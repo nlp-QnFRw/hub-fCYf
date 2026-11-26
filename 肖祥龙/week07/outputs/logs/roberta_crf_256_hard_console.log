@@ -1,0 +1,13 @@
+硬约束已装载：禁止 10878 个非法转移对、74 个非法起始标签
+硬约束解码后非法统计：非法开头 0 处 / 非法转移 121 处（含非法序列 55 句）
+样本数 930（缺预测 0 条）
+  trigger      P=0.6662 R=0.5495 F1=0.6022 (tp=511 fp=256 fn=419)
+  argument     P=0.4621 R=0.3256 F1=0.3820 (tp=1342 fp=1562 fn=2780)
+  event_exact  P=0.0808 R=0.0667 F1=0.0731 (tp=62 fp=705 fn=868)
+  type_macro_f1 = 0.4165
+  指标已写入 → D:\xxl\study\workspace\test\week07\study\outputs\metrics\disc\roberta_crf_256_hard.json
+
+【软约束 vs 硬约束（同 checkpoint / 同 dev）】
+  非法序列：798 句 → 55 句
+  非法转移：3032 处 → 121 处
+  论元 F1 ：0.3459 → 0.3820
