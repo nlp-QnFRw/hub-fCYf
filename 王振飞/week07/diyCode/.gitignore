@@ -1,0 +1,6 @@
+__pycache__/
+.env
+
+llm_config.json
+/outputs/bert_linear.pt
+/outputs/bert_crf.pt

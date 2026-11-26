@@ -1,0 +1,35 @@
+{
+  "method": "rule",
+  "argv": [
+    "rule/run_rule.py"
+  ],
+  "args": null,
+  "env": {
+    "python": "3.12.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "time": "2026-11-19 20:58:52",
+    "torch": "2.6.0+cu126",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "transformers": "5.5.3"
+  },
+  "runtime_s": 25.74,
+  "metrics": {
+    "trigger": 0.6168,
+    "argument": 0.174,
+    "event_exact": 0.0161
+  },
+  "type_macro_f1": 0.8118,
+  "num_triggers": 99,
+  "num_company_dict": 3679,
+  "trigger_hit_rate": 0.9978,
+  "failure_counts": {
+    "wrong_trigger": 214,
+    "arg_spurious": 517,
+    "wrong_type": 141,
+    "exact": 15,
+    "arg_missing": 41,
+    "no_trigger": 2
+  },
+  "notes": "L0 规则基线（触发词词典 + 正则论元）"
+}

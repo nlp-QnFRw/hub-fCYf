@@ -1,0 +1,50 @@
+{
+  "method": "llm_lora_eval",
+  "argv": [
+    "llm_lora/evaluate_sft.py",
+    "--ckpt_dir",
+    "outputs/llm/ckpt/sft_adapter",
+    "--n",
+    "200"
+  ],
+  "args": "Namespace(model_path='pretrain_models/\\Qwen3-0.6B', ckpt_dir='outputs/llm/ckpt/sft_adapter', data=None, n=200, seed=42, max_new_tokens=320, max_length=1280, gen_batch=8, dtype='auto', tag='')",
+  "env": {
+    "python": "3.12.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "time": "2026-11-18 20:42:06",
+    "torch": "2.6.0+cu126",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "transformers": "5.5.3"
+  },
+  "runtime_s": 1095.76,
+  "metrics": {
+    "trigger": 0.9,
+    "argument": 0.6971,
+    "event_exact": 0.185
+  },
+  "type_macro_f1": 0.7862,
+  "report": {
+    "tag": "sft_lora_n200",
+    "backend": "sft",
+    "ckpt_type": "lora",
+    "ckpt_dir": "outputs/llm\\ckpt\\sft_adapter",
+    "model_path": "pretrain_models/Qwen3-0.6B",
+    "n": 200,
+    "seed": 42,
+    "json_valid_rate": 100.0,
+    "parse_fail": 0,
+    "empty_reply": 0,
+    "repaired": 0,
+    "noise_stripped": 0,
+    "type_invalid": 2,
+    "role_invalid": 4,
+    "trigger_not_in_source": 4,
+    "arg_not_in_source": 4,
+    "latency_mean_s": 5.431,
+    "latency_p50_s": 5.417,
+    "total_s": 1087.5
+  },
+  "ckpt_dir": "outputs/llm/ckpt/sft_adapter",
+  "notes": "LoRA SFT 模型评测（生成式链路）"
+}
