@@ -1,0 +1,36 @@
+{
+  "method": "roberta_crf_256_hard",
+  "argv": [
+    "bert/evaluate_hard_constraint.py",
+    "--ckpt",
+    "outputs/checkpoints/roberta_crf_256.pt"
+  ],
+  "args": "Namespace(ckpt='outputs/checkpoints/roberta_crf_256.pt', run_name='roberta_crf_256_hard', soft_json='roberta_crf_256', device='')",
+  "env": {
+    "python": "3.12.15",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "time": "2026-11-26 20:24:56",
+    "torch": "2.12.0+cu132",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+    "transformers": "4.55.0"
+  },
+  "runtime_s": 10.28,
+  "metrics": {
+    "trigger": 0.8299,
+    "argument": 0.6655,
+    "event_exact": 0.2212
+  },
+  "illegal_dev": {
+    "illegal_start": 0,
+    "illegal_transition": 187,
+    "total_seqs": 930,
+    "illegal_seqs": 76,
+    "total_illegal": 187,
+    "illegal_seq_rate": 0.0817,
+    "illegal_per_seq": 0.201
+  },
+  "ckpt": "outputs\\checkpoints\\roberta_crf_256.pt",
+  "constraint_note": "解码期硬约束（token 级非法归零）",
+  "notes": "纯评测：从 checkpoint 复评 dev（不训练）"
+}
