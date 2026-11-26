@@ -1,0 +1,12 @@
+{
+  "label2id": {
+    "0": 0,
+    "1": 1
+  },
+  "id2label": {
+    "0": "0",
+    "1": "1"
+  },
+  "model": "macbert",
+  "model_path": "C:\\models\\macbert"
+}

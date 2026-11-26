@@ -1,0 +1,38 @@
+{
+  "model": "macbert",
+  "model_path": "C:\\models\\macbert",
+  "test_acc": 0.9375,
+  "test_loss": 0.05536408673878759,
+  "best_val_acc": 0.9537500143051147,
+  "confusion_matrix": [
+    [
+      941,
+      59
+    ],
+    [
+      66,
+      934
+    ]
+  ],
+  "config": {
+    "model": "macbert",
+    "model_dir": "C:\\task\\bert-cl\\models",
+    "model_path": "C:\\models\\macbert",
+    "data_dir": "C:\\task\\week06\\data",
+    "output_dir": "C:\\task\\week06\\outputs",
+    "epochs": 5,
+    "batch_size": 16,
+    "lr": 3e-05,
+    "emb_lr_ratio": 0.1,
+    "enc_lr_ratio": 1.0,
+    "head_lr_ratio": 10.0,
+    "max_length": 128,
+    "val_ratio": 0.1,
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01,
+    "seed": 42,
+    "focal_gamma": 2.0,
+    "no_focal": false,
+    "fp16": true
+  }
+}

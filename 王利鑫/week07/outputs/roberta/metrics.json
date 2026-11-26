@@ -1,0 +1,30 @@
+{
+  "model": "roberta",
+  "model_path": "C:\\models\\roberta",
+  "test_acc": 0.9826551746811029,
+  "test_P": 0.9288640223798581,
+  "test_R": 0.9363009214965506,
+  "test_F1": 0.9325676455099431,
+  "best_val_F1": 0.9294235088594959,
+  "config": {
+    "model": "roberta",
+    "model_dir": "C:\\task\\bert-cl\\models",
+    "model_path": "C:\\models\\roberta",
+    "data_dir": "C:\\task\\week07\\data",
+    "output_dir": "C:\\task\\week07\\outputs",
+    "epochs": 5,
+    "batch_size": 16,
+    "lr": 3e-05,
+    "emb_lr_ratio": 0.1,
+    "enc_lr_ratio": 1.0,
+    "head_lr_ratio": 10.0,
+    "max_length": 128,
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01,
+    "seed": 42,
+    "focal_gamma": 2.0,
+    "no_focal": false,
+    "class_weight": false,
+    "fp16": true
+  }
+}
