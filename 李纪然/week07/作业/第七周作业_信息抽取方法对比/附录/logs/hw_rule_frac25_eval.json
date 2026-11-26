@@ -1,0 +1,38 @@
+{
+  "method": "hw_rule_frac25",
+  "argv": [
+    "rule/run_rule.py",
+    "--data_dir",
+    "/Users/lijiran/Downloads/第七周 抽取任务/第七周作业_信息抽取方法对比/代码/data_frac25",
+    "--name",
+    "hw_rule_frac25"
+  ],
+  "args": null,
+  "env": {
+    "python": "3.12.15",
+    "platform": "macOS-15.4-arm64-arm-64bit",
+    "time": "2026-11-26 18:03:47",
+    "torch": "2.6.0",
+    "cuda_available": false,
+    "transformers": "5.5.3"
+  },
+  "runtime_s": 1.66,
+  "metrics": {
+    "trigger": 0.6584,
+    "argument": 0.1555,
+    "event_exact": 0.0119
+  },
+  "type_macro_f1": 0.8454,
+  "num_triggers": 60,
+  "num_company_dict": 1101,
+  "trigger_hit_rate": 0.9892,
+  "failure_counts": {
+    "arg_spurious": 543,
+    "arg_missing": 55,
+    "wrong_trigger": 195,
+    "wrong_type": 116,
+    "no_trigger": 10,
+    "exact": 11
+  },
+  "notes": "L0 规则基线（触发词词典 + 正则论元）"
+}

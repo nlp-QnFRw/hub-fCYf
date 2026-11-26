@@ -1,0 +1,6 @@
+{"epoch": 1, "step": 0, "loss": 799.65918, "lr": 2e-05, "elapsed_s": 12.64, "step_elapsed_s": 12.64}
+{"epoch": 2, "step": 0, "loss": 802.892639, "lr": 0.00025, "elapsed_s": 29.41, "step_elapsed_s": 16.766}
+{"epoch": 3, "step": 0, "loss": 276.303589, "lr": 0.00048, "elapsed_s": 43.04, "step_elapsed_s": 13.633}
+{"epoch": 4, "step": 0, "loss": 218.582642, "lr": 0.00071, "elapsed_s": 56.69, "step_elapsed_s": 13.656}
+{"epoch": 5, "step": 0, "loss": 209.211792, "lr": 0.00094, "elapsed_s": 69.66, "step_elapsed_s": 12.962}
+{"epoch": 6, "step": 0, "loss": 168.217255, "lr": 0.001, "elapsed_s": 83.82, "step_elapsed_s": 14.166}

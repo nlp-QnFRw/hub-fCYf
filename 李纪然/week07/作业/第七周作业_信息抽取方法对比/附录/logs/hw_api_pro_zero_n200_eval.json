@@ -1,0 +1,62 @@
+{
+  "method": "hw_api_pro_zero_n200",
+  "argv": [
+    "llm_zero_shot/llm_extract.py",
+    "--backend",
+    "api",
+    "--mode",
+    "zero",
+    "--n",
+    "200",
+    "--model",
+    "deepseek-v4-pro",
+    "--tag",
+    "hw_api_pro_zero_n200"
+  ],
+  "args": "Namespace(backend='api', mode='zero', n=200, seed=42, data=None, tag='hw_api_pro_zero_n200', out='', model='deepseek-v4-pro', model_path=None, max_tokens=512, max_new_tokens=384, gen_batch=8, dtype='auto', max_length=1280, retries=3, dry_run=False, print_prompt=False, no_eval=False, from_raw='')",
+  "env": {
+    "python": "3.12.15",
+    "platform": "macOS-15.4-arm64-arm-64bit",
+    "time": "2026-11-26 16:36:30",
+    "torch": "2.6.0",
+    "cuda_available": false,
+    "transformers": "5.5.3"
+  },
+  "runtime_s": 448.9,
+  "metrics": {
+    "trigger": 0.7908,
+    "argument": 0.5428,
+    "event_exact": 0.0612
+  },
+  "type_macro_f1": 0.9183,
+  "report": {
+    "tag": "hw_api_pro_zero_n200",
+    "backend": "api",
+    "mode": "zero",
+    "n": 200,
+    "model": "deepseek-v4-pro",
+    "seed": 42,
+    "few_shot_examples": 0,
+    "json_valid_rate": 100.0,
+    "parse_fail": 0,
+    "empty_reply": 0,
+    "repaired": 0,
+    "noise_stripped": 0,
+    "type_invalid": 0,
+    "role_invalid": 3,
+    "trigger_not_in_source": 0,
+    "arg_not_in_source": 6,
+    "latency_mean_s": 2.238,
+    "latency_p50_s": 2.209,
+    "total_s": 448.2,
+    "prompt_tokens": 169891,
+    "completion_tokens": 22015,
+    "total_tokens": 191906,
+    "api_errors": 0,
+    "pred_path": "/Users/lijiran/Downloads/第七周 抽取任务/week7-信息抽取/code/outputs/llm/pred_hw_api_pro_zero_n200.jsonl",
+    "gold_subset": "/Users/lijiran/Downloads/第七周 抽取任务/week7-信息抽取/code/outputs/llm/gold_n200.jsonl",
+    "eval_ids": "/Users/lijiran/Downloads/第七周 抽取任务/week7-信息抽取/code/outputs/llm/eval_ids.json",
+    "is_mock": false
+  },
+  "notes": "LLM api/zero 事件抽取"
+}
