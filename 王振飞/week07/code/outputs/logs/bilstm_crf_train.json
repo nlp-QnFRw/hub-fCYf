@@ -1,0 +1,102 @@
+{
+  "method": "bilstm_crf",
+  "argv": [
+    "bilstm_crf/train.py",
+    "--device",
+    "cpu",
+    "--decoder",
+    "crf",
+    "--epochs",
+    "3",
+    "--max_len",
+    "128",
+    "--run_name",
+    "bilstm_crf"
+  ],
+  "args": {
+    "decoder": "crf",
+    "max_len": 128,
+    "epochs": 3,
+    "batch_size": 32,
+    "emb_dim": 128,
+    "hidden": 256,
+    "num_layers": 1,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "dropout": 0.3,
+    "max_grad_norm": 5.0,
+    "warmup_steps": 100,
+    "inner_val": 0.1,
+    "hard_constraint": false,
+    "device": "cpu",
+    "log_every": 50,
+    "seed": 42,
+    "run_name": "bilstm_crf",
+    "mock": false,
+    "data_dir": ""
+  },
+  "env": {
+    "python": "3.12.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "time": "2026-11-18 17:12:21",
+    "torch": "2.6.0+cu126",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "transformers": "5.5.3"
+  },
+  "params": 1307896,
+  "log_every": 50,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 230.366246,
+      "elapsed_s": 486.1,
+      "val": {
+        "inner_loss": 89.19198947482639,
+        "inner_span_f1": 0.13986727922409392
+      },
+      "best_so_far": -1.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 72.413837,
+      "elapsed_s": 494.1,
+      "val": {
+        "inner_loss": 54.04963493347168,
+        "inner_span_f1": 0.42791257268899136
+      },
+      "best_so_far": 0.139867
+    },
+    {
+      "epoch": 3,
+      "train_loss": 49.268177,
+      "elapsed_s": 515.2,
+      "val": {
+        "inner_loss": 40.62723106808133,
+        "inner_span_f1": 0.547415396058014
+      },
+      "best_so_far": 0.427913
+    }
+  ],
+  "total_elapsed_s": 1520.1,
+  "finished": true,
+  "best_epoch": 3,
+  "best_inner_val_span_f1": 0.547415,
+  "dev_metrics": {
+    "trigger": 0.8165,
+    "argument": 0.4634,
+    "event_exact": 0.0885
+  },
+  "inference_latency_ms": 20.56,
+  "peak_gpu_mb": 0.0,
+  "illegal_dev": {
+    "illegal_start": 50,
+    "illegal_transition": 660,
+    "total_seqs": 930,
+    "illegal_seqs": 454,
+    "total_illegal": 710,
+    "illegal_seq_rate": 0.4882,
+    "illegal_per_seq": 0.763
+  },
+  "notes": "BiLSTM-CRF（字符级，无预训练）训练过程"
+}

@@ -1,0 +1,30 @@
+{
+  "samples": 930,
+  "method": "linear",
+  "device": "cuda",
+  "dataset": "../code/data/processed/dev_extract.jsonl",
+  "trigger": {
+    "precision": 0.9015151515151515,
+    "recall": 0.8956989247311828,
+    "f1": 0.8985976267529665,
+    "tp": 833,
+    "fp": 91,
+    "fn": 97
+  },
+  "argument": {
+    "precision": 0.6302158273381295,
+    "recall": 0.7445361826129189,
+    "f1": 0.682622731826784,
+    "tp": 3066,
+    "fp": 1799,
+    "fn": 1052
+  },
+  "event_exact": {
+    "precision": 0.2553626149131767,
+    "recall": 0.26881720430107525,
+    "f1": 0.26191723415400736,
+    "tp": 250,
+    "fp": 729,
+    "fn": 680
+  }
+}
