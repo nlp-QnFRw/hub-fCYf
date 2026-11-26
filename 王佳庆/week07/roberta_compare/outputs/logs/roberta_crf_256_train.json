@@ -1,0 +1,113 @@
+{
+  "method": "roberta_crf_256",
+  "argv": [
+    "D:\\BaiduNetdiskDownload\\直播\\第七周 抽取任务\\week7-信息抽取\\week7-信息抽取\\code\\bert\\train.py",
+    "--decoder",
+    "crf",
+    "--max_len",
+    "256",
+    "--epochs",
+    "3",
+    "--run_name",
+    "roberta_crf_256"
+  ],
+  "args": {
+    "decoder": "crf",
+    "bert_path": "model\\chinese-roberta-www-ext",
+    "bert_layers": 0,
+    "max_len": 256,
+    "epochs": 3,
+    "batch_size": 32,
+    "lr": 2e-05,
+    "head_lr_mult": 5.0,
+    "warmup_ratio": 0.1,
+    "grad_accum": 1,
+    "max_grad_norm": 1.0,
+    "weight_decay": 0.01,
+    "dropout": 0.1,
+    "inner_val": 0.1,
+    "hard_constraint": false,
+    "device": "",
+    "log_every": 50,
+    "seed": 42,
+    "run_name": "roberta_crf_256",
+    "mock": false,
+    "data_dir": ""
+  },
+  "env": {
+    "python": "3.12.15",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "time": "2026-11-25 21:33:55",
+    "torch": "2.12.0+cu132",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+    "transformers": "4.55.0"
+  },
+  "params": 102404728,
+  "log_every": 50,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 223.606956,
+      "elapsed_s": 216.7,
+      "val": {
+        "inner_loss": 75.3259457482232,
+        "inner_span_f1": 0.42061234733143715,
+        "dev_span_f1_monitor": 0.4290030211480363
+      },
+      "best_so_far": -1.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 56.094536,
+      "elapsed_s": 220.6,
+      "val": {
+        "inner_loss": 42.33748584323459,
+        "inner_span_f1": 0.5899071925754061,
+        "dev_span_f1_monitor": 0.6168866389441331
+      },
+      "best_so_far": 0.420612
+    },
+    {
+      "epoch": 3,
+      "train_loss": 38.97455,
+      "elapsed_s": 221.3,
+      "val": {
+        "inner_loss": 37.0540042453342,
+        "inner_span_f1": 0.6410444477042687,
+        "dev_span_f1_monitor": 0.6595027775248157
+      },
+      "best_so_far": 0.589907
+    }
+  ],
+  "total_elapsed_s": 660.0,
+  "finished": true,
+  "best_epoch": 3,
+  "best_inner_val_span_f1": 0.641044,
+  "dev_metrics": {
+    "trigger": 0.8068,
+    "argument": 0.5794,
+    "event_exact": 0.1664
+  },
+  "inference_latency_ms": 17.07,
+  "peak_gpu_mb": 1848.9,
+  "illegal_dev": {
+    "illegal_start": 0,
+    "illegal_transition": 1414,
+    "total_seqs": 930,
+    "illegal_seqs": 625,
+    "total_illegal": 1414,
+    "illegal_seq_rate": 0.672,
+    "illegal_per_seq": 1.52
+  },
+  "illegal_train_pred_sample": {
+    "illegal_start": 2,
+    "illegal_transition": 8005,
+    "total_seqs": 5173,
+    "illegal_seqs": 3399,
+    "total_illegal": 8007,
+    "illegal_seq_rate": 0.6571,
+    "illegal_per_seq": 1.548
+  },
+  "notes": "BERT 序列标注（crf）训练过程"
+}
