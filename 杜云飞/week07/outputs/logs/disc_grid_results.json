@@ -1,0 +1,122 @@
+[
+ {
+  "run": "bert12L_linear",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 567.6,
+  "epochs": 4,
+  "finished_at": "23:39:53",
+  "metric": "outputs\\metrics\\disc\\bert12L_linear.json",
+  "has_metric": true
+ },
+ {
+  "run": "bert4L_crf",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 297.7,
+  "epochs": 4,
+  "finished_at": "23:44:51",
+  "metric": "outputs\\metrics\\disc\\bert4L_crf.json",
+  "has_metric": true
+ },
+ {
+  "run": "bert4L_linear",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 201.3,
+  "epochs": 4,
+  "finished_at": "23:48:12",
+  "metric": "outputs\\metrics\\disc\\bert4L_linear.json",
+  "has_metric": true
+ },
+ {
+  "run": "bert4Lrand_crf",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 297.5,
+  "epochs": 4,
+  "finished_at": "23:53:10",
+  "metric": "outputs\\metrics\\disc\\bert4Lrand_crf.json",
+  "has_metric": true
+ },
+ {
+  "run": "roberta12L_crf",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 625.9,
+  "epochs": 4,
+  "finished_at": "00:03:36",
+  "metric": "outputs\\metrics\\disc\\roberta12L_crf.json",
+  "has_metric": true
+ },
+ {
+  "run": "roberta4L_crf",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 298.7,
+  "epochs": 4,
+  "finished_at": "00:08:34",
+  "metric": "outputs\\metrics\\disc\\roberta4L_crf.json",
+  "has_metric": true
+ },
+ {
+  "run": "roberta12L_linear",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 535.0,
+  "epochs": 4,
+  "finished_at": "00:17:30",
+  "metric": "outputs\\metrics\\disc\\roberta12L_linear.json",
+  "has_metric": true
+ },
+ {
+  "run": "roberta4L_linear",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 190.7,
+  "epochs": 4,
+  "finished_at": "00:20:40",
+  "metric": "outputs\\metrics\\disc\\roberta4L_linear.json",
+  "has_metric": true
+ },
+ {
+  "run": "macbert12L_crf",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 626.9,
+  "epochs": 4,
+  "finished_at": "00:31:07",
+  "metric": "outputs\\metrics\\disc\\macbert12L_crf.json",
+  "has_metric": true
+ },
+ {
+  "run": "macbert4L_crf",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 290.0,
+  "epochs": 4,
+  "finished_at": "00:35:57",
+  "metric": "outputs\\metrics\\disc\\macbert4L_crf.json",
+  "has_metric": true
+ },
+ {
+  "run": "macbert12L_linear",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 535.6,
+  "epochs": 4,
+  "finished_at": "00:44:53",
+  "metric": "outputs\\metrics\\disc\\macbert12L_linear.json",
+  "has_metric": true
+ },
+ {
+  "run": "macbert4L_linear",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 191.0,
+  "epochs": 4,
+  "finished_at": "00:48:04",
+  "metric": "outputs\\metrics\\disc\\macbert4L_linear.json",
+  "has_metric": true
+ }
+]

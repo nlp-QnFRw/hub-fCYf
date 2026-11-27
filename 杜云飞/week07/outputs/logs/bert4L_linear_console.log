@@ -1,0 +1,21 @@
+  epoch 1 step 100/156 loss=1.8814
+epoch 1/4 | train_loss=1.4326 | inner_loss=0.5787 inner_spanF1=0.2466 | dev_spanF1(监控,仅ep1)=nan | 46s
+  ★ 内层验证最优 → 保存 bert4L_linear.pt
+  epoch 2 step 100/156 loss=0.5331
+epoch 2/4 | train_loss=0.5189 | inner_loss=0.4788 inner_spanF1=0.2921 | dev_spanF1(监控,仅ep1)=nan | 45s
+  ★ 内层验证最优 → 保存 bert4L_linear.pt
+  epoch 3 step 100/156 loss=0.4581
+epoch 3/4 | train_loss=0.4541 | inner_loss=0.4437 inner_spanF1=0.3057 | dev_spanF1(监控,仅ep1)=nan | 45s
+  ★ 内层验证最优 → 保存 bert4L_linear.pt
+  epoch 4 step 100/156 loss=0.4208
+epoch 4/4 | train_loss=0.4261 | inner_loss=0.4388 inner_spanF1=0.3263 | dev_spanF1(监控,仅ep1)=nan | 45s
+  ★ 内层验证最优 → 保存 bert4L_linear.pt
+加载最优 checkpoint（epoch 4，内层验证 spanF1=0.3263）
+dev 解码：4087 句，没抽到触发词 292 句
+样本数 2548（缺预测 0 条）
+  trigger      P=0.4806 R=0.4463 F1=0.4628 (tp=1824 fp=1971 fn=2263)
+  argument     P=0.1418 R=0.2179 F1=0.1718 (tp=2753 fp=16659 fn=9883)
+  event_exact  P=0.0269 R=0.0250 F1=0.0259 (tp=102 fp=3693 fn=3985)
+  type_macro_f1 = 0.4510
+  n200 子集：trigger F1=0.4456 arg F1=0.1592 → bert4L_linear_n200.json
+  指标已写入 → D:\AI_learn\course-related\正式课\第七周 信息抽取\CourseWork_week7\outputs\metrics\disc\bert4L_linear.json

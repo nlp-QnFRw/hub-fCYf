@@ -1,0 +1,21 @@
+  epoch 1 step 100/156 loss=2.0075
+epoch 1/4 | train_loss=1.5184 | inner_loss=0.5819 inner_spanF1=0.2293 | dev_spanF1(监控,仅ep1)=nan | 44s
+  ★ 内层验证最优 → 保存 roberta4L_linear.pt
+  epoch 2 step 100/156 loss=0.5325
+epoch 2/4 | train_loss=0.5161 | inner_loss=0.4770 inner_spanF1=0.3067 | dev_spanF1(监控,仅ep1)=nan | 42s
+  ★ 内层验证最优 → 保存 roberta4L_linear.pt
+  epoch 3 step 100/156 loss=0.4492
+epoch 3/4 | train_loss=0.4447 | inner_loss=0.4369 inner_spanF1=0.3379 | dev_spanF1(监控,仅ep1)=nan | 42s
+  ★ 内层验证最优 → 保存 roberta4L_linear.pt
+  epoch 4 step 100/156 loss=0.4100
+epoch 4/4 | train_loss=0.4163 | inner_loss=0.4359 inner_spanF1=0.3554 | dev_spanF1(监控,仅ep1)=nan | 42s
+  ★ 内层验证最优 → 保存 roberta4L_linear.pt
+加载最优 checkpoint（epoch 4，内层验证 spanF1=0.3554）
+dev 解码：4087 句，没抽到触发词 244 句
+样本数 2548（缺预测 0 条）
+  trigger      P=0.4832 R=0.4544 F1=0.4683 (tp=1857 fp=1986 fn=2230)
+  argument     P=0.1456 R=0.2267 F1=0.1773 (tp=2864 fp=16800 fn=9772)
+  event_exact  P=0.0273 R=0.0257 F1=0.0265 (tp=105 fp=3738 fn=3982)
+  type_macro_f1 = 0.4475
+  n200 子集：trigger F1=0.4349 arg F1=0.1700 → roberta4L_linear_n200.json
+  指标已写入 → D:\AI_learn\course-related\正式课\第七周 信息抽取\CourseWork_week7\outputs\metrics\disc\roberta4L_linear.json

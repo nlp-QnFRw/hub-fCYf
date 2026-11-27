@@ -1,0 +1,87 @@
+{
+ "中标": [
+  "sub",
+  "obj",
+  "amount",
+  "date"
+ ],
+ "减持": [
+  "sub",
+  "obj",
+  "title",
+  "share-org",
+  "date",
+  "share-per"
+ ],
+ "判决": [
+  "obj-org",
+  "institution",
+  "money",
+  "sub-org",
+  "obj-per",
+  "date",
+  "sub-per"
+ ],
+ "投资": [
+  "obj",
+  "sub",
+  "date",
+  "money"
+ ],
+ "担保": [
+  "sub-org",
+  "obj-org",
+  "date",
+  "amount",
+  "way",
+  "sub-per"
+ ],
+ "收购": [
+  "obj-org",
+  "sub-org",
+  "date",
+  "money",
+  "proportion",
+  "way",
+  "sub-per",
+  "number"
+ ],
+ "签署合同": [
+  "obj-org",
+  "sub-org",
+  "date",
+  "amount",
+  "sub-per",
+  "obj-per"
+ ],
+ "股份股权转让": [
+  "target-company",
+  "collateral",
+  "obj-org",
+  "proportion",
+  "date",
+  "sub-org",
+  "money",
+  "number",
+  "sub-per",
+  "obj-per"
+ ],
+ "质押": [
+  "collateral",
+  "sub-org",
+  "number",
+  "proportion",
+  "sub-per",
+  "obj-org",
+  "date",
+  "money",
+  "obj-per"
+ ],
+ "起诉": [
+  "obj-org",
+  "sub-org",
+  "date",
+  "obj-per",
+  "sub-per"
+ ]
+}

@@ -1,0 +1,139 @@
+{
+  "method": "roberta12L_linear",
+  "argv": [
+    "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\disc\\train.py",
+    "--encoder",
+    "roberta",
+    "--decoder",
+    "linear",
+    "--epochs",
+    "4",
+    "--batch_size",
+    "32",
+    "--max_len",
+    "256",
+    "--log_every",
+    "50",
+    "--dev_monitor",
+    "0",
+    "--run_name",
+    "roberta12L_linear"
+  ],
+  "args": {
+    "encoder": "roberta",
+    "decoder": "linear",
+    "bert_layers": 0,
+    "init": "pretrained",
+    "hard_constraint": false,
+    "max_len": 256,
+    "epochs": 4,
+    "batch_size": 32,
+    "lr": 2e-05,
+    "head_lr_mult": 5.0,
+    "warmup_ratio": 0.1,
+    "grad_accum": 1,
+    "max_grad_norm": 1.0,
+    "weight_decay": 0.01,
+    "dropout": 0.1,
+    "inner_val": 0.1,
+    "train_limit": 0,
+    "device": "",
+    "log_every": 50,
+    "dev_monitor": 0,
+    "seed": 42,
+    "run_name": "roberta12L_linear",
+    "data_dir": ""
+  },
+  "env": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "time": "2026-11-27 00:17:29",
+    "torch": "2.11.0+cu128",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+    "transformers": "5.23.0"
+  },
+  "params": 102311481,
+  "log_every": 50,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 1.19266,
+      "elapsed_s": 124.9,
+      "val": {
+        "inner_loss": 0.4491225348578559,
+        "inner_span_f1": 0.32760324046631106,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": -1.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.395831,
+      "elapsed_s": 123.5,
+      "val": {
+        "inner_loss": 0.36663473976982963,
+        "inner_span_f1": 0.43303121852970794,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": 0.327603
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.334117,
+      "elapsed_s": 123.5,
+      "val": {
+        "inner_loss": 0.35234112209743923,
+        "inner_span_f1": 0.45761707172495547,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": 0.433031
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.307409,
+      "elapsed_s": 123.5,
+      "val": {
+        "inner_loss": 0.3474452760484483,
+        "inner_span_f1": 0.47762974746470466,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": 0.457617
+    }
+  ],
+  "total_elapsed_s": 497.3,
+  "finished": true,
+  "best_epoch": 4,
+  "best_inner_val_span_f1": 0.47763,
+  "dev_metrics": {
+    "trigger": 0.504,
+    "argument": 0.2755,
+    "event_exact": 0.0705
+  },
+  "inference_latency_ms": 6.86,
+  "peak_gpu_mb": 2220.3,
+  "illegal_dev": {
+    "illegal_start": 14,
+    "illegal_transition": 4830,
+    "total_seqs": 4087,
+    "illegal_seqs": 2386,
+    "total_illegal": 4844,
+    "illegal_seq_rate": 0.5838,
+    "illegal_per_seq": 1.185
+  },
+  "vram_guard": {
+    "vram_ratio": 0.85,
+    "downgrades": 0,
+    "peak_gpu_mb": 2220.3,
+    "history": [
+      {
+        "orig_batch": 32,
+        "batch": 32,
+        "grad_accum": 1,
+        "free_mb": 7070.0,
+        "downgrades": 0
+      }
+    ]
+  },
+  "notes": "FewFC 判别式（roberta/12L/pretrained/linear）"
+}

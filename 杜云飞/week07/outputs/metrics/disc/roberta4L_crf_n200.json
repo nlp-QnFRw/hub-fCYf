@@ -1,0 +1,236 @@
+{
+  "num_samples": 200,
+  "missing_predictions": 0,
+  "trigger": {
+    "precision": 0.4894,
+    "recall": 0.4585,
+    "f1": 0.4734,
+    "tp": 138,
+    "fp": 144,
+    "fn": 163
+  },
+  "argument": {
+    "precision": 0.1519,
+    "recall": 0.2346,
+    "f1": 0.1844,
+    "tp": 214,
+    "fp": 1195,
+    "fn": 698
+  },
+  "event_exact": {
+    "precision": 0.039,
+    "recall": 0.0365,
+    "f1": 0.0377,
+    "tp": 11,
+    "fp": 271,
+    "fn": 290
+  },
+  "per_type": {
+    "减持": {
+      "precision": 0.6061,
+      "recall": 0.7407,
+      "f1": 0.6667,
+      "tp": 20,
+      "fp": 13,
+      "fn": 7
+    },
+    "判决": {
+      "precision": 0.8293,
+      "recall": 0.7727,
+      "f1": 0.8,
+      "tp": 34,
+      "fp": 7,
+      "fn": 10
+    },
+    "投资": {
+      "precision": 0.2826,
+      "recall": 0.2364,
+      "f1": 0.2574,
+      "tp": 13,
+      "fp": 33,
+      "fn": 42
+    },
+    "担保": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "收购": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 29
+    },
+    "股份股权转让": {
+      "precision": 0.4898,
+      "recall": 0.6,
+      "f1": 0.5393,
+      "tp": 48,
+      "fp": 50,
+      "fn": 32
+    },
+    "质押": {
+      "precision": 0.8919,
+      "recall": 0.8684,
+      "f1": 0.88,
+      "tp": 33,
+      "fp": 4,
+      "fn": 5
+    },
+    "起诉": {
+      "precision": 0.64,
+      "recall": 0.5714,
+      "f1": 0.6038,
+      "tp": 16,
+      "fp": 9,
+      "fn": 12
+    }
+  },
+  "per_role": {
+    "collateral": {
+      "precision": 0.2867,
+      "recall": 0.4725,
+      "f1": 0.3568,
+      "tp": 43,
+      "fp": 107,
+      "fn": 48
+    },
+    "date": {
+      "precision": 0.2642,
+      "recall": 0.3962,
+      "f1": 0.317,
+      "tp": 42,
+      "fp": 117,
+      "fn": 64
+    },
+    "institution": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 48,
+      "fn": 29
+    },
+    "money": {
+      "precision": 0.181,
+      "recall": 0.2917,
+      "f1": 0.2234,
+      "tp": 21,
+      "fp": 95,
+      "fn": 51
+    },
+    "number": {
+      "precision": 0.2787,
+      "recall": 0.68,
+      "f1": 0.3953,
+      "tp": 17,
+      "fp": 44,
+      "fn": 8
+    },
+    "obj": {
+      "precision": 0.0432,
+      "recall": 0.0968,
+      "f1": 0.0597,
+      "tp": 6,
+      "fp": 133,
+      "fn": 56
+    },
+    "obj-org": {
+      "precision": 0.1068,
+      "recall": 0.1583,
+      "f1": 0.1275,
+      "tp": 22,
+      "fp": 184,
+      "fn": 117
+    },
+    "obj-per": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 26
+    },
+    "proportion": {
+      "precision": 0.211,
+      "recall": 0.4182,
+      "f1": 0.2805,
+      "tp": 23,
+      "fp": 86,
+      "fn": 32
+    },
+    "share-org": {
+      "precision": 0.0833,
+      "recall": 0.0714,
+      "f1": 0.0769,
+      "tp": 1,
+      "fp": 11,
+      "fn": 13
+    },
+    "share-per": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    "sub": {
+      "precision": 0.0724,
+      "recall": 0.1392,
+      "f1": 0.0952,
+      "tp": 11,
+      "fp": 141,
+      "fn": 68
+    },
+    "sub-org": {
+      "precision": 0.1379,
+      "recall": 0.1176,
+      "f1": 0.127,
+      "tp": 12,
+      "fp": 75,
+      "fn": 90
+    },
+    "sub-per": {
+      "precision": 0.125,
+      "recall": 0.3462,
+      "f1": 0.1837,
+      "tp": 9,
+      "fp": 63,
+      "fn": 17
+    },
+    "target-company": {
+      "precision": 0.0488,
+      "recall": 0.0571,
+      "f1": 0.0526,
+      "tp": 4,
+      "fp": 78,
+      "fn": 66
+    },
+    "title": {
+      "precision": 0.2857,
+      "recall": 0.4,
+      "f1": 0.3333,
+      "tp": 4,
+      "fp": 10,
+      "fn": 6
+    },
+    "way": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 5
+    }
+  },
+  "type_macro_f1": 0.4684,
+  "method": "roberta4L_crf",
+  "gold": "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\data\\processed\\dev_n200.jsonl",
+  "note": "投影到固定抽样的 dev 200 句（seed=42），用于跨方法同批对比"
+}

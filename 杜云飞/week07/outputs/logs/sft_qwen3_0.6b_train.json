@@ -1,0 +1,49 @@
+{
+  "method": "sft_qwen3_0.6b",
+  "argv": [
+    "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\llm\\sft_lora.py",
+    "--epochs",
+    "1",
+    "--batch_size",
+    "1",
+    "--grad_accum",
+    "8",
+    "--max_len",
+    "1024"
+  ],
+  "args": {
+    "model": "Qwen3-0.6B",
+    "epochs": 1,
+    "lr": 0.0001,
+    "batch_size": 1,
+    "grad_accum": 8,
+    "max_len": 1024,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "limit": 0,
+    "log_every": 20,
+    "save_dir": "outputs/sft/qwen3_0.6b_lora",
+    "run_name": "sft_qwen3_0.6b",
+    "seed": 42
+  },
+  "env": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "time": "2026-11-27 02:50:29",
+    "torch": "2.11.0+cu128",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+    "transformers": "5.23.0"
+  },
+  "params": 10092544,
+  "log_every": 20,
+  "epochs": 1,
+  "total_elapsed_s": 3095.0,
+  "finished": true,
+  "n_samples": 3548,
+  "total_steps": 443,
+  "trainable_params": 10092544,
+  "n_truncated": 82,
+  "save_dir": "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\outputs\\sft\\qwen3_0.6b_lora",
+  "notes": "FewFC SFT LoRA r=16 alpha=32 on Qwen3-0.6B（按句聚合 3548 句）"
+}

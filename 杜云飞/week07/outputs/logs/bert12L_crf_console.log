@@ -1,0 +1,21 @@
+  epoch 1 step 100/156 loss=133.9200
+epoch 1/4 | train_loss=102.1501 | inner_loss=42.6211 inner_spanF1=0.3479 | dev_spanF1(监控,仅ep1)=nan | 127s
+  ★ 内层验证最优 → 保存 bert12L_crf.pt
+  epoch 2 step 100/156 loss=37.1189
+epoch 2/4 | train_loss=36.1219 | inner_loss=35.9106 inner_spanF1=0.4026 | dev_spanF1(监控,仅ep1)=nan | 123s
+  ★ 内层验证最优 → 保存 bert12L_crf.pt
+  epoch 3 step 100/156 loss=30.6572
+epoch 3/4 | train_loss=30.2275 | inner_loss=33.7620 inner_spanF1=0.4649 | dev_spanF1(监控,仅ep1)=nan | 124s
+  ★ 内层验证最优 → 保存 bert12L_crf.pt
+  epoch 4 step 100/156 loss=27.8814
+epoch 4/4 | train_loss=27.5337 | inner_loss=33.1877 inner_spanF1=0.4689 | dev_spanF1(监控,仅ep1)=nan | 122s
+  ★ 内层验证最优 → 保存 bert12L_crf.pt
+加载最优 checkpoint（epoch 4，内层验证 spanF1=0.4689）
+dev 解码：4087 句，没抽到触发词 193 句
+样本数 2548（缺预测 0 条）
+  trigger      P=0.5285 R=0.5035 F1=0.5157 (tp=2058 fp=1836 fn=2029)
+  argument     P=0.2449 R=0.3137 F1=0.2751 (tp=3964 fp=12219 fn=8672)
+  event_exact  P=0.0747 R=0.0712 F1=0.0729 (tp=291 fp=3603 fn=3796)
+  type_macro_f1 = 0.4821
+  n200 子集：trigger F1=0.4880 arg F1=0.2607 → bert12L_crf_n200.json
+  指标已写入 → D:\AI_learn\course-related\正式课\第七周 信息抽取\CourseWork_week7\outputs\metrics\disc\bert12L_crf.json

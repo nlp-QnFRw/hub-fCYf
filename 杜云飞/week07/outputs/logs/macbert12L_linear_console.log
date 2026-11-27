@@ -1,0 +1,21 @@
+  epoch 1 step 100/156 loss=1.5901
+epoch 1/4 | train_loss=1.2008 | inner_loss=0.4494 inner_spanF1=0.3086 | dev_spanF1(监控,仅ep1)=nan | 125s
+  ★ 内层验证最优 → 保存 macbert12L_linear.pt
+  epoch 2 step 100/156 loss=0.4071
+epoch 2/4 | train_loss=0.3953 | inner_loss=0.3641 inner_spanF1=0.4337 | dev_spanF1(监控,仅ep1)=nan | 124s
+  ★ 内层验证最优 → 保存 macbert12L_linear.pt
+  epoch 3 step 100/156 loss=0.3361
+epoch 3/4 | train_loss=0.3341 | inner_loss=0.3516 inner_spanF1=0.4637 | dev_spanF1(监控,仅ep1)=nan | 124s
+  ★ 内层验证最优 → 保存 macbert12L_linear.pt
+  epoch 4 step 100/156 loss=0.3101
+epoch 4/4 | train_loss=0.3073 | inner_loss=0.3492 inner_spanF1=0.4776 | dev_spanF1(监控,仅ep1)=nan | 123s
+  ★ 内层验证最优 → 保存 macbert12L_linear.pt
+加载最优 checkpoint（epoch 4，内层验证 spanF1=0.4776）
+dev 解码：4087 句，没抽到触发词 174 句
+样本数 2548（缺预测 0 条）
+  trigger      P=0.5073 R=0.4857 F1=0.4963 (tp=1985 fp=1928 fn=2102)
+  argument     P=0.2448 R=0.3086 F1=0.2730 (tp=3900 fp=12033 fn=8736)
+  event_exact  P=0.0718 R=0.0688 F1=0.0702 (tp=281 fp=3632 fn=3806)
+  type_macro_f1 = 0.4646
+  n200 子集：trigger F1=0.4940 arg F1=0.2903 → macbert12L_linear_n200.json
+  指标已写入 → D:\AI_learn\course-related\正式课\第七周 信息抽取\CourseWork_week7\outputs\metrics\disc\macbert12L_linear.json
