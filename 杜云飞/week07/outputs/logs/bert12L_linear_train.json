@@ -1,0 +1,139 @@
+{
+  "method": "bert12L_linear",
+  "argv": [
+    "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\disc\\train.py",
+    "--encoder",
+    "bert",
+    "--decoder",
+    "linear",
+    "--epochs",
+    "4",
+    "--batch_size",
+    "32",
+    "--max_len",
+    "256",
+    "--log_every",
+    "50",
+    "--dev_monitor",
+    "0",
+    "--run_name",
+    "bert12L_linear"
+  ],
+  "args": {
+    "encoder": "bert",
+    "decoder": "linear",
+    "bert_layers": 0,
+    "init": "pretrained",
+    "hard_constraint": false,
+    "max_len": 256,
+    "epochs": 4,
+    "batch_size": 32,
+    "lr": 2e-05,
+    "head_lr_mult": 5.0,
+    "warmup_ratio": 0.1,
+    "grad_accum": 1,
+    "max_grad_norm": 1.0,
+    "weight_decay": 0.01,
+    "dropout": 0.1,
+    "inner_val": 0.1,
+    "train_limit": 0,
+    "device": "",
+    "log_every": 50,
+    "dev_monitor": 0,
+    "seed": 42,
+    "run_name": "bert12L_linear",
+    "data_dir": ""
+  },
+  "env": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "time": "2026-11-26 23:39:53",
+    "torch": "2.11.0+cu128",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+    "transformers": "5.23.0"
+  },
+  "params": 102311481,
+  "log_every": 50,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 1.126065,
+      "elapsed_s": 132.0,
+      "val": {
+        "inner_loss": 0.46289152569240993,
+        "inner_span_f1": 0.3226863226863227,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": -1.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.405702,
+      "elapsed_s": 130.2,
+      "val": {
+        "inner_loss": 0.375533660252889,
+        "inner_span_f1": 0.4141078838174274,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": 0.322686
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.341005,
+      "elapsed_s": 130.2,
+      "val": {
+        "inner_loss": 0.3610478772057427,
+        "inner_span_f1": 0.4578842315369261,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": 0.414108
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.311581,
+      "elapsed_s": 130.2,
+      "val": {
+        "inner_loss": 0.360122733645969,
+        "inner_span_f1": 0.4665871121718376,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": 0.457884
+    }
+  ],
+  "total_elapsed_s": 524.3,
+  "finished": true,
+  "best_epoch": 4,
+  "best_inner_val_span_f1": 0.466587,
+  "dev_metrics": {
+    "trigger": 0.5057,
+    "argument": 0.2735,
+    "event_exact": 0.0696
+  },
+  "inference_latency_ms": 8.36,
+  "peak_gpu_mb": 2220.3,
+  "illegal_dev": {
+    "illegal_start": 5,
+    "illegal_transition": 4849,
+    "total_seqs": 4087,
+    "illegal_seqs": 2379,
+    "total_illegal": 4854,
+    "illegal_seq_rate": 0.5821,
+    "illegal_per_seq": 1.188
+  },
+  "vram_guard": {
+    "vram_ratio": 0.85,
+    "downgrades": 0,
+    "peak_gpu_mb": 2220.3,
+    "history": [
+      {
+        "orig_batch": 32,
+        "batch": 32,
+        "grad_accum": 1,
+        "free_mb": 7070.0,
+        "downgrades": 0
+      }
+    ]
+  },
+  "notes": "FewFC 判别式（bert/12L/pretrained/linear）"
+}

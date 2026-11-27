@@ -1,0 +1,141 @@
+{
+  "method": "macbert4L_linear",
+  "argv": [
+    "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\disc\\train.py",
+    "--encoder",
+    "macbert",
+    "--decoder",
+    "linear",
+    "--bert_layers",
+    "4",
+    "--epochs",
+    "4",
+    "--batch_size",
+    "32",
+    "--max_len",
+    "256",
+    "--log_every",
+    "50",
+    "--dev_monitor",
+    "0",
+    "--run_name",
+    "macbert4L_linear"
+  ],
+  "args": {
+    "encoder": "macbert",
+    "decoder": "linear",
+    "bert_layers": 4,
+    "init": "pretrained",
+    "hard_constraint": false,
+    "max_len": 256,
+    "epochs": 4,
+    "batch_size": 32,
+    "lr": 2e-05,
+    "head_lr_mult": 5.0,
+    "warmup_ratio": 0.1,
+    "grad_accum": 1,
+    "max_grad_norm": 1.0,
+    "weight_decay": 0.01,
+    "dropout": 0.1,
+    "inner_val": 0.1,
+    "train_limit": 0,
+    "device": "",
+    "log_every": 50,
+    "dev_monitor": 0,
+    "seed": 42,
+    "run_name": "macbert4L_linear",
+    "data_dir": ""
+  },
+  "env": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "time": "2026-11-27 00:48:03",
+    "torch": "2.11.0+cu128",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+    "transformers": "5.23.0"
+  },
+  "params": 45608505,
+  "log_every": 50,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 1.511686,
+      "elapsed_s": 43.6,
+      "val": {
+        "inner_loss": 0.5895493825276693,
+        "inner_span_f1": 0.23486901535682023,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": -1.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.518202,
+      "elapsed_s": 42.3,
+      "val": {
+        "inner_loss": 0.4806629816691081,
+        "inner_span_f1": 0.3031757754800591,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": 0.234869
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.445791,
+      "elapsed_s": 42.3,
+      "val": {
+        "inner_loss": 0.43927012549506295,
+        "inner_span_f1": 0.3408445370195039,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": 0.303176
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.416025,
+      "elapsed_s": 42.3,
+      "val": {
+        "inner_loss": 0.43675298160976833,
+        "inner_span_f1": 0.34910277324632955,
+        "dev_span_f1_monitor": NaN
+      },
+      "best_so_far": 0.340845
+    }
+  ],
+  "total_elapsed_s": 171.4,
+  "finished": true,
+  "best_epoch": 4,
+  "best_inner_val_span_f1": 0.349103,
+  "dev_metrics": {
+    "trigger": 0.4658,
+    "argument": 0.1763,
+    "event_exact": 0.0281
+  },
+  "inference_latency_ms": 2.37,
+  "peak_gpu_mb": 1355.1,
+  "illegal_dev": {
+    "illegal_start": 3,
+    "illegal_transition": 10177,
+    "total_seqs": 4087,
+    "illegal_seqs": 3213,
+    "total_illegal": 10180,
+    "illegal_seq_rate": 0.7862,
+    "illegal_per_seq": 2.491
+  },
+  "vram_guard": {
+    "vram_ratio": 0.85,
+    "downgrades": 0,
+    "peak_gpu_mb": 1355.1,
+    "history": [
+      {
+        "orig_batch": 32,
+        "batch": 32,
+        "grad_accum": 1,
+        "free_mb": 7070.0,
+        "downgrades": 0
+      }
+    ]
+  },
+  "notes": "FewFC 判别式（macbert/4L/pretrained/linear）"
+}

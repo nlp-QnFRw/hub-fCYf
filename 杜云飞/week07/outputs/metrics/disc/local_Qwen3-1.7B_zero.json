@@ -1,0 +1,266 @@
+{
+  "num_samples": 200,
+  "missing_predictions": 0,
+  "trigger": {
+    "precision": 0.4554,
+    "recall": 0.1694,
+    "f1": 0.247,
+    "tp": 51,
+    "fp": 61,
+    "fn": 250
+  },
+  "argument": {
+    "precision": 0.2035,
+    "recall": 0.0757,
+    "f1": 0.1103,
+    "tp": 69,
+    "fp": 270,
+    "fn": 843
+  },
+  "event_exact": {
+    "precision": 0.0179,
+    "recall": 0.0066,
+    "f1": 0.0097,
+    "tp": 2,
+    "fp": 110,
+    "fn": 299
+  },
+  "per_type": {
+    "减持": {
+      "precision": 1.0,
+      "recall": 0.4815,
+      "f1": 0.65,
+      "tp": 13,
+      "fp": 0,
+      "fn": 14
+    },
+    "判决": {
+      "precision": 0.8387,
+      "recall": 0.5909,
+      "f1": 0.6933,
+      "tp": 26,
+      "fp": 5,
+      "fn": 18
+    },
+    "投资": {
+      "precision": 0.6,
+      "recall": 0.0545,
+      "f1": 0.1,
+      "tp": 3,
+      "fp": 2,
+      "fn": 52
+    },
+    "收购": {
+      "precision": 0.4815,
+      "recall": 0.4483,
+      "f1": 0.4643,
+      "tp": 13,
+      "fp": 14,
+      "fn": 16
+    },
+    "股份股权转让": {
+      "precision": 1.0,
+      "recall": 0.05,
+      "f1": 0.0952,
+      "tp": 4,
+      "fp": 0,
+      "fn": 76
+    },
+    "质押": {
+      "precision": 0.7826,
+      "recall": 0.4737,
+      "f1": 0.5902,
+      "tp": 18,
+      "fp": 5,
+      "fn": 20
+    },
+    "起诉": {
+      "precision": 0.8889,
+      "recall": 0.2857,
+      "f1": 0.4324,
+      "tp": 8,
+      "fp": 1,
+      "fn": 20
+    }
+  },
+  "per_role": {
+    "collateral": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 91
+    },
+    "date": {
+      "precision": 0.3023,
+      "recall": 0.1226,
+      "f1": 0.1745,
+      "tp": 13,
+      "fp": 30,
+      "fn": 93
+    },
+    "institution": {
+      "precision": 0.75,
+      "recall": 0.1034,
+      "f1": 0.1818,
+      "tp": 3,
+      "fp": 1,
+      "fn": 26
+    },
+    "money": {
+      "precision": 0.4444,
+      "recall": 0.1667,
+      "f1": 0.2424,
+      "tp": 12,
+      "fp": 15,
+      "fn": 60
+    },
+    "number": {
+      "precision": 0.5,
+      "recall": 0.04,
+      "f1": 0.0741,
+      "tp": 1,
+      "fp": 1,
+      "fn": 24
+    },
+    "obj": {
+      "precision": 0.0417,
+      "recall": 0.0161,
+      "f1": 0.0233,
+      "tp": 1,
+      "fp": 23,
+      "fn": 61
+    },
+    "obj-org": {
+      "precision": 0.2642,
+      "recall": 0.1007,
+      "f1": 0.1458,
+      "tp": 14,
+      "fp": 39,
+      "fn": 125
+    },
+    "obj-per": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 14,
+      "fn": 26
+    },
+    "proportion": {
+      "precision": 0.3182,
+      "recall": 0.1273,
+      "f1": 0.1818,
+      "tp": 7,
+      "fp": 15,
+      "fn": 48
+    },
+    "share-org": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 14
+    },
+    "share-per": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 4,
+      "fn": 1
+    },
+    "sub": {
+      "precision": 0.1923,
+      "recall": 0.0633,
+      "f1": 0.0952,
+      "tp": 5,
+      "fp": 21,
+      "fn": 74
+    },
+    "sub-org": {
+      "precision": 0.2889,
+      "recall": 0.1275,
+      "f1": 0.1769,
+      "tp": 13,
+      "fp": 32,
+      "fn": 89
+    },
+    "sub-per": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 3,
+      "fn": 26
+    },
+    "target-company": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 70
+    },
+    "title": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 10
+    },
+    "way": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 5
+    }
+  },
+  "type_macro_f1": 0.4322,
+  "method": "local_Qwen3-1.7B_zero",
+  "gold": "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\data\\processed\\dev_n200.jsonl",
+  "pred": "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\outputs\\disc\\pred_local_Qwen3-1.7B_zero.jsonl",
+  "meta": {
+    "display_name": "本地 Qwen3-1.7B zero-shot",
+    "adapter": null,
+    "model": "Qwen3-1.7B",
+    "model_path": "D:\\AI_learn\\Model\\Qwen3-1.7B",
+    "few_shot": false,
+    "n_few_shot_examples": 0,
+    "gen_batch": 4,
+    "max_new_tokens": 1200,
+    "dtype": "bf16",
+    "device_map": "cuda",
+    "disable_thinking": true,
+    "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+    "group": "llm",
+    "n_sentences": 200,
+    "resumed_from": 0,
+    "runtime_s": 1957.8,
+    "sec_per_sentence": 9.789,
+    "parse_stats": {
+      "empty_reply": 0,
+      "json_ok": 143,
+      "repaired": 1,
+      "noise_stripped": 148,
+      "type_invalid": 0,
+      "role_invalid": 105,
+      "trigger_not_in_source": 1,
+      "arg_not_in_source": 3
+    },
+    "json_valid_rate": 0.715,
+    "prompt_tokens": 132552,
+    "completion_tokens": 223688
+  },
+  "n200_summary": {
+    "trigger_f1": 0.247,
+    "argument_f1": 0.1103,
+    "event_f1": 0.0097,
+    "num_samples": 200
+  }
+}

@@ -1,0 +1,25 @@
+# 模型权重：体积过大（3.9 GB），不入库，跑 disc/run_grid.py 可重新生成
+outputs/checkpoints/*.pt
+*.pt
+*.pth
+*.bin
+*.safetensors
+# 例外：LoRA 适配器只有 40 MB，保留入库
+!outputs/sft/qwen3_0.6b_lora/adapter_model.safetensors
+
+# 原始数据集：第三方数据（85 MB，含上游 git 仓库），自行克隆 FewFC
+data/raw/
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*.egg-info/
+.venv/
+env/
+
+# 本地临时产物
+*.log.bak
+outputs/pred/*.jsonl
+.DS_Store
+Thumbs.db

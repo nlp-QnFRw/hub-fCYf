@@ -1,0 +1,38 @@
+[
+ {
+  "name": "local_Qwen3-0.6B_few",
+  "skipped": true
+ },
+ {
+  "name": "sft_qwen3_0.6b",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 3107.6,
+  "finished_at": "02:50:30",
+  "has_out": true
+ },
+ {
+  "name": "local_Qwen3-0.6B_lora",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 542.8,
+  "finished_at": "02:59:33",
+  "has_out": true
+ },
+ {
+  "name": "local_Qwen2-0.5B-Instruct_zero",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 639.8,
+  "finished_at": "03:10:13",
+  "has_out": true
+ },
+ {
+  "name": "local_Qwen3-1.7B_zero",
+  "rc": 0,
+  "timed_out": false,
+  "elapsed_s": 1967.6,
+  "finished_at": "03:43:00",
+  "has_out": true
+ }
+]

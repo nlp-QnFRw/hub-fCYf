@@ -1,0 +1,722 @@
+{
+  "num_samples": 200,
+  "missing_predictions": 0,
+  "trigger": {
+    "precision": 0.2328,
+    "recall": 0.2359,
+    "f1": 0.2343,
+    "tp": 71,
+    "fp": 234,
+    "fn": 230
+  },
+  "argument": {
+    "precision": 0.114,
+    "recall": 0.1513,
+    "f1": 0.1301,
+    "tp": 138,
+    "fp": 1072,
+    "fn": 774
+  },
+  "event_exact": {
+    "precision": 0.0033,
+    "recall": 0.0033,
+    "f1": 0.0033,
+    "tp": 1,
+    "fp": 304,
+    "fn": 300
+  },
+  "per_type": {
+    "上诉": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "上诉请求": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "事件": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "事件类型": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "代理律师事务所": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "仲裁": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "估值": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "共同犯罪": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "冻结": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "减持": {
+      "precision": 0.7692,
+      "recall": 0.7407,
+      "f1": 0.7547,
+      "tp": 20,
+      "fp": 6,
+      "fn": 7
+    },
+    "出售": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "判决": {
+      "precision": 0.8108,
+      "recall": 0.6818,
+      "f1": 0.7407,
+      "tp": 30,
+      "fp": 7,
+      "fn": 14
+    },
+    "勤勉尽责": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "原计划": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "变更": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "叫停": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "增持": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 5,
+      "fn": 0
+    },
+    "备查文件": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "工程款结清": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "并购": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "强制平仓": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "成为第三大股东": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "投资": {
+      "precision": 0.2286,
+      "recall": 0.2909,
+      "f1": 0.256,
+      "tp": 16,
+      "fp": 54,
+      "fn": 39
+    },
+    "披露": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "担保": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 11,
+      "fn": 0
+    },
+    "拓展": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "持股比例变化": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "撤回上诉": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "支付巨额代价": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "收购": {
+      "precision": 0.3636,
+      "recall": 0.1379,
+      "f1": 0.2,
+      "tp": 4,
+      "fp": 7,
+      "fn": 25
+    },
+    "暴仓": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "案件处理结果": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "案例介绍": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "清偿": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "犯罪": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "申请财产保全": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "确认投资收益": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "立案受理": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "立项": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "签署合同": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 4,
+      "fn": 0
+    },
+    "管理层调整": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "股东位置变化": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "股份股权转让": {
+      "precision": 0.5909,
+      "recall": 0.1625,
+      "f1": 0.2549,
+      "tp": 13,
+      "fp": 9,
+      "fn": 67
+    },
+    "股份转让": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "股权变更": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "股权转让": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "获利": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "融资": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "裁决": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "解决": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "讨论": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "诉讼机构名称及所在地": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "诉讼请求": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "诉讼请求支持": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "请求法院判决": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "质押": {
+      "precision": 0.7561,
+      "recall": 0.8158,
+      "f1": 0.7848,
+      "tp": 31,
+      "fp": 10,
+      "fn": 7
+    },
+    "质押延期购回协议": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "质押说明": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "赔偿": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 3,
+      "fn": 0
+    },
+    "起诉": {
+      "precision": 0.7778,
+      "recall": 0.5,
+      "f1": 0.6087,
+      "tp": 14,
+      "fp": 4,
+      "fn": 14
+    },
+    "趋同交易": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "违约": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "连带清偿责任": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "风险防范": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    }
+  },
+  "per_role": {
+    "collateral": {
+      "precision": 0.3333,
+      "recall": 0.033,
+      "f1": 0.06,
+      "tp": 3,
+      "fp": 6,
+      "fn": 88
+    },
+    "date": {
+      "precision": 0.1271,
+      "recall": 0.283,
+      "f1": 0.1754,
+      "tp": 30,
+      "fp": 206,
+      "fn": 76
+    },
+    "institution": {
+      "precision": 0.5676,
+      "recall": 0.7241,
+      "f1": 0.6364,
+      "tp": 21,
+      "fp": 16,
+      "fn": 8
+    },
+    "money": {
+      "precision": 0.1667,
+      "recall": 0.0139,
+      "f1": 0.0256,
+      "tp": 1,
+      "fp": 5,
+      "fn": 71
+    },
+    "number": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 25
+    },
+    "obj": {
+      "precision": 0.0448,
+      "recall": 0.0968,
+      "f1": 0.0612,
+      "tp": 6,
+      "fp": 128,
+      "fn": 56
+    },
+    "obj-org": {
+      "precision": 0.1412,
+      "recall": 0.1799,
+      "f1": 0.1582,
+      "tp": 25,
+      "fp": 152,
+      "fn": 114
+    },
+    "obj-per": {
+      "precision": 0.0417,
+      "recall": 0.0385,
+      "f1": 0.04,
+      "tp": 1,
+      "fp": 23,
+      "fn": 25
+    },
+    "proportion": {
+      "precision": 0.2,
+      "recall": 0.2727,
+      "f1": 0.2308,
+      "tp": 15,
+      "fp": 60,
+      "fn": 40
+    },
+    "share-org": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 7,
+      "fn": 14
+    },
+    "share-per": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 7,
+      "fn": 1
+    },
+    "sub": {
+      "precision": 0.2,
+      "recall": 0.3038,
+      "f1": 0.2412,
+      "tp": 24,
+      "fp": 96,
+      "fn": 55
+    },
+    "sub-org": {
+      "precision": 0.2319,
+      "recall": 0.1569,
+      "f1": 0.1871,
+      "tp": 16,
+      "fp": 53,
+      "fn": 86
+    },
+    "sub-per": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 40,
+      "fn": 26
+    },
+    "target-company": {
+      "precision": 0.1111,
+      "recall": 0.0286,
+      "f1": 0.0455,
+      "tp": 2,
+      "fp": 16,
+      "fn": 68
+    },
+    "title": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 4,
+      "fn": 10
+    },
+    "way": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 28,
+      "fn": 5
+    }
+  },
+  "type_macro_f1": 0.0562,
+  "method": "local_Qwen3-0.6B_few",
+  "gold": "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\data\\processed\\dev_n200.jsonl",
+  "pred": "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\outputs\\disc\\pred_local_Qwen3-0.6B_few.jsonl",
+  "meta": {
+    "display_name": "本地 Qwen3-0.6B few-shot",
+    "adapter": null,
+    "model": "Qwen3-0.6B",
+    "model_path": "D:\\AI_learn\\Model\\Qwen3-0.6B",
+    "few_shot": true,
+    "n_few_shot_examples": 9,
+    "gen_batch": 8,
+    "max_new_tokens": 1200,
+    "dtype": "bf16",
+    "device_map": "cuda",
+    "disable_thinking": true,
+    "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+    "group": "llm",
+    "n_sentences": 200,
+    "resumed_from": 0,
+    "runtime_s": 2888.6,
+    "sec_per_sentence": 14.443,
+    "parse_stats": {
+      "empty_reply": 0,
+      "json_ok": 187,
+      "repaired": 3,
+      "noise_stripped": 188,
+      "type_invalid": 65,
+      "role_invalid": 313,
+      "trigger_not_in_source": 34,
+      "arg_not_in_source": 288
+    },
+    "json_valid_rate": 0.935,
+    "prompt_tokens": 483304,
+    "completion_tokens": 175080
+  },
+  "n200_summary": {
+    "trigger_f1": 0.2343,
+    "argument_f1": 0.1301,
+    "event_f1": 0.0033,
+    "num_samples": 200
+  }
+}

@@ -1,0 +1,100 @@
+{
+ "splits": {
+  "train": {
+   "n_sents": 3552,
+   "n_rows": 5521,
+   "n_events_raw": 5577,
+   "span_not_found": 0,
+   "span_mismatch": 0,
+   "event_no_trigger_dropped": 0,
+   "event_dupe_dropped": 56,
+   "dup_trigger_in_event": 0
+  },
+  "dev": {
+   "n_sents": 2551,
+   "n_rows": 4087,
+   "n_events_raw": 4106,
+   "span_not_found": 0,
+   "span_mismatch": 0,
+   "event_no_trigger_dropped": 0,
+   "event_dupe_dropped": 19,
+   "dup_trigger_in_event": 0
+  },
+  "test": {
+   "n_sents": 2879,
+   "n_rows": 3203,
+   "n_events_raw": 3207,
+   "span_not_found": 0,
+   "span_mismatch": 0,
+   "event_no_trigger_dropped": 0,
+   "event_dupe_dropped": 4,
+   "dup_trigger_in_event": 0
+  }
+ },
+ "text_overlap": {
+  "train_vs_dev": {
+   "overlap_sents": 87,
+   "ratio_in_dev": 0.0344
+  },
+  "train_vs_test": {
+   "overlap_sents": 38,
+   "ratio_in_test": 0.0132
+  },
+  "dev_vs_test": {
+   "overlap_sents": 57,
+   "ratio_in_test": 0.0198
+  }
+ },
+ "types": {
+  "质押": 1380,
+  "投资": 1844,
+  "股份股权转让": 2670,
+  "减持": 1140,
+  "起诉": 896,
+  "收购": 1305,
+  "判决": 1037,
+  "中标": 1001,
+  "签署合同": 685,
+  "担保": 853
+ },
+ "schema": {
+  "n_types": 10,
+  "roles_per_type": {
+   "中标": 4,
+   "减持": 6,
+   "判决": 7,
+   "投资": 4,
+   "担保": 6,
+   "收购": 8,
+   "签署合同": 6,
+   "股份股权转让": 10,
+   "质押": 9,
+   "起诉": 5
+  }
+ },
+ "sentence_length": {
+  "n_unique_sents": 6096,
+  "mean": 84.4,
+  "median": 75.0,
+  "max": 443,
+  "over256": 31,
+  "over512": 0
+ },
+ "multi_event_sents": {
+  "n": 1871,
+  "n_unique_sents": 6096,
+  "ratio": 0.3069,
+  "max_events_per_sent": 23,
+  "rows_per_sent_mean": 1.58
+ },
+ "trigger_ambiguous_ratio": 0.3341,
+ "dev_clean": {
+  "n_rows_full": 4087,
+  "n_rows_clean": 3978,
+  "dropped": 109
+ },
+ "eval_subset": {
+  "n_sents": 200,
+  "n_rows": 301
+ }
+}

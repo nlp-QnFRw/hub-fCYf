@@ -1,0 +1,354 @@
+{
+  "num_samples": 200,
+  "missing_predictions": 0,
+  "trigger": {
+    "precision": 0.0316,
+    "recall": 0.0299,
+    "f1": 0.0307,
+    "tp": 9,
+    "fp": 276,
+    "fn": 292
+  },
+  "argument": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "tp": 0,
+    "fp": 568,
+    "fn": 912
+  },
+  "event_exact": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "tp": 0,
+    "fp": 285,
+    "fn": 301
+  },
+  "per_type": {
+    "中中标": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 5,
+      "fn": 0
+    },
+    "中标": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 9,
+      "fn": 0
+    },
+    "中标的": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "中止": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 7,
+      "fn": 0
+    },
+    "中止交易": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "中止执行": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 8,
+      "fn": 0
+    },
+    "中签": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 20,
+      "fn": 0
+    },
+    "举报": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "事件类型": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 3,
+      "fn": 0
+    },
+    "减持": {
+      "precision": 1.0,
+      "recall": 0.5185,
+      "f1": 0.6829,
+      "tp": 14,
+      "fp": 0,
+      "fn": 13
+    },
+    "判决": {
+      "precision": 0.625,
+      "recall": 0.3409,
+      "f1": 0.4412,
+      "tp": 15,
+      "fp": 9,
+      "fn": 29
+    },
+    "投资": {
+      "precision": 0.1802,
+      "recall": 0.5636,
+      "f1": 0.2731,
+      "tp": 31,
+      "fp": 141,
+      "fn": 24
+    },
+    "担保": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "收购": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 29
+    },
+    "股份股权转让": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 80
+    },
+    "裁定": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "质押": {
+      "precision": 0.6,
+      "recall": 0.0789,
+      "f1": 0.1395,
+      "tp": 3,
+      "fp": 2,
+      "fn": 35
+    },
+    "起诉": {
+      "precision": 0.4545,
+      "recall": 0.1786,
+      "f1": 0.2564,
+      "tp": 5,
+      "fp": 6,
+      "fn": 23
+    }
+  },
+  "per_role": {
+    "collateral": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 91
+    },
+    "date": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 106
+    },
+    "institution": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 29
+    },
+    "money": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 72
+    },
+    "number": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 25
+    },
+    "obj": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 62
+    },
+    "obj-org": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 139
+    },
+    "obj-per": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 26
+    },
+    "proportion": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 55
+    },
+    "share-org": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 14
+    },
+    "share-per": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    "sub": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 79
+    },
+    "sub-org": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 102
+    },
+    "sub-per": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 26
+    },
+    "target-company": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 70
+    },
+    "title": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 10
+    },
+    "way": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 5
+    }
+  },
+  "type_macro_f1": 0.0996,
+  "method": "local_Qwen2-0.5B-Instruct_zero",
+  "gold": "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\data\\processed\\dev_n200.jsonl",
+  "pred": "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\outputs\\disc\\pred_local_Qwen2-0.5B-Instruct_zero.jsonl",
+  "meta": {
+    "display_name": "本地 Qwen2-0.5B-Instruct zero-shot",
+    "adapter": null,
+    "model": "Qwen2-0.5B-Instruct",
+    "model_path": "D:\\AI_learn\\Model\\Qwen2-0.5B-Instruct",
+    "few_shot": false,
+    "n_few_shot_examples": 0,
+    "gen_batch": 8,
+    "max_new_tokens": 1200,
+    "dtype": "bf16",
+    "device_map": "cuda",
+    "disable_thinking": false,
+    "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+    "group": "llm",
+    "n_sentences": 200,
+    "resumed_from": 0,
+    "runtime_s": 633.1,
+    "sec_per_sentence": 3.166,
+    "parse_stats": {
+      "empty_reply": 0,
+      "json_ok": 178,
+      "repaired": 44,
+      "noise_stripped": 7,
+      "type_invalid": 48,
+      "role_invalid": 889,
+      "trigger_not_in_source": 81,
+      "arg_not_in_source": 160
+    },
+    "json_valid_rate": 0.89,
+    "prompt_tokens": 135704,
+    "completion_tokens": 202936
+  },
+  "n200_summary": {
+    "trigger_f1": 0.0307,
+    "argument_f1": 0.0,
+    "event_f1": 0.0,
+    "num_samples": 200
+  }
+}

@@ -1,0 +1,200 @@
+{"uid": "142baaf627a6c0b815f57a97b79408f6", "id": "142baaf627a6c0b815f57a97b79408f6", "events": []}
+{"uid": "e582d44d9d868730b9d5a74e3cb1973d", "id": "e582d44d9d868730b9d5a74e3cb1973d", "events": []}
+{"uid": "373230e577798a10c2aacc55b427f891", "id": "373230e577798a10c2aacc55b427f891", "events": []}
+{"uid": "19b6ee37e3609be85d0ecf68e2f50da4", "id": "19b6ee37e3609be85d0ecf68e2f50da4", "events": []}
+{"uid": "874be93810e958fb5a1af220287f0765", "id": "874be93810e958fb5a1af220287f0765", "events": []}
+{"uid": "290c09b88decdd4cd280db0fc0d532bc", "id": "290c09b88decdd4cd280db0fc0d532bc", "events": [{"type": "股份股权转让", "trigger": {"text": "拿下", "start": 26, "end": 28}, "args": [{"role": "target-company", "text": "万家基金", "start": 28, "end": 32}, {"role": "sub-org", "text": "齐河众鑫", "start": 22, "end": 26}, {"role": "proportion", "text": "11%", "start": 33, "end": 36}]}]}
+{"uid": "57be8b1bdbbc4db1a8ba1edd1c7a33a9", "id": "57be8b1bdbbc4db1a8ba1edd1c7a33a9", "events": []}
+{"uid": "f3d9d48d54f5b5217852dd0d948bbf76", "id": "f3d9d48d54f5b5217852dd0d948bbf76", "events": []}
+{"uid": "a774d23f5ec6d59923da9ceb9c02b53b", "id": "a774d23f5ec6d59923da9ceb9c02b53b", "events": []}
+{"uid": "9f4982c94b0e83cb6d729f3afff9d038", "id": "9f4982c94b0e83cb6d729f3afff9d038", "events": []}
+{"uid": "6b4e061bb7488693489a62ebd8d5e748", "id": "6b4e061bb7488693489a62ebd8d5e748", "events": []}
+{"uid": "2f617a83746236262f352e842844c44c", "id": "2f617a83746236262f352e842844c44c", "events": []}
+{"uid": "3fc3328f806d4ccd18e3e02446dd5668", "id": "3fc3328f806d4ccd18e3e02446dd5668", "events": []}
+{"uid": "5f7cabf6981f63e48216b190638aa54e", "id": "5f7cabf6981f63e48216b190638aa54e", "events": []}
+{"uid": "b2d8038ca2c85d79e738c13424ed31e2", "id": "b2d8038ca2c85d79e738c13424ed31e2", "events": []}
+{"uid": "78fcd18e5bae026a37414aceeb750723", "id": "78fcd18e5bae026a37414aceeb750723", "events": []}
+{"uid": "aca738f42c3e418ad86ec50c17bee15b", "id": "aca738f42c3e418ad86ec50c17bee15b", "events": [{"type": "减持", "trigger": {"text": "减持", "start": 9, "end": 11}, "args": [{"role": "sub", "text": "黄元忠", "start": 79, "end": 82}, {"role": "obj", "text": "方直科技", "start": 0, "end": 4}, {"role": "title", "text": "集中竞价或大宗交易方式", "start": 103, "end": 114}, {"role": "share-org", "text": "方直科技", "start": 0, "end": 4}]}]}
+{"uid": "39be2394b9eac8075590d03e0584f222", "id": "39be2394b9eac8075590d03e0584f222", "events": []}
+{"uid": "7441cfa397e680440166b500284b08b6", "id": "7441cfa397e680440166b500284b08b6", "events": []}
+{"uid": "c51de5ac85e7eda579f2de4a73da7d88", "id": "c51de5ac85e7eda579f2de4a73da7d88", "events": []}
+{"uid": "e944c747a542318e23be5680f31c7073", "id": "e944c747a542318e23be5680f31c7073", "events": []}
+{"uid": "e1b33743d3ec820d11ef6ac66727d533", "id": "e1b33743d3ec820d11ef6ac66727d533", "events": []}
+{"uid": "0b490a15aca43903b8b84d848a296b58", "id": "0b490a15aca43903b8b84d848a296b58", "events": []}
+{"uid": "6d5ae43288995aa3af34c15e89040e9d", "id": "6d5ae43288995aa3af34c15e89040e9d", "events": []}
+{"uid": "ab8de3fd229c880320fb72405a00d555", "id": "ab8de3fd229c880320fb72405a00d555", "events": []}
+{"uid": "9704152a72e9db7946df76dae8cff3df", "id": "9704152a72e9db7946df76dae8cff3df", "events": []}
+{"uid": "679f86c6b2506fac87785e5d35cfe8b1", "id": "679f86c6b2506fac87785e5d35cfe8b1", "events": []}
+{"uid": "b0af802878940f662d9b79af0e0782bb", "id": "b0af802878940f662d9b79af0e0782bb", "events": []}
+{"uid": "83233c8ea26ea78bd2b9bcef40c241a6", "id": "83233c8ea26ea78bd2b9bcef40c241a6", "events": []}
+{"uid": "046e439c808795dcb2d93e085512a4a7", "id": "046e439c808795dcb2d93e085512a4a7", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 40, "end": 42}, "args": [{"role": "sub-org", "text": "恒久科技", "start": 34, "end": 38}, {"role": "obj-org", "text": "闽保股份", "start": 42, "end": 46}]}]}
+{"uid": "9e5e0cab032501e5fade05624c3e56fb", "id": "9e5e0cab032501e5fade05624c3e56fb", "events": []}
+{"uid": "0db368cbd78fdad542d5aada794f4f8b", "id": "0db368cbd78fdad542d5aada794f4f8b", "events": []}
+{"uid": "973651a9cd9ca910956068755bef6cad", "id": "973651a9cd9ca910956068755bef6cad", "events": []}
+{"uid": "6ba6ab1e37bb1645ea773cbf15a805db", "id": "6ba6ab1e37bb1645ea773cbf15a805db", "events": []}
+{"uid": "165a2cf298ef210805a2ea27dd6ce332", "id": "165a2cf298ef210805a2ea27dd6ce332", "events": []}
+{"uid": "c07fbbb75ca2c3ccedbdbbcf9023f6a5", "id": "c07fbbb75ca2c3ccedbdbbcf9023f6a5", "events": []}
+{"uid": "d9899331c5986ed38ca44394d7166521", "id": "d9899331c5986ed38ca44394d7166521", "events": []}
+{"uid": "7c5cd4f6fee434f601c653a5d265c39f", "id": "7c5cd4f6fee434f601c653a5d265c39f", "events": []}
+{"uid": "13f903c8486eefbb56228923dfd3e148", "id": "13f903c8486eefbb56228923dfd3e148", "events": []}
+{"uid": "123c1ca1b3249955dd8ee3c1338b9a66", "id": "123c1ca1b3249955dd8ee3c1338b9a66", "events": []}
+{"uid": "62be7d7c0e9984b8eff26d628f085c91", "id": "62be7d7c0e9984b8eff26d628f085c91", "events": []}
+{"uid": "ab9171ab094e305897d4af3f8078b0e4", "id": "ab9171ab094e305897d4af3f8078b0e4", "events": []}
+{"uid": "1bbd9a08851a982a316a1dea9ab7111e", "id": "1bbd9a08851a982a316a1dea9ab7111e", "events": []}
+{"uid": "6fe9397cec65427162d540566c98c9fd", "id": "6fe9397cec65427162d540566c98c9fd", "events": []}
+{"uid": "07a435df3ddb4b71993ddfd1d0a97d15", "id": "07a435df3ddb4b71993ddfd1d0a97d15", "events": []}
+{"uid": "989b85d19ede87dee5a6791ad8dd3151", "id": "989b85d19ede87dee5a6791ad8dd3151", "events": []}
+{"uid": "f6f6eef0d531386dcac3e0476e53765c", "id": "f6f6eef0d531386dcac3e0476e53765c", "events": []}
+{"uid": "e510b5ffd8cb5c48fa5f00c7fc6afdd1", "id": "e510b5ffd8cb5c48fa5f00c7fc6afdd1", "events": []}
+{"uid": "6baf71a99a22ff7d567fb85e5acc61f9", "id": "6baf71a99a22ff7d567fb85e5acc61f9", "events": []}
+{"uid": "4588f4f1e75b80fb0ddca82ee5eba55f", "id": "4588f4f1e75b80fb0ddca82ee5eba55f", "events": []}
+{"uid": "4d6685ae9904510e114a8994db825e0f", "id": "4d6685ae9904510e114a8994db825e0f", "events": []}
+{"uid": "de56292ca3a04c2f1978c54938cc1682", "id": "de56292ca3a04c2f1978c54938cc1682", "events": []}
+{"uid": "3782d702dcab5753e5bd26643b0af715", "id": "3782d702dcab5753e5bd26643b0af715", "events": []}
+{"uid": "96008d40ddbcae17d7c893851f1bb251", "id": "96008d40ddbcae17d7c893851f1bb251", "events": []}
+{"uid": "734bc6552709b4a720da58ca6b2a1649", "id": "734bc6552709b4a720da58ca6b2a1649", "events": []}
+{"uid": "c49b66a01073fd56305228b6171ee67e", "id": "c49b66a01073fd56305228b6171ee67e", "events": []}
+{"uid": "f02400bde3d73f4a3cf1079ea751f9a4", "id": "f02400bde3d73f4a3cf1079ea751f9a4", "events": []}
+{"uid": "46751a2f3398a1a0572b9128c6a5b441", "id": "46751a2f3398a1a0572b9128c6a5b441", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 61, "end": 63}, "args": [{"role": "obj-org", "text": "恒泰证券", "start": 63, "end": 67}, {"role": "sub-org", "text": "天风证券", "start": 9, "end": 13}, {"role": "date", "text": "今年上半年", "start": 52, "end": 57}, {"role": "proportion", "text": "29.9%", "start": 67, "end": 72}]}]}
+{"uid": "e7e59db33e82e4612423b44f35552baf", "id": "e7e59db33e82e4612423b44f35552baf", "events": []}
+{"uid": "b6039e46610c05d01fc345cb4176bfcf", "id": "b6039e46610c05d01fc345cb4176bfcf", "events": []}
+{"uid": "2b423cbf14e264dcf68abade9ad96a2f", "id": "2b423cbf14e264dcf68abade9ad96a2f", "events": []}
+{"uid": "fc54da5ecaee7e7ed38d9fd9b4b03d6b", "id": "fc54da5ecaee7e7ed38d9fd9b4b03d6b", "events": []}
+{"uid": "06525191f857aff7ff7a37e27fb654c4", "id": "06525191f857aff7ff7a37e27fb654c4", "events": [{"type": "减持", "trigger": {"text": "减持", "start": 12, "end": 14}, "args": [{"role": "sub", "text": "御银股份实控人", "start": 4, "end": 11}, {"role": "obj", "text": "股份", "start": 6, "end": 8}, {"role": "share-org", "text": "御银股份实控人", "start": 4, "end": 11}, {"role": "share-per", "text": "不超2%", "start": 14, "end": 18}]}]}
+{"uid": "01e8fc85609f4570a3f0447d2e499d99", "id": "01e8fc85609f4570a3f0447d2e499d99", "events": []}
+{"uid": "68fc421ecc04a0e207b54fb7e1653ad2", "id": "68fc421ecc04a0e207b54fb7e1653ad2", "events": []}
+{"uid": "cdebf4b7394fe548d9a396bf2efeb699", "id": "cdebf4b7394fe548d9a396bf2efeb699", "events": []}
+{"uid": "869ddb5a612bcd024d636f9e21e58839", "id": "869ddb5a612bcd024d636f9e21e58839", "events": []}
+{"uid": "99dbeb750deebebdbcad674a5b368aff", "id": "99dbeb750deebebdbcad674a5b368aff", "events": []}
+{"uid": "0df0514404e7db62860ef72bcbd8e25b", "id": "0df0514404e7db62860ef72bcbd8e25b", "events": []}
+{"uid": "c41d1cca2e0932ca4b27cda6ad3ef580", "id": "c41d1cca2e0932ca4b27cda6ad3ef580", "events": []}
+{"uid": "071b0d434ebfc0b610afd081726312d8", "id": "071b0d434ebfc0b610afd081726312d8", "events": []}
+{"uid": "48cd18a8518f95958cc22ce59ca36215", "id": "48cd18a8518f95958cc22ce59ca36215", "events": []}
+{"uid": "978541faf4fc8d488b7f4f054aa57815", "id": "978541faf4fc8d488b7f4f054aa57815", "events": [{"type": "减持", "trigger": {"text": "减持", "start": 22, "end": 24}, "args": [{"role": "sub", "text": "中植及一致行动人", "start": 8, "end": 16}, {"role": "obj", "text": "众业达电气股份有限公司", "start": 24, "end": 35}, {"role": "title", "text": "关于减持众业达电气股份有限公司股份计划的告知函", "start": 20, "end": 43}]}]}
+{"uid": "8ea3955b123b1a21211ba16f61dc3cb1", "id": "8ea3955b123b1a21211ba16f61dc3cb1", "events": [{"type": "起诉", "trigger": {"text": "提起诉讼", "start": 35, "end": 39}, "args": [{"role": "sub-org", "text": "钱端公司", "start": 0, "end": 4}, {"role": "obj-org", "text": "招行", "start": 14, "end": 16}, {"role": "date", "text": "5月29日", "start": 7, "end": 12}]}]}
+{"uid": "2799c1ea9bfeb3a8ce07915dccb3c9ee", "id": "2799c1ea9bfeb3a8ce07915dccb3c9ee", "events": []}
+{"uid": "137210722ea3f6d3628f9bd7887f730f", "id": "137210722ea3f6d3628f9bd7887f730f", "events": []}
+{"uid": "088135ed632eb678b425f32bc54c0090", "id": "088135ed632eb678b425f32bc54c0090", "events": []}
+{"uid": "66ead815ae46183e1f212d6cbd28e751", "id": "66ead815ae46183e1f212d6cbd28e751", "events": []}
+{"uid": "c994edf0c44c69b91ca48a5978a606f6", "id": "c994edf0c44c69b91ca48a5978a606f6", "events": []}
+{"uid": "83713d6eca5c9052c7613ee9bc261579", "id": "83713d6eca5c9052c7613ee9bc261579", "events": []}
+{"uid": "e859a1ea3097f167cb105554d2a72ae2", "id": "e859a1ea3097f167cb105554d2a72ae2", "events": [{"type": "投资", "trigger": {"text": "投资行为", "start": 51, "end": 55}, "args": [{"role": "sub", "text": "北京泽盈", "start": 0, "end": 4}, {"role": "obj", "text": "公司股份", "start": 8, "end": 12}]}]}
+{"uid": "c7e3f1a063f8d5171c671851d49831af", "id": "c7e3f1a063f8d5171c671851d49831af", "events": []}
+{"uid": "376758157f6dd9562b9e12c48a6cde20", "id": "376758157f6dd9562b9e12c48a6cde20", "events": []}
+{"uid": "dd2e19fc159fc787d3f75c14bb30b428", "id": "dd2e19fc159fc787d3f75c14bb30b428", "events": []}
+{"uid": "b79c530326f70307cab314a2cb9535a4", "id": "b79c530326f70307cab314a2cb9535a4", "events": []}
+{"uid": "73dde7f67f04fb5e615c21b0891ede46", "id": "73dde7f67f04fb5e615c21b0891ede46", "events": []}
+{"uid": "8f67f5cedd6e402b9b1c40ab16f2c451", "id": "8f67f5cedd6e402b9b1c40ab16f2c451", "events": []}
+{"uid": "e61510b390cb9cee702cff4f897b384d", "id": "e61510b390cb9cee702cff4f897b384d", "events": []}
+{"uid": "1869751a037b8511c825486e867fc8fe", "id": "1869751a037b8511c825486e867fc8fe", "events": []}
+{"uid": "6e088c2eb289a9b155be8e4151b1d8e0", "id": "6e088c2eb289a9b155be8e4151b1d8e0", "events": []}
+{"uid": "3830b6a2b041a9dab792ec35b6cdb755", "id": "3830b6a2b041a9dab792ec35b6cdb755", "events": []}
+{"uid": "6001230cc176a284f81cff304bc02058", "id": "6001230cc176a284f81cff304bc02058", "events": [{"type": "减持", "trigger": {"text": "减持", "start": 24, "end": 26}, "args": [{"role": "sub", "text": "兴龙实业", "start": 19, "end": 23}]}]}
+{"uid": "3ae1635d15c39a0235b284ea4c5e9ddc", "id": "3ae1635d15c39a0235b284ea4c5e9ddc", "events": [{"type": "质押", "trigger": {"text": "质押", "start": 54, "end": 56}, "args": [{"role": "collateral", "text": "股权", "start": 48, "end": 50}, {"role": "sub-org", "text": "上饶宇瞳", "start": 37, "end": 41}, {"role": "proportion", "text": "全部", "start": 52, "end": 54}]}]}
+{"uid": "43a2fcc5d11c3032196212999a9de554", "id": "43a2fcc5d11c3032196212999a9de554", "events": []}
+{"uid": "310100c75829005f0695d857fc53f200", "id": "310100c75829005f0695d857fc53f200", "events": []}
+{"uid": "7bf1ec9dd34576d6d5a6de02187ab36c", "id": "7bf1ec9dd34576d6d5a6de02187ab36c", "events": []}
+{"uid": "2e83076cb8eab54eed7a92ca93f6cc09", "id": "2e83076cb8eab54eed7a92ca93f6cc09", "events": []}
+{"uid": "52dd01cd70e037491b688b48486ecc07", "id": "52dd01cd70e037491b688b48486ecc07", "events": []}
+{"uid": "60d1d2467d707bbc6b8111a77b2c5c03", "id": "60d1d2467d707bbc6b8111a77b2c5c03", "events": []}
+{"uid": "3ceac29848b73fcddb20f9fd3b632fb1", "id": "3ceac29848b73fcddb20f9fd3b632fb1", "events": []}
+{"uid": "41a62496332b48d84ea498c2f241f426", "id": "41a62496332b48d84ea498c2f241f426", "events": []}
+{"uid": "e8c3f2ca000b026c30558f2fd6777c5d", "id": "e8c3f2ca000b026c30558f2fd6777c5d", "events": []}
+{"uid": "25f2aee7ea707788309bbcca16b296c0", "id": "25f2aee7ea707788309bbcca16b296c0", "events": [{"type": "起诉", "trigger": {"text": "起诉", "start": 20, "end": 22}, "args": [{"role": "sub-per", "text": "李爱梅", "start": 0, "end": 3}, {"role": "obj-per", "text": "方芳", "start": 11, "end": 13}]}]}
+{"uid": "6f016fa61667772a50c18f9b12f8c3b2", "id": "6f016fa61667772a50c18f9b12f8c3b2", "events": []}
+{"uid": "94d3360e7d9bf0cdbbdec97bd2e57759", "id": "94d3360e7d9bf0cdbbdec97bd2e57759", "events": []}
+{"uid": "8fddd5bc782f28d6b26180a60867aa19", "id": "8fddd5bc782f28d6b26180a60867aa19", "events": []}
+{"uid": "6058005a310cebf6f1d6f9c72a93565f", "id": "6058005a310cebf6f1d6f9c72a93565f", "events": []}
+{"uid": "c51f807fa9a756ad0bb3b8964bc18213", "id": "c51f807fa9a756ad0bb3b8964bc18213", "events": []}
+{"uid": "7e93b5542c286a1581241043687d118e", "id": "7e93b5542c286a1581241043687d118e", "events": []}
+{"uid": "ee366ac0a71e0e2a579a8619e6fa373a", "id": "ee366ac0a71e0e2a579a8619e6fa373a", "events": []}
+{"uid": "9d1074349254b619421f02b6fbcaad84", "id": "9d1074349254b619421f02b6fbcaad84", "events": []}
+{"uid": "de4ba4da6636bfc16cbe314c1127625b", "id": "de4ba4da6636bfc16cbe314c1127625b", "events": []}
+{"uid": "9725ae2b2691350af9fc7dacccb97de3", "id": "9725ae2b2691350af9fc7dacccb97de3", "events": []}
+{"uid": "22ab663980d5d59206c7943fc1fa0f1a", "id": "22ab663980d5d59206c7943fc1fa0f1a", "events": []}
+{"uid": "6fbdcfcd1e28439c45f7b043412cfdbd", "id": "6fbdcfcd1e28439c45f7b043412cfdbd", "events": []}
+{"uid": "1eb58a298d8e4ff419f54f84009b12a9", "id": "1eb58a298d8e4ff419f54f84009b12a9", "events": []}
+{"uid": "cc4cd7f00d7761492a1957fbf0ac8ae7", "id": "cc4cd7f00d7761492a1957fbf0ac8ae7", "events": [{"type": "质押", "trigger": {"text": "质押", "start": 2, "end": 4}, "args": [{"role": "collateral", "text": "众泰汽车股票", "start": 24, "end": 30}, {"role": "sub-org", "text": "铁牛集团有限公司", "start": 6, "end": 14}, {"role": "number", "text": "6.48亿股", "start": 18, "end": 24}, {"role": "proportion", "text": "31.95%", "start": 38, "end": 44}, {"role": "obj-org", "text": "众泰汽车", "start": 24, "end": 28}]}]}
+{"uid": "42f5322a4c2b9674bdd1f0c61c692943", "id": "42f5322a4c2b9674bdd1f0c61c692943", "events": []}
+{"uid": "eb67a661f9ee58d15a27127e9ef17b95", "id": "eb67a661f9ee58d15a27127e9ef17b95", "events": []}
+{"uid": "6aa87337be0ae520b49f7a96f2a5d71d", "id": "6aa87337be0ae520b49f7a96f2a5d71d", "events": []}
+{"uid": "8256af6e96bbefff53a75d0f15102813", "id": "8256af6e96bbefff53a75d0f15102813", "events": []}
+{"uid": "4c3e51667b641b18957761d4f00d58eb", "id": "4c3e51667b641b18957761d4f00d58eb", "events": []}
+{"uid": "7e2e9250beaf5179e715c214d95f10f4", "id": "7e2e9250beaf5179e715c214d95f10f4", "events": []}
+{"uid": "3421417912b511ed34611d5e40c203de", "id": "3421417912b511ed34611d5e40c203de", "events": []}
+{"uid": "50df62bc94d3fdbcd0f13d6c6e82830f", "id": "50df62bc94d3fdbcd0f13d6c6e82830f", "events": []}
+{"uid": "ed6cd2ea7b3152e8fb3a3079dcad62bf", "id": "ed6cd2ea7b3152e8fb3a3079dcad62bf", "events": [{"type": "判决", "trigger": {"text": "作出一审判决", "start": 22, "end": 28}, "args": [{"role": "obj-per", "text": "李亚鹏、李亚炜", "start": 31, "end": 38}, {"role": "institution", "text": "北京市朝阳区人民法院", "start": 12, "end": 22}, {"role": "money", "text": "4000万元", "start": 40, "end": 46}, {"role": "date", "text": "2017年12月22日", "start": 0, "end": 11}]}]}
+{"uid": "e017a0fb58c32db76f46911477764e14", "id": "e017a0fb58c32db76f46911477764e14", "events": []}
+{"uid": "c1226bed11b2d675c03af5bb4999adbe", "id": "c1226bed11b2d675c03af5bb4999adbe", "events": [{"type": "质押", "trigger": {"text": "质押", "start": 33, "end": 35}, "args": [{"role": "collateral", "text": "1.42亿股有限售条件股份", "start": 64, "end": 77}, {"role": "sub-org", "text": "邢加兴", "start": 24, "end": 27}, {"role": "obj-org", "text": "海通证券", "start": 36, "end": 40}, {"role": "number", "text": "1.42亿", "start": 64, "end": 69}]}]}
+{"uid": "0a509d538ca2ed4558bc4fdb109fbfb3", "id": "0a509d538ca2ed4558bc4fdb109fbfb3", "events": []}
+{"uid": "bb098865fab12cfe1750386af2a4cb7c", "id": "bb098865fab12cfe1750386af2a4cb7c", "events": []}
+{"uid": "b0a4037b61d094ad0a3ee9c645203406", "id": "b0a4037b61d094ad0a3ee9c645203406", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 19, "end": 21}, "args": [{"role": "sub-org", "text": "字节跳动", "start": 5, "end": 9}, {"role": "obj-org", "text": "上海墨鹍", "start": 25, "end": 29}]}, {"type": "投资", "trigger": {"text": "入股", "start": 30, "end": 32}, "args": [{"role": "sub", "text": "字节跳动", "start": 5, "end": 9}, {"role": "obj", "text": "上禾网络", "start": 39, "end": 43}]}]}
+{"uid": "cb687a1ca095ceeba61c4124aafce3ac", "id": "cb687a1ca095ceeba61c4124aafce3ac", "events": []}
+{"uid": "17ae2ab8325cc46dfb5f85de678eadb3", "id": "17ae2ab8325cc46dfb5f85de678eadb3", "events": []}
+{"uid": "213b5656732597cdc586398aa3c7d4ac", "id": "213b5656732597cdc586398aa3c7d4ac", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 43, "end": 45}, "args": [{"role": "obj-org", "text": "沙特基础工业公司", "start": 45, "end": 53}, {"role": "sub-org", "text": "沙特阿美", "start": 0, "end": 4}, {"role": "date", "text": "当年8月", "start": 20, "end": 24}]}]}
+{"uid": "b7551dfb8b24fc214b247646510bfe14", "id": "b7551dfb8b24fc214b247646510bfe14", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 29, "end": 31}, "args": [{"role": "sub-org", "text": "嘉麟杰", "start": 0, "end": 3}, {"role": "obj-org", "text": "北极光电", "start": 31, "end": 35}, {"role": "date", "text": "日前", "start": 16, "end": 18}, {"role": "money", "text": "2.6亿元", "start": 24, "end": 29}]}]}
+{"uid": "c685988aa07b9203c4d83a5dd13532cc", "id": "c685988aa07b9203c4d83a5dd13532cc", "events": []}
+{"uid": "a5f8c71346ee783290cf1a965e965d0a", "id": "a5f8c71346ee783290cf1a965e965d0a", "events": []}
+{"uid": "984e14f2659018023cda237889af6188", "id": "984e14f2659018023cda237889af6188", "events": []}
+{"uid": "ae6467424ca113ebf80d6847865c9f32", "id": "ae6467424ca113ebf80d6847865c9f32", "events": []}
+{"uid": "0005d6afc3c89f6ba4def44c63d1f33b", "id": "0005d6afc3c89f6ba4def44c63d1f33b", "events": []}
+{"uid": "e221af6cfcfb0b70fb8def064206411c", "id": "e221af6cfcfb0b70fb8def064206411c", "events": []}
+{"uid": "f72fde8a9c73a46e22b0fd1ee65d15c9", "id": "f72fde8a9c73a46e22b0fd1ee65d15c9", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 22, "end": 24}, "args": [{"role": "obj-org", "text": "天津冠创美通电子商务有限公司", "start": 24, "end": 38}, {"role": "sub-org", "text": "国美金融科技", "start": 8, "end": 14}, {"role": "date", "text": "2017年6月", "start": 0, "end": 7}, {"role": "money", "text": "7.2亿元", "start": 17, "end": 22}]}]}
+{"uid": "e13bdf9cb6d8515151f2ecba3ad2fb52", "id": "e13bdf9cb6d8515151f2ecba3ad2fb52", "events": []}
+{"uid": "59a07a35b3dcb6ffcdd54ad5659827d9", "id": "59a07a35b3dcb6ffcdd54ad5659827d9", "events": []}
+{"uid": "d29a24bd5e864eec7e95479ed138f834", "id": "d29a24bd5e864eec7e95479ed138f834", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 23, "end": 25}, "args": [{"role": "obj-org", "text": "洛阳蓝宝氟业有限公司", "start": 34, "end": 44}, {"role": "sub-org", "text": "多氟多(002407)", "start": 0, "end": 11}, {"role": "money", "text": "7700万元", "start": 17, "end": 23}, {"role": "proportion", "text": "70%", "start": 44, "end": 47}]}]}
+{"uid": "aa46ab8059238635f43d9c35d9fcaab7", "id": "aa46ab8059238635f43d9c35d9fcaab7", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 9, "end": 11}, "args": [{"role": "sub-org", "text": "好时", "start": 6, "end": 8}, {"role": "obj-org", "text": "Amplify", "start": 16, "end": 23}, {"role": "date", "text": "2017年", "start": 0, "end": 5}]}]}
+{"uid": "00624d98d0d37df60d259d9169538512", "id": "00624d98d0d37df60d259d9169538512", "events": []}
+{"uid": "e0422f945f9deee9c814c06deba44b6b", "id": "e0422f945f9deee9c814c06deba44b6b", "events": []}
+{"uid": "f982249fc9aff4c99b9cfccddc775ea5", "id": "f982249fc9aff4c99b9cfccddc775ea5", "events": []}
+{"uid": "5ec21a69be91b4333e9cc421df11ecb6", "id": "5ec21a69be91b4333e9cc421df11ecb6", "events": []}
+{"uid": "0ffd90f0b3657e7c626ad8b69582c708", "id": "0ffd90f0b3657e7c626ad8b69582c708", "events": []}
+{"uid": "1f3573b7c5cab5f25e8e30bd67ab12f1", "id": "1f3573b7c5cab5f25e8e30bd67ab12f1", "events": [{"type": "判决", "trigger": {"text": "判决", "start": 8, "end": 10}, "args": [{"role": "obj-org", "text": "盈达碳素", "start": 28, "end": 32}, {"role": "sub-org", "text": "新疆宝钥钢铁有限公司", "start": 18, "end": 28}, {"role": "money", "text": "459,157.20元", "start": 57, "end": 68}]}]}
+{"uid": "7d1f734f1c9bc2bb8ed75b8811fb8aa4", "id": "7d1f734f1c9bc2bb8ed75b8811fb8aa4", "events": []}
+{"uid": "5cc45a9e159716e39aede015df13abc2", "id": "5cc45a9e159716e39aede015df13abc2", "events": []}
+{"uid": "b66d0bc04a70d79e094193c4a5297b02", "id": "b66d0bc04a70d79e094193c4a5297b02", "events": []}
+{"uid": "51bc0af185ce979a3f9425d09ef5b2d5", "id": "51bc0af185ce979a3f9425d09ef5b2d5", "events": []}
+{"uid": "08be1ff34d50530e82ba9efa12a98c6e", "id": "08be1ff34d50530e82ba9efa12a98c6e", "events": []}
+{"uid": "b4d4d4236d28f59656c81c786fd0300d", "id": "b4d4d4236d28f59656c81c786fd0300d", "events": []}
+{"uid": "6837bed862d0ffd5cbd0aab619214828", "id": "6837bed862d0ffd5cbd0aab619214828", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 10, "end": 12}, "args": [{"role": "obj-org", "text": "东方英卡100%股权", "start": 27, "end": 37}, {"role": "sub-org", "text": "恒宝股份", "start": 6, "end": 10}, {"role": "money", "text": "2600万元", "start": 53, "end": 59}, {"role": "proportion", "text": "100%", "start": 31, "end": 35}]}, {"type": "收购", "trigger": {"text": "收购", "start": 10, "end": 12}, "args": [{"role": "obj-org", "text": "一卡易科技51%股权", "start": 38, "end": 48}, {"role": "sub-org", "text": "恒宝股份", "start": 6, "end": 10}, {"role": "money", "text": "1.53亿元", "start": 60, "end": 66}, {"role": "proportion", "text": "51%", "start": 43, "end": 46}]}]}
+{"uid": "1c2ca2f039ac9cef9febd7c2e5796645", "id": "1c2ca2f039ac9cef9febd7c2e5796645", "events": []}
+{"uid": "18424f96017d82be804f2efd8e1f8594", "id": "18424f96017d82be804f2efd8e1f8594", "events": []}
+{"uid": "b2c14459ee83dbeab4a1241c824f1c21", "id": "b2c14459ee83dbeab4a1241c824f1c21", "events": []}
+{"uid": "97b13e868515bfdae2080b4f5fdff8fb", "id": "97b13e868515bfdae2080b4f5fdff8fb", "events": [{"type": "判决", "trigger": {"text": "判决", "start": 4, "end": 6}, "args": [{"role": "institution", "text": "苏州中院", "start": 0, "end": 4}, {"role": "obj-org", "text": "张家港行", "start": 29, "end": 33}, {"role": "sub-org", "text": "康得新光电公司", "start": 9, "end": 16}, {"role": "money", "text": "1.98亿元", "start": 39, "end": 45}]}]}
+{"uid": "edc565d2c500479d08a8edccd93ddb0c", "id": "edc565d2c500479d08a8edccd93ddb0c", "events": []}
+{"uid": "b80bdc2679455929c47f7b88740dc19d", "id": "b80bdc2679455929c47f7b88740dc19d", "events": [{"type": "判决", "trigger": {"text": "判决", "start": 23, "end": 25}, "args": [{"role": "obj-org", "text": "华为公司", "start": 42, "end": 46}, {"role": "institution", "text": "广东省高级人民法院", "start": 10, "end": 19}, {"role": "money", "text": "2000万元", "start": 46, "end": 52}, {"role": "sub-org", "text": "美国IDC公司", "start": 28, "end": 35}, {"role": "date", "text": "2013年10月末", "start": 0, "end": 9}]}]}
+{"uid": "ed131711b6d3c73b978602e9bdcc2539", "id": "ed131711b6d3c73b978602e9bdcc2539", "events": []}
+{"uid": "789fb9f82717cf2d962b5832cb2c05f0", "id": "789fb9f82717cf2d962b5832cb2c05f0", "events": []}
+{"uid": "da86e4d178b49e8c03e41e41b7eb85fa", "id": "da86e4d178b49e8c03e41e41b7eb85fa", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 19, "end": 21}, "args": [{"role": "obj-org", "text": "台冠科技", "start": 21, "end": 25}, {"role": "sub-org", "text": "公司", "start": 3, "end": 5}, {"role": "proportion", "text": "89.6765%", "start": 25, "end": 33}, {"role": "way", "text": "发行股份及支付现金", "start": 8, "end": 17}]}]}
+{"uid": "173d8df002833698ba7977872d1dcc6d", "id": "173d8df002833698ba7977872d1dcc6d", "events": []}
+{"uid": "2ae4f79645a54cbda0dc4c37e1a9fa2d", "id": "2ae4f79645a54cbda0dc4c37e1a9fa2d", "events": []}
+{"uid": "76143c99eb774f445c75696a95db5af9", "id": "76143c99eb774f445c75696a95db5af9", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 40, "end": 42}, "args": [{"role": "obj-org", "text": "浙报传媒控股集团有限公司", "start": 42, "end": 54}, {"role": "sub-org", "text": "浙数文化(600633.SH)", "start": 8, "end": 23}, {"role": "date", "text": "9月6日", "start": 3, "end": 7}, {"role": "money", "text": "人民币5720万元", "start": 31, "end": 40}, {"role": "proportion", "text": "100%股权", "start": 71, "end": 77}]}]}
+{"uid": "6a34df3c1fb84b6c7277afe74bafa3b8", "id": "6a34df3c1fb84b6c7277afe74bafa3b8", "events": []}
+{"uid": "602a39cf4f7aac0a93712c94d84f4484", "id": "602a39cf4f7aac0a93712c94d84f4484", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 37, "end": 39}, "args": [{"role": "obj-org", "text": "清北网校", "start": 39, "end": 43}, {"role": "sub-org", "text": "字节跳动", "start": 81, "end": 85}]}]}
+{"uid": "bb3e4eb2b8740a1328a19ba761feb572", "id": "bb3e4eb2b8740a1328a19ba761feb572", "events": []}
+{"uid": "a146f1afd4cc26072cb620eca1627b4c", "id": "a146f1afd4cc26072cb620eca1627b4c", "events": []}
+{"uid": "61b82acc1f3f16bf4a3b25c3774a3464", "id": "61b82acc1f3f16bf4a3b25c3774a3464", "events": [{"type": "判决", "trigger": {"text": "判决", "start": 36, "end": 38}, "args": [{"role": "obj-org", "text": "中资银行", "start": 38, "end": 42}, {"role": "sub-org", "text": "美国法院", "start": 7, "end": 11}, {"role": "institution", "text": "《商业银行法》《民事诉讼法》《国际刑事司法协助法》", "start": 98, "end": 123}]}]}
+{"uid": "52ae2392603dedf03e7e4441014c65a7", "id": "52ae2392603dedf03e7e4441014c65a7", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 35, "end": 37}, "args": [{"role": "obj-org", "text": "福建三锋集团", "start": 44, "end": 50}, {"role": "sub-org", "text": "福耀集团", "start": 19, "end": 23}, {"role": "date", "text": "2018年6月", "start": 1, "end": 8}, {"role": "money", "text": "2.24亿元", "start": 24, "end": 30}, {"role": "proportion", "text": "100%", "start": 50, "end": 54}]}]}
+{"uid": "5e4e64ffd7cc72effe3ca23dd7b53676", "id": "5e4e64ffd7cc72effe3ca23dd7b53676", "events": []}
+{"uid": "732042c6a4d2240eb1f60c7caa716117", "id": "732042c6a4d2240eb1f60c7caa716117", "events": []}
+{"uid": "e1df42308b71438af1ea2da2580e9aa1", "id": "e1df42308b71438af1ea2da2580e9aa1", "events": []}
+{"uid": "db00080c6fcfd8eee4e2c7e9dcdb561d", "id": "db00080c6fcfd8eee4e2c7e9dcdb561d", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 10, "end": 12}, "args": [{"role": "obj-org", "text": "伊宁供热", "start": 12, "end": 16}, {"role": "sub-org", "text": "上市公司", "start": 6, "end": 10}, {"role": "proportion", "text": "80%", "start": 16, "end": 19}, {"role": "way", "text": "通过新疆产权交易所挂牌竞拍达成", "start": 40, "end": 55}]}]}
+{"uid": "a4ca00d6ec1d85148ec48d76a8bab3bd", "id": "a4ca00d6ec1d85148ec48d76a8bab3bd", "events": []}
+{"uid": "55b216481370f59543f29de84170334d", "id": "55b216481370f59543f29de84170334d", "events": []}
+{"uid": "87d3e11a52359564144668db962d5aa0", "id": "87d3e11a52359564144668db962d5aa0", "events": []}
+{"uid": "04826e47a7d76dc8a7a3177362544940", "id": "04826e47a7d76dc8a7a3177362544940", "events": [{"type": "判决", "trigger": {"text": "判决", "start": 20, "end": 22}, "args": [{"role": "institution", "text": "北京市海淀区人民法院", "start": 10, "end": 20}, {"role": "sub-org", "text": "建行恩济支行", "start": 24, "end": 30}, {"role": "obj-per", "text": "王翔", "start": 46, "end": 48}, {"role": "money", "text": "57.65万元", "start": 50, "end": 57}, {"role": "date", "text": "2018年8月3日", "start": 0, "end": 9}]}]}
+{"uid": "42088d33cc75a71d9014f362947d17dd", "id": "42088d33cc75a71d9014f362947d17dd", "events": []}
+{"uid": "7cd2dbd3a897adba3ed0d2053c7633de", "id": "7cd2dbd3a897adba3ed0d2053c7633de", "events": []}
+{"uid": "24f535ec22e807e38c49dcaf9ad63f17", "id": "24f535ec22e807e38c49dcaf9ad63f17", "events": []}
+{"uid": "50a22ebe2faf1030d3e437cc3d432fef", "id": "50a22ebe2faf1030d3e437cc3d432fef", "events": [{"type": "收购", "trigger": {"text": "收购", "start": 14, "end": 16}, "args": [{"role": "sub-org", "text": "大众", "start": 12, "end": 14}, {"role": "obj-org", "text": "宾利", "start": 17, "end": 19}, {"role": "obj-org", "text": "布加迪", "start": 20, "end": 23}, {"role": "obj-org", "text": "兰博基尼", "start": 24, "end": 28}, {"role": "date", "text": "自1993年起", "start": 0, "end": 7}]}]}
+{"uid": "9614bda7bf06e35e705948587ef40f65", "id": "9614bda7bf06e35e705948587ef40f65", "events": []}
+{"uid": "15aee362601310d2e9de1096568f11ad", "id": "15aee362601310d2e9de1096568f11ad", "events": []}
+{"uid": "65ac62a380342a93da39aad9712c81e2", "id": "65ac62a380342a93da39aad9712c81e2", "events": []}
+{"uid": "d06419cbf534e6dd972ef54571bb215d", "id": "d06419cbf534e6dd972ef54571bb215d", "events": []}
+{"uid": "701866d0c882c59d732d22c1e255979f", "id": "701866d0c882c59d732d22c1e255979f", "events": []}
+{"uid": "0dfe007f99e44c8d6c8547b4a7e5e664", "id": "0dfe007f99e44c8d6c8547b4a7e5e664", "events": [{"type": "判决", "trigger": {"text": "判决", "start": 8, "end": 10}, "args": [{"role": "obj-org", "text": "天铝有限", "start": 35, "end": 39}, {"role": "sub-org", "text": "中交物产(新疆)有限公司", "start": 23, "end": 35}, {"role": "money", "text": "983,506.62元", "start": 56, "end": 67}, {"role": "date", "text": "2017年度", "start": 15, "end": 21}]}]}
+{"uid": "7580776cd0fca90956b6ab96a80738fa", "id": "7580776cd0fca90956b6ab96a80738fa", "events": []}
+{"uid": "939d5b35f38171656f426f75c06f39ec", "id": "939d5b35f38171656f426f75c06f39ec", "events": []}
+{"uid": "528358a5470bd6c95dfea5f578cbbaf7", "id": "528358a5470bd6c95dfea5f578cbbaf7", "events": []}
+{"uid": "962f0b73fc2ccd9a80ad5a5ce093433c", "id": "962f0b73fc2ccd9a80ad5a5ce093433c", "events": []}
+{"uid": "5737d0180cdd1dae5c74009a3fa9193f", "id": "5737d0180cdd1dae5c74009a3fa9193f", "events": []}

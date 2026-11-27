@@ -1,0 +1,297 @@
+{
+  "num_samples": 2548,
+  "missing_predictions": 0,
+  "trigger": {
+    "precision": 0.517,
+    "recall": 0.4916,
+    "f1": 0.504,
+    "tp": 2009,
+    "fp": 1877,
+    "fn": 2078
+  },
+  "argument": {
+    "precision": 0.2483,
+    "recall": 0.3094,
+    "f1": 0.2755,
+    "tp": 3910,
+    "fp": 11840,
+    "fn": 8726
+  },
+  "event_exact": {
+    "precision": 0.0723,
+    "recall": 0.0688,
+    "f1": 0.0705,
+    "tp": 281,
+    "fp": 3605,
+    "fn": 3806
+  },
+  "per_type": {
+    "减持": {
+      "precision": 0.6272,
+      "recall": 0.9079,
+      "f1": 0.7419,
+      "tp": 434,
+      "fp": 258,
+      "fn": 44
+    },
+    "判决": {
+      "precision": 0.8144,
+      "recall": 0.8208,
+      "f1": 0.8176,
+      "tp": 316,
+      "fp": 72,
+      "fn": 69
+    },
+    "投资": {
+      "precision": 0.3607,
+      "recall": 0.391,
+      "f1": 0.3752,
+      "tp": 303,
+      "fp": 537,
+      "fn": 472
+    },
+    "担保": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 11,
+      "fn": 0
+    },
+    "收购": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 400
+    },
+    "签署合同": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 4,
+      "fn": 0
+    },
+    "股份股权转让": {
+      "precision": 0.5375,
+      "recall": 0.4946,
+      "f1": 0.5152,
+      "tp": 552,
+      "fp": 475,
+      "fn": 564
+    },
+    "质押": {
+      "precision": 0.9275,
+      "recall": 0.9717,
+      "f1": 0.9491,
+      "tp": 550,
+      "fp": 43,
+      "fn": 16
+    },
+    "起诉": {
+      "precision": 0.7764,
+      "recall": 0.7003,
+      "f1": 0.7364,
+      "tp": 257,
+      "fp": 74,
+      "fn": 110
+    }
+  },
+  "per_role": {
+    "collateral": {
+      "precision": 0.4045,
+      "recall": 0.53,
+      "f1": 0.4588,
+      "tp": 743,
+      "fp": 1094,
+      "fn": 659
+    },
+    "date": {
+      "precision": 0.2929,
+      "recall": 0.3968,
+      "f1": 0.337,
+      "tp": 575,
+      "fp": 1388,
+      "fn": 874
+    },
+    "institution": {
+      "precision": 0.2805,
+      "recall": 0.3228,
+      "f1": 0.3002,
+      "tp": 92,
+      "fp": 236,
+      "fn": 193
+    },
+    "money": {
+      "precision": 0.2716,
+      "recall": 0.3436,
+      "f1": 0.3034,
+      "tp": 302,
+      "fp": 810,
+      "fn": 577
+    },
+    "number": {
+      "precision": 0.4394,
+      "recall": 0.5305,
+      "f1": 0.4807,
+      "tp": 261,
+      "fp": 333,
+      "fn": 231
+    },
+    "obj": {
+      "precision": 0.0971,
+      "recall": 0.097,
+      "f1": 0.097,
+      "tp": 102,
+      "fp": 949,
+      "fn": 950
+    },
+    "obj-org": {
+      "precision": 0.2025,
+      "recall": 0.2662,
+      "f1": 0.23,
+      "tp": 457,
+      "fp": 1800,
+      "fn": 1260
+    },
+    "obj-per": {
+      "precision": 0.0417,
+      "recall": 0.0286,
+      "f1": 0.0339,
+      "tp": 7,
+      "fp": 161,
+      "fn": 238
+    },
+    "proportion": {
+      "precision": 0.2422,
+      "recall": 0.3956,
+      "f1": 0.3005,
+      "tp": 343,
+      "fp": 1073,
+      "fn": 524
+    },
+    "share-org": {
+      "precision": 0.1315,
+      "recall": 0.1854,
+      "f1": 0.1538,
+      "tp": 28,
+      "fp": 185,
+      "fn": 123
+    },
+    "share-per": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 10
+    },
+    "sub": {
+      "precision": 0.1585,
+      "recall": 0.2033,
+      "f1": 0.1781,
+      "tp": 209,
+      "fp": 1110,
+      "fn": 819
+    },
+    "sub-org": {
+      "precision": 0.2974,
+      "recall": 0.2253,
+      "f1": 0.2564,
+      "tp": 301,
+      "fp": 711,
+      "fn": 1035
+    },
+    "sub-per": {
+      "precision": 0.2824,
+      "recall": 0.4652,
+      "f1": 0.3514,
+      "tp": 194,
+      "fp": 493,
+      "fn": 223
+    },
+    "target-company": {
+      "precision": 0.1306,
+      "recall": 0.1932,
+      "f1": 0.1559,
+      "tp": 194,
+      "fp": 1291,
+      "fn": 810
+    },
+    "title": {
+      "precision": 0.3885,
+      "recall": 0.5204,
+      "f1": 0.4449,
+      "tp": 115,
+      "fp": 181,
+      "fn": 106
+    },
+    "way": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 81
+    }
+  },
+  "type_macro_f1": 0.4595,
+  "method": "roberta12L_linear",
+  "gold": "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\data\\processed\\dev_extract.jsonl",
+  "pred": "D:\\AI_learn\\course-related\\正式课\\第七周 信息抽取\\CourseWork_week7\\outputs\\disc\\pred_roberta12L_linear.jsonl",
+  "meta": {
+    "display_name": "roberta-12L(pretrained)+LINEAR",
+    "group": "A",
+    "encoder": "roberta",
+    "bert_layers": 12,
+    "init": "pretrained",
+    "decoder": "linear",
+    "train_s": 497.3,
+    "params_m": 102.3,
+    "ms_per_sentence": 6.86,
+    "peak_gpu_mb": 2220.3,
+    "max_len": 256,
+    "epochs": 4,
+    "lr": 2e-05,
+    "batch_size": 32,
+    "grad_accum": 1,
+    "best_epoch": 4,
+    "inner_val_span_f1": 0.4776,
+    "num_labels": 57,
+    "illegal_dev": {
+      "illegal_start": 14,
+      "illegal_transition": 4830,
+      "total_seqs": 4087,
+      "illegal_seqs": 2386,
+      "total_illegal": 4844,
+      "illegal_seq_rate": 0.5838,
+      "illegal_per_seq": 1.185
+    },
+    "n_truncated": 37,
+    "hard_constraint": false,
+    "seed": 42,
+    "vram_guard": {
+      "vram_ratio": 0.85,
+      "downgrades": 0,
+      "peak_gpu_mb": 2220.3,
+      "history": [
+        {
+          "orig_batch": 32,
+          "batch": 32,
+          "grad_accum": 1,
+          "free_mb": 7070.0,
+          "downgrades": 0
+        }
+      ]
+    },
+    "selection_note": "按 train 切出的 10% 内层验证集选 epoch；dev 未参与训练与选点"
+  },
+  "n200_summary": {
+    "trigger_f1": 0.4949,
+    "argument_f1": 0.2874,
+    "event_f1": 0.0741,
+    "num_samples": 200
+  }
+}
