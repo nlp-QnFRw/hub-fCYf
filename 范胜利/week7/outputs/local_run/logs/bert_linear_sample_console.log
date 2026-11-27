@@ -1,0 +1,18 @@
+epoch 1/3 | train_loss=2.1901 | inner_loss=1.1518 inner_spanF1=0.0000 | dev_spanF1(监控)=0.0000 | 913s
+  ★ 内层验证最优 → 保存 bert_linear_sample.pt
+epoch 2/3 | train_loss=1.0403 | inner_loss=0.8548 inner_spanF1=0.0000 | dev_spanF1(监控)=0.0000 | 912s
+epoch 3/3 | train_loss=0.8364 | inner_loss=0.7753 inner_spanF1=0.0000 | dev_spanF1(监控)=0.0000 | 870s
+加载最优 checkpoint（epoch 1，内层验证 spanF1=0.0000）
+dev 解码：300 句，其中没抽到触发词 300 句
+样本数 300（缺预测 0 条）
+  trigger      P=0.0000 R=0.0000 F1=0.0000 (tp=0 fp=0 fn=300)
+  argument     P=0.0000 R=0.0000 F1=0.0000 (tp=0 fp=0 fn=1325)
+  event_exact  P=0.0000 R=0.0000 F1=0.0000 (tp=0 fp=0 fn=300)
+  type_macro_f1 = 0.0000
+  指标已写入 → /Users/fvictory/Documents/deepseek-harness/default-workspace/hub-fCYf/范胜利/week7/src/outputs/metrics/disc/bert_linear_sample.json
+
+【非法 BIO 统计（dev，模型原始输出）】
+  序列数 300：含非法序列 21 条（7.0%），其中非法开头 0 处、非法转移 66 处
+  训练集对照：含非法序列 54 条（7.5%）
+
+训练耗时 2696s | 推理延迟 238.69 ms/句 | 峰值显存 0 MiB

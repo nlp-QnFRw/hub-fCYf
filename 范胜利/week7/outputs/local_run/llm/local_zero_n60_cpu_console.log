@@ -1,0 +1,28 @@
+数据：dev_extract.jsonl → 采样 60 条（seed=42，规则见 event_data.canonical_order）
+输出：/Users/fvictory/Documents/deepseek-harness/default-workspace/hub-fCYf/范胜利/week7/src/outputs/llm/pred_local_zero_n60_cpu.jsonl
+[gpu] 未获取到显存信息（nvidia-smi 不可用），跳过检查
+[local] 设备=cpu 模型=/Users/fvictory/Desktop/hub-fCYf/pretrain_models/Qwen3-0.6B batch=4 dtype=fp32
+  [ 12/60] 合法 12 条，平均 37.64s/条
+  [ 20/60] 合法 20 条，平均 31.67s/条
+  [ 32/60] 合法 32 条，平均 28.29s/条
+  [ 40/60] 合法 40 条，平均 29.03s/条
+  [ 52/60] 合法 52 条，平均 29.26s/条
+  [ 60/60] 合法 60 条，平均 28.62s/条
+
+统计 → /Users/fvictory/Documents/deepseek-harness/default-workspace/hub-fCYf/范胜利/week7/src/outputs/llm/report_local_zero_n60_cpu.json（总耗时 1717s）
+
+==============================================================================
+结果：local_zero_n60_cpu（local/zero，60 条）
+==============================================================================
+  trigger F1   : 0.4370   (P=0.4407 R=0.4333)
+  argument F1  : 0.1321   (P=0.2366 R=0.0917)
+  event  F1    : 0.0000
+  type_macro_f1: 0.5750
+  JSON 合法率  : 100.0%（结构性修复 24 条，围栏/废话剥离 0 条）
+  解析失败     : 0 条 | 空回复 0 条
+  幻觉论元     : 0 次 | 触发词找不到 8 次
+  平均延迟     : 28.613s/条（p50=25.45s）
+  token        : prompt 54061 + completion 5200 = 59261
+统一评测 → /Users/fvictory/Documents/deepseek-harness/default-workspace/hub-fCYf/范胜利/week7/src/outputs/metrics/llm/local_zero_n60_cpu.json
+
+下一步：把这条预测和其它方案一起画进对比图（eval/plot_compare.py）

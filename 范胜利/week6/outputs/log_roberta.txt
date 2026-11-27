@@ -1,0 +1,19 @@
+[cfg] backbone=chinese-roberta-wwm-ext device=cpu threads=8 max_len=64 bs=64 lr=2e-05 head×5.0 epochs=2 cw=on seed=42
+[data] train=6000/53360（分层抽样） val=10000 (与训练集重复 1099 条，另报去重口径) params=102.28M steps/epoch=94
+  epoch 1 step 0/94 loss=2.7679 (32s)
+  epoch 1 step 20/94 loss=2.5501 (507s)
+  epoch 1 step 40/94 loss=1.8789 (1045s)
+  epoch 1 step 60/94 loss=1.6725 (1540s)
+  epoch 1 step 80/94 loss=1.1758 (2024s)
+  → epoch 1: val_acc=0.5287 val_macro_f1=0.5103 (3614.2s)
+  epoch 2 step 0/94 loss=1.2703 (30s)
+  epoch 2 step 20/94 loss=1.1710 (582s)
+  epoch 2 step 40/94 loss=1.3022 (1129s)
+  epoch 2 step 60/94 loss=1.2965 (7963s)
+  epoch 2 step 80/94 loss=1.2308 (10910s)
+  → epoch 2: val_acc=0.5403 val_macro_f1=0.526 (15040.2s)
+
+[RoBERTa-wwm-ext] best_epoch=2/2 acc=0.5403 macro_f1=0.526 weighted_f1=0.5383
+          去重验证集(8901条) macro_f1=0.5171 训练耗时=18654.7s
+          指标 → /Users/fvictory/Documents/deepseek-harness/default-workspace/week6/outputs/metrics_chinese-roberta-wwm-ext.json
+ROBERTA EXIT=0

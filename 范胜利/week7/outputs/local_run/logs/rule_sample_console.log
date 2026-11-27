@@ -1,0 +1,18 @@
+触发词炼成：52 条（自动 31 + 人工 37，含去重）
+公司名词典：612 个
+推理完成：300 句，耗时 0.09s（0.298 ms/句，纯 CPU）
+样本数 300（缺预测 0 条）
+  trigger      P=0.6884 R=0.6700 F1=0.6791 (tp=201 fp=91 fn=99)
+  argument     P=0.1593 R=0.1525 F1=0.1558 (tp=202 fp=1066 fn=1123)
+  event_exact  P=0.0171 R=0.0167 F1=0.0169 (tp=5 fp=287 fn=295)
+  type_macro_f1 = 0.8512
+  指标已写入 → /Users/fvictory/Documents/deepseek-harness/default-workspace/hub-fCYf/范胜利/week7/src/outputs/metrics/disc/rule_sample.json
+
+【规则基线失败分析】
+  arg_spurious     176 条 (58.7%)
+  wrong_trigger     57 条 (19.0%)
+  wrong_type        34 条 (11.3%)
+  arg_missing       20 条 (6.7%)
+  no_trigger         8 条 (2.7%)
+  exact              5 条 (1.7%)
+  触发词命中率（整句有事件的比例）：97.3%

@@ -1,0 +1,122 @@
+{
+  "method": "bert_linear_sample",
+  "argv": [
+    "bert/train.py",
+    "--data_dir",
+    "../data/sample",
+    "--device",
+    "cpu",
+    "--decoder",
+    "linear",
+    "--bert_path",
+    "/Users/fvictory/Desktop/八斗学院/八斗精品班/第四周 语言模型/bert-base-chinese",
+    "--bert_layers",
+    "12",
+    "--epochs",
+    "3",
+    "--max_len",
+    "256",
+    "--batch_size",
+    "16",
+    "--run_name",
+    "bert_linear_sample"
+  ],
+  "args": {
+    "decoder": "linear",
+    "bert_path": "/Users/fvictory/Desktop/八斗学院/八斗精品班/第四周 语言模型/bert-base-chinese",
+    "bert_layers": 12,
+    "max_len": 256,
+    "epochs": 3,
+    "batch_size": 16,
+    "lr": 2e-05,
+    "head_lr_mult": 5.0,
+    "warmup_ratio": 0.1,
+    "grad_accum": 1,
+    "max_grad_norm": 1.0,
+    "weight_decay": 0.01,
+    "dropout": 0.1,
+    "inner_val": 0.1,
+    "hard_constraint": false,
+    "device": "cpu",
+    "log_every": 50,
+    "seed": 42,
+    "run_name": "bert_linear_sample",
+    "mock": false,
+    "data_dir": "../data/sample"
+  },
+  "env": {
+    "python": "3.12.3",
+    "platform": "macOS-15.7.9-x86_64-i386-64bit",
+    "time": "2026-11-27 22:54:09",
+    "torch": "2.2.2",
+    "cuda_available": false,
+    "transformers": "4.55.0"
+  },
+  "params": 102382229,
+  "log_every": 50,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 2.190132,
+      "elapsed_s": 913.3,
+      "val": {
+        "inner_loss": 1.1517529726028441,
+        "inner_span_f1": 0.0,
+        "dev_span_f1_monitor": 0.0
+      },
+      "best_so_far": -1.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.040336,
+      "elapsed_s": 911.9,
+      "val": {
+        "inner_loss": 0.8548243761062622,
+        "inner_span_f1": 0.0,
+        "dev_span_f1_monitor": 0.0
+      },
+      "best_so_far": 0.0
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.836436,
+      "elapsed_s": 870.2,
+      "val": {
+        "inner_loss": 0.7752720475196838,
+        "inner_span_f1": 0.0,
+        "dev_span_f1_monitor": 0.0
+      },
+      "best_so_far": 0.0
+    }
+  ],
+  "total_elapsed_s": 2696.1,
+  "finished": true,
+  "best_epoch": 1,
+  "best_inner_val_span_f1": 0.0,
+  "dev_metrics": {
+    "trigger": 0.0,
+    "argument": 0.0,
+    "event_exact": 0.0
+  },
+  "inference_latency_ms": 238.69,
+  "peak_gpu_mb": 0.0,
+  "illegal_dev": {
+    "illegal_start": 0,
+    "illegal_transition": 66,
+    "total_seqs": 300,
+    "illegal_seqs": 21,
+    "total_illegal": 66,
+    "illegal_seq_rate": 0.07,
+    "illegal_per_seq": 0.22
+  },
+  "illegal_train_pred_sample": {
+    "illegal_start": 0,
+    "illegal_transition": 137,
+    "total_seqs": 720,
+    "illegal_seqs": 54,
+    "total_illegal": 137,
+    "illegal_seq_rate": 0.075,
+    "illegal_per_seq": 0.19
+  },
+  "notes": "BERT 序列标注（linear）训练过程"
+}

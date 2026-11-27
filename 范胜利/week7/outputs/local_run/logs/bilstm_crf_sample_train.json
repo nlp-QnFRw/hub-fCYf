@@ -1,0 +1,137 @@
+{
+  "method": "bilstm_crf_sample",
+  "argv": [
+    "bilstm_crf/train.py",
+    "--data_dir",
+    "../data/sample",
+    "--device",
+    "cpu",
+    "--epochs",
+    "6",
+    "--max_len",
+    "256",
+    "--batch_size",
+    "32",
+    "--lr",
+    "3e-3",
+    "--warmup_steps",
+    "20",
+    "--run_name",
+    "bilstm_crf_sample"
+  ],
+  "args": {
+    "decoder": "crf",
+    "max_len": 256,
+    "epochs": 6,
+    "batch_size": 32,
+    "emb_dim": 128,
+    "hidden": 256,
+    "num_layers": 1,
+    "lr": 0.003,
+    "weight_decay": 0.0001,
+    "dropout": 0.3,
+    "max_grad_norm": 5.0,
+    "warmup_steps": 20,
+    "inner_val": 0.1,
+    "hard_constraint": false,
+    "device": "cpu",
+    "log_every": 50,
+    "seed": 42,
+    "run_name": "bilstm_crf_sample",
+    "mock": false,
+    "data_dir": "../data/sample"
+  },
+  "env": {
+    "python": "3.12.3",
+    "platform": "macOS-15.7.9-x86_64-i386-64bit",
+    "time": "2026-11-27 22:43:21",
+    "torch": "2.2.2",
+    "cuda_available": false,
+    "transformers": "4.55.0"
+  },
+  "params": 1149304,
+  "log_every": 50,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 486.640549,
+      "elapsed_s": 165.7,
+      "val": {
+        "inner_loss": 226.68311055501303,
+        "inner_span_f1": 0.0
+      },
+      "best_so_far": -1.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 208.159011,
+      "elapsed_s": 166.3,
+      "val": {
+        "inner_loss": 175.96090698242188,
+        "inner_span_f1": 0.0
+      },
+      "best_so_far": 0.0
+    },
+    {
+      "epoch": 3,
+      "train_loss": 155.244417,
+      "elapsed_s": 174.6,
+      "val": {
+        "inner_loss": 119.8953374226888,
+        "inner_span_f1": 0.06072874493927125
+      },
+      "best_so_far": 0.0
+    },
+    {
+      "epoch": 4,
+      "train_loss": 113.647676,
+      "elapsed_s": 176.0,
+      "val": {
+        "inner_loss": 93.9201151529948,
+        "inner_span_f1": 0.18248175182481752
+      },
+      "best_so_far": 0.060729
+    },
+    {
+      "epoch": 5,
+      "train_loss": 87.530343,
+      "elapsed_s": 211.0,
+      "val": {
+        "inner_loss": 74.95919291178386,
+        "inner_span_f1": 0.3221884498480243
+      },
+      "best_so_far": 0.182482
+    },
+    {
+      "epoch": 6,
+      "train_loss": 71.275822,
+      "elapsed_s": 186.3,
+      "val": {
+        "inner_loss": 67.4319839477539,
+        "inner_span_f1": 0.4435374149659864
+      },
+      "best_so_far": 0.322188
+    }
+  ],
+  "total_elapsed_s": 1080.3,
+  "finished": true,
+  "best_epoch": 6,
+  "best_inner_val_span_f1": 0.443537,
+  "dev_metrics": {
+    "trigger": 0.7623,
+    "argument": 0.3629,
+    "event_exact": 0.0472
+  },
+  "inference_latency_ms": 50.72,
+  "peak_gpu_mb": 0.0,
+  "illegal_dev": {
+    "illegal_start": 7,
+    "illegal_transition": 297,
+    "total_seqs": 300,
+    "illegal_seqs": 169,
+    "total_illegal": 304,
+    "illegal_seq_rate": 0.5633,
+    "illegal_per_seq": 1.013
+  },
+  "notes": "BiLSTM-CRF（字符级，无预训练）训练过程"
+}

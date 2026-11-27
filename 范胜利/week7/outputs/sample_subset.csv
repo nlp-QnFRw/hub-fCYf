@@ -1,0 +1,13 @@
+﻿method,display_name,source,n,covered,trigger_f1,argument_f1,event_f1,type_macro_f1
+sft_lora_n200,L4 LoRA SFT,reference,200,200,0.9,0.6971,0.185,0.7862
+bert_crf_256_hard,L2 BERT+CRF+解码期硬约束,reference,200,200,0.8402,0.6418,0.2268,0.7257
+bert_crf_256,L2 BERT+CRF,reference,200,200,0.8278,0.5672,0.1748,0.7225
+bert_linear_256,L2 BERT+Linear,reference,200,200,0.8123,0.5598,0.1645,0.7256
+api_few_n200,L3 API few-shot,reference,200,200,0.8321,0.5395,0.0852,0.9384
+api_zero_n200,L3 API zero-shot,reference,200,200,0.7789,0.5224,0.0402,0.9281
+bilstm_crf,L1 字符级 BiLSTM-CRF,reference,200,200,0.8167,0.4633,0.1056,0.6908
+pipeline,L2 两段式（检测→类型→论元）,reference,200,200,0.6522,0.3527,0.1304,0.5822
+bilstm_crf_sample,L1 BiLSTM-CRF（sample 重训）,local_sample,200,200,0.7463,0.3411,0.0418,0.5924
+rule,L0 规则（词典+正则）,reference,200,200,0.575,0.1805,0.02,0.7857
+rule_sample,L0 规则（sample 重训）,local_sample,200,200,0.6497,0.1485,0.0152,0.8204
+local_zero_n200,L3 本地 Qwen3-0.6B zero-shot,reference,60,60,0.4068,0.1167,0.0,0.3817

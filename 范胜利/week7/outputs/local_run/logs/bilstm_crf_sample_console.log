@@ -1,0 +1,22 @@
+epoch 1/6 | train_loss=486.6405 | inner_loss=226.6831 inner_spanF1=0.0000 | 166s
+  ★ 内层验证最优 → 保存 bilstm_crf_sample.pt
+epoch 2/6 | train_loss=208.1590 | inner_loss=175.9609 inner_spanF1=0.0000 | 166s
+epoch 3/6 | train_loss=155.2444 | inner_loss=119.8953 inner_spanF1=0.0607 | 175s
+  ★ 内层验证最优 → 保存 bilstm_crf_sample.pt
+epoch 4/6 | train_loss=113.6477 | inner_loss=93.9201 inner_spanF1=0.1825 | 176s
+  ★ 内层验证最优 → 保存 bilstm_crf_sample.pt
+epoch 5/6 | train_loss=87.5303 | inner_loss=74.9592 inner_spanF1=0.3222 | 211s
+  ★ 内层验证最优 → 保存 bilstm_crf_sample.pt
+epoch 6/6 | train_loss=71.2758 | inner_loss=67.4320 inner_spanF1=0.4435 | 186s
+  ★ 内层验证最优 → 保存 bilstm_crf_sample.pt
+样本数 300（缺预测 0 条）
+  trigger      P=0.9282 R=0.6467 F1=0.7623 (tp=194 fp=15 fn=106)
+  argument     P=0.4941 R=0.2868 F1=0.3629 (tp=380 fp=389 fn=945)
+  event_exact  P=0.0574 R=0.0400 F1=0.0472 (tp=12 fp=197 fn=288)
+  type_macro_f1 = 0.6000
+  指标已写入 → /Users/fvictory/Documents/deepseek-harness/default-workspace/hub-fCYf/范胜利/week7/src/outputs/metrics/disc/bilstm_crf_sample.json
+
+【非法 BIO 统计（dev，模型原始输出）】
+  序列数 300：含非法序列 169 条（56.3%），非法开头 7 处 / 非法转移 297 处
+
+训练耗时 1080s | 延迟 50.72 ms/句

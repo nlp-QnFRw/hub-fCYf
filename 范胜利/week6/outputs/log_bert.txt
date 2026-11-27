@@ -1,0 +1,18 @@
+[cfg] backbone=bert-base-chinese device=cpu threads=16 max_len=64 bs=64 lr=2e-05 head×5.0 epochs=2 cw=on seed=42
+[data] train=6000/53360（分层抽样） val=10000 (与训练集重复 1099 条，另报去重口径) params=102.28M steps/epoch=94
+  epoch 1 step 0/94 loss=2.6903 (11s)
+  epoch 1 step 20/94 loss=2.5354 (234s)
+  epoch 1 step 40/94 loss=1.7923 (469s)
+  epoch 1 step 60/94 loss=1.5992 (688s)
+  epoch 1 step 80/94 loss=1.1133 (918s)
+  → epoch 1: val_acc=0.5199 val_macro_f1=0.5045 (1882.6s)
+  epoch 2 step 0/94 loss=1.1943 (17s)
+  epoch 2 step 20/94 loss=1.0122 (347s)
+  epoch 2 step 40/94 loss=1.2496 (700s)
+  epoch 2 step 60/94 loss=1.2551 (1034s)
+  epoch 2 step 80/94 loss=1.3065 (1370s)
+  → epoch 2: val_acc=0.5301 val_macro_f1=0.5143 (2518.9s)
+
+[BERT-base-chinese] best_epoch=2/2 acc=0.5301 macro_f1=0.5143 weighted_f1=0.5286
+          去重验证集(8901条) macro_f1=0.5059 训练耗时=4402.3s
+          指标 → /Users/fvictory/Documents/deepseek-harness/default-workspace/week6/outputs/metrics_bert-base-chinese.json
